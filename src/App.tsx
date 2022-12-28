@@ -1,4 +1,5 @@
 import { Route } from 'wouter'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 import Header from './layout/Header/Header'
 import Home from './pages/Home/Home'
@@ -9,7 +10,9 @@ export default function App() {
     <div className="flex flex-col min-h-screen bg-zinc-100 text-zinc-700">
       <Header />
       <Route path="/">
-        <Home />
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
       </Route>
       <Route path="/login">
         <Login />
