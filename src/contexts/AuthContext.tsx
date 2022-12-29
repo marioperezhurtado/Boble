@@ -7,35 +7,60 @@ interface Props {
   children: React.ReactNode
 }
 
+interface SignInParams {
+  email: string
+  password: string
+}
+
 interface AuthContext {
-  currentUser: User | undefined
-  signInWithGoogle: () => Promise<void>
+  currentUser: User | null
+  signIn: (params: SignInParams) => Promise<void>
+  signInGoogle: () => Promise<void>
+  signInGithub: () => Promise<void>
 }
 
-const initialCtx: AuthContext = {
-  currentUser: undefined,
-  signInWithGoogle: async () => await Promise.resolve()
+const initialAuthCtx = {
+  currentUser: null,
+  signIn: async () => {},
+  signInGoogle: async () => {},
+  signInGithub: async () => {}
 }
 
-const AuthCtx = createContext<AuthContext>(initialCtx)
+const AuthCtx = createContext<AuthContext>(initialAuthCtx)
 
 export function AuthProvider({ children }: Props) {
-  const [currentUser, setCurrentUser] = useState<User | undefined>()
+  const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
-  const signInWithGoogle = async () => {
+  const signIn = async ({ email, password }: SignInParams) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    })
+    if (error) throw Error('Failed to sign in')
+  }
+
+  const signInGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google'
     })
+    if (error) throw Error('Failed to sign in with Google')
+  }
 
-    if (error !== null) throw Error('Failed to sign in with Google')
+  const signInGithub = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'github'
+    })
+    if (error) throw Error('Failed to sign in with Github')
   }
 
   useEffect(() => {
     supabase.auth
       .getSession()
       .then(({ data: { session } }) => {
-        setCurrentUser(session?.user)
+        if (session?.user !== undefined) {
+          setCurrentUser(session?.user)
+        }
         setLoading(false)
       })
       .catch(() => {})
@@ -43,7 +68,9 @@ export function AuthProvider({ children }: Props) {
     const {
       data: { subscription }
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setCurrentUser(session?.user)
+      if (session?.user !== undefined) {
+        setCurrentUser(session?.user)
+      }
     })
 
     return () => {
@@ -53,7 +80,9 @@ export function AuthProvider({ children }: Props) {
 
   const authValues = {
     currentUser,
-    signInWithGoogle
+    signIn,
+    signInGoogle,
+    signInGithub
   }
 
   return (

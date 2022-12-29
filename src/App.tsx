@@ -1,9 +1,11 @@
 import { Route } from 'wouter'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import AuthRoute from './components/AuthRoute/AuthRoute'
 
 import Header from './layout/Header/Header'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
+import Signup from './pages/Signup/Signup'
 
 export default function App() {
   return (
@@ -15,7 +17,14 @@ export default function App() {
         </ProtectedRoute>
       </Route>
       <Route path="/login">
-        <Login />
+        <AuthRoute>
+          <Login />
+        </AuthRoute>
+      </Route>
+      <Route path="/signup">
+        <AuthRoute>
+          <Signup />
+        </AuthRoute>
       </Route>
     </div>
   )

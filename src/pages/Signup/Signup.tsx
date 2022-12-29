@@ -2,12 +2,20 @@ import { Link } from 'wouter'
 
 import SocialLogin from '../../components/SocialLogin/SocialLogin'
 
-export default function Login() {
+export default function Signup() {
   return (
     <>
       <div className="w-full max-w-md p-6 mx-auto mt-20 bg-white rounded-md shadow-md">
-        <h1 className="text-2xl font-bold">Login to your account</h1>
+        <h1 className="text-2xl font-bold">Create an account</h1>
         <form className="flex flex-col mt-2">
+          <label htmlFor="fullname" className="pt-5">
+            Full Name
+          </label>
+          <input
+            type="text"
+            id="fullname"
+            className="px-2 py-1.5 border rounded-md"
+          />
           <label htmlFor="username" className="pt-5">
             Username
           </label>
@@ -24,19 +32,27 @@ export default function Login() {
             id="password"
             className="px-2 py-1.5 border rounded-md"
           />
+          <label htmlFor="confirmPassword" className="pt-5">
+            Confirm Password
+          </label>
+          <input
+            type="password"
+            id="confirmPassword"
+            className="px-2 py-1.5 border rounded-md"
+          />
           <button
             type="submit"
             className="py-2 mt-8 font-bold rounded-md bg-cyan-900 text-cyan-50">
-            Login
+            Create Account
           </button>
-          <SocialLogin />
         </form>
+        <SocialLogin />
       </div>
       <p className="mt-5 text-center">
-        Need an account?
-        <Link to="/signup">
+        Already have an account?
+        <Link to="/login">
           <span className="ml-1 font-bold cursor-pointer text-cyan-700">
-            Sign Up
+            Log In
           </span>
         </Link>
       </p>

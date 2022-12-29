@@ -8,7 +8,7 @@ interface Props {
 export default function ProtectedRoute({ children }: Props) {
   const { currentUser } = useAuth()
 
-  if (!currentUser) return <Redirect to="/login" />
+  if (currentUser) return <Redirect to="/" />
 
   return <>{children}</>
 }
