@@ -3,6 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'wouter'
 
+import Header from '../../layout/Header/Header'
 import SocialLogin from '../../components/SocialLogin/SocialLogin'
 
 interface FormState {
@@ -50,6 +51,7 @@ export default function Login() {
 
   return (
     <>
+      <Header />
       <div className="w-full max-w-md p-6 mx-auto mt-20 bg-white rounded-md shadow-md">
         <h1 className="text-2xl font-bold">Login to your account</h1>
         <form onSubmit={handleSubmit} className="flex flex-col mt-2">

@@ -1,18 +1,21 @@
-import ChatList from '../../components/ChatList/ChatList'
-
-const dummyChatList = [
-  { id: '1', name: 'Luke' },
-  { id: '2', name: 'John' },
-  { id: '3', name: 'Anna' },
-  { id: '4', name: 'Paul' }
-]
+import { Link } from 'wouter'
 
 export default function Home() {
   return (
-    <main className="flex flex-grow w-full max-w-screen-xl mx-auto shadow-md bg-zinc-50">
-      <ChatList chatList={dummyChatList} />
-      <div className="flex-grow bg-zinc-50">
-        <h2>Chat</h2>
+    <main className="text-center">
+      <h1 className="mt-16 text-3xl font-bold">BOBLE Web Chat</h1>
+      <p className="mt-5 text-lg">Online free chat</p>
+      <div className="flex gap-2 mx-auto mt-5 w-fit">
+        <Link to="/about">
+          <button className="bg-white border px-3 py-1.5 rounded-md shadow-md">
+            About this project
+          </button>
+        </Link>
+        <Link to="/chat">
+          <button className="bg-cyan-700 text-cyan-50 px-3 py-1.5 rounded-md shadow-md">
+            Start chatting
+          </button>
+        </Link>
       </div>
     </main>
   )
