@@ -20,12 +20,14 @@ const initialState = {
 export default function Signup() {
   const { signUp } = useAuth()
   const [formState, setFormState] = useState<FormState>(initialState)
+  const [validationError, setValidationError] = useState<string | null>(null)
   const { email, password, confirmPassword } = formState
 
   const {
     mutate: handleSignUp,
     isLoading,
-    error
+    error,
+    isSuccess
   } = useMutation({
     mutationFn: signUp
   })
@@ -37,9 +39,16 @@ export default function Signup() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setValidationError(null)
 
-    if (!email || !password || !confirmPassword) return
-    if (password !== confirmPassword) return
+    if (!email || !password || !confirmPassword) {
+      setValidationError('There are empty fields')
+      return
+    }
+    if (password !== confirmPassword) {
+      setValidationError('Passwords do not match')
+      return
+    }
 
     handleSignUp({ email, password })
   }
@@ -51,9 +60,20 @@ export default function Signup() {
       <div className="w-full max-w-md p-6 mx-auto mt-20 bg-white rounded-md shadow-md">
         <h1 className="text-2xl font-bold">Create an account</h1>
         <form onSubmit={handleSubmit} className="flex flex-col mt-2">
-          {signUpError && (
+          {isSuccess && (
+            <p className="p-1.5 pl-3 mt-5 bg-green-100 border-l-4 border-green-600">
+              Please follow the link we have sent to your email to verify your
+              account
+            </p>
+          )}
+          {!validationError && signUpError && (
             <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
               {signUpError.message}
+            </p>
+          )}
+          {validationError && (
+            <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+              {validationError}
             </p>
           )}
           <label htmlFor="email" className="pt-5">

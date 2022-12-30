@@ -18,6 +18,7 @@ const initialState = {
 export default function Login() {
   const { signIn } = useAuth()
   const [formState, setFormState] = useState<FormState>(initialState)
+  const [validationError, setValidationError] = useState<string | null>(null)
   const { email, password } = formState
 
   const {
@@ -35,7 +36,12 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!email || !password) return
+    setValidationError(null)
+
+    if (!email || !password) {
+      setValidationError('There are empty fields')
+      return
+    }
 
     handleSignIn({ email, password })
   }
@@ -47,9 +53,14 @@ export default function Login() {
       <div className="w-full max-w-md p-6 mx-auto mt-20 bg-white rounded-md shadow-md">
         <h1 className="text-2xl font-bold">Login to your account</h1>
         <form onSubmit={handleSubmit} className="flex flex-col mt-2">
-          {signInError && (
+          {!validationError && signInError && (
             <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
               {signInError.message}
+            </p>
+          )}
+          {validationError && (
+            <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+              {validationError}
             </p>
           )}
           <label htmlFor="email" className="pt-5">
