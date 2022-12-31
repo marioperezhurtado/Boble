@@ -22,13 +22,7 @@ export default function Login() {
   const [validationError, setValidationError] = useState<string | null>(null)
   const { email, password } = formState
 
-  const {
-    mutate: handleSignIn,
-    isLoading,
-    error
-  } = useMutation({
-    mutationFn: signIn
-  })
+  const { mutate: handleSignIn, isLoading, error } = useMutation(signIn)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target

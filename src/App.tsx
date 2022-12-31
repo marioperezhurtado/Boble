@@ -17,7 +17,7 @@ export default function App() {
         </Route>
         <Route path="/chat">
           <ProtectedRoute>
-            <Chat userId={null} />
+            <Chat userId="" />
           </ProtectedRoute>
         </Route>
         <Route path="/chat/:userId">
