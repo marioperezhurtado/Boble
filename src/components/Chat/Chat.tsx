@@ -3,6 +3,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useDb } from '../../contexts/DbContext'
 
 import ChatMessage from '../ChatMessage/ChatMessage'
+import ChatInput from '../ChatInput/ChatInput'
 
 import { Message } from '../../types/chat'
 
@@ -66,14 +67,15 @@ export default function Chat({ userId }: Props) {
   }
 
   return (
-    <div className="flex-grow bg-zinc-50">
-      <ul className="flex-col p-4">
+    <div className="flex flex-col flex-grow bg-zinc-100">
+      <ul className="z-10 flex-col flex-grow p-4">
         {messages.map((m: Message) => (
           <li key={m.id}>
             <ChatMessage message={m} />
           </li>
         ))}
       </ul>
+      <ChatInput userId={userId} />
     </div>
   )
 }
