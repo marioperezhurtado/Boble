@@ -6,57 +6,78 @@ interface Props {
 }
 
 interface GetPrivateMessages {
-  senderId: string
-  receiverId: string
+  channelId: string
 }
 
-interface SendPrivateMessage {
+interface SendMessage {
   senderId: string
-  receiverId: string
+  channelId: string
   text: string
+}
+
+interface PrivateMessagesListener {
+  channelId: string
+  callback: () => void
 }
 
 interface DbContext {
   getPrivateMessages: (params: GetPrivateMessages) => Promise<any>
-  sendPrivateMessage: (params: SendPrivateMessage) => Promise<any>
+  sendPrivateMessage: (params: SendMessage) => Promise<any>
+  privateMessagesListener: (params: PrivateMessagesListener) => any
 }
 
 const initialDbCtx = {
   getPrivateMessages: async () => {},
-  sendPrivateMessage: async () => {}
+  sendPrivateMessage: async () => {},
+  privateMessagesListener: () => {}
 }
 
 const DbCtx = createContext<DbContext>(initialDbCtx)
 
 export function DbProvider({ children }: Props) {
-  const getPrivateMessages = async ({
-    senderId,
-    receiverId
-  }: GetPrivateMessages) => {
+  const getPrivateMessages = async ({ channelId }: GetPrivateMessages) => {
     const { data, error } = await supabase
       .from('private_messages')
       .select('*')
-      .or(
-        `and(sender_id.eq.${senderId}, receiver_id.eq.${receiverId}), and(sender_id.eq.${receiverId}, receiver_id.eq.${senderId})`
-      )
+      .eq('private_channel_id', channelId)
     if (error) throw Error('Failed to get private messages')
     return data
   }
 
   const sendPrivateMessage = async ({
     senderId,
-    receiverId,
+    channelId,
     text
-  }: SendPrivateMessage) => {
+  }: SendMessage) => {
     const { error } = await supabase
       .from('private_messages')
-      .insert({ sender_id: senderId, receiver_id: receiverId, text })
+      .insert({ sender_id: senderId, private_channel_id: channelId, text })
     if (error) throw Error('Failed to send private message')
+  }
+
+  const privateMessagesListener = ({
+    channelId,
+    callback
+  }: PrivateMessagesListener) => {
+    return supabase
+      .channel('public:private_messages')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'private_messages',
+          filter: `private_channel_id=eq.${channelId}`
+        },
+        callback
+      )
+      .subscribe()
   }
 
   const dbValues = {
     getPrivateMessages,
-    sendPrivateMessage
+    sendPrivateMessage,
+    privateMessagesListener
   }
 
   return <DbCtx.Provider value={dbValues}>{children}</DbCtx.Provider>

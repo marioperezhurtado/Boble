@@ -3,10 +3,10 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useDb } from '../../contexts/DbContext'
 
 interface Props {
-  userId: string
+  channelId: string
 }
 
-export default function ChatInput({ userId }: Props) {
+export default function ChatInput({ channelId }: Props) {
   const { currentUser } = useAuth()
   const { sendPrivateMessage } = useDb()
 
@@ -14,7 +14,7 @@ export default function ChatInput({ userId }: Props) {
     async (text: string) =>
       await sendPrivateMessage({
         senderId: currentUser?.id ?? '',
-        receiverId: userId,
+        channelId,
         text
       })
   )

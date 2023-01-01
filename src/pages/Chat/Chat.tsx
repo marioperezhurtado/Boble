@@ -3,7 +3,7 @@ import ChatList from '../../components/ChatList/ChatList'
 import Chat from '../../components/Chat/Chat'
 
 interface Props {
-  userId: string
+  channelId: string
 }
 
 const dummyChatList = [
@@ -13,13 +13,13 @@ const dummyChatList = [
   { id: '4', name: 'Paul' }
 ]
 
-export default function ChatPage({ userId }: Props) {
+export default function ChatPage({ channelId }: Props) {
   return (
     <>
       <Header />
       <main className="flex flex-grow w-full max-w-screen-xl mx-auto shadow-md bg-zinc-50">
         <ChatList chatList={dummyChatList} />
-        <Chat userId={userId} />
+        <Chat channelId={channelId} />
       </main>
     </>
   )

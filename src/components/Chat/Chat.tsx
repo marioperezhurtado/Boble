@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { useDb } from '../../contexts/DbContext'
@@ -8,32 +9,41 @@ import ChatInput from '../ChatInput/ChatInput'
 import { Message } from '../../types/chat'
 
 interface Props {
-  userId: string
+  channelId: string
 }
 
-export default function Chat({ userId }: Props) {
+export default function Chat({ channelId }: Props) {
   const { currentUser } = useAuth()
-  const { getPrivateMessages } = useDb()
+  const { getPrivateMessages, privateMessagesListener } = useDb()
 
   const {
     data: messages,
     isLoading,
-    error
+    error,
+    refetch
   } = useQuery({
-    queryKey: ['chat', userId],
+    queryKey: ['chat', channelId],
     queryFn: async () =>
       await getPrivateMessages({
-        senderId: currentUser?.id ?? '',
-        receiverId: userId
+        channelId
       }),
     retry: false,
     refetchOnWindowFocus: false,
-    enabled: !!userId && !!currentUser
+    enabled: !!channelId && !!currentUser
   })
 
   const chatError = error as Error
 
-  if (!userId) {
+  useEffect(() => {
+    // Subscribe to realtime private channel updates
+    const capsSubscription = privateMessagesListener({
+      channelId,
+      callback: refetch
+    })
+    return () => capsSubscription.unsubscribe()
+  }, [channelId])
+
+  if (!channelId) {
     return (
       <div className="flex-grow bg-zinc-50">
         <p>Select a contact to start a conversation</p>
@@ -75,7 +85,7 @@ export default function Chat({ userId }: Props) {
           </li>
         ))}
       </ul>
-      <ChatInput userId={userId} />
+      <ChatInput channelId={channelId} />
     </div>
   )
 }

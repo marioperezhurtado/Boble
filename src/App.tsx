@@ -17,13 +17,13 @@ export default function App() {
         </Route>
         <Route path="/chat">
           <ProtectedRoute>
-            <Chat userId="" />
+            <Chat channelId="" />
           </ProtectedRoute>
         </Route>
-        <Route path="/chat/:userId">
+        <Route path="/chat/:channelId">
           {(params) => (
             <ProtectedRoute>
-              <Chat userId={params.userId} />
+              <Chat channelId={params.channelId} />
             </ProtectedRoute>
           )}
         </Route>
