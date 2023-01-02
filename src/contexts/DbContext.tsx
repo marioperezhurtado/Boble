@@ -15,6 +15,9 @@ interface SendMessage {
   text: string
 }
 
+interface GetChannels {
+  userId: string
+}
 interface PrivateMessagesListener {
   channelId: string
   callback: () => void
@@ -23,12 +26,14 @@ interface PrivateMessagesListener {
 interface DbContext {
   getPrivateMessages: (params: GetPrivateMessages) => Promise<any>
   sendPrivateMessage: (params: SendMessage) => Promise<any>
+  getChannels: (params: GetChannels) => Promise<any>
   privateMessagesListener: (params: PrivateMessagesListener) => any
 }
 
 const initialDbCtx = {
   getPrivateMessages: async () => {},
   sendPrivateMessage: async () => {},
+  getChannels: async () => {},
   privateMessagesListener: () => {}
 }
 
@@ -55,6 +60,15 @@ export function DbProvider({ children }: Props) {
     if (error) throw Error('Failed to send private message')
   }
 
+  const getChannels = async ({ userId }: GetChannels) => {
+    const { data, error } = await supabase
+      .from('private_channels')
+      .select('*, user1(*), user2(*)')
+      .or(`user1.eq.${userId},user2.eq.${userId}`)
+    if (error) throw Error('Failed to get channel list')
+    return data
+  }
+
   const privateMessagesListener = ({
     channelId,
     callback
@@ -77,6 +91,7 @@ export function DbProvider({ children }: Props) {
   const dbValues = {
     getPrivateMessages,
     sendPrivateMessage,
+    getChannels,
     privateMessagesListener
   }
 

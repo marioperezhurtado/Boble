@@ -31,6 +31,7 @@ export default function ChatInput({ channelId }: Props) {
   return (
     <form
       onSubmit={handleSendMessage}
+      name="chatInputForm"
       className="flex justify-center w-full gap-2 p-2 border-t bg-zinc-50">
       <input
         type="text"

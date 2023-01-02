@@ -1,5 +1,5 @@
 import Header from '../../layout/Header/Header'
-import ChatList from '../../components/ChatList/ChatList'
+import ChannelList from '../../components/ChannelList/ChannelList'
 import Chat from '../../components/Chat/Chat'
 
 interface Props {
@@ -18,7 +18,7 @@ export default function ChatPage({ channelId }: Props) {
     <>
       <Header />
       <main className="flex flex-grow w-full max-w-screen-xl mx-auto shadow-md bg-zinc-50">
-        <ChatList chatList={dummyChatList} />
+        <ChannelList chatList={dummyChatList} />
         <Chat channelId={channelId} />
       </main>
     </>

@@ -5,9 +5,7 @@ import { Link } from 'wouter'
 export default function Header() {
   const { currentUser, signOut } = useAuth()
 
-  const { mutate: handleSignOut, isLoading } = useMutation({
-    mutationFn: signOut
-  })
+  const { mutate: handleSignOut, isLoading } = useMutation(signOut)
 
   return (
     <header className="px-12 py-3 bg-cyan-900 text-cyan-50">
