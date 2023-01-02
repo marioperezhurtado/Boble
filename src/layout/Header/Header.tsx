@@ -18,8 +18,8 @@ export default function Header() {
         {currentUser && (
           <div className="flex items-center gap-5 ml-auto text-sm">
             <Link to="/profile">
-              <button className="flex items-center gap-1">
-                <p className="cursor-pointer">{currentUser.email}</p>
+              <button className="flex items-center gap-1 cursor-pointer">
+                {currentUser.email}
                 <img src="/account.svg" alt="account" className="w-4 h-4" />
               </button>
             </Link>
@@ -27,8 +27,8 @@ export default function Header() {
             <button
               onClick={() => handleSignOut()}
               disabled={isLoading}
-              className="flex items-center gap-1">
-              <p className="cursor-pointer">Logout</p>
+              className="flex items-center gap-1 cursor-pointer">
+              Logout
               <img src="/logout.svg" alt="logout" className="w-4 h-4" />
             </button>
           </div>

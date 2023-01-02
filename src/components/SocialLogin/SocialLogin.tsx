@@ -8,17 +8,13 @@ export default function SocialLogin() {
     mutate: handleSignInGoogle,
     isLoading: googleLoading,
     error: googleError
-  } = useMutation({
-    mutationFn: signInGoogle
-  })
+  } = useMutation(signInGoogle)
 
   const {
     mutate: handleSignInGithub,
     isLoading: githubLoading,
     error: githubError
-  } = useMutation({
-    mutationFn: signInGithub
-  })
+  } = useMutation(signInGithub)
 
   const isLoading = googleLoading || githubLoading
   const error = (googleError as Error) || (githubError as Error)

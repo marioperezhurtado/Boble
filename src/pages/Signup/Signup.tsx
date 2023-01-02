@@ -65,7 +65,10 @@ export default function Signup() {
       <Header />
       <div className="w-full max-w-md p-6 mx-auto mt-20 bg-white rounded-md shadow-md">
         <h1 className="text-2xl font-bold">Create an account</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col mt-2">
+        <form
+          onSubmit={handleSubmit}
+          name="signupForm"
+          className="flex flex-col mt-2">
           {isSuccess && (
             <p className="p-1.5 pl-3 mt-5 bg-green-100 border-l-4 border-green-600">
               Please follow the link we have sent to your email to verify your

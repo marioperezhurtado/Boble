@@ -7,12 +7,12 @@ vi.mock('../../contexts/AuthContext')
 
 // Prevent access to authentication routes if user is already logged
 
-describe('AuthRoute', () => {
-  test('Renders children if user is NOT logged', async () => {
-    const { useAuth }: { useAuth: any } = await import(
-      '../../contexts/AuthContext'
-    )
+describe('AuthRoute', async () => {
+  const { useAuth }: { useAuth: any } = await import(
+    '../../contexts/AuthContext'
+  )
 
+  test('Renders children if user is NOT logged', async () => {
     useAuth.mockReturnValueOnce({ currentUser: false })
 
     render(<AuthRoute>Not logged</AuthRoute>)
@@ -20,10 +20,6 @@ describe('AuthRoute', () => {
   })
 
   test('Redirects to home if user IS logged', async () => {
-    const { useAuth }: { useAuth: any } = await import(
-      '../../contexts/AuthContext'
-    )
-
     useAuth.mockReturnValueOnce({ currentUser: true })
 
     render(<AuthRoute>Logged</AuthRoute>)
