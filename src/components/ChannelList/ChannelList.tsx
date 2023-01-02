@@ -28,7 +28,7 @@ export default function ChannelList({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <ul className="flex flex-col w-full max-w-md border-r bg-zinc-50 border-zinc-200">
+      <ul className="flex flex-col w-full h-full max-w-md border-r bg-zinc-50 border-zinc-200">
         Loading...
       </ul>
     )
@@ -36,7 +36,7 @@ export default function ChannelList({ channelId }: Props) {
 
   if (channelsError) {
     return (
-      <ul className="flex flex-col w-full max-w-md border-r bg-zinc-50 border-zinc-200">
+      <ul className="flex flex-col h-full border-r bg-zinc-50 border-zinc-200">
         <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
           {channelsError.message}
         </p>
@@ -46,7 +46,7 @@ export default function ChannelList({ channelId }: Props) {
 
   if (!channels.length) {
     return (
-      <ul className="flex flex-col w-full max-w-md border-r bg-zinc-50 border-zinc-200">
+      <ul className="flex flex-col h-full border-r bg-zinc-50 border-zinc-200">
         You have not created any channel yet. Create one and start chatting with
         your friends.
       </ul>
@@ -54,7 +54,7 @@ export default function ChannelList({ channelId }: Props) {
   }
 
   return (
-    <ul className="flex flex-col w-full max-w-md border-r bg-zinc-50 border-zinc-200">
+    <ul className="flex flex-col h-full border-r bg-zinc-50 border-zinc-200">
       {channels.map((c: Channel) => (
         <li
           key={c.id}

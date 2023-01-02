@@ -46,61 +46,63 @@ export default function Login() {
   return (
     <>
       <Header />
-      <div className="w-full max-w-md p-6 mx-auto mt-20 bg-white rounded-md shadow-md">
-        <h1 className="text-2xl font-bold">Login to your account</h1>
-        <form
-          onSubmit={handleSubmit}
-          name="loginForm"
-          className="flex flex-col mt-2">
-          {!validationError && signInError && (
-            <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
-              {signInError.message}
-            </p>
-          )}
-          {validationError && (
-            <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
-              {validationError}
-            </p>
-          )}
-          <label htmlFor="email" className="pt-5">
-            Email
-          </label>
-          <input
-            onChange={handleChange}
-            value={email}
-            type="text"
-            id="email"
-            name="email"
-            className="px-2 py-1.5 border rounded-md"
-          />
-          <label htmlFor="password" className="pt-5">
-            Password
-          </label>
-          <input
-            onChange={handleChange}
-            value={password}
-            type="password"
-            id="password"
-            name="password"
-            className="px-2 py-1.5 border rounded-md"
-          />
-          <button
-            disabled={isLoading}
-            type="submit"
-            className="py-2 mt-8 font-bold rounded-md bg-cyan-900 text-cyan-50">
-            Login
-          </button>
-          <SocialLogin />
-        </form>
-      </div>
-      <p className="mt-5 text-center">
-        Need an account?
-        <Link to="/signup">
-          <span className="ml-1 font-bold cursor-pointer text-cyan-700">
-            Sign Up
-          </span>
-        </Link>
-      </p>
+      <main className="px-4">
+        <div className="w-full max-w-md p-6 mx-auto mt-10 bg-white rounded-md shadow-md md:mt-20">
+          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <form
+            onSubmit={handleSubmit}
+            name="loginForm"
+            className="flex flex-col mt-2">
+            {!validationError && signInError && (
+              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+                {signInError.message}
+              </p>
+            )}
+            {validationError && (
+              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+                {validationError}
+              </p>
+            )}
+            <label htmlFor="email" className="pt-5">
+              Email
+            </label>
+            <input
+              onChange={handleChange}
+              value={email}
+              type="text"
+              id="email"
+              name="email"
+              className="px-2 py-1.5 border rounded-md"
+            />
+            <label htmlFor="password" className="pt-5">
+              Password
+            </label>
+            <input
+              onChange={handleChange}
+              value={password}
+              type="password"
+              id="password"
+              name="password"
+              className="px-2 py-1.5 border rounded-md"
+            />
+            <button
+              disabled={isLoading}
+              type="submit"
+              className="py-2 mt-8 font-bold rounded-md bg-cyan-900 text-cyan-50">
+              Login
+            </button>
+            <SocialLogin />
+          </form>
+        </div>
+        <p className="mt-5 text-center">
+          Need an account?
+          <Link to="/signup">
+            <span className="ml-1 font-bold cursor-pointer text-cyan-700">
+              Sign Up
+            </span>
+          </Link>
+        </p>
+      </main>
     </>
   )
 }

@@ -45,7 +45,7 @@ export default function Chat({ channelId }: Props) {
 
   if (!channelId) {
     return (
-      <div className="flex-grow p-4 bg-zinc-100">
+      <div className="h-full px-4 bg-zinc-100">
         <p className="mt-6 text-lg text-center">
           Select a channel to start chatting
         </p>
@@ -55,7 +55,7 @@ export default function Chat({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col flex-grow p-4 bg-zinc-100">
+      <div className="flex flex-col h-full px-4 bg-zinc-100">
         <p className="flex-grow font-bold text-center">Loading...</p>
         <ChatInput channelId={channelId} />
       </div>
@@ -64,7 +64,7 @@ export default function Chat({ channelId }: Props) {
 
   if (chatError) {
     return (
-      <div className="flex-grow bg-zinc-100">
+      <div className=" bg-zinc-100">
         <p>{chatError.message}</p>
       </div>
     )
@@ -72,8 +72,8 @@ export default function Chat({ channelId }: Props) {
 
   if (!messages.length) {
     return (
-      <div className="flex flex-col flex-grow bg-zinc-100">
-        <div className="flex-grow">
+      <div className="flex flex-col h-full bg-zinc-100">
+        <div className="flex-grow px-4">
           <p className="mt-10 text-lg font-bold text-center">No messages yet</p>
           <p className="text-center">
             Start the conversation to see your messages here.
@@ -85,8 +85,8 @@ export default function Chat({ channelId }: Props) {
   }
 
   return (
-    <div className="flex flex-col flex-grow bg-zinc-100">
-      <ul className="z-10 flex-col flex-grow p-4">
+    <div className="flex flex-col h-full bg-zinc-100">
+      <ul className="z-10 flex-col flex-grow px-4">
         {messages.map((m: Message) => (
           <li key={m.id}>
             <ChatMessage message={m} />

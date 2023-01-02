@@ -10,7 +10,7 @@ import PageNotFound from './pages/PageNotFound/PageNotFound'
 
 export default function App() {
   return (
-    <div className="flex flex-col min-h-screen select-text bg-zinc-200 text-zinc-700">
+    <div className="flex flex-col h-screen select-text bg-zinc-200 text-zinc-700">
       <Switch>
         <Route path="/">
           <Home />

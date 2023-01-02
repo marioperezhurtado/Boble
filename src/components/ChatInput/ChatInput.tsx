@@ -56,7 +56,7 @@ export default function ChatInput({ channelId }: Props) {
       </button>
       <button
         disabled={isLoading}
-        className="px-3 border rounded-md bg-cyan-700 text-cyan-50 min-w-fit">
+        className="px-3 rounded-md bg-cyan-700 text-cyan-50 min-w-fit">
         <img src="/send.svg" alt="send" className="w-5 h-5" />
       </button>
     </form>
