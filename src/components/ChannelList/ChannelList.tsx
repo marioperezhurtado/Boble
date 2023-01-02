@@ -6,7 +6,11 @@ import ChannelPreview from '../ChannelPreview/ChannelPreview'
 
 import { Channel } from '../../types/chat'
 
-export default function ChannelList() {
+interface Props {
+  channelId: string
+}
+
+export default function ChannelList({ channelId }: Props) {
   const { currentUser } = useAuth()
   const { getChannels } = useDb()
 
@@ -52,7 +56,11 @@ export default function ChannelList() {
   return (
     <ul className="flex flex-col w-full max-w-md border-r bg-zinc-50 border-zinc-200">
       {channels.map((c: Channel) => (
-        <li key={c.id} className="flex items-center ">
+        <li
+          key={c.id}
+          className={`flex items-center ${
+            c.id === channelId ? 'bg-zinc-100' : ''
+          }`}>
           {c.user1.id !== currentUser?.id && (
             <ChannelPreview channelId={c.id} user={c.user1} />
           )}
