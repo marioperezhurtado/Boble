@@ -10,35 +10,37 @@ import PageNotFound from './pages/PageNotFound/PageNotFound'
 
 export default function App() {
   return (
-    <Switch>
-      <Route path="/">
-        <Home />
-      </Route>
-      <Route path="/chat">
-        <ProtectedRoute>
-          <Chat channelId="" />
-        </ProtectedRoute>
-      </Route>
-      <Route path="/chat/:channelId">
-        {(params) => (
+    <div className="select-text text-zinc-700">
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+        <Route path="/chat">
           <ProtectedRoute>
-            <Chat channelId={params.channelId} />
+            <Chat channelId="" />
           </ProtectedRoute>
-        )}
-      </Route>
-      <Route path="/login">
-        <AuthRoute>
-          <Login />
-        </AuthRoute>
-      </Route>
-      <Route path="/signup">
-        <AuthRoute>
-          <Signup />
-        </AuthRoute>
-      </Route>
-      <Route path="/:rest*">
-        <PageNotFound />
-      </Route>
-    </Switch>
+        </Route>
+        <Route path="/chat/:channelId">
+          {(params) => (
+            <ProtectedRoute>
+              <Chat channelId={params.channelId} />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/login">
+          <AuthRoute>
+            <Login />
+          </AuthRoute>
+        </Route>
+        <Route path="/signup">
+          <AuthRoute>
+            <Signup />
+          </AuthRoute>
+        </Route>
+        <Route path="/:rest*">
+          <PageNotFound />
+        </Route>
+      </Switch>
+    </div>
   )
 }

@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { useDb } from '../../contexts/DbContext'
 
+import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
 import ChatMessage from '../ChatMessage/ChatMessage'
 import ChatInput from '../ChatInput/ChatInput'
 
@@ -61,17 +62,19 @@ export default function Chat({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col h-full px-4 bg-zinc-100">
-        <p className="flex-grow font-bold text-center">Loading...</p>
+      <div className="flex flex-col h-full mt-10 md:mt-20 bg-zinc-100">
+        <LoadSpinner />
         <ChatInput channelId={channelId} />
       </div>
     )
   }
 
-  if (chatError) {
+  if (chatError?.message) {
     return (
-      <div className=" bg-zinc-100">
-        <p>{chatError.message}</p>
+      <div className="px-8 py-8 bg-zinc-100">
+        <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+          {chatError.message}
+        </p>
       </div>
     )
   }
@@ -80,7 +83,9 @@ export default function Chat({ channelId }: Props) {
     return (
       <div className="flex flex-col h-full bg-zinc-100">
         <div className="flex-grow px-4">
-          <p className="pt-10 text-lg font-bold text-center">No messages yet</p>
+          <p className="pt-10 my-5 text-xl font-bold text-center">
+            No messages yet
+          </p>
           <p className="text-center">
             Start the conversation to see your messages here.
           </p>

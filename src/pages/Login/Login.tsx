@@ -46,7 +46,7 @@ export default function Login() {
   return (
     <>
       <Header />
-      <main className="min-h-screen px-4 py-10 bg-zinc-100 md:py-20">
+      <main className="min-h-screen px-4 py-20 bg-zinc-100 md:py-32">
         <div className="w-full max-w-md p-6 mx-auto bg-white rounded-md shadow-md ">
           <h1 className="text-2xl font-bold">Login to your account</h1>
           <form

@@ -2,6 +2,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useQuery } from '@tanstack/react-query'
 import { useDb } from '../../contexts/DbContext'
 
+import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
 import ChannelPreview from '../ChannelPreview/ChannelPreview'
 
 import { Channel } from '../../types/chat'
@@ -28,15 +29,15 @@ export default function ChannelList({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <ul className="flex flex-col w-full h-full max-w-md border-r bg-zinc-50 border-zinc-200">
-        Loading...
+      <ul className="flex flex-col w-full h-full mt-10 border-r md:mt-20 bg-zinc-50 border-zinc-200">
+        <LoadSpinner />
       </ul>
     )
   }
 
   if (channelsError) {
     return (
-      <ul className="flex flex-col h-full border-r bg-zinc-50 border-zinc-200">
+      <ul className="flex flex-col h-full px-4 border-r bg-zinc-50 border-zinc-200">
         <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
           {channelsError.message}
         </p>
@@ -44,11 +45,13 @@ export default function ChannelList({ channelId }: Props) {
     )
   }
 
-  if (!channels.length) {
+  if (!channels?.length) {
     return (
-      <ul className="flex flex-col h-full border-r bg-zinc-50 border-zinc-200">
-        You have not created any channel yet. Create one and start chatting with
-        your friends.
+      <ul className="flex flex-col h-full p-8 text-center border-r bg-zinc-50 border-zinc-200">
+        <p className="my-5 text-xl font-bold">
+          You have not created any channel yet.
+        </p>
+        <p>Create one and start chatting with your friends.</p>
       </ul>
     )
   }

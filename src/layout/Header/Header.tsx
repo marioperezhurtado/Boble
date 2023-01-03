@@ -11,7 +11,7 @@ export default function Header() {
     <header className="fixed z-20 w-full px-4 py-3 md:px-8 lg:px-12 bg-cyan-900 text-cyan-50">
       <div className="flex justify-between mx-auto max-w-screen-2xl">
         <Link to="/chat">
-          <h1 className="text-xl font-bold cursor-pointer">BOBLE</h1>
+          <h1 className="text-xl font-semibold cursor-pointer">BOBLE</h1>
         </Link>
         {currentUser && (
           <div className="flex items-center gap-5 ml-auto text-sm">
