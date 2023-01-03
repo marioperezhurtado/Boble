@@ -2,8 +2,8 @@ import { Link } from 'wouter'
 
 export default function Home() {
   return (
-    <main className="text-center">
-      <h1 className="mt-16 text-3xl font-bold">BOBLE</h1>
+    <main className="text-center  bg-zinc-100 text-zinc-700 min-h-screen">
+      <h1 className="pt-16 text-3xl font-bold">BOBLE</h1>
       <p className="mt-5 text-lg">Online free web chat</p>
       <div className="flex gap-2 mx-auto mt-5 w-fit">
         <Link to="/about">

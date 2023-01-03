@@ -20,9 +20,9 @@ export default function ChatPage({ channelId }: Props) {
   }, [channelId])
 
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <Header />
-      <main className="flex flex-grow w-full max-w-screen-xl mx-auto shadow-md bg-zinc-50">
+      <main className="flex flex-grow w-full h-full max-w-screen-xl pt-12 mx-auto shadow-md bg-zinc-50">
         <div
           className={`${
             channelsHidden ? 'hidden' : ''
@@ -36,6 +36,6 @@ export default function ChatPage({ channelId }: Props) {
           <Chat channelId={channelId} />
         </div>
       </main>
-    </>
+    </div>
   )
 }

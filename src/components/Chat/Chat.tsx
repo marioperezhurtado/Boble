@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { useDb } from '../../contexts/DbContext'
@@ -15,6 +15,7 @@ interface Props {
 export default function Chat({ channelId }: Props) {
   const { currentUser } = useAuth()
   const { getPrivateMessages, privateMessagesListener } = useDb()
+  const chatRef = useRef<HTMLUListElement>(null)
 
   const {
     data: messages,
@@ -43,10 +44,15 @@ export default function Chat({ channelId }: Props) {
     return () => capsSubscription.unsubscribe()
   }, [channelId])
 
+  useEffect(() => {
+    // Scroll to bottom of chat
+    chatRef.current?.scrollTo(0, chatRef.current.scrollHeight)
+  })
+
   if (!channelId) {
     return (
       <div className="h-full px-4 bg-zinc-100">
-        <p className="mt-6 text-lg text-center">
+        <p className="pt-6 text-lg text-center">
           Select a channel to start chatting
         </p>
       </div>
@@ -74,7 +80,7 @@ export default function Chat({ channelId }: Props) {
     return (
       <div className="flex flex-col h-full bg-zinc-100">
         <div className="flex-grow px-4">
-          <p className="mt-10 text-lg font-bold text-center">No messages yet</p>
+          <p className="pt-10 text-lg font-bold text-center">No messages yet</p>
           <p className="text-center">
             Start the conversation to see your messages here.
           </p>
@@ -85,8 +91,10 @@ export default function Chat({ channelId }: Props) {
   }
 
   return (
-    <div className="flex flex-col h-full bg-zinc-100">
-      <ul className="z-10 flex-col flex-grow px-4">
+    <div className="relative flex flex-col h-full bg-zinc-100">
+      <ul
+        ref={chatRef}
+        className="z-10 flex-col flex-grow px-4 pb-20 overflow-y-scroll scroll-smooth">
         {messages.map((m: Message) => (
           <li key={m.id}>
             <ChatMessage message={m} />

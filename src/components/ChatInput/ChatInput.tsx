@@ -32,15 +32,15 @@ export default function ChatInput({ channelId }: Props) {
     <form
       onSubmit={handleSendMessage}
       name="chatInputForm"
-      className="flex justify-center w-full gap-2 p-2 border-t bg-zinc-50">
+      className="fixed bottom-0 z-10 flex justify-center w-full gap-2 p-2 border-t bg-zinc-50 md:absolute">
       <button
         disabled={isLoading}
-        className="px-3 border rounded-md text-cyan-50 min-w-fit">
+        className="px-2 border rounded-md md:px-3 text-cyan-50 min-w-fit">
         <img src="/attachment.svg" alt="attachment" className="w-5 h-5" />
       </button>
       <button
         disabled={isLoading}
-        className="px-3 border rounded-md text-cyan-50 min-w-fit">
+        className="px-2 border rounded-md md:px-3 text-cyan-50 min-w-fit">
         <img src="/camera.svg" alt="camera" className="w-5 h-5" />
       </button>
       <input
@@ -48,10 +48,11 @@ export default function ChatInput({ channelId }: Props) {
         name="message"
         placeholder="Type a message..."
         className="block w-full max-w-lg p-2 border rounded-md"
+        autoComplete="off"
       />
       <button
         disabled={isLoading}
-        className="px-3 border rounded-md text-cyan-50 min-w-fit">
+        className="px-2 border rounded-md md:px-3 text-cyan-50 min-w-fit">
         <img src="/microphone.svg" alt="microphone" className="w-5 h-5" />
       </button>
       <button

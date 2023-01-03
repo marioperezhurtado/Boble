@@ -63,8 +63,8 @@ export default function Signup() {
   return (
     <>
       <Header />
-      <main className="px-4">
-        <div className="w-full max-w-md p-6 mx-auto mt-10 bg-white rounded-md shadow-md md:mt-20">
+      <main className="min-h-screen px-4 py-10 bg-zinc-100 md:py-20">
+        <div className="w-full max-w-md p-6 mx-auto bg-white rounded-md shadow-md">
           <h1 className="text-2xl font-bold">Create an account</h1>
           <form
             onSubmit={handleSubmit}
@@ -122,7 +122,7 @@ export default function Signup() {
             <button
               disabled={isLoading}
               type="submit"
-              className="py-2 mt-8 font-bold rounded-md bg-cyan-900 text-cyan-50">
+              className="py-2 mt-8 font-bold rounded-md bg-cyan-700 text-cyan-50">
               Create Account
             </button>
           </form>
