@@ -45,6 +45,7 @@ export function DbProvider({ children }: Props) {
       .from('private_messages')
       .select('*')
       .eq('private_channel_id', channelId)
+      .order('created_at', { ascending: true })
     if (error) throw Error('Failed to get private messages')
     return data
   }

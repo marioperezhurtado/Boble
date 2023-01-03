@@ -53,7 +53,7 @@ export default function Chat({ channelId }: Props) {
   if (!channelId) {
     return (
       <div className="h-full px-4 bg-zinc-100">
-        <p className="pt-6 text-lg text-center">
+        <p className="pt-12 text-lg font-semibold text-center">
           Select a channel to start chatting
         </p>
       </div>
