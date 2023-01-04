@@ -99,7 +99,7 @@ export default function Chat({ channelId }: Props) {
     <div className="relative flex flex-col h-full bg-zinc-100">
       <ul
         ref={chatRef}
-        className="z-10 flex-col flex-grow px-4 pb-20 overflow-y-scroll scroll-smooth">
+        className="z-10 flex-col flex-grow px-4 pb-20 overflow-y-auto scroll-smooth">
         {messages.map((m: Message) => (
           <li key={m.id}>
             <ChatMessage message={m} />

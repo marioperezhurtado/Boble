@@ -75,6 +75,7 @@ export function DbProvider({ children }: Props) {
       .from('private_channels')
       .select('*, user1(*), user2(*)')
       .or(`user1.eq.${userId},user2.eq.${userId}`)
+      .order('created_at', { ascending: false })
     if (error) throw Error('Failed to get channel list')
     return data
   }

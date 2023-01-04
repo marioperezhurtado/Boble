@@ -26,7 +26,7 @@ export default function ChatPage({ channelId }: Props) {
       <Header />
       <main className="flex flex-grow w-full h-full max-w-screen-xl pt-12 mx-auto shadow-md bg-zinc-50 ">
         <div
-          className={`w-full lg:max-w-md border flex-col gap-8 lg:flex
+          className={`w-full lg:max-w-md border flex-col lg:flex
           ${channelsHidden ? 'hidden' : 'flex'}
           `}>
           <ChannelList channelId={channelId} />

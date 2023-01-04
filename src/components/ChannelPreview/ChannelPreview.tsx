@@ -11,7 +11,7 @@ export default function ChannelPreview({ channelId, user }: Props) {
   return (
     <Link
       to={`/chat/${channelId}`}
-      className="flex items-center w-full gap-4 px-6 py-3 border-b">
+      className="flex items-center w-full gap-4 px-6 py-3 border-t">
       <div className="overflow-hidden rounded-full min-w-fit w-14 h-14">
         <img
           src={user.avatar_url ?? 'https://picsum.photos/75'}

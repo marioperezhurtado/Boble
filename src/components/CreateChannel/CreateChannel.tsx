@@ -35,7 +35,7 @@ export default function CreateChannel() {
   }
 
   return (
-    <div className="flex flex-col gap-2 sm:gap-4">
+    <div className="flex flex-col gap-2 sm:gap-4 py-8 border-t">
       <form
         ref={formRef}
         onSubmit={handleSubmit}
