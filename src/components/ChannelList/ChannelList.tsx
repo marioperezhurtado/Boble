@@ -1,5 +1,6 @@
-import { useAuth } from '../../contexts/AuthContext'
+import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { useAuth } from '../../contexts/AuthContext'
 import { useDb } from '../../contexts/DbContext'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
@@ -13,12 +14,13 @@ interface Props {
 
 export default function ChannelList({ channelId }: Props) {
   const { currentUser } = useAuth()
-  const { getChannels } = useDb()
+  const { getChannels, channelsListener } = useDb()
 
   const {
     data: channels,
     isLoading,
-    error
+    error,
+    refetch
   } = useQuery({
     queryKey: ['channels', currentUser],
     queryFn: async () => await getChannels({ userId: currentUser?.id ?? '' }),
@@ -27,9 +29,19 @@ export default function ChannelList({ channelId }: Props) {
 
   const channelsError = error as Error
 
+  useEffect(() => {
+    if (!currentUser?.id) return
+    // Subscribe to realtime channel updates
+    const channelsSubscription = channelsListener({
+      userId: currentUser.id,
+      callback: refetch
+    })
+    return () => channelsSubscription.unsubscribe()
+  }, [currentUser])
+
   if (isLoading) {
     return (
-      <ul className="flex flex-col w-full h-full mt-10 border-r md:mt-20 bg-zinc-50 border-zinc-200">
+      <ul className="flex flex-col w-full mt-10 border-r bg-zinc-50 border-zinc-200">
         <LoadSpinner />
       </ul>
     )
@@ -37,7 +49,7 @@ export default function ChannelList({ channelId }: Props) {
 
   if (channelsError) {
     return (
-      <ul className="flex flex-col h-full px-4 border-r bg-zinc-50 border-zinc-200">
+      <ul className="flex flex-col px-4 bg-zinc-50 ">
         <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
           {channelsError.message}
         </p>
@@ -47,7 +59,7 @@ export default function ChannelList({ channelId }: Props) {
 
   if (!channels?.length) {
     return (
-      <ul className="flex flex-col h-full p-8 text-center border-r bg-zinc-50 border-zinc-200">
+      <ul className="flex flex-col p-8 text-center bg-zinc-50 ">
         <p className="my-5 text-xl font-bold">
           You have not created any channel yet.
         </p>
@@ -57,7 +69,7 @@ export default function ChannelList({ channelId }: Props) {
   }
 
   return (
-    <ul className="flex flex-col h-full border-r bg-zinc-50 border-zinc-200">
+    <ul className="flex flex-col bg-zinc-50">
       {channels.map((c: Channel) => (
         <li
           key={c.id}

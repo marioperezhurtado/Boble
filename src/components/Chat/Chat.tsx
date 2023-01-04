@@ -37,12 +37,12 @@ export default function Chat({ channelId }: Props) {
   const chatError = error as Error
 
   useEffect(() => {
-    // Subscribe to realtime private channel updates
-    const capsSubscription = privateMessagesListener({
+    // Subscribe to realtime messages updates
+    const privateMessageSubscription = privateMessagesListener({
       channelId,
       callback: refetch
     })
-    return () => capsSubscription.unsubscribe()
+    return () => privateMessageSubscription.unsubscribe()
   }, [channelId])
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function Chat({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col h-full mt-10 md:mt-20 bg-zinc-100">
+      <div className="flex flex-col mt-10 md:mt-20 bg-zinc-100">
         <LoadSpinner />
         <ChatInput channelId={channelId} />
       </div>

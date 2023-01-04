@@ -4,22 +4,27 @@ import { supabase } from '../supabase'
 interface Props {
   children: React.ReactNode
 }
-
 interface GetPrivateMessages {
   channelId: string
 }
-
 interface SendMessage {
   senderId: string
   channelId: string
   text: string
 }
-
 interface GetChannels {
   userId: string
 }
+interface CreateChannel {
+  userId: string
+  friendId: string
+}
 interface PrivateMessagesListener {
   channelId: string
+  callback: () => void
+}
+interface ChannelsListener {
+  userId: string
   callback: () => void
 }
 
@@ -27,14 +32,18 @@ interface DbContext {
   getPrivateMessages: (params: GetPrivateMessages) => Promise<any>
   sendPrivateMessage: (params: SendMessage) => Promise<any>
   getChannels: (params: GetChannels) => Promise<any>
+  createChannel: (params: CreateChannel) => Promise<any>
   privateMessagesListener: (params: PrivateMessagesListener) => any
+  channelsListener: (params: ChannelsListener) => any
 }
 
 const initialDbCtx = {
   getPrivateMessages: async () => {},
   sendPrivateMessage: async () => {},
   getChannels: async () => {},
-  privateMessagesListener: () => {}
+  createChannel: async () => {},
+  privateMessagesListener: () => {},
+  channelsListener: () => {}
 }
 
 const DbCtx = createContext<DbContext>(initialDbCtx)
@@ -70,6 +79,13 @@ export function DbProvider({ children }: Props) {
     return data
   }
 
+  const createChannel = async ({ userId, friendId }: CreateChannel) => {
+    const { error } = await supabase
+      .from('private_channels')
+      .insert({ user1: userId, user2: friendId })
+    if (error) throw Error('Failed to create channel')
+  }
+
   const privateMessagesListener = ({
     channelId,
     callback
@@ -89,11 +105,29 @@ export function DbProvider({ children }: Props) {
       .subscribe()
   }
 
+  const channelsListener = ({ userId, callback }: ChannelsListener) => {
+    return supabase
+      .channel('public:private_channels')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'private_channels',
+          filter: `user1=eq.${userId}`
+        },
+        callback
+      )
+      .subscribe()
+  }
+
   const dbValues = {
     getPrivateMessages,
     sendPrivateMessage,
     getChannels,
-    privateMessagesListener
+    createChannel,
+    privateMessagesListener,
+    channelsListener
   }
 
   return <DbCtx.Provider value={dbValues}>{children}</DbCtx.Provider>
