@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'wouter'
@@ -29,7 +29,10 @@ export default function Signup() {
     isLoading,
     error,
     isSuccess
-  } = useMutation(signUp)
+  } = useMutation({
+    mutationFn: signUp,
+    onSuccess: () => setFormState(initialState)
+  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -54,12 +57,6 @@ export default function Signup() {
 
   const signUpError = error as Error
 
-  useEffect(() => {
-    if (isSuccess) {
-      setFormState(initialState)
-    }
-  }, [isSuccess])
-
   return (
     <>
       <Header />
@@ -73,7 +70,7 @@ export default function Signup() {
             {isSuccess && (
               <p className="p-1.5 pl-3 mt-5 bg-green-100 border-l-4 border-green-600">
                 Please follow the link we have sent to your email to verify your
-                account
+                account.
               </p>
             )}
             {!validationError && signUpError && (

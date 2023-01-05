@@ -91,6 +91,13 @@ export default function Login() {
               className="py-2 mt-8 font-bold rounded-md bg-cyan-700 text-cyan-50">
               Login
             </button>
+            {signInError && (
+              <Link to="/forgot-password">
+                <span className="mt-5 text-center cursor-pointer text-cyan-700">
+                  Forgot your password?
+                </span>
+              </Link>
+            )}
             <SocialLogin />
           </form>
         </div>

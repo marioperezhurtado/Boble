@@ -13,7 +13,7 @@ module.exports = {
     project: path.join(__dirname, '/tsconfig.json')
   },
   plugins: ['react'],
-  ignorePatterns: ['vite.config.ts'],
+  ignorePatterns: ['vite.config.ts', 'src/vite-env.d.ts'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',

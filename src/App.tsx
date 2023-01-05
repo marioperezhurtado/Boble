@@ -6,6 +6,8 @@ import Home from './pages/Home/Home'
 import Chat from './pages/Chat/Chat'
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
+import ResetPassword from './pages/ResetPassword/ResetPassword'
 import PageNotFound from './pages/PageNotFound/PageNotFound'
 
 export default function App() {
@@ -36,6 +38,16 @@ export default function App() {
           <AuthRoute>
             <Signup />
           </AuthRoute>
+        </Route>
+        <Route path="/forgot-password">
+          <AuthRoute>
+            <ForgotPassword />
+          </AuthRoute>
+        </Route>
+        <Route path="/reset-password">
+          <ProtectedRoute>
+            <ResetPassword />
+          </ProtectedRoute>
         </Route>
         <Route path="/:rest*">
           <PageNotFound />

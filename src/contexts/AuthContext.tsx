@@ -7,18 +7,28 @@ interface Props {
   children: React.ReactNode
 }
 
-interface SignInParams {
+interface SignIn {
   email: string
+  password: string
+}
+
+interface SendResetPasswordEmail {
+  email: string
+}
+
+interface ChangePassword {
   password: string
 }
 
 interface AuthContext {
   currentUser: User | null
-  signUp: (params: SignInParams) => Promise<void>
-  signIn: (params: SignInParams) => Promise<void>
+  signUp: (params: SignIn) => Promise<void>
+  signIn: (params: SignIn) => Promise<void>
   signOut: () => Promise<void>
   signInGoogle: () => Promise<void>
   signInGithub: () => Promise<void>
+  sendResetPasswordEmail: (params: SendResetPasswordEmail) => Promise<void>
+  changePassword: (params: ChangePassword) => Promise<void>
 }
 
 const initialAuthCtx = {
@@ -27,7 +37,9 @@ const initialAuthCtx = {
   signIn: async () => {},
   signOut: async () => {},
   signInGoogle: async () => {},
-  signInGithub: async () => {}
+  signInGithub: async () => {},
+  sendResetPasswordEmail: async () => {},
+  changePassword: async () => {}
 }
 
 const AuthCtx = createContext<AuthContext>(initialAuthCtx)
@@ -36,7 +48,7 @@ export function AuthProvider({ children }: Props) {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
-  const signUp = async ({ email, password }: SignInParams) => {
+  const signUp = async ({ email, password }: SignIn) => {
     const { error } = await supabase.auth.signUp({
       email,
       password
@@ -44,7 +56,7 @@ export function AuthProvider({ children }: Props) {
     if (error) throw Error('Failed to create an account')
   }
 
-  const signIn = async ({ email, password }: SignInParams) => {
+  const signIn = async ({ email, password }: SignIn) => {
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password
@@ -69,6 +81,19 @@ export function AuthProvider({ children }: Props) {
       provider: 'github'
     })
     if (error) throw Error('Failed to sign in with Github')
+  }
+
+  const sendResetPasswordEmail = async ({ email }: SendResetPasswordEmail) => {
+    const appUrl = import.meta.env.VITE_APP_URL as string
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${appUrl}/reset-password`
+    })
+    if (error) throw Error('Failed to reset password')
+  }
+
+  const changePassword = async ({ password }: ChangePassword) => {
+    const { error } = await supabase.auth.updateUser({ password })
+    if (error) throw Error('Failed to change password')
   }
 
   useEffect(() => {
@@ -103,7 +128,9 @@ export function AuthProvider({ children }: Props) {
     signIn,
     signOut,
     signInGoogle,
-    signInGithub
+    signInGithub,
+    sendResetPasswordEmail,
+    changePassword
   }
 
   return (
