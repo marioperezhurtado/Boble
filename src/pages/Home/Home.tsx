@@ -3,7 +3,11 @@ import { Link } from 'wouter'
 export default function Home() {
   return (
     <main className="min-h-screen text-center bg-zinc-50 text-zinc-700">
-      <h1 className="pt-16 text-3xl font-bold">BOBLE</h1>
+      <div className="flex items-center gap-1 pt-16 mx-auto w-fit">
+        <img src="/boble.svg" alt="boble logo" className="w-7 h-7" />
+        <h1 className="text-3xl font-bold">BOBLE</h1>
+      </div>
+
       <p className="mt-5 text-lg">Online free web chat</p>
       <div className="flex gap-2 mx-auto mt-5 w-fit">
         <Link to="/about">
