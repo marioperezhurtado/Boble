@@ -13,8 +13,8 @@ export interface Database {
         Row: {
           id: string
           created_at: string | null
-          user1: string
-          user2: string
+          user1: User
+          user2: User
         }
         Insert: {
           id?: string

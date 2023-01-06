@@ -39,12 +39,12 @@ export default function ChatPage({ channelId }: Props) {
           <Chat channelId={channelId} />
         </div>
         {channelsHidden && (
-          <div className="fixed z-10 cursor-pointer top-16 left-2 md:left-4">
+          <div className="fixed z-20 p-1 rounded-md shadow-md cursor-pointer top-2 left-2 md:left-4 bg-cyan-700 lg:hidden">
             <Link to="/chat">
               <img
                 src="/left.svg"
                 alt="Back to channel list"
-                className="w-8 h-8 lg:hidden"
+                className="w-7 h-7 lg:hidden"
               />
             </Link>
           </div>

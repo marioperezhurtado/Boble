@@ -1,7 +1,5 @@
 import { supabase } from '../supabase'
 
-import type { Channel } from '../types/chat'
-
 interface GetChannels {
   userId: string
 }
@@ -14,14 +12,14 @@ interface ChannelsListener {
   callback: () => void
 }
 
-export async function getChannels({ userId }: GetChannels): Promise<Channel[]> {
+export async function getChannels({ userId }: GetChannels) {
   const { data, error } = await supabase
     .from('private_channels')
     .select('*, user1(*), user2(*)')
     .or(`user1.eq.${userId},user2.eq.${userId}`)
     .order('created_at', { ascending: false })
   if (error) throw Error('Failed to get channel list')
-  return data as Channel[]
+  return data
 }
 
 export async function createChannel({ userId, friendId }: CreateChannel) {
