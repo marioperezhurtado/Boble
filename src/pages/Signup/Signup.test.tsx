@@ -110,7 +110,7 @@ describe('Signup', async () => {
     fireEvent.submit(signupForm)
     expect(
       await screen.findByText(
-        'Please follow the link we have sent to your email to verify your account'
+        'Please follow the link we have sent to your email to verify your account.'
       )
     ).toBeTruthy()
 

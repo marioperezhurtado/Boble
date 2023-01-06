@@ -19,9 +19,7 @@ export default function ChannelPreview({ channelId, user }: Props) {
           className="object-cover w-full h-full aspect-square"
         />
       </div>
-      <p className="font-bold break-all">
-        {user.username ?? user.full_name ?? user.email}
-      </p>
+      <p className="font-bold break-all">{user.full_name ?? user.email}</p>
     </Link>
   )
 }

@@ -9,84 +9,67 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      channel: {
+      private_channels: {
         Row: {
-          created_at: string | null
-          name: string | null
           id: string
+          created_at: string | null
+          user1: string
+          user2: string
         }
         Insert: {
-          created_at?: string | null
-          name?: string | null
           id?: string
+          created_at?: string | null
+          user1: string
+          user2: string
         }
         Update: {
-          created_at?: string | null
-          name?: string | null
           id?: string
-        }
-      }
-      messages: {
-        Row: {
-          created_at: string | null
-          text: string | null
-          sender_id: string | null
-          id: string
-        }
-        Insert: {
           created_at?: string | null
-          text?: string | null
-          sender_id?: string | null
-          id?: string
-        }
-        Update: {
-          created_at?: string | null
-          text?: string | null
-          sender_id?: string | null
-          id?: string
+          user1?: string
+          user2?: string
         }
       }
       private_messages: {
         Row: {
           created_at: string | null
           text: string
-          sender_id: string
-          receiver_id: string | null
           id: string
+          sender_id: string
+          private_channel_id: string
         }
         Insert: {
           created_at?: string | null
           text: string
-          sender_id: string
-          receiver_id?: string | null
           id?: string
+          sender_id: string
+          private_channel_id: string
         }
         Update: {
           created_at?: string | null
           text?: string
-          sender_id?: string
-          receiver_id?: string | null
           id?: string
+          sender_id?: string
+          private_channel_id?: string
         }
       }
       profiles: {
         Row: {
           id: string
-          username: string | null
           full_name: string | null
           avatar_url: string | null
+          email: string
         }
         Insert: {
           id: string
-          username?: string | null
           full_name?: string | null
           avatar_url?: string | null
+          email: string
         }
         Update: {
           id?: string
-          username?: string | null
           full_name?: string | null
           avatar_url?: string | null
+          email?: string
         }
       }
     }

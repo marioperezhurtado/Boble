@@ -1,13 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
-import { useDb } from '../../contexts/DbContext'
+import {
+  getPrivateMessages,
+  privateMessagesListener
+} from '../../hooks/useMessages'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
 import ChatMessage from '../ChatMessage/ChatMessage'
 import ChatInput from '../ChatInput/ChatInput'
-
-import { Message } from '../../types/chat'
 
 interface Props {
   channelId: string
@@ -15,7 +16,6 @@ interface Props {
 
 export default function Chat({ channelId }: Props) {
   const { currentUser } = useAuth()
-  const { getPrivateMessages, privateMessagesListener } = useDb()
   const chatRef = useRef<HTMLUListElement>(null)
 
   const {
@@ -25,10 +25,7 @@ export default function Chat({ channelId }: Props) {
     refetch
   } = useQuery({
     queryKey: ['chat', channelId],
-    queryFn: async () =>
-      await getPrivateMessages({
-        channelId
-      }),
+    queryFn: async () => await getPrivateMessages({ channelId }),
     retry: false,
     refetchOnWindowFocus: false,
     enabled: !!channelId && !!currentUser
@@ -38,11 +35,10 @@ export default function Chat({ channelId }: Props) {
 
   useEffect(() => {
     // Subscribe to realtime messages updates
-    const privateMessageSubscription = privateMessagesListener({
+    privateMessagesListener({
       channelId,
       callback: refetch
     })
-    return () => privateMessageSubscription.unsubscribe()
   }, [channelId])
 
   useEffect(() => {
@@ -79,7 +75,7 @@ export default function Chat({ channelId }: Props) {
     )
   }
 
-  if (!messages.length) {
+  if (!messages?.length) {
     return (
       <div className="flex flex-col h-full bg-zinc-100">
         <div className="flex-grow px-4">
@@ -100,7 +96,7 @@ export default function Chat({ channelId }: Props) {
       <ul
         ref={chatRef}
         className="z-10 flex-col flex-grow px-4 pb-20 overflow-y-auto scroll-smooth">
-        {messages.map((m: Message) => (
+        {messages.map((m) => (
           <li key={m.id}>
             <ChatMessage message={m} />
           </li>

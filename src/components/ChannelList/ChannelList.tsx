@@ -1,12 +1,10 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
-import { useDb } from '../../contexts/DbContext'
+import { getChannels, channelsListener } from '../../hooks/useChannels'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
 import ChannelPreview from '../ChannelPreview/ChannelPreview'
-
-import { Channel } from '../../types/chat'
 
 interface Props {
   channelId: string
@@ -14,7 +12,6 @@ interface Props {
 
 export default function ChannelList({ channelId }: Props) {
   const { currentUser } = useAuth()
-  const { getChannels, channelsListener } = useDb()
 
   const {
     data: channels,
@@ -32,11 +29,10 @@ export default function ChannelList({ channelId }: Props) {
   useEffect(() => {
     if (!currentUser?.id) return
     // Subscribe to realtime channel updates
-    const channelsSubscription = channelsListener({
+    channelsListener({
       userId: currentUser.id,
       callback: refetch
     })
-    return () => channelsSubscription.unsubscribe()
   }, [currentUser])
 
   if (isLoading) {
@@ -70,7 +66,7 @@ export default function ChannelList({ channelId }: Props) {
 
   return (
     <ul className="flex flex-col bg-zinc-50 overflow-y-auto">
-      {channels.map((c: Channel) => (
+      {channels.map((c) => (
         <li
           key={c.id}
           className={`flex items-center ${

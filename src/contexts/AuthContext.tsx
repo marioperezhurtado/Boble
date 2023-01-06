@@ -84,7 +84,7 @@ export function AuthProvider({ children }: Props) {
   }
 
   const sendResetPasswordEmail = async ({ email }: SendResetPasswordEmail) => {
-    const appUrl = import.meta.env.VITE_APP_URL as string
+    const appUrl = import.meta.env.VITE_APP_URL
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${appUrl}/reset-password`
     })

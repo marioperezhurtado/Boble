@@ -1,11 +1,10 @@
 import { useRef } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
-import { useDb } from '../../contexts/DbContext'
+import { createChannel } from '../../hooks/useChannels'
 
 export default function CreateChannel() {
   const { currentUser } = useAuth()
-  const { createChannel } = useDb()
   const formRef = useRef<HTMLFormElement>(null)
 
   const {
