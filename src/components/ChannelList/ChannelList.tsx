@@ -20,8 +20,7 @@ export default function ChannelList({ channelId }: Props) {
     refetch
   } = useQuery({
     queryKey: ['channels', currentUser],
-    queryFn: async () => await getChannels({ userId: currentUser?.id ?? '' }),
-    retry: false
+    queryFn: async () => await getChannels({ userId: currentUser?.id ?? '' })
   })
 
   const channelsError = error as Error
@@ -65,7 +64,7 @@ export default function ChannelList({ channelId }: Props) {
   }
 
   return (
-    <ul className="flex flex-col bg-zinc-50 overflow-y-auto">
+    <ul className="flex flex-col overflow-y-auto bg-zinc-50">
       {channels.map((c) => (
         <li
           key={c.id}
