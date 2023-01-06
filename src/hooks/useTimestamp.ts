@@ -1,4 +1,6 @@
-export default function useTimestamp(timestamp: string) {
+export default function useTimestamp(timestamp: string | null) {
+  if (!timestamp) return ''
+
   const initialDate = new Date(Date.parse(timestamp))
   const time = initialDate.toLocaleTimeString(navigator.language, {
     hour12: false,

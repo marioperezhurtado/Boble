@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
-import { sendPrivateMessage } from '../../hooks/useMessages'
+import { sendMessage } from '../../hooks/useMessages'
 
 interface Props {
   channelId: string
@@ -11,7 +11,7 @@ export default function ChatInput({ channelId }: Props) {
 
   const { mutate, isLoading } = useMutation(
     async (text: string) =>
-      await sendPrivateMessage({
+      await sendMessage({
         senderId: currentUser?.id ?? '',
         channelId,
         text

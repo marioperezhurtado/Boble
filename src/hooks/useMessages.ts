@@ -1,6 +1,6 @@
 import { supabase } from '../supabase'
 
-interface GetPrivateMessages {
+interface GetMessages {
   channelId: string
 }
 interface SendMessage {
@@ -8,12 +8,12 @@ interface SendMessage {
   channelId: string
   text: string
 }
-interface PrivateMessagesListener {
+interface MessagesListener {
   channelId: string
   callback: () => void
 }
 
-export async function getPrivateMessages({ channelId }: GetPrivateMessages) {
+export async function getMessages({ channelId }: GetMessages) {
   const { data, error } = await supabase
     .from('private_messages')
     .select('*')
@@ -23,21 +23,14 @@ export async function getPrivateMessages({ channelId }: GetPrivateMessages) {
   return data
 }
 
-export async function sendPrivateMessage({
-  senderId,
-  channelId,
-  text
-}: SendMessage) {
+export async function sendMessage({ senderId, channelId, text }: SendMessage) {
   const { error } = await supabase
     .from('private_messages')
     .insert({ sender_id: senderId, private_channel_id: channelId, text })
   if (error) throw Error('Failed to send private message')
 }
 
-export function privateMessagesListener({
-  channelId,
-  callback
-}: PrivateMessagesListener) {
+export function messagesListener({ channelId, callback }: MessagesListener) {
   return supabase
     .channel('public:private_messages')
     .on(

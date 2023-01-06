@@ -1,10 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useAuth } from '../../contexts/AuthContext'
-import {
-  getPrivateMessages,
-  privateMessagesListener
-} from '../../hooks/useMessages'
+import { getMessages, messagesListener } from '../../hooks/useMessages'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
 import ChatMessage from '../ChatMessage/ChatMessage'
@@ -15,7 +11,6 @@ interface Props {
 }
 
 export default function Chat({ channelId }: Props) {
-  const { currentUser } = useAuth()
   const chatRef = useRef<HTMLUListElement>(null)
 
   const {
@@ -25,17 +20,17 @@ export default function Chat({ channelId }: Props) {
     refetch
   } = useQuery({
     queryKey: ['chat', channelId],
-    queryFn: async () => await getPrivateMessages({ channelId }),
+    queryFn: async () => await getMessages({ channelId }),
     retry: false,
     refetchOnWindowFocus: false,
-    enabled: !!channelId && !!currentUser
+    enabled: !!channelId
   })
 
   const chatError = error as Error
 
   useEffect(() => {
     // Subscribe to realtime messages updates
-    privateMessagesListener({
+    messagesListener({
       channelId,
       callback: refetch
     })
