@@ -1,10 +1,11 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { createChannel } from '../../hooks/useChannels'
 
 export default function CreateChannel() {
   const { currentUser } = useAuth()
+  const [friendId, setFriendId] = useState('')
   const formRef = useRef<HTMLFormElement>(null)
 
   const {
@@ -16,14 +17,15 @@ export default function CreateChannel() {
       await createChannel({ userId: currentUser?.id ?? '', friendId })
   )
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFriendId(e.target.value)
+  }
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const friendId = formRef.current?.friendId.value
-
     if (!friendId) return
 
     handleCreateChannel(friendId)
-
     formRef.current?.reset()
   }
 
@@ -38,8 +40,10 @@ export default function CreateChannel() {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
+        name="createChannel"
         className="flex flex-wrap justify-center gap-2 mx-4">
         <input
+          onChange={handleChange}
           type="text"
           name="friendId"
           placeholder="Enter a friend's code..."
@@ -58,7 +62,7 @@ export default function CreateChannel() {
         </button>
       </form>
       {createError && (
-        <p className="p-1.5 px-3 mx-4 w-fit bg-red-100 border-l-4 border-red-600">
+        <p className="p-1.5 px-3 mx-auto w-fit bg-red-100 border-l-4 border-red-600">
           {createError.message}
         </p>
       )}

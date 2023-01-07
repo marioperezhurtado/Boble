@@ -88,7 +88,7 @@ export function AuthProvider({ children }: Props) {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${appUrl}/reset-password`
     })
-    if (error) throw Error('Failed to reset password')
+    if (error) throw Error('Failed to send password recovery email')
   }
 
   const changePassword = async ({ password }: ChangePassword) => {

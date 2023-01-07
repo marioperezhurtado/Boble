@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { sendMessage } from '../../hooks/useMessages'
@@ -8,6 +9,7 @@ interface Props {
 
 export default function ChatInput({ channelId }: Props) {
   const { currentUser } = useAuth()
+  const [text, setText] = useState('')
 
   const { mutate, isLoading } = useMutation(
     async (text: string) =>
@@ -18,13 +20,16 @@ export default function ChatInput({ channelId }: Props) {
       })
   )
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value)
+  }
+
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const text = e.currentTarget.message.value
     if (!text) return
 
     mutate(text)
-    e.currentTarget.reset()
+    setText('')
   }
 
   return (
@@ -43,6 +48,8 @@ export default function ChatInput({ channelId }: Props) {
         <img src="/camera.svg" alt="camera" className="w-5 h-5" />
       </button>
       <input
+        value={text}
+        onChange={handleChange}
         type="text"
         name="message"
         placeholder="Type a message..."

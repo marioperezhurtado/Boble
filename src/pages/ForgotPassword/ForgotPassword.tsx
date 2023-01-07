@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { Link } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
@@ -7,8 +7,8 @@ import Header from '../../layout/Header/Header'
 
 export default function ForgotPassword() {
   const { sendResetPasswordEmail } = useAuth()
+  const [email, setEmail] = useState('')
   const [validationError, setValidationError] = useState<string | null>(null)
-  const formRef = useRef<HTMLFormElement>(null)
 
   const {
     mutate: handleSendResetPasswordEmail,
@@ -18,13 +18,16 @@ export default function ForgotPassword() {
   } = useMutation({
     mutationFn: async (email: string) =>
       await sendResetPasswordEmail({ email }),
-    onSuccess: () => formRef.current?.reset()
+    onSuccess: () => setEmail('')
   })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value)
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setValidationError(null)
-    const email = formRef.current?.email.value
 
     if (!email) {
       setValidationError('Please enter your email address')
@@ -46,7 +49,7 @@ export default function ForgotPassword() {
               Please check your email to reset your password.
             </p>
           )}
-          {!validationError && resetError && (
+          {resetError && (
             <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
               {resetError.message}
             </p>
@@ -60,12 +63,14 @@ export default function ForgotPassword() {
             Enter your email address and we will send you instructions to reset
             your password.
           </p>
-          <form ref={formRef} onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} name="forgotPasswordForm">
             <div className="mt-5 flex flex-col gap-.5">
               <label htmlFor="email" className="font-bold">
                 Email
               </label>
               <input
+                value={email}
+                onChange={handleChange}
                 type="text"
                 name="email"
                 className="px-2 py-1 border rounded-md"

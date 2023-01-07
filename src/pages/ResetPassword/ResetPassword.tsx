@@ -1,14 +1,19 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { Link } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
 
 import Header from '../../layout/Header/Header'
 
+const initialState = {
+  password: '',
+  passwordRepeat: ''
+}
+
 export default function ForgotPassword() {
   const { changePassword } = useAuth()
+  const [formState, setFormState] = useState(initialState)
   const [validationError, setValidationError] = useState<string | null>(null)
-  const formRef = useRef<HTMLFormElement>(null)
 
   const {
     mutate: handleChangePassword,
@@ -17,14 +22,17 @@ export default function ForgotPassword() {
     isSuccess
   } = useMutation({
     mutationFn: async (password: string) => await changePassword({ password }),
-    onSuccess: () => formRef.current?.reset()
+    onSuccess: () => setFormState(initialState)
   })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setValidationError(null)
-    const password = formRef.current?.password.value
-    const passwordRepeat = formRef.current?.passwordRepeat.value
+    const { password, passwordRepeat } = formState
 
     if (!password || !passwordRepeat) {
       setValidationError('There are empty fields')
@@ -50,7 +58,7 @@ export default function ForgotPassword() {
               Your password has been reset succesfully.
             </p>
           )}
-          {!validationError && resetError && (
+          {resetError && (
             <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
               {resetError.message}
             </p>
@@ -72,14 +80,17 @@ export default function ForgotPassword() {
               other personal information
             </li>
           </ul>
-          <form ref={formRef} onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} name="resetPasswordForm">
             <div className="mt-5 flex flex-col gap-.5">
               <label htmlFor="password" className="font-bold">
-                New Password
+                New password
               </label>
               <input
+                value={formState.password}
+                onChange={handleChange}
                 type="password"
                 name="password"
+                id="password"
                 className="px-2 py-1 border rounded-md"
               />
             </div>
@@ -88,8 +99,11 @@ export default function ForgotPassword() {
                 Confirm password
               </label>
               <input
+                value={formState.passwordRepeat}
+                onChange={handleChange}
                 type="password"
                 name="passwordRepeat"
+                id="passwordRepeat"
                 className="px-2 py-1 border rounded-md"
               />
             </div>
