@@ -36,7 +36,7 @@ export default function CreateChannel() {
   }
 
   return (
-    <div className="flex flex-col gap-2 sm:gap-4 py-8 border-t">
+    <div className="flex flex-col gap-2 py-8 border-t sm:gap-4">
       <form
         ref={formRef}
         onSubmit={handleSubmit}
@@ -52,12 +52,12 @@ export default function CreateChannel() {
         <button
           onClick={handleCopyIdToClipboard}
           type="button"
-          className="p-1.5 border rounded-md">
+          className="p-1.5 border rounded-md bg-white hover:bg-zinc-100 transition">
           <img src="/link.svg" alt="Your invite code" className="w-5 h-5" />
         </button>
         <button
           disabled={isLoading}
-          className="px-2 py-1 rounded-md sm:text-sm bg-cyan-700 text-cyan-50">
+          className="px-2 py-1 transition rounded-md sm:text-sm bg-cyan-700 text-cyan-50 hover:bg-cyan-600">
           Create channel
         </button>
       </form>

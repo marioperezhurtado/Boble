@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { sendMessage } from '../../hooks/useMessages'
+import { capitalize } from '../../utils/text'
 
 import GifModal from '../GifModal/GifModal'
 
@@ -30,7 +31,7 @@ export default function ChatInput({ channelId }: Props) {
   )
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value)
+    setText(capitalize(e.target.value))
   }
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,12 +59,12 @@ export default function ChatInput({ channelId }: Props) {
         <button
           onClick={handleToggleGifModal}
           disabled={isLoading}
-          className="px-1.5 border rounded-md md:px-2.5 text-cyan-50 min-w-fit">
+          className="px-1.5 border rounded-md md:px-2.5 text-cyan-50 min-w-fit hover:bg-zinc-100 transition">
           <img src="/gif.svg" alt="gif" className="w-6 h-6" />
         </button>
         <button
           disabled={isLoading}
-          className="px-2 border rounded-md md:px-3 text-cyan-50 min-w-fit">
+          className="px-2 transition border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100">
           <img src="/camera.svg" alt="camera" className="w-5 h-5" />
         </button>
         <input
@@ -77,12 +78,12 @@ export default function ChatInput({ channelId }: Props) {
         />
         <button
           disabled={isLoading}
-          className="px-2 border rounded-md md:px-3 text-cyan-50 min-w-fit">
+          className="px-2 transition border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100">
           <img src="/microphone.svg" alt="microphone" className="w-5 h-5" />
         </button>
         <button
           disabled={isLoading}
-          className="px-3 rounded-md bg-cyan-700 text-cyan-50 min-w-fit">
+          className="px-3 transition rounded-md bg-cyan-700 text-cyan-50 min-w-fit hover:bg-cyan-600">
           <img src="/send.svg" alt="send" className="w-5 h-5" />
         </button>
       </form>

@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { getTrendingGifs, getSearchGifs } from '../../hooks/useGifs'
 import useOnClickOutside from '../../hooks/useOnClickOutside'
+import { capitalize } from '../../utils/text'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
 
@@ -34,7 +35,7 @@ export default function GifModal({ onClose, onSend }: Props) {
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value)
+    setSearch(capitalize(e.target.value))
   }
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,7 +55,9 @@ export default function GifModal({ onClose, onSend }: Props) {
     <div
       ref={modalRef}
       className="fixed z-10 w-full p-2 bottom-14 border-y bg-zinc-50 md:absolute">
-      <form onSubmit={handleSearch} className="flex gap-2 mb-2">
+      <form
+        onSubmit={handleSearch}
+        className="flex max-w-md gap-2 mx-auto mb-2">
         <input
           value={search}
           onChange={handleChange}
@@ -63,7 +66,7 @@ export default function GifModal({ onClose, onSend }: Props) {
           placeholder={"Search GIF's..."}
           className="rounded-md border px-2 py-1.5 w-full "
         />
-        <button className="bg-cyan-700 text-cyan-50 rounded-md px-3 py-1.5 text-sm">
+        <button className="bg-cyan-700 text-cyan-50 rounded-md px-3 py-1.5 text-sm hover:bg-cyan-600 transition">
           <img src="/search.svg" alt="search" className="w-6 h-6" />
         </button>
       </form>
