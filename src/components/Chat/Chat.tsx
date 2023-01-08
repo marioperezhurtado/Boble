@@ -22,7 +22,6 @@ export default function Chat({ channelId }: Props) {
     queryKey: ['chat', channelId],
     queryFn: async () => await getMessages({ channelId }),
     retry: false,
-    refetchOnWindowFocus: false,
     enabled: !!channelId
   })
 

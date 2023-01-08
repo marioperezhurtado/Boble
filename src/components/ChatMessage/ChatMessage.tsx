@@ -12,6 +12,22 @@ export default function ChatMessage({ message }: Props) {
 
   const dateTime = useTimestamp(message.created_at)
 
+  if (message.media_link) {
+    return (
+      <div
+        className={`max-w-sm p-2 pb-1 mt-4 rounded-md shadow-md w-fit flex flex-col gap-1 ${
+          currentUser?.id === message.sender_id
+            ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
+            : 'bg-white mr-auto rounded-bl-none'
+        } `}>
+        {message.media_link && (
+          <img src={message.media_link} alt="media" className="rounded-md" />
+        )}
+        <p className="self-end flex-grow text-xs text-right">{dateTime}</p>
+      </div>
+    )
+  }
+
   return (
     <div
       className={`max-w-lg pl-3 pr-2 py-1 mt-4 rounded-md rounded-br-none shadow-md w-fit flex gap-2 ${
@@ -20,7 +36,7 @@ export default function ChatMessage({ message }: Props) {
           : 'bg-white mr-auto'
       } `}>
       <p className="my-1.5 break-all">{message.text}</p>
-      <p className="text-right text-xs pt-1 self-end flex-grow">{dateTime}</p>
+      <p className="self-end flex-grow pt-1 text-xs text-right">{dateTime}</p>
     </div>
   )
 }

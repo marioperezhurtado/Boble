@@ -51,7 +51,8 @@ describe('ChatInput', async () => {
       expect(sendMessage).toHaveBeenCalledWith({
         senderId: '1',
         channelId: '1',
-        text: 'Test message'
+        text: 'Test message',
+        mediaLink: null
       })
     )
 
@@ -71,7 +72,8 @@ describe('ChatInput', async () => {
       expect(sendMessage).toHaveBeenCalledWith({
         senderId: '',
         channelId: '1',
-        text: 'Test message 2'
+        text: 'Test message 2',
+        mediaLink: null
       })
     )
   })

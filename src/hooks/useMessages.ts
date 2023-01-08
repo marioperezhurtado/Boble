@@ -7,6 +7,7 @@ interface SendMessage {
   senderId: string
   channelId: string
   text: string
+  mediaLink: string | null
 }
 interface MessagesListener {
   channelId: string
@@ -23,10 +24,18 @@ export async function getMessages({ channelId }: GetMessages) {
   return data
 }
 
-export async function sendMessage({ senderId, channelId, text }: SendMessage) {
-  const { error } = await supabase
-    .from('private_messages')
-    .insert({ sender_id: senderId, private_channel_id: channelId, text })
+export async function sendMessage({
+  senderId,
+  channelId,
+  text,
+  mediaLink
+}: SendMessage) {
+  const { error } = await supabase.from('private_messages').insert({
+    sender_id: senderId,
+    private_channel_id: channelId,
+    text,
+    media_link: mediaLink
+  })
   if (error) throw Error('Failed to send private message')
 }
 

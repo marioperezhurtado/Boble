@@ -33,6 +33,7 @@ export interface Database {
         Row: {
           created_at: string | null
           text: string
+          media_link: string | null
           id: string
           sender_id: string
           private_channel_id: string
