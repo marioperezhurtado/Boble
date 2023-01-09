@@ -77,7 +77,7 @@ export default function GifModal({ onClose, onSend }: Props) {
             {"Failed to get trending GIF's"}
           </p>
         )}
-        {!gifs?.length && (
+        {!isLoading && !gifs?.length && (
           <div className="p-4">
             <p className="mb-2 text-lg font-semibold text-center">
               {"No GIF's found"}
