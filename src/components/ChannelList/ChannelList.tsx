@@ -36,7 +36,7 @@ export default function ChannelList({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <ul className="flex flex-col w-full my-10 border-r bg-zinc-50 border-zinc-200">
+      <ul className="flex flex-col w-full my-10 border-r bg-zinc-50 border-zinc-200 dark:bg-zinc-800">
         <LoadSpinner />
       </ul>
     )
@@ -44,7 +44,7 @@ export default function ChannelList({ channelId }: Props) {
 
   if (channelsError) {
     return (
-      <ul className="flex flex-col p-4 bg-zinc-50 ">
+      <ul className="flex flex-col p-4 bg-zinc-50 dark:bg-zinc-800">
         <p className="p-1.5 pl-3 bg-red-100 border-l-4 border-red-600">
           {channelsError.message}
         </p>
@@ -54,7 +54,7 @@ export default function ChannelList({ channelId }: Props) {
 
   if (!channels?.length) {
     return (
-      <ul className="flex flex-col p-8 text-center bg-zinc-50 ">
+      <ul className="flex flex-col p-8 text-center bg-zinc-50 dark:bg-zinc-800">
         <p className="mb-5 text-xl font-bold">
           You have not created any channel yet.
         </p>
@@ -64,12 +64,12 @@ export default function ChannelList({ channelId }: Props) {
   }
 
   return (
-    <ul className="flex flex-col overflow-y-auto bg-zinc-50">
+    <ul className="flex flex-col overflow-y-auto bg-zinc-50 dark:bg-zinc-800">
       {channels.map((c) => (
         <li
           key={c.id}
           className={`flex items-center ${
-            c.id === channelId ? 'bg-zinc-100' : ''
+            c.id === channelId ? 'bg-zinc-100 dark:bg-zinc-900' : ''
           }`}>
           {c.user1.id !== currentUser?.id && (
             <ChannelPreview channelId={c.id} user={c.user1} />

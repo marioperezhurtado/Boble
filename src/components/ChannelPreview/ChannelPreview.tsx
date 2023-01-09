@@ -13,7 +13,7 @@ export default function ChannelPreview({ channelId, user }: Props) {
   return (
     <Link
       to={`/chat/${channelId}`}
-      className="flex items-center w-full gap-4 px-6 py-3 border-t">
+      className="flex items-center w-full gap-4 px-6 py-3 border-t dark:border-zinc-600">
       <Avatar
         size="medium"
         avatarUrl={user.avatar_url ?? null}

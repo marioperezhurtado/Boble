@@ -42,7 +42,7 @@ export default function Chat({ channelId }: Props) {
 
   if (!channelId) {
     return (
-      <div className="h-full px-4 bg-zinc-100">
+      <div className="h-full px-4 bg-zinc-100 dark:bg-zinc-800">
         <p className="pt-12 text-lg font-semibold text-center">
           Select a channel to start chatting
         </p>
@@ -52,7 +52,7 @@ export default function Chat({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col mt-10 md:mt-20 bg-zinc-100">
+      <div className="flex flex-col mt-10 md:mt-20 bg-zinc-100 dark:bg-zinc-800">
         <LoadSpinner />
         <ChatInput channelId={channelId} />
       </div>
@@ -62,7 +62,7 @@ export default function Chat({ channelId }: Props) {
   if (chatError?.message) {
     return (
       <div className="px-8 py-8 bg-zinc-100">
-        <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+        <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 dark:bg-zinc-800">
           {chatError.message}
         </p>
       </div>
@@ -71,7 +71,7 @@ export default function Chat({ channelId }: Props) {
 
   if (!messages?.length) {
     return (
-      <div className="flex flex-col h-full bg-zinc-100">
+      <div className="flex flex-col h-full border-red-500 bg-zinc-100 dark:bg-zinc-800">
         <div className="flex-grow px-4">
           <p className="pt-10 my-5 text-xl font-bold text-center">
             No messages yet
@@ -86,7 +86,7 @@ export default function Chat({ channelId }: Props) {
   }
 
   return (
-    <div className="relative flex flex-col h-full bg-zinc-100">
+    <div className="relative flex flex-col h-full bg-zinc-100 dark:bg-zinc-800">
       <ul
         ref={chatRef}
         className="z-10 flex-col flex-grow px-4 pb-20 overflow-y-auto scroll-smooth">

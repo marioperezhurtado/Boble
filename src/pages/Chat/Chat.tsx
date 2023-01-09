@@ -6,6 +6,8 @@ import ChannelList from '../../components/ChannelList/ChannelList'
 import CreateChannel from '../../components/CreateChannel/CreateChannel'
 import Chat from '../../components/Chat/Chat'
 
+import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
+
 interface Props {
   channelId: string
 }
@@ -22,18 +24,23 @@ export default function ChatPage({ channelId }: Props) {
   }, [channelId])
 
   return (
-    <div className="flex flex-col h-screen bg-zinc-200">
+    <div className="flex flex-col h-screen bg-zinc-200 dark:bg-zinc-900">
       <Header />
-      <main className="flex flex-grow w-full h-full max-w-screen-xl pt-12 mx-auto shadow-md bg-zinc-50 ">
+      <main className="flex flex-grow w-full h-full max-w-screen-xl pt-12 mx-auto shadow-md bg-zinc-50">
         <div
-          className={`w-full lg:max-w-md border flex-col lg:flex
+          className={`w-full lg:max-w-md border dark:border-zinc-600 flex-col lg:flex dark:bg-zinc-800
           ${channelsHidden ? 'hidden' : 'flex'}
           `}>
           <ChannelList channelId={channelId} />
-          <CreateChannel />
+          <div className="flex-grow border-t dark:border-zinc-600">
+            <div className="flex flex-col justify-between h-full gap-4 px-4 py-4 mx-auto w-fit">
+              <CreateChannel />
+              <ToggleDarkMode />
+            </div>
+          </div>
         </div>
         <div
-          className={`relative flex-grow bg-zinc-100 lg:block 
+          className={`relative flex-grow lg:block 
           ${channelsHidden ? '' : 'hidden'}
           `}>
           <Chat channelId={channelId} />

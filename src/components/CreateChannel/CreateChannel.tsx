@@ -36,23 +36,23 @@ export default function CreateChannel() {
   }
 
   return (
-    <div className="flex flex-col gap-2 py-8 border-t sm:gap-4">
+    <div className="flex flex-col gap-2 sm:gap-4">
       <form
         ref={formRef}
         onSubmit={handleSubmit}
         name="createChannel"
-        className="flex flex-wrap justify-center gap-2 mx-4">
+        className="flex flex-wrap justify-center gap-2">
         <input
           onChange={handleChange}
           type="text"
           name="friendId"
           placeholder="Enter a friend's code..."
-          className="px-2 py-1 border rounded-md"
+          className="px-2 py-1 border rounded-md dark:bg-zinc-700 dark:border-zinc-600"
         />
         <button
           onClick={handleCopyIdToClipboard}
           type="button"
-          className="p-1.5 border rounded-md bg-white hover:bg-zinc-100 transition">
+          className="p-1.5 border rounded-md bg-white hover:bg-zinc-100 dark:bg-zinc-700 dark:border-zinc-600">
           <img src="/link.svg" alt="Your invite code" className="w-5 h-5" />
         </button>
         <button

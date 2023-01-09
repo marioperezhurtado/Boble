@@ -55,18 +55,18 @@ export default function ChatInput({ channelId }: Props) {
       <form
         onSubmit={handleSendMessage}
         name="chatInputForm"
-        className="fixed bottom-0 z-10 flex justify-center w-full gap-2 p-2 border-t bg-zinc-50 md:absolute">
+        className="fixed bottom-0 z-10 flex justify-center w-full gap-2 p-2 border-t bg-zinc-50 md:absolute dark:bg-zinc-700 dark:border-zinc-600">
         <button
           type="button"
           onClick={handleToggleGifModal}
           disabled={isLoading}
-          className="px-1.5 border rounded-md md:px-2.5 text-cyan-50 min-w-fit hover:bg-zinc-100 transition">
+          className="px-1.5 border rounded-md md:px-2.5 text-cyan-50 min-w-fit hover:bg-zinc-100 transition dark:bg-zinc-600 dark:border-zinc-500">
           <img src="/gif.svg" alt="gif" className="w-6 h-6" />
         </button>
         <button
           type="button"
           disabled={isLoading}
-          className="px-2 transition border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100">
+          className="px-2 transition border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500">
           <img src="/camera.svg" alt="camera" className="w-5 h-5" />
         </button>
         <input
@@ -75,13 +75,13 @@ export default function ChatInput({ channelId }: Props) {
           type="text"
           name="message"
           placeholder="Type a message..."
-          className="block w-full max-w-lg p-2 border rounded-md"
+          className="block w-full max-w-lg p-2 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
           autoComplete="off"
         />
         <button
           type="button"
           disabled={isLoading}
-          className="px-2 transition border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100">
+          className="px-2 transition border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500">
           <img src="/microphone.svg" alt="microphone" className="w-5 h-5" />
         </button>
         <button
