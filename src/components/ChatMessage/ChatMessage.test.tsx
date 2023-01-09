@@ -19,7 +19,8 @@ describe('ChatMessage', async () => {
           created_at: '123',
           text: 'Own message',
           private_channel_id: '1',
-          sender_id: '1'
+          sender_id: '1',
+          media_link: null
         }}
       />
     )
@@ -33,7 +34,8 @@ describe('ChatMessage', async () => {
           created_at: '123',
           text: 'Other user message',
           private_channel_id: '1',
-          sender_id: '2'
+          sender_id: '2',
+          media_link: null
         }}
       />
     )
