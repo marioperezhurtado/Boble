@@ -40,7 +40,7 @@ export default function ChatPage({ channelId }: Props) {
           </div>
         </div>
         <div
-          className={`relative flex-grow lg:block 
+          className={`relative flex-grow lg:block border-r dark:border-zinc-600
           ${channelsHidden ? '' : 'hidden'}
           `}>
           <Chat channelId={channelId} />

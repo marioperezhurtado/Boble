@@ -5,6 +5,7 @@ import { Link } from 'wouter'
 
 import Header from '../../layout/Header/Header'
 import SocialLogin from '../../components/SocialLogin/SocialLogin'
+import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
 
 interface FormState {
   email: string
@@ -60,8 +61,8 @@ export default function Signup() {
   return (
     <>
       <Header />
-      <main className="min-h-screen px-4 py-20 bg-zinc-100 md:py-32">
-        <div className="w-full max-w-md p-6 mx-auto bg-white rounded-md shadow-md">
+      <main className="min-h-screen px-4 py-20 bg-zinc-100 md:py-32 dark:bg-zinc-800">
+        <div className="w-full max-w-md p-6 mx-auto bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600">
           <h1 className="text-2xl font-bold">Create an account</h1>
           <form
             onSubmit={handleSubmit}
@@ -74,12 +75,12 @@ export default function Signup() {
               </p>
             )}
             {!validationError && signUpError && (
-              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 dark:bg-red-200 text-zinc-700">
                 {signUpError.message}
               </p>
             )}
             {validationError && (
-              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 dark:bg-red-200 text-zinc-700">
                 {validationError}
               </p>
             )}
@@ -92,7 +93,7 @@ export default function Signup() {
               type="email"
               id="email"
               name="email"
-              className="px-2 py-1.5 border rounded-md"
+              className="px-2 py-1.5 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
             />
             <label htmlFor="password" className="pt-5">
               Password
@@ -103,7 +104,7 @@ export default function Signup() {
               type="password"
               id="password"
               name="password"
-              className="px-2 py-1.5 border rounded-md"
+              className="px-2 py-1.5 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
             />
             <label htmlFor="confirmPassword" className="pt-5">
               Confirm Password
@@ -114,7 +115,7 @@ export default function Signup() {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              className="px-2 py-1.5 border rounded-md"
+              className="px-2 py-1.5 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
             />
             <button
               disabled={isLoading}
@@ -128,11 +129,14 @@ export default function Signup() {
         <p className="mt-5 text-center">
           Already have an account?
           <Link to="/login">
-            <span className="ml-1 font-bold cursor-pointer text-cyan-700">
+            <span className="ml-1 font-bold cursor-pointer text-cyan-700 dark:text-cyan-500">
               Log In
             </span>
           </Link>
         </p>
+        <div className="m-10 mx-auto w-fit md:mt-20">
+          <ToggleDarkMode />
+        </div>
       </main>
     </>
   )

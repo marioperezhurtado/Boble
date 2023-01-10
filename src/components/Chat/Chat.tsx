@@ -52,7 +52,7 @@ export default function Chat({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col mt-10 md:mt-20 bg-zinc-100 dark:bg-zinc-800">
+      <div className="flex flex-col md:pt-20 bg-zinc-100 dark:bg-zinc-800 h-full">
         <LoadSpinner />
         <ChatInput channelId={channelId} />
       </div>

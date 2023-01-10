@@ -3,6 +3,8 @@ import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { createChannel } from '../../hooks/useChannels'
 
+import LinkIcon from '../../assets/LinkIcon'
+
 export default function CreateChannel() {
   const { currentUser } = useAuth()
   const [friendId, setFriendId] = useState('')
@@ -47,13 +49,13 @@ export default function CreateChannel() {
           type="text"
           name="friendId"
           placeholder="Enter a friend's code..."
-          className="px-2 py-1 border rounded-md dark:bg-zinc-700 dark:border-zinc-600"
+          className="px-2 py-1 border rounded-md dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder:text-zinc-300"
         />
         <button
           onClick={handleCopyIdToClipboard}
           type="button"
-          className="p-1.5 border rounded-md bg-white hover:bg-zinc-100 dark:bg-zinc-700 dark:border-zinc-600">
-          <img src="/link.svg" alt="Your invite code" className="w-5 h-5" />
+          className="p-1.5 border rounded-md bg-white hover:bg-zinc-100 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:bg-zinc-600">
+          <LinkIcon />
         </button>
         <button
           disabled={isLoading}

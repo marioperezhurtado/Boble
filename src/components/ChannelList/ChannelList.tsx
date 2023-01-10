@@ -69,7 +69,7 @@ export default function ChannelList({ channelId }: Props) {
         <li
           key={c.id}
           className={`flex items-center ${
-            c.id === channelId ? 'bg-zinc-100 dark:bg-zinc-900' : ''
+            c.id === channelId ? 'bg-zinc-100 dark:bg-zinc-700' : ''
           }`}>
           {c.user1.id !== currentUser?.id && (
             <ChannelPreview channelId={c.id} user={c.user1} />

@@ -6,6 +6,10 @@ import { capitalize } from '../../utils/text'
 
 import GifModal from '../GifModal/GifModal'
 
+import GifIcon from '../../assets/GifIcon'
+import CameraIcon from '../../assets/CameraIcon'
+import AudioIcon from '../../assets/AudioIcon'
+
 interface Props {
   channelId: string
 }
@@ -60,14 +64,14 @@ export default function ChatInput({ channelId }: Props) {
           type="button"
           onClick={handleToggleGifModal}
           disabled={isLoading}
-          className="px-1.5 border rounded-md md:px-2.5 text-cyan-50 min-w-fit hover:bg-zinc-100 transition dark:bg-zinc-600 dark:border-zinc-500">
-          <img src="/gif.svg" alt="gif" className="w-6 h-6" />
+          className="px-1.5 border rounded-md md:px-2.5 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500 dark:hover:bg-zinc-500">
+          <GifIcon />
         </button>
         <button
           type="button"
           disabled={isLoading}
-          className="px-2 transition border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500">
-          <img src="/camera.svg" alt="camera" className="w-5 h-5" />
+          className="px-2 border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500 dark:hover:bg-zinc-500">
+          <CameraIcon />
         </button>
         <input
           value={text}
@@ -75,18 +79,18 @@ export default function ChatInput({ channelId }: Props) {
           type="text"
           name="message"
           placeholder="Type a message..."
-          className="block w-full max-w-lg p-2 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
+          className="block w-full max-w-lg p-2 border rounded-md dark:bg-zinc-600 dark:border-zinc-500  dark:placeholder:text-zinc-300"
           autoComplete="off"
         />
         <button
           type="button"
           disabled={isLoading}
-          className="px-2 transition border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500">
-          <img src="/microphone.svg" alt="microphone" className="w-5 h-5" />
+          className="px-2 border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500 dark:hover:bg-zinc-500">
+          <AudioIcon />
         </button>
         <button
           disabled={isLoading}
-          className="px-3 transition rounded-md bg-cyan-700 text-cyan-50 min-w-fit hover:bg-cyan-600">
+          className="px-3 rounded-md bg-cyan-700 text-cyan-50 min-w-fit hover:bg-cyan-600">
           <img src="/send.svg" alt="send" className="w-5 h-5" />
         </button>
       </form>

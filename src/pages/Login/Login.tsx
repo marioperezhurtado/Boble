@@ -5,6 +5,7 @@ import { Link } from 'wouter'
 
 import Header from '../../layout/Header/Header'
 import SocialLogin from '../../components/SocialLogin/SocialLogin'
+import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
 
 interface FormState {
   email: string
@@ -46,20 +47,20 @@ export default function Login() {
   return (
     <>
       <Header />
-      <main className="min-h-screen px-4 py-20 bg-zinc-100 md:py-32">
-        <div className="w-full max-w-md p-6 mx-auto bg-white rounded-md shadow-md ">
+      <main className="min-h-screen px-4 py-20 bg-zinc-100 md:py-32 dark:bg-zinc-800">
+        <div className="w-full max-w-md p-6 mx-auto bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600">
           <h1 className="text-2xl font-bold">Login to your account</h1>
           <form
             onSubmit={handleSubmit}
             name="loginForm"
             className="flex flex-col mt-2">
             {!validationError && signInError && (
-              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
                 {signInError.message}
               </p>
             )}
             {validationError && (
-              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+              <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
                 {validationError}
               </p>
             )}
@@ -72,7 +73,7 @@ export default function Login() {
               type="text"
               id="email"
               name="email"
-              className="px-2 py-1.5 border rounded-md"
+              className="px-2 py-1.5 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
             />
             <label htmlFor="password" className="pt-5">
               Password
@@ -83,7 +84,7 @@ export default function Login() {
               type="password"
               id="password"
               name="password"
-              className="px-2 py-1.5 border rounded-md"
+              className="px-2 py-1.5 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
             />
             <button
               disabled={isLoading}
@@ -93,7 +94,7 @@ export default function Login() {
             </button>
             {signInError && (
               <Link to="/forgot-password">
-                <span className="mt-5 text-center cursor-pointer text-cyan-700">
+                <span className="mt-5 font-semibold text-center cursor-pointer text-cyan-700 dark:text-cyan-400">
                   Forgot your password?
                 </span>
               </Link>
@@ -104,11 +105,14 @@ export default function Login() {
         <p className="mt-5 text-center">
           Need an account?
           <Link to="/signup">
-            <span className="ml-1 font-bold cursor-pointer text-cyan-700">
+            <span className="ml-1 font-bold cursor-pointer text-cyan-700 dark:text-cyan-500">
               Sign Up
             </span>
           </Link>
         </p>
+        <div className="m-10 mx-auto w-fit md:mt-20">
+          <ToggleDarkMode />
+        </div>
       </main>
     </>
   )
