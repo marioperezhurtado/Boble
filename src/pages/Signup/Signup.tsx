@@ -5,7 +5,6 @@ import { Link } from 'wouter'
 
 import Header from '../../layout/Header/Header'
 import SocialLogin from '../../components/SocialLogin/SocialLogin'
-import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
 
 interface FormState {
   email: string
@@ -63,7 +62,7 @@ export default function Signup() {
       <Header />
       <main className="min-h-screen px-4 py-20 bg-zinc-100 md:py-32 dark:bg-zinc-800">
         <div className="w-full max-w-md p-6 mx-auto bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600">
-          <h1 className="text-2xl font-bold">Create an account</h1>
+          <h1 className="text-2xl font-bold">Create your account</h1>
           <form
             onSubmit={handleSubmit}
             name="signupForm"
@@ -134,9 +133,6 @@ export default function Signup() {
             </span>
           </Link>
         </p>
-        <div className="m-10 mx-auto w-fit md:mt-20">
-          <ToggleDarkMode />
-        </div>
       </main>
     </>
   )

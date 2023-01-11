@@ -55,9 +55,9 @@ export default function ChannelList({ channelId }: Props) {
   if (!channels?.length) {
     return (
       <ul className="flex flex-col p-8 text-center bg-zinc-50 dark:bg-zinc-800">
-        <p className="mb-5 text-xl font-bold">
+        <h2 className="mb-5 text-xl font-bold">
           You have not created any channel yet.
-        </p>
+        </h2>
         <p>Create one and start chatting with your friends.</p>
       </ul>
     )

@@ -54,7 +54,7 @@ export default function GifModal({ onClose, onSend }: Props) {
   return (
     <div
       ref={modalRef}
-      className="fixed z-10 w-full p-2 bottom-14 border-y bg-zinc-50 md:absolute">
+      className="fixed z-10 w-full p-2 bottom-14 border-y bg-zinc-50 md:absolute dark:bg-zinc-700 dark:border-zinc-600">
       <form
         onSubmit={handleSearch}
         className="flex max-w-md gap-2 mx-auto mb-2">
@@ -64,7 +64,7 @@ export default function GifModal({ onClose, onSend }: Props) {
           type="text"
           name="search"
           placeholder={"Search GIF's..."}
-          className="rounded-md border px-2 py-1.5 w-full "
+          className="rounded-md border px-2 py-1.5 w-full dark:bg-zinc-600 dark:border-zinc-500 dark:placeholder:text-zinc-300"
         />
         <button className="bg-cyan-700 text-cyan-50 rounded-md px-3 py-1.5 text-sm hover:bg-cyan-600 transition">
           <img src="/search.svg" alt="search" className="w-6 h-6" />
@@ -92,7 +92,7 @@ export default function GifModal({ onClose, onSend }: Props) {
                 onClick={() => handleSend(gif.images.downsized.url)}
                 src={gif.images.downsized.url}
                 alt={gif.alt_text}
-                className="max-w-sm overflow-hidden rounded-md shadow-md w-fit max-h-56"
+                className="max-w-screen overflow-hidden rounded-md shadow-md w-fit max-h-56 border dark:border-zinc-600"
               />
             </li>
           ))}

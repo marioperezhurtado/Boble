@@ -27,7 +27,7 @@ export default function SocialLogin() {
           disabled={isLoading}
           type="button"
           className="flex items-center gap-3 px-3 py-2 bg-white border rounded-md shadow-md text-zinc-900">
-          <img src="/google.svg" alt="Google Logo" className="w-5"></img>Sign in
+          <img src="/google.svg" alt="Google Logo" className="w-5"></img>Sign In
           with Google
         </button>
         <button
@@ -35,7 +35,7 @@ export default function SocialLogin() {
           disabled={isLoading}
           type="button"
           className="flex items-center gap-3 px-3 py-2 text-white border rounded-md shadow-md bg-zinc-900 border-zinc-900">
-          <img src="/github.svg" alt="Github Logo" className="w-5"></img>Sign in
+          <img src="/github.svg" alt="Github Logo" className="w-5"></img>Sign In
           with GitHub
         </button>
         {error && (

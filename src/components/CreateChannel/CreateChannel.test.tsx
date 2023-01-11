@@ -81,7 +81,7 @@ describe('CreateChannel', async () => {
       </QueryClientProvider>
     )
 
-    const inviteButton = screen.getAllByAltText('Your invite code')[0]
+    const inviteButton = screen.getAllByLabelText('Copy your invite code')[0]
     fireEvent.click(inviteButton)
 
     await waitFor(() => expect(copyToClipboard).toHaveBeenCalledWith('123'))

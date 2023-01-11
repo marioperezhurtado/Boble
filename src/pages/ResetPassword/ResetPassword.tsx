@@ -4,7 +4,6 @@ import { Link } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
 
 import Header from '../../layout/Header/Header'
-import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
 
 const initialState = {
   password: '',
@@ -71,14 +70,14 @@ export default function ForgotPassword() {
           )}
           <p className="mt-5">Security recomendations:</p>
           <ul className="flex flex-col gap-1 pl-5 mt-2 list-disc">
-            <li>At least 8 characters long (12+ recommended)</li>
+            <li>At least 8 characters long (12+ recommended).</li>
             <li>
               Contains uppercase and lowercase letters, numbers and special
-              characters
+              characters.
             </li>
             <li>
               Does not match or contain your name, email address, username or
-              other personal information
+              other personal information.
             </li>
           </ul>
           <form onSubmit={handleSubmit} name="resetPasswordForm">
@@ -121,9 +120,6 @@ export default function ForgotPassword() {
             Start chatting
           </p>
         </Link>
-        <div className="m-10 mx-auto w-fit md:mt-20">
-          <ToggleDarkMode />
-        </div>
       </main>
     </>
   )

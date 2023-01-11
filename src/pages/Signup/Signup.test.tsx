@@ -28,7 +28,7 @@ describe('Signup', async () => {
   })
 
   test('renders', () => {
-    expect(screen.getByText('Create an account')).toBeTruthy()
+    expect(screen.getByText('Create your account')).toBeTruthy()
   })
 
   test('Shows error if there are empty fields', () => {

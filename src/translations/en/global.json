@@ -1,0 +1,71 @@
+{
+  "home": {
+    "description": "Online free web chat",
+    "about": "About this project",
+    "start": "Start chatting"
+  },
+  "login": {
+    "title": "Login to your account",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Login",
+    "forgot": "Forgot password?",
+    "need": "Need an account?",
+    "signup": "Sign up"
+  },
+  "signup": {
+    "title": "Create your account",
+    "email": "Email",
+    "password": "Password",
+    "confirm": "Confirm password",
+    "submit": "Create Account",
+    "have": "Already have an account?",
+    "login": "Log In"
+  },
+  "social-login": {
+    "google": "Sign In with Google",
+    "github": "Sign in with Github"
+  },
+  "forgot-password": {
+    "title": "Forgot your password?",
+    "description": "Enter your email address and we will send you instructions to reset your password.",
+    "email": "Email",
+    "submit": "Send Reset Email",
+    "back": "Back to login"
+  },
+  "change-password": {
+    "title": "Reset your password",
+    "security": {
+      "title": "Security recomendations:",
+      "1": "At least 8 characters long (12+ recommended).",
+      "2": "Contains uppercase and lowercase letters, numbers and special characters.",
+      "3": "Does not match or contain your name, email, username or other personal information."
+    },
+    "password": "New password",
+    "confirm": "Confirm password",
+    "submit": "Reset password",
+    "start": "Start chatting"
+  },
+  "header": {
+    "logout": "Logout"
+  },
+  "create-channel": {
+    "friend-code": "Enter invite code...",
+    "submit": "Create channel"
+  },
+  "chat": {
+    "empty": {
+      "title": "No messages yet",
+      "description": "Start the conversation to see your messages here."
+    }
+  },
+  "chat-input": {
+    "placeholder": "Type a message.."
+  },
+  "channels": {
+    "empty": {
+      "title": "You have not created any channel yet",
+      "description": "Create one and start chatting with your friends."
+    }
+  }
+}

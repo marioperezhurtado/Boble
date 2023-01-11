@@ -48,12 +48,13 @@ export default function CreateChannel() {
           onChange={handleChange}
           type="text"
           name="friendId"
-          placeholder="Enter a friend's code..."
+          placeholder="Enter invite code..."
           className="px-2 py-1 border rounded-md dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder:text-zinc-300"
         />
         <button
           onClick={handleCopyIdToClipboard}
           type="button"
+          aria-label="Copy your invite code"
           className="p-1.5 border rounded-md bg-white hover:bg-zinc-100 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:bg-zinc-600">
           <LinkIcon />
         </button>

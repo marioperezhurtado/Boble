@@ -4,7 +4,6 @@ import { Link } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
 
 import Header from '../../layout/Header/Header'
-import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
 
 export default function ForgotPassword() {
   const { sendResetPasswordEmail } = useAuth()
@@ -90,9 +89,6 @@ export default function ForgotPassword() {
             Back to login
           </p>
         </Link>
-        <div className="m-10 mx-auto w-fit md:mt-20">
-          <ToggleDarkMode />
-        </div>
       </main>
     </>
   )

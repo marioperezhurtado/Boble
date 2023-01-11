@@ -5,8 +5,6 @@ import { Link } from 'wouter'
 
 import Header from '../../layout/Header/Header'
 import SocialLogin from '../../components/SocialLogin/SocialLogin'
-import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
-
 interface FormState {
   email: string
   password: string
@@ -110,9 +108,6 @@ export default function Login() {
             </span>
           </Link>
         </p>
-        <div className="m-10 mx-auto w-fit md:mt-20">
-          <ToggleDarkMode />
-        </div>
       </main>
     </>
   )

@@ -1,0 +1,71 @@
+{
+  "home": {
+    "description": "Chat web en línea gratuito",
+    "about": "Acerca de este proyecto",
+    "start": "Comienza a chatear"
+  },
+  "login": {
+    "title": "Inicia sesión en tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "need": "Todavía no tienes una cuenta?",
+    "signup": "Regístrate"
+  },
+  "signup": {
+    "title": "Crea tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirm": "Confirma tu contraseña",
+    "submit": "Crear Cuenta",
+    "have": "Ya tienes una cuenta?",
+    "login": "Inicia sesión"
+  },
+  "social-login": {
+    "google": "Continuar con Google",
+    "github": "Continuar con Github"
+  },
+  "forgot-password": {
+    "title": "¿Olvidaste tu contraseña?",
+    "description": "Introduce tu dirección de correo electrónico y te enviaremos las instrucciones para restablecer tu contraseña.",
+    "email": "Correo electrónico",
+    "submit": "Enviar correo de recuperación",
+    "back": "Volver al inicio de sesión"
+  },
+  "change-password": {
+    "title": "Reestablece tu contraseña",
+    "security": {
+      "title": "Recomendaciones de seguridad:",
+      "1": "Al menos 8 caracteres (12+ recomendado).",
+      "2": "Debería contener mayúsculas y minúsculas, números y caracteres especiales.",
+      "3": "No introduzca su nombre, dirección de correo electrónico, nombre de usuario o cualquier otra información personal."
+    },
+    "password": "Nueva Contraseña",
+    "confirm": "Confirma tu contraseña",
+    "submit": "Reestablecer contraseña",
+    "start": "Comienza a chatear"
+  },
+  "header": {
+    "logout": "Cerrar sesión"
+  },
+  "create-channel": {
+    "friend-code": "Introduce un código de invitación...",
+    "submit": "Crear canal"
+  },
+  "chat": {
+    "empty": {
+      "title": "No hay mensajes",
+      "description": "Comienza la conversación y tus mensajes aparecerán aquí."
+    }
+  },
+  "chat-input": {
+    "placeholder": "Escribe un mensaje..."
+  },
+  "channels": {
+    "empty": {
+      "title": "Todavía no has creado ningún canal.",
+      "description": "Crea uno y comienza a chatear con tus amigos."
+    }
+  }
+}
