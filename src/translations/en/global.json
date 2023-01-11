@@ -19,8 +19,9 @@
     "password": "Password",
     "confirm": "Confirm password",
     "submit": "Create Account",
-    "have": "Already have an account?",
-    "login": "Log In"
+    "already": "Already have an account?",
+    "login": "Log In",
+    "success": "Please follow the link we have sent to your email to verify your account."
   },
   "social-login": {
     "google": "Sign In with Google",
@@ -31,7 +32,8 @@
     "description": "Enter your email address and we will send you instructions to reset your password.",
     "email": "Email",
     "submit": "Send Reset Email",
-    "back": "Back to login"
+    "back": "Back to login",
+    "success": "Please check your email to reset your password."
   },
   "change-password": {
     "title": "Reset your password",
@@ -44,7 +46,8 @@
     "password": "New password",
     "confirm": "Confirm password",
     "submit": "Reset password",
-    "start": "Start chatting"
+    "start": "Start chatting",
+    "success": "Your password has been reset succesfully."
   },
   "header": {
     "logout": "Logout"
@@ -54,6 +57,10 @@
     "submit": "Create channel"
   },
   "chat": {
+    "select-channel": {
+      "title": "Select a channel to start chatting",
+      "description": "You can create a new channel or join an existing one."
+    },
     "empty": {
       "title": "No messages yet",
       "description": "Start the conversation to see your messages here."
@@ -67,5 +74,19 @@
       "title": "You have not created any channel yet",
       "description": "Create one and start chatting with your friends."
     }
+  },
+  "gifs": {
+    "placeholder": "Search GIF's...",
+    "error": "Failed to load trending GIF's",
+    "no-results": {
+      "title": "No results found",
+      "description": "Try again with other keywords."
+    }
+  },
+  "page-not-found": {
+    "title": "Oops! Page not found",
+    "description": "Sorry, the page you are looking for does not exist.",
+    "recommendation": "Are you sure you typed the correct URL?",
+    "back": "Back to home"
   }
 }

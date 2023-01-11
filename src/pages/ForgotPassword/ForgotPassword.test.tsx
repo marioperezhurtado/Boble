@@ -76,8 +76,6 @@ describe('ForgotPassword', async () => {
     fireEvent.change(emailInput, { target: { value: 'mail@test.com' } })
     fireEvent.submit(form)
 
-    expect(
-      await screen.findByText('Please check your email to reset your password.')
-    ).toBeTruthy()
+    expect(await screen.findByText('forgot-password.success')).toBeTruthy()
   })
 })

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'wouter'
+import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'
 import SocialLogin from '../../components/SocialLogin/SocialLogin'
@@ -16,6 +17,7 @@ const initialState = {
 }
 
 export default function Login() {
+  const { t } = useTranslation('global')
   const { signIn } = useAuth()
   const [formState, setFormState] = useState<FormState>(initialState)
   const [validationError, setValidationError] = useState<string | null>(null)
@@ -47,7 +49,7 @@ export default function Login() {
       <Header />
       <main className="min-h-screen px-4 py-20 bg-zinc-100 md:py-32 dark:bg-zinc-800">
         <div className="w-full max-w-md p-6 mx-auto bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600">
-          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <h1 className="text-2xl font-bold">{t('login.title')}</h1>
           <form
             onSubmit={handleSubmit}
             name="loginForm"
@@ -63,7 +65,7 @@ export default function Login() {
               </p>
             )}
             <label htmlFor="email" className="pt-5">
-              Email
+              {t('login.email')}
             </label>
             <input
               onChange={handleChange}
@@ -74,7 +76,7 @@ export default function Login() {
               className="px-2 py-1.5 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
             />
             <label htmlFor="password" className="pt-5">
-              Password
+              {t('login.password')}
             </label>
             <input
               onChange={handleChange}
@@ -88,12 +90,12 @@ export default function Login() {
               disabled={isLoading}
               type="submit"
               className="py-2 mt-8 font-bold rounded-md bg-cyan-700 text-cyan-50">
-              Login
+              {t('login.submit')}
             </button>
             {signInError && (
               <Link to="/forgot-password">
                 <span className="mt-5 font-semibold text-center cursor-pointer text-cyan-700 dark:text-cyan-400">
-                  Forgot your password?
+                  {t('login.forgot')}
                 </span>
               </Link>
             )}
@@ -101,10 +103,10 @@ export default function Login() {
           </form>
         </div>
         <p className="mt-5 text-center">
-          Need an account?
+          {t('login.need')}
           <Link to="/signup">
             <span className="ml-1 font-bold cursor-pointer text-cyan-700 dark:text-cyan-500">
-              Sign Up
+              {t('login.signup')}
             </span>
           </Link>
         </p>

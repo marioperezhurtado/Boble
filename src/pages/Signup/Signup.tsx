@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'wouter'
+import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'
 import SocialLogin from '../../components/SocialLogin/SocialLogin'
@@ -19,6 +20,7 @@ const initialState = {
 }
 
 export default function Signup() {
+  const { t } = useTranslation('global')
   const { signUp } = useAuth()
   const [formState, setFormState] = useState<FormState>(initialState)
   const [validationError, setValidationError] = useState<string | null>(null)
@@ -62,15 +64,14 @@ export default function Signup() {
       <Header />
       <main className="min-h-screen px-4 py-20 bg-zinc-100 md:py-32 dark:bg-zinc-800">
         <div className="w-full max-w-md p-6 mx-auto bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600">
-          <h1 className="text-2xl font-bold">Create your account</h1>
+          <h1 className="text-2xl font-bold">{t('signup.title')}</h1>
           <form
             onSubmit={handleSubmit}
             name="signupForm"
             className="flex flex-col mt-2">
             {isSuccess && (
               <p className="p-1.5 pl-3 mt-5 bg-green-100 border-l-4 border-green-600">
-                Please follow the link we have sent to your email to verify your
-                account.
+                {t('signup.success')}
               </p>
             )}
             {!validationError && signUpError && (
@@ -84,7 +85,7 @@ export default function Signup() {
               </p>
             )}
             <label htmlFor="email" className="pt-5">
-              Email
+              {t('signup.email')}
             </label>
             <input
               onChange={handleChange}
@@ -95,7 +96,7 @@ export default function Signup() {
               className="px-2 py-1.5 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
             />
             <label htmlFor="password" className="pt-5">
-              Password
+              {t('signup.password')}
             </label>
             <input
               onChange={handleChange}
@@ -106,7 +107,7 @@ export default function Signup() {
               className="px-2 py-1.5 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
             />
             <label htmlFor="confirmPassword" className="pt-5">
-              Confirm Password
+              {t('signup.confirm')}
             </label>
             <input
               onChange={handleChange}
@@ -120,16 +121,16 @@ export default function Signup() {
               disabled={isLoading}
               type="submit"
               className="py-2 mt-8 font-bold rounded-md bg-cyan-700 text-cyan-50">
-              Create Account
+              {t('signup.submit')}
             </button>
           </form>
           <SocialLogin />
         </div>
         <p className="mt-5 text-center">
-          Already have an account?
+          {t('signup.already')}
           <Link to="/login">
             <span className="ml-1 font-bold cursor-pointer text-cyan-700 dark:text-cyan-500">
-              Log In
+              {t('signup.login')}
             </span>
           </Link>
         </p>

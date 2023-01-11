@@ -108,8 +108,6 @@ describe('ChannelList', async () => {
       </QueryClientProvider>
     )
 
-    expect(
-      await screen.findByText('You have not created any channel yet.')
-    ).toBeTruthy()
+    expect(await screen.findByText('channels.empty.title')).toBeTruthy()
   })
 })

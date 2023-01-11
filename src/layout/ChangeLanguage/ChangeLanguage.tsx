@@ -1,11 +1,18 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import useOnClickOutside from '../../hooks/useOnClickOutside'
 
 import TranslateIcon from '../../assets/TranslateIcon'
 
 export default function ChangeLanguage() {
+  const ref = useRef<HTMLDivElement>(null)
   const [optionsOpen, setOptionsOpen] = useState(false)
   const { i18n } = useTranslation()
+
+  useOnClickOutside({
+    ref,
+    handler: () => setOptionsOpen(false)
+  })
 
   const changeLanguage = async (lng: string) => {
     await i18n.changeLanguage(lng)
@@ -24,7 +31,7 @@ export default function ChangeLanguage() {
   const toggleOptionsOpen = () => setOptionsOpen((prev) => !prev)
 
   return (
-    <div className="relative">
+    <div ref={ref} className="relative">
       <button
         title="Toggle dark mode"
         onClick={toggleOptionsOpen}

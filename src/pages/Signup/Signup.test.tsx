@@ -28,28 +28,28 @@ describe('Signup', async () => {
   })
 
   test('renders', () => {
-    expect(screen.getByText('Create your account')).toBeTruthy()
+    expect(screen.getByText('signup.title')).toBeTruthy()
   })
 
   test('Shows error if there are empty fields', () => {
     const signupForm = screen.getByRole('form')
-    fireEvent.change(screen.getByLabelText('Email'), {
+    fireEvent.change(screen.getByLabelText('signup.email'), {
       target: { value: testSignup.email }
     })
 
     fireEvent.submit(signupForm)
     expect(screen.getByText('There are empty fields')).toBeTruthy()
 
-    fireEvent.change(screen.getByLabelText('Password'), {
+    fireEvent.change(screen.getByLabelText('signup.password'), {
       target: { value: testSignup.password }
     })
 
     fireEvent.submit(signupForm)
     expect(screen.getByText('There are empty fields')).toBeTruthy()
-    fireEvent.change(screen.getByLabelText('Confirm Password'), {
+    fireEvent.change(screen.getByLabelText('signup.confirm'), {
       target: { value: testSignup.password }
     })
-    fireEvent.change(screen.getByLabelText('Email'), {
+    fireEvent.change(screen.getByLabelText('signup.email'), {
       target: { value: '' }
     })
 
@@ -59,13 +59,13 @@ describe('Signup', async () => {
 
   test("Shows error if passwords don't match", () => {
     const signupForm = screen.getByRole('form')
-    fireEvent.change(screen.getByLabelText('Email'), {
+    fireEvent.change(screen.getByLabelText('signup.email'), {
       target: { value: testSignup.email }
     })
-    fireEvent.change(screen.getByLabelText('Confirm Password'), {
+    fireEvent.change(screen.getByLabelText('signup.password'), {
       target: { value: testSignup.password }
     })
-    fireEvent.change(screen.getByLabelText('Confirm Password'), {
+    fireEvent.change(screen.getByLabelText('signup.confirm'), {
       target: { value: 'Different password' }
     })
 
@@ -81,13 +81,13 @@ describe('Signup', async () => {
     })
 
     const signupForm = screen.getByRole('form')
-    fireEvent.change(screen.getByLabelText('Email'), {
+    fireEvent.change(screen.getByLabelText('signup.email'), {
       target: { value: testSignup.email }
     })
-    fireEvent.change(screen.getByLabelText('Password'), {
+    fireEvent.change(screen.getByLabelText('signup.password'), {
       target: { value: testSignup.password }
     })
-    fireEvent.change(screen.getByLabelText('Confirm Password'), {
+    fireEvent.change(screen.getByLabelText('signup.confirm'), {
       target: { value: testSignup.password }
     })
 
@@ -97,24 +97,20 @@ describe('Signup', async () => {
 
   test('Shows success message and resets on signup', async () => {
     const signupForm = screen.getByRole('form')
-    fireEvent.change(screen.getByLabelText('Email'), {
+    fireEvent.change(screen.getByLabelText('signup.email'), {
       target: { value: testSignup.email }
     })
-    fireEvent.change(screen.getByLabelText('Password'), {
+    fireEvent.change(screen.getByLabelText('signup.password'), {
       target: { value: testSignup.password }
     })
-    fireEvent.change(screen.getByLabelText('Confirm Password'), {
+    fireEvent.change(screen.getByLabelText('signup.confirm'), {
       target: { value: testSignup.password }
     })
 
     fireEvent.submit(signupForm)
-    expect(
-      await screen.findByText(
-        'Please follow the link we have sent to your email to verify your account.'
-      )
-    ).toBeTruthy()
+    expect(await screen.findByText('signup.success')).toBeTruthy()
 
-    const email = screen.getByLabelText<HTMLInputElement>('Email')
+    const email = screen.getByLabelText<HTMLInputElement>('signup.email')
     await waitFor(() => expect(email.value).toBe(''))
   })
 })

@@ -3,6 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { sendMessage } from '../../hooks/useMessages'
 import { capitalize } from '../../utils/text'
+import { useTranslation } from 'react-i18next'
 
 import GifModal from '../GifModal/GifModal'
 
@@ -20,6 +21,7 @@ interface SendMessage {
 }
 
 export default function ChatInput({ channelId }: Props) {
+  const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const [text, setText] = useState('')
   const [showGifModal, setShowGifModal] = useState(false)
@@ -78,7 +80,7 @@ export default function ChatInput({ channelId }: Props) {
           onChange={handleChange}
           type="text"
           name="message"
-          placeholder="Type a message..."
+          placeholder={t('chat-input.placeholder') ?? ''}
           className="block w-full max-w-lg p-2 border rounded-md dark:bg-zinc-600 dark:border-zinc-500  dark:placeholder:text-zinc-300"
           autoComplete="off"
         />

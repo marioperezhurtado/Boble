@@ -19,7 +19,7 @@ interface UseMessages {
   messagesListener: any
 }
 
-describe('ChannelList', async () => {
+describe('Chat', async () => {
   const { getMessages, messagesListener }: UseMessages = await import(
     '../../hooks/useMessages'
   )
@@ -32,7 +32,7 @@ describe('ChannelList', async () => {
       </QueryClientProvider>
     )
 
-    expect(screen.getByText('Select a channel to start chatting')).toBeTruthy()
+    expect(screen.getByText('chat.select-channel.title')).toBeTruthy()
   })
 
   test('Shows loading spinner while fetching messages', () => {
@@ -66,11 +66,7 @@ describe('ChannelList', async () => {
       </QueryClientProvider>
     )
 
-    expect(
-      await screen.findByText(
-        'Start the conversation to see your messages here.'
-      )
-    ).toBeTruthy()
+    expect(await screen.findByText('chat.empty.title')).toBeTruthy()
   })
 
   test('Renders a list of messages', async () => {

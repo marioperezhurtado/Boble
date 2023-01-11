@@ -34,7 +34,7 @@ describe('Header', async () => {
       </QueryClientProvider>
     )
 
-    expect(screen.getByText('Logout')).toBeTruthy()
+    expect(screen.getByAltText('logout')).toBeTruthy()
     expect(screen.getByText('mail@test.com')).toBeTruthy()
   })
 

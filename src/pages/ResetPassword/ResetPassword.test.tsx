@@ -35,8 +35,8 @@ describe('ResetPassword', async () => {
     expect(changePassword).not.toHaveBeenCalled()
     expect(await screen.findByText('There are empty fields')).toBeTruthy()
 
-    const password = screen.getByLabelText('New password')
-    const repeatPassword = screen.getByLabelText('Confirm password')
+    const password = screen.getByLabelText('change-password.password')
+    const repeatPassword = screen.getByLabelText('change-password.confirm')
 
     fireEvent.change(password, { target: { value: '123' } })
     fireEvent.change(repeatPassword, { target: { value: '1234' } })
@@ -48,15 +48,13 @@ describe('ResetPassword', async () => {
 
   test('Changes password and shows success message', async () => {
     const form = screen.getByRole('form')
-    const password = screen.getByLabelText('New password')
-    const repeatPassword = screen.getByLabelText('Confirm password')
+    const password = screen.getByLabelText('change-password.password')
+    const repeatPassword = screen.getByLabelText('change-password.confirm')
     fireEvent.change(password, { target: { value: '123' } })
     fireEvent.change(repeatPassword, { target: { value: '123' } })
     fireEvent.submit(form)
 
-    expect(
-      await screen.findByText('Your password has been reset succesfully.')
-    ).toBeTruthy()
+    expect(await screen.findByText('change-password.success')).toBeTruthy()
   })
 
   test('Shows error if changing password fails', async () => {
@@ -69,8 +67,10 @@ describe('ResetPassword', async () => {
     )
 
     const form = screen.getAllByRole('form')[0]
-    const password = screen.getAllByLabelText('New password')[0]
-    const repeatPassword = screen.getAllByLabelText('Confirm password')[0]
+    const password = screen.getAllByLabelText('change-password.password')[0]
+    const repeatPassword = screen.getAllByLabelText(
+      'change-password.confirm'
+    )[0]
     fireEvent.change(password, { target: { value: '123' } })
     fireEvent.change(repeatPassword, { target: { value: '123' } })
     fireEvent.submit(form)

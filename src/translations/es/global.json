@@ -19,19 +19,21 @@
     "password": "Contraseña",
     "confirm": "Confirma tu contraseña",
     "submit": "Crear Cuenta",
-    "have": "Ya tienes una cuenta?",
-    "login": "Inicia sesión"
+    "already": "Ya tienes una cuenta?",
+    "login": "Inicia sesión",
+    "success": "Sigue el enlace que hemos enviado a tu dirección de correo electrónico para verificar tu cuenta."
   },
   "social-login": {
     "google": "Continuar con Google",
     "github": "Continuar con Github"
   },
   "forgot-password": {
-    "title": "¿Olvidaste tu contraseña?",
+    "title": "¿Has olvidado tu contraseña?",
     "description": "Introduce tu dirección de correo electrónico y te enviaremos las instrucciones para restablecer tu contraseña.",
     "email": "Correo electrónico",
     "submit": "Enviar correo de recuperación",
-    "back": "Volver al inicio de sesión"
+    "back": "Volver al inicio de sesión",
+    "success": "Comprueba tu correo para restablecer tu contraseña."
   },
   "change-password": {
     "title": "Reestablece tu contraseña",
@@ -39,21 +41,26 @@
       "title": "Recomendaciones de seguridad:",
       "1": "Al menos 8 caracteres (12+ recomendado).",
       "2": "Debería contener mayúsculas y minúsculas, números y caracteres especiales.",
-      "3": "No introduzca su nombre, dirección de correo electrónico, nombre de usuario o cualquier otra información personal."
+      "3": "No introduzcas tu nombre, dirección de correo electrónico, nombre de usuario o cualquier otra información personal como contraseña."
     },
     "password": "Nueva Contraseña",
     "confirm": "Confirma tu contraseña",
     "submit": "Reestablecer contraseña",
-    "start": "Comienza a chatear"
+    "start": "Comienza a chatear",
+    "success": "Tu contraseña ha sido reestablecida correctamente."
   },
   "header": {
     "logout": "Cerrar sesión"
   },
   "create-channel": {
-    "friend-code": "Introduce un código de invitación...",
+    "friend-code": "Código de invitación...",
     "submit": "Crear canal"
   },
   "chat": {
+    "select-channel": {
+      "title": "Selecciona un canal para comenzar a chatear",
+      "description": "Puedes crear un nuevo canal o unirte a uno ya existente."
+    },
     "empty": {
       "title": "No hay mensajes",
       "description": "Comienza la conversación y tus mensajes aparecerán aquí."
@@ -67,5 +74,19 @@
       "title": "Todavía no has creado ningún canal.",
       "description": "Crea uno y comienza a chatear con tus amigos."
     }
+  },
+  "gifs": {
+    "placeholder": "Busca GIF's...",
+    "error": "No se han podido cargar los GIF's en tendencia.",
+    "no-results": {
+      "title": "No hay resultados",
+      "description": "Inténtalo otra vez con otras palabras."
+    }
+  },
+  "page-not-found": {
+    "title": "Ups! Página no encontrada",
+    "description": "Parece que la página que estás buscando no existe.",
+    "recommendation": "¿Estás seguro de que has escrito bien la URL?",
+    "back": "Volver a inicio"
   }
 }

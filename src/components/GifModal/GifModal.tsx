@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import { getTrendingGifs, getSearchGifs } from '../../hooks/useGifs'
 import useOnClickOutside from '../../hooks/useOnClickOutside'
 import { capitalize } from '../../utils/text'
+import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
 
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export default function GifModal({ onClose, onSend }: Props) {
+  const { t } = useTranslation('global')
   const [search, setSearch] = useState('')
   const modalRef = useRef<HTMLDivElement>(null)
 
@@ -63,7 +65,7 @@ export default function GifModal({ onClose, onSend }: Props) {
           onChange={handleChange}
           type="text"
           name="search"
-          placeholder={"Search GIF's..."}
+          placeholder={t('gifs.placeholder') ?? ''}
           className="rounded-md border px-2 py-1.5 w-full dark:bg-zinc-600 dark:border-zinc-500 dark:placeholder:text-zinc-300"
         />
         <button className="bg-cyan-700 text-cyan-50 rounded-md px-3 py-1.5 text-sm hover:bg-cyan-600 transition">
@@ -74,15 +76,15 @@ export default function GifModal({ onClose, onSend }: Props) {
         {isLoading && <LoadSpinner />}
         {isError && (
           <p className="p-1.5 px-5 w-fit  bg-red-100 border-l-4 border-red-600">
-            {"Failed to get trending GIF's"}
+            {t('gifs.error')}
           </p>
         )}
         {!isLoading && !gifs?.length && (
           <div className="p-4">
             <p className="mb-2 text-lg font-semibold text-center">
-              {"No GIF's found"}
+              {t('gifs.no-results.title')}
             </p>
-            <p>Try again with other search.</p>
+            <p>{t('gifs.no-results.description')}</p>
           </div>
         )}
         {!!gifs?.length &&

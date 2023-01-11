@@ -28,25 +28,25 @@ describe('Login', async () => {
   })
 
   test('renders', () => {
-    expect(screen.getByText('Login')).toBeTruthy()
+    expect(screen.getByText('login.title')).toBeTruthy()
   })
 
   test('Shows error if there are empty fields', () => {
     const loginForm = screen.getByRole('form')
-    fireEvent.change(screen.getByLabelText('Email'), {
+    fireEvent.change(screen.getByLabelText('login.email'), {
       target: { value: testLogin.email }
     })
-    fireEvent.change(screen.getByLabelText('Password'), {
+    fireEvent.change(screen.getByLabelText('login.password'), {
       target: { value: '' }
     })
 
     fireEvent.submit(loginForm)
     expect(screen.getByText('There are empty fields')).toBeTruthy()
 
-    fireEvent.change(screen.getByLabelText('Email'), {
+    fireEvent.change(screen.getByLabelText('login.email'), {
       target: { value: '' }
     })
-    fireEvent.change(screen.getByLabelText('Password'), {
+    fireEvent.change(screen.getByLabelText('login.password'), {
       target: { value: testLogin.password }
     })
 
@@ -62,10 +62,10 @@ describe('Login', async () => {
     })
 
     const loginForm = screen.getByRole('form')
-    fireEvent.change(screen.getByLabelText('Email'), {
+    fireEvent.change(screen.getByLabelText('login.email'), {
       target: { value: testLogin.email }
     })
-    fireEvent.change(screen.getByLabelText('Password'), {
+    fireEvent.change(screen.getByLabelText('login.password'), {
       target: { value: testLogin.password }
     })
 

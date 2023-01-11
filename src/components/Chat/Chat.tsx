@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getMessages, messagesListener } from '../../hooks/useMessages'
+import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
 import ChatMessage from '../ChatMessage/ChatMessage'
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export default function Chat({ channelId }: Props) {
+  const { t } = useTranslation('global')
   const chatRef = useRef<HTMLUListElement>(null)
 
   const {
@@ -42,10 +44,11 @@ export default function Chat({ channelId }: Props) {
 
   if (!channelId) {
     return (
-      <div className="h-full px-4 bg-zinc-100 dark:bg-zinc-800">
-        <p className="pt-12 text-lg font-semibold text-center">
-          Select a channel to start chatting
+      <div className="h-full px-4 bg-zinc-100 dark:bg-zinc-800 text-center">
+        <p className="pt-12 text-lg font-semibold mb-5">
+          {t('chat.select-channel.title')}
         </p>
+        <p>{t('chat.select-channel.description')}</p>
       </div>
     )
   }
@@ -74,11 +77,9 @@ export default function Chat({ channelId }: Props) {
       <div className="flex flex-col h-full border-red-500 bg-zinc-100 dark:bg-zinc-800">
         <div className="flex-grow px-4">
           <p className="pt-10 my-5 text-xl font-bold text-center">
-            No messages yet
+            {t('chat.empty.title')}
           </p>
-          <p className="text-center">
-            Start the conversation to see your messages here.
-          </p>
+          <p className="text-center">{t('chat.empty.description')}</p>
         </div>
         <ChatInput channelId={channelId} />
       </div>

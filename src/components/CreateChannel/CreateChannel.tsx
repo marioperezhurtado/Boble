@@ -2,10 +2,12 @@ import { useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { createChannel } from '../../hooks/useChannels'
+import { useTranslation } from 'react-i18next'
 
 import LinkIcon from '../../assets/LinkIcon'
 
 export default function CreateChannel() {
+  const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const [friendId, setFriendId] = useState('')
   const formRef = useRef<HTMLFormElement>(null)
@@ -48,7 +50,7 @@ export default function CreateChannel() {
           onChange={handleChange}
           type="text"
           name="friendId"
-          placeholder="Enter invite code..."
+          placeholder={t('create-channel.friend-code') ?? ''}
           className="px-2 py-1 border rounded-md dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder:text-zinc-300"
         />
         <button
@@ -61,7 +63,7 @@ export default function CreateChannel() {
         <button
           disabled={isLoading}
           className="px-2 py-1 transition rounded-md sm:text-sm bg-cyan-700 text-cyan-50 hover:bg-cyan-600">
-          Create channel
+          {t('create-channel.submit') ?? ''}
         </button>
       </form>
       {createError && (

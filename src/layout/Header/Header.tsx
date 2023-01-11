@@ -1,8 +1,10 @@
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'wouter'
+import { useTranslation } from 'react-i18next'
 
 export default function Header() {
+  const { t } = useTranslation('global')
   const { currentUser, signOut } = useAuth()
 
   const { mutate: handleSignOut, isLoading } = useMutation(signOut)
@@ -33,7 +35,7 @@ export default function Header() {
               onClick={() => handleSignOut()}
               disabled={isLoading}
               className="flex items-center gap-1 cursor-pointer">
-              <span className="hidden md:block">Logout</span>
+              <span className="hidden md:block">{t('header.logout')}</span>
               <img
                 src="/logout.svg"
                 alt="logout"

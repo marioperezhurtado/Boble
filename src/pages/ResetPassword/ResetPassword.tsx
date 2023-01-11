@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { Link } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
+import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'
 
@@ -11,6 +12,7 @@ const initialState = {
 }
 
 export default function ForgotPassword() {
+  const { t } = useTranslation('global')
   const { changePassword } = useAuth()
   const [formState, setFormState] = useState(initialState)
   const [validationError, setValidationError] = useState<string | null>(null)
@@ -52,10 +54,10 @@ export default function ForgotPassword() {
       <Header />
       <main className="min-h-screen px-4 py-20 bg-zinc-100 md:py-32 dark:bg-zinc-800">
         <div className="w-full max-w-md p-6 mx-auto bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600">
-          <h1 className="text-2xl font-bold">Reset your password</h1>
+          <h1 className="text-2xl font-bold">{t('change-password.title')}</h1>
           {isSuccess && (
             <p className="p-1.5 pl-3 mt-5 bg-green-100 border-l-4 border-green-600 text-zinc-700 dark:bg-green-200">
-              Your password has been reset succesfully.
+              {t('change-password.success')}
             </p>
           )}
           {resetError && (
@@ -68,22 +70,16 @@ export default function ForgotPassword() {
               {validationError}
             </p>
           )}
-          <p className="mt-5">Security recomendations:</p>
+          <p className="mt-5">{t('change-password.security.title')}</p>
           <ul className="flex flex-col gap-1 pl-5 mt-2 list-disc">
-            <li>At least 8 characters long (12+ recommended).</li>
-            <li>
-              Contains uppercase and lowercase letters, numbers and special
-              characters.
-            </li>
-            <li>
-              Does not match or contain your name, email address, username or
-              other personal information.
-            </li>
+            <li>{t('change-password.security.1')}</li>
+            <li>{t('change-password.security.2')}</li>
+            <li>{t('change-password.security.3')}</li>
           </ul>
           <form onSubmit={handleSubmit} name="resetPasswordForm">
             <div className="mt-5 flex flex-col gap-.5">
               <label htmlFor="password" className="font-bold">
-                New password
+                {t('change-password.password')}
               </label>
               <input
                 value={formState.password}
@@ -96,7 +92,7 @@ export default function ForgotPassword() {
             </div>
             <div className="mt-5 flex flex-col gap-.5">
               <label htmlFor="passwordRepeat" className="font-bold">
-                Confirm password
+                {t('change-password.confirm')}
               </label>
               <input
                 value={formState.passwordRepeat}
@@ -111,13 +107,13 @@ export default function ForgotPassword() {
               disabled={isLoading}
               type="submit"
               className="w-full py-2 mt-8 font-bold rounded-md bg-cyan-700 text-cyan-50">
-              Reset Password
+              {t('change-password.submit')}
             </button>
           </form>
         </div>
         <Link to="/chat">
           <p className="mx-auto mt-5 font-bold text-center cursor-pointer text-cyan-700 w-fit dark:text-cyan-500">
-            Start chatting
+            {t('change-password.start')}
           </p>
         </Link>
       </main>

@@ -15,7 +15,7 @@ const queryClient = new QueryClient()
 
 await i18next.init({
   interpolation: { escapeValue: false },
-  lng: 'en',
+  lng: 'es',
   resources: {
     en: { global: global_en },
     es: { global: global_es }
