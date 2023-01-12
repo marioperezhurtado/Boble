@@ -38,14 +38,14 @@ describe('Signup', async () => {
     })
 
     fireEvent.submit(signupForm)
-    expect(screen.getByText('There are empty fields')).toBeTruthy()
+    expect(screen.getByText('validation.empty-error')).toBeTruthy()
 
     fireEvent.change(screen.getByLabelText('signup.password'), {
       target: { value: testSignup.password }
     })
 
     fireEvent.submit(signupForm)
-    expect(screen.getByText('There are empty fields')).toBeTruthy()
+    expect(screen.getByText('validation.empty-error')).toBeTruthy()
     fireEvent.change(screen.getByLabelText('signup.confirm'), {
       target: { value: testSignup.password }
     })
@@ -54,7 +54,7 @@ describe('Signup', async () => {
     })
 
     fireEvent.submit(signupForm)
-    expect(screen.getByText('There are empty fields')).toBeTruthy()
+    expect(screen.getByText('validation.empty-error')).toBeTruthy()
   })
 
   test("Shows error if passwords don't match", () => {
@@ -70,7 +70,7 @@ describe('Signup', async () => {
     })
 
     fireEvent.submit(signupForm)
-    expect(screen.getByText('Passwords do not match')).toBeTruthy()
+    expect(screen.getByText('validation.password-match-error')).toBeTruthy()
   })
 
   test('Shows error if signup fails', async () => {

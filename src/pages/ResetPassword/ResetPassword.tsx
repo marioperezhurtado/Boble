@@ -37,11 +37,11 @@ export default function ForgotPassword() {
     const { password, passwordRepeat } = formState
 
     if (!password || !passwordRepeat) {
-      setValidationError('There are empty fields')
+      setValidationError(t('validation.empty-error'))
       return
     }
     if (password !== passwordRepeat) {
-      setValidationError('Passwords do not match')
+      setValidationError(t('validation.password-match-error'))
       return
     }
     handleChangePassword(password)

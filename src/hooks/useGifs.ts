@@ -1,6 +1,6 @@
 import type Gif from '../types/giphy'
 
-const apiKey = import.meta.env.VITE_APP_GIPHY_API_KEY as string
+const apiKey = import.meta.env.VITE_APP_GIPHY_API_KEY
 
 export async function getTrendingGifs() {
   const res = await fetch(

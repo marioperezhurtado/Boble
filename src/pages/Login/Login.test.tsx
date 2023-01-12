@@ -41,7 +41,7 @@ describe('Login', async () => {
     })
 
     fireEvent.submit(loginForm)
-    expect(screen.getByText('There are empty fields')).toBeTruthy()
+    expect(screen.getByText('validation.empty-error')).toBeTruthy()
 
     fireEvent.change(screen.getByLabelText('login.email'), {
       target: { value: '' }
@@ -51,7 +51,7 @@ describe('Login', async () => {
     })
 
     fireEvent.submit(loginForm)
-    expect(screen.getByText('There are empty fields')).toBeTruthy()
+    expect(screen.getByText('validation.empty-error')).toBeTruthy()
   })
 
   test('Shows error if login fails', async () => {

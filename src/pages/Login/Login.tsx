@@ -35,7 +35,7 @@ export default function Login() {
     setValidationError(null)
 
     if (!email || !password) {
-      setValidationError('There are empty fields')
+      setValidationError(t('validation.empty-error'))
       return
     }
 

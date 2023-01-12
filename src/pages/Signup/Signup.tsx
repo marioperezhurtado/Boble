@@ -46,11 +46,11 @@ export default function Signup() {
     setValidationError(null)
 
     if (!email || !password || !confirmPassword) {
-      setValidationError('There are empty fields')
+      setValidationError(t('validation.empty-error'))
       return
     }
     if (password !== confirmPassword) {
-      setValidationError('Passwords do not match')
+      setValidationError(t('validation.password-match-error'))
       return
     }
 

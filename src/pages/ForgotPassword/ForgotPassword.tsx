@@ -32,7 +32,7 @@ export default function ForgotPassword() {
     setValidationError(null)
 
     if (!email) {
-      setValidationError('Please enter your email address')
+      setValidationError(t('validation.email-error'))
       return
     }
     handleSendResetPasswordEmail(email)

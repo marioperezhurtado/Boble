@@ -33,7 +33,7 @@ describe('ResetPassword', async () => {
     fireEvent.submit(form)
 
     expect(changePassword).not.toHaveBeenCalled()
-    expect(await screen.findByText('There are empty fields')).toBeTruthy()
+    expect(await screen.findByText('validation.empty-error')).toBeTruthy()
 
     const password = screen.getByLabelText('change-password.password')
     const repeatPassword = screen.getByLabelText('change-password.confirm')
@@ -43,7 +43,9 @@ describe('ResetPassword', async () => {
     fireEvent.submit(form)
 
     expect(changePassword).not.toHaveBeenCalled()
-    expect(await screen.findByText('Passwords do not match')).toBeTruthy()
+    expect(
+      await screen.findByText('validation.password-match-error')
+    ).toBeTruthy()
   })
 
   test('Changes password and shows success message', async () => {

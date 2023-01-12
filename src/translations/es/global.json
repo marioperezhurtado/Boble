@@ -73,6 +73,16 @@
     "empty": {
       "title": "Todavía no has creado ningún canal.",
       "description": "Crea uno y comienza a chatear con tus amigos."
+    },
+    "errors": {
+      "get": "No se han podido cargar los canales.",
+      "create": "Fallo al crear el canal."
+    }
+  },
+  "messages": {
+    "errors": {
+      "get": "No se han podido cargar los mensajes.",
+      "send": "Fallo al enviar el mensaje."
     }
   },
   "gifs": {
@@ -88,5 +98,10 @@
     "description": "Parece que la página que estás buscando no existe.",
     "recommendation": "¿Estás seguro de que has escrito bien la URL?",
     "back": "Volver a inicio"
+  },
+  "validation": {
+    "email-error": "Introduce tu dirección de correo electrónico.",
+    "empty-error": "No pueden haber campos vacíos.",
+    "password-match-error": "Las contraseñas no coinciden."
   }
 }

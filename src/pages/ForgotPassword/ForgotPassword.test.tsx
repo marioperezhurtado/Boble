@@ -33,9 +33,7 @@ describe('ForgotPassword', async () => {
     fireEvent.submit(form)
 
     expect(sendResetPasswordEmail).not.toHaveBeenCalled()
-    expect(
-      await screen.findByText('Please enter your email address')
-    ).toBeTruthy()
+    expect(await screen.findByText('validation.email-error')).toBeTruthy()
   })
 
   test('Shows error if recovery email fails to send', async () => {
