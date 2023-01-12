@@ -88,7 +88,7 @@ describe('ChannelList', async () => {
   })
 
   test("Shows error if there's an error fetching channels", async () => {
-    getChannels.mockRejectedValueOnce(new Error('Failed to get channels'))
+    getChannels.mockRejectedValueOnce(new Error('channels.errors.get'))
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -96,7 +96,7 @@ describe('ChannelList', async () => {
       </QueryClientProvider>
     )
 
-    expect(await screen.findByText('Failed to get channels')).toBeTruthy()
+    expect(await screen.findByText('channels.errors.get')).toBeTruthy()
   })
 
   test("Shows message if there's no channels", async () => {

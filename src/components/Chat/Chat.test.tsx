@@ -46,7 +46,7 @@ describe('Chat', async () => {
   })
 
   test("Shows error if there's an error fetching messages", async () => {
-    getMessages.mockRejectedValueOnce(new Error('Failed to get messages'))
+    getMessages.mockRejectedValueOnce(new Error('messages.errors.get'))
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -54,7 +54,7 @@ describe('Chat', async () => {
       </QueryClientProvider>
     )
 
-    expect(await screen.findByText('Failed to get messages')).toBeTruthy()
+    expect(await screen.findByText('messages.errors.get')).toBeTruthy()
   })
 
   test("Shows message if there's no messages in the channel", async () => {

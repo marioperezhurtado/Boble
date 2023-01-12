@@ -53,7 +53,7 @@ describe('CreateChannel', async () => {
   })
 
   test('Shows error if create channel fails', async () => {
-    createChannel.mockRejectedValueOnce(new Error('Failed to create channel'))
+    createChannel.mockRejectedValueOnce(new Error('channels.errors.create'))
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -67,7 +67,7 @@ describe('CreateChannel', async () => {
     fireEvent.submit(form)
 
     await waitFor(() =>
-      expect(screen.getByText('Failed to create channel')).toBeTruthy()
+      expect(screen.getByText('channels.errors.create')).toBeTruthy()
     )
   })
 
