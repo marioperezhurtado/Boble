@@ -66,7 +66,7 @@ export default function Chat({ channelId }: Props) {
     return (
       <div className="px-8 py-8 bg-zinc-100">
         <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 dark:bg-zinc-800">
-          {chatError.message}
+          {t('messages.errors.get')}
         </p>
       </div>
     )
