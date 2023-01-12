@@ -11,9 +11,11 @@ import Signup from './pages/Signup/Signup'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import PageNotFound from './pages/PageNotFound/PageNotFound'
+import useTranslate from './hooks/useTranslate'
 
 export default function App() {
   useDarkTheme()
+  useTranslate()
 
   return (
     <div className="select-text text-zinc-700 dark:text-zinc-200">

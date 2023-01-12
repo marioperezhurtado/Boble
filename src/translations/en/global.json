@@ -103,5 +103,8 @@
     "email-error": "Please enter your email address.",
     "empty-error": "There are empty fields.",
     "password-match-error": "Passwords do not match."
+  },
+  "translation": {
+    "change-error": "Failed to change language."
   }
 }
