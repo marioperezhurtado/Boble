@@ -47,7 +47,7 @@ export default function ChannelList({ channelId }: Props) {
   if (channelsError) {
     return (
       <ul className="flex flex-col p-4 bg-zinc-50 dark:bg-zinc-800">
-        <p className="p-1.5 pl-3 bg-red-100 border-l-4 border-red-600">
+        <p className="p-1.5 pl-3 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
           {t('channels.errors.get')}
         </p>
       </ul>

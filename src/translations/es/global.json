@@ -76,13 +76,13 @@
     },
     "errors": {
       "get": "No se han podido cargar los canales.",
-      "create": "Fallo al crear el canal."
+      "create": "No se ha podido crear el canal."
     }
   },
   "messages": {
     "errors": {
       "get": "No se han podido cargar los mensajes.",
-      "send": "Fallo al enviar el mensaje."
+      "send": "No se ha podido enviar el mensaje."
     }
   },
   "gifs": {
@@ -105,6 +105,6 @@
     "password-match-error": "Las contraseñas no coinciden."
   },
   "translation": {
-    "change-error": "Fallo al cambiar el idioma."
+    "change-error": "No se ha podido cambiar el idioma."
   }
 }

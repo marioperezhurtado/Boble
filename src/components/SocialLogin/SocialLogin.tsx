@@ -41,7 +41,7 @@ export default function SocialLogin() {
           {t('social-login.github')}
         </button>
         {error && (
-          <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600">
+          <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
             {error.message}
           </p>
         )}

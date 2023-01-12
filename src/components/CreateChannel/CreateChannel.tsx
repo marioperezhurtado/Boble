@@ -67,7 +67,7 @@ export default function CreateChannel() {
         </button>
       </form>
       {createError && (
-        <p className="p-1.5 px-5 mx-auto w-fit bg-red-100 border-l-4 border-red-600">
+        <p className="p-1.5 px-3 mx-auto w-fit bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
           {t('channels.errors.create')}
         </p>
       )}

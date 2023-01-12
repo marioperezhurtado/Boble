@@ -75,7 +75,7 @@ export default function GifModal({ onClose, onSend }: Props) {
       <ul className="flex flex-wrap items-center justify-center gap-2 overflow-y-auto rounded-md max-h-60">
         {isLoading && <LoadSpinner />}
         {isError && (
-          <p className="p-1.5 px-5 w-fit  bg-red-100 border-l-4 border-red-600">
+          <p className="p-1.5 px-5 w-fit  bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
             {t('gifs.error')}
           </p>
         )}
