@@ -41,5 +41,39 @@ describe('ChatMessage', async () => {
     )
     const otherMessage = screen.getByText('Other user message')
     expect(otherMessage.parentElement?.className).toContain('mr-auto')
+
+    render(
+      <ChatMessage
+        message={{
+          id: '1',
+          created_at: '123',
+          text: 'Own media message',
+          private_channel_id: '1',
+          sender_id: '1',
+          media_link: 'https://example.com'
+        }}
+      />
+    )
+
+    const ownMediaMessage = screen.getByText('Own media message')
+    expect(ownMediaMessage.parentElement?.className).toContain('ml-auto')
+
+    render(
+      <ChatMessage
+        message={{
+          id: '1',
+          created_at: '123',
+          text: 'Other media message',
+          private_channel_id: '1',
+          sender_id: '2',
+          media_link: 'https://example.com'
+        }}
+      />
+    )
+
+    const otherMediaMessage = screen.getByText('Other media message')
+    expect(otherMediaMessage.parentElement?.className).toContain('mr-auto')
+    const images = screen.getAllByRole('img')
+    expect(images).toHaveLength(2)
   })
 })

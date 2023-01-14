@@ -10,7 +10,7 @@ export default function Header() {
   const { mutate: handleSignOut, isLoading } = useMutation(signOut)
 
   return (
-    <header className="fixed z-20 w-full px-6 py-3 md:px-8 lg:px-12 bg-cyan-900 text-cyan-50 dark:bg-cyan-800">
+    <header className="fixed z-20 w-full px-6 py-2 md:py-3 md:px-8 lg:px-12 bg-cyan-900 text-cyan-50">
       <div className="flex justify-between mx-auto max-w-screen-2xl">
         <Link to="/chat">
           <div className="flex items-center gap-1 cursor-pointer">
@@ -19,9 +19,11 @@ export default function Header() {
           </div>
         </Link>
         {currentUser && (
-          <div className="flex items-center gap-5 ml-auto text-sm">
+          <div className="flex items-center gap-2 ml-auto text-sm md:gap-3">
             <Link to="/profile">
-              <button className="flex items-center gap-1 cursor-pointer">
+              <button
+                title={t('header.profile')}
+                className="flex items-center gap-1 p-2 rounded-md shadow-md cursor-pointer bg-cyan-700 lg:px-3 lg:py-1.5">
                 <span className="hidden md:block">{currentUser.email}</span>
                 <img
                   src="/account.svg"
@@ -32,9 +34,10 @@ export default function Header() {
             </Link>
 
             <button
+              title={t('header.logout')}
               onClick={() => handleSignOut()}
               disabled={isLoading}
-              className="flex items-center gap-1 cursor-pointer">
+              className="flex items-center gap-1 p-2 rounded-md shadow-md cursor-pointer bg-cyan-700 lg:px-3 lg:py-1.5">
               <span className="hidden md:block">{t('header.logout')}</span>
               <img
                 src="/logout.svg"

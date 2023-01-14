@@ -23,6 +23,7 @@ export default function ChatMessage({ message }: Props) {
         {message.media_link && (
           <img src={message.media_link} alt="media" className="rounded-md" />
         )}
+        <p>{message.text}</p>
         <p className="self-end flex-grow text-xs text-right">{dateTime}</p>
       </div>
     )

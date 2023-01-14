@@ -2,7 +2,6 @@ import { Link } from 'wouter'
 import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'
-import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
 
 export default function PageNotFound() {
   const { t } = useTranslation('global')
@@ -18,9 +17,6 @@ export default function PageNotFound() {
             {t('page-not-found.back')}
           </button>
         </Link>
-        <div className="m-10 mx-auto w-fit md:mt-20">
-          <ToggleDarkMode />
-        </div>
       </div>
     </>
   )

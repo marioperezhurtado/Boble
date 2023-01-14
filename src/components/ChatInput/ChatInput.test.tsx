@@ -77,4 +77,21 @@ describe('ChatInput', async () => {
       })
     )
   })
+
+  test('Toggles gif modal on gif button click', () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <ChatInput channelId="1" />
+      </QueryClientProvider>
+    )
+
+    const gifButton = screen.getAllByRole('button')[0]
+    fireEvent.click(gifButton)
+
+    expect(screen.getByPlaceholderText('gifs.placeholder')).toBeTruthy()
+
+    fireEvent.click(gifButton)
+
+    expect(screen.queryByPlaceholderText('gifs.placeholder')).toBeNull()
+  })
 })

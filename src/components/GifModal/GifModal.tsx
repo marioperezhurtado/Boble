@@ -21,8 +21,8 @@ export default function GifModal({ onClose, onSend }: Props) {
 
   const {
     data: trendingGifs,
-    isLoading,
-    isError
+    isLoading: isTrendingLoading,
+    isError: isTrendingError
   } = useQuery({
     queryKey: ['trendingGifs'],
     queryFn: getTrendingGifs,
@@ -30,7 +30,12 @@ export default function GifModal({ onClose, onSend }: Props) {
     refetchOnWindowFocus: false
   })
 
-  const { mutate: searchGifs, data: searchedGifs } = useMutation({
+  const {
+    mutate: searchGifs,
+    data: searchedGifs,
+    isLoading: isSearching,
+    isError: isSearchError
+  } = useMutation({
     mutationKey: ['searchGifs'],
     mutationFn: getSearchGifs,
     onSuccess: () => setSearch('')
@@ -51,6 +56,8 @@ export default function GifModal({ onClose, onSend }: Props) {
     onClose()
   }
 
+  const isLoading = isSearching || isTrendingLoading
+  const isError = isSearchError || isTrendingError
   const gifs = searchedGifs ?? trendingGifs
 
   return (
@@ -59,6 +66,7 @@ export default function GifModal({ onClose, onSend }: Props) {
       className="fixed z-10 w-full p-2 bottom-14 border-y bg-zinc-50 md:absolute dark:bg-zinc-700 dark:border-zinc-600">
       <form
         onSubmit={handleSearch}
+        name="searchForm"
         className="flex max-w-md gap-2 mx-auto mb-2">
         <input
           value={search}
@@ -87,7 +95,8 @@ export default function GifModal({ onClose, onSend }: Props) {
             <p>{t('gifs.no-results.description')}</p>
           </div>
         )}
-        {!!gifs?.length &&
+        {!isLoading &&
+          !!gifs?.length &&
           gifs.map((gif) => (
             <li key={gif.id}>
               <img

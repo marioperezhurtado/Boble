@@ -4,7 +4,16 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import GifModal from './GifModal'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false
+    },
+    mutations: {
+      retry: false
+    }
+  }
+})
 
 vi.mock('../../hooks/useGifs')
 
@@ -17,10 +26,10 @@ describe('GifModal', async () => {
     getSearchGifs: any
   } = await import('../../hooks/useGifs')
 
-  test('Renders trending gifs', async () => {
-    const onClose = vi.fn()
-    const onSend = vi.fn()
+  const onClose = vi.fn()
+  const onSend = vi.fn()
 
+  test('Renders trending gifs', async () => {
     getTrendingGifs.mockResolvedValueOnce([
       {
         id: '1',
@@ -57,8 +66,6 @@ describe('GifModal', async () => {
   })
 
   test('Does not search gifs if search input is empty', async () => {
-    const onClose = vi.fn()
-    const onSend = vi.fn()
     getTrendingGifs.mockResolvedValueOnce([
       {
         id: '1',
@@ -70,7 +77,17 @@ describe('GifModal', async () => {
         alt_text: 'Test input empty'
       }
     ])
-    getSearchGifs.mockResolvedValueOnce([])
+    getSearchGifs.mockResolvedValueOnce([
+      {
+        id: '1',
+        images: {
+          downsized: {
+            url: 'https://test.com'
+          }
+        },
+        alt_text: 'This should not be rendered'
+      }
+    ])
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -81,22 +98,20 @@ describe('GifModal', async () => {
 
     fireEvent.click(searchButton)
 
-    await waitFor(() => expect(onSend).not.toHaveBeenCalled())
+    await waitFor(() =>
+      expect(screen.queryByAltText('This sould not be rendered')).toBeNull()
+    )
   })
 
   test('Searchs capitalized term', async () => {
     const searchInput = screen.getAllByRole<HTMLInputElement>('textbox')[0]
-    const searchButton = screen.getAllByRole('button')[0]
 
     fireEvent.change(searchInput, { target: { value: 'test search' } })
-    fireEvent.click(searchButton)
 
     await waitFor(() => expect(searchInput.value).toBe('Test search'))
   })
 
   test('Shows message if there are no results', async () => {
-    const onClose = vi.fn()
-    const onSend = vi.fn()
     getTrendingGifs.mockResolvedValueOnce([])
     getSearchGifs.mockResolvedValueOnce([])
 
@@ -115,5 +130,24 @@ describe('GifModal', async () => {
     await waitFor(() =>
       expect(screen.getByText('gifs.no-results.title')).toBeTruthy()
     )
+  })
+
+  test('Shows error message if search fails', async () => {
+    getTrendingGifs.mockRejectedValueOnce(new Error('Test error'))
+    getSearchGifs.mockRejectedValueOnce(new Error('Test error'))
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <GifModal onClose={onClose} onSend={onSend} />
+      </QueryClientProvider>
+    )
+
+    const searchInput = screen.getAllByRole<HTMLInputElement>('textbox')[0]
+    const searchButton = screen.getAllByRole('button')[0]
+
+    fireEvent.change(searchInput, { target: { value: 'test search' } })
+    fireEvent.click(searchButton)
+
+    await waitFor(() => expect(screen.getByText('gifs.error')).toBeTruthy())
   })
 })

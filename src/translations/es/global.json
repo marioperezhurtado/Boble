@@ -50,11 +50,14 @@
     "success": "Tu contraseña ha sido reestablecida correctamente."
   },
   "header": {
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "profile": "Tu Perfil"
   },
   "create-channel": {
     "friend-code": "Código de invitación...",
-    "submit": "Crear canal"
+    "submit": "Crear canal",
+    "clipboard": "Copia tu código de invitación",
+    "clipboard-success": "Código copiado!"
   },
   "chat": {
     "select-channel": {
@@ -97,7 +100,7 @@
     "title": "Ups! Página no encontrada",
     "description": "Parece que la página que estás buscando no existe.",
     "recommendation": "¿Estás seguro de que has escrito bien la URL?",
-    "back": "Volver a inicio"
+    "back": "Volver al inicio"
   },
   "validation": {
     "email-error": "Introduce tu dirección de correo electrónico.",
@@ -105,6 +108,10 @@
     "password-match-error": "Las contraseñas no coinciden."
   },
   "translation": {
-    "change-error": "No se ha podido cambiar el idioma."
+    "change-error": "No se ha podido cambiar el idioma.",
+    "title": "Cambiar idioma"
+  },
+  "dark-mode": {
+    "title": "Cambiar modo oscuro"
   }
 }

@@ -50,11 +50,14 @@
     "success": "Your password has been reset succesfully."
   },
   "header": {
-    "logout": "Logout"
+    "logout": "Logout",
+    "profile": "Your Profile"
   },
   "create-channel": {
     "friend-code": "Enter invite code...",
-    "submit": "Create channel"
+    "submit": "Create channel",
+    "clipboard": "Copy your invite code",
+    "clipboard-success": "Copied to clipboard!"
   },
   "chat": {
     "select-channel": {
@@ -105,6 +108,10 @@
     "password-match-error": "Passwords do not match."
   },
   "translation": {
-    "change-error": "Failed to change language."
+    "change-error": "Failed to change language.",
+    "title": "Change language"
+  },
+  "dark-mode": {
+    "title": "Toggle dark mode"
   }
 }
