@@ -122,6 +122,8 @@
     "error": "No se ha podido cargar la información de tu cuenta.",
     "reset": "Reestablecer contraseña",
     "save": "Guardar cambios",
+    "update-error": "No se han podido actualizar los detalles de tu cuenta.",
+    "update-success": "Tu cuenta se ha actualizado correctamente",
     "connect": {
       "title": "Conecta con tus amigos",
       "description": "Aquí tienes algunos métodos para conectar con tus amigos y comenzar a chatear.",

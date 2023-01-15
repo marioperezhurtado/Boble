@@ -1,6 +1,6 @@
 interface User {
   id: string
-  created_at: string
+  created_at?: string
   email: string
   full_name?: string
   avatar_url?: string

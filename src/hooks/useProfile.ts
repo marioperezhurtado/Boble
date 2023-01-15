@@ -1,5 +1,7 @@
 import { supabase } from '../supabase'
 
+import type { User } from '../types/chat'
+
 export async function getProfile(userId: string) {
   const { data, error } = await supabase
     .from('profiles')
@@ -8,5 +10,14 @@ export async function getProfile(userId: string) {
     .limit(1)
     .single()
   if (error) throw Error('Failed to get profile')
+  return data
+}
+
+export async function updateProfile(user: User) {
+  const { data, error } = await supabase
+    .from('profiles')
+    .update(user)
+    .eq('id', user.id)
+  if (error) throw Error('Failed to update profile')
   return data
 }

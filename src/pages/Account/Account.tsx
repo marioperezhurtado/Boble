@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Link } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
-import { getProfile } from '../../hooks/useProfile'
+import { getProfile, updateProfile } from '../../hooks/useProfile'
 import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'
@@ -22,8 +22,31 @@ export default function Account() {
     }
   })
 
+  const newProfile = {
+    id: profile?.id ?? '',
+    email: profile?.email ?? '',
+    avatar_url: profile?.avatar_url ?? '',
+    full_name: name
+  }
+
+  const {
+    mutate: handleUpdateProfile,
+    isLoading: isUpdating,
+    isError: updateError,
+    isSuccess: updateSuccess
+  } = useMutation({
+    mutationKey: ['updateProfile'],
+    mutationFn: async () => await updateProfile(newProfile),
+    onSuccess: () => setName(newProfile.full_name)
+  })
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    await handleUpdateProfile()
   }
 
   return (
@@ -33,6 +56,17 @@ export default function Account() {
         <div className="max-w-xl p-6 mx-auto mt-5 bg-white border rounded-md shadow-md dark:border-zinc-600 dark:bg-zinc-700">
           <h1 className="mb-5 text-2xl font-semibold">{t('account.title')}</h1>
           <h2 className="mb-5">{t('account.description')}</h2>
+          {updateError && (
+            <p className="p-1.5 pl-3 mb-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
+              {t('account.update-error')}
+            </p>
+          )}
+          {updateSuccess && (
+            <p className="p-1.5 pl-3 mb-5 bg-green-100 border-l-4 border-green-600 text-zinc-700 dark:bg-green-200">
+              {t('account.update-success')}
+            </p>
+          )}
+
           {isProfileLoading && <LoadSpinner />}
           {!isProfileLoading && (
             <>
@@ -42,7 +76,10 @@ export default function Account() {
                   {profile?.email}
                 </span>
               </p>
-              <form name="accountForm" className="flex flex-col">
+              <form
+                onSubmit={handleSubmit}
+                name="accountForm"
+                className="flex flex-col">
                 <label htmlFor="name" className="pt-3">
                   {t('account.full-name')}
                 </label>
@@ -61,6 +98,7 @@ export default function Account() {
                     {t('account.reset')}
                   </Link>
                   <button
+                    disabled={isUpdating}
                     type="submit"
                     className="bg-cyan-700 hover:bg-cyan-600 transition px-2 py-1.5 rounded-md text-cyan-50 text-sm">
                     {t('account.save')}

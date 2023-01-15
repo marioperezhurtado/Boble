@@ -122,6 +122,8 @@
     "error": "Failed to load your account details.",
     "reset": "Reset password",
     "save": "Save changes",
+    "update-error": "Failed to update your account details.",
+    "update-success": "Your account has been updated succesfully.",
     "connect": {
       "title": "Connect with your friends",
       "description": "These are some methods to connect with your friends and start chatting.",
