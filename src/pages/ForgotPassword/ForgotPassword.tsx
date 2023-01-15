@@ -78,7 +78,7 @@ export default function ForgotPassword() {
             <button
               disabled={isLoading}
               type="submit"
-              className="w-full py-2 mt-8 font-bold rounded-md bg-cyan-700 text-cyan-50">
+              className="w-full py-2 mt-8 font-bold transition rounded-md bg-cyan-700 text-cyan-50 hover:bg-cyan-600">
               {t('forgot-password.submit')}
             </button>
           </form>

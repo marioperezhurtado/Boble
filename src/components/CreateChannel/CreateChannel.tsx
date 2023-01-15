@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { createChannel } from '../../hooks/useChannels'
 import { useTranslation } from 'react-i18next'
 
-import LinkIcon from '../../assets/LinkIcon'
+import CopyIcon from '../../assets/CopyIcon'
 
 export default function CreateChannel() {
   const { t } = useTranslation('global')
@@ -65,7 +65,7 @@ export default function CreateChannel() {
             aria-label="Copy your invite code"
             title={t('create-channel.clipboard')}
             className="p-1.5 border rounded-md bg-white hover:bg-zinc-100 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:bg-zinc-600 relative text-sm">
-            <LinkIcon />
+            <CopyIcon />
             {isCopied && (
               <span className="absolute -top-10 right-0 p-1.5 bg-white rounded-md dark:bg-zinc-700 border dark:border-zinc-600 w-max">
                 {t('create-channel.clipboard-success')}

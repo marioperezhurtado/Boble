@@ -51,7 +51,7 @@
   },
   "header": {
     "logout": "Logout",
-    "profile": "Your Profile"
+    "account": "Your Account"
   },
   "create-channel": {
     "friend-code": "Enter invite code...",
@@ -113,5 +113,23 @@
   },
   "dark-mode": {
     "title": "Toggle dark mode"
+  },
+  "account": {
+    "title": "Your Account",
+    "description": "Change your account settings and how other users see you.",
+    "full-name": "Full name",
+    "email": "Email",
+    "error": "Failed to load your account details.",
+    "reset": "Reset password",
+    "save": "Save changes",
+    "connect": {
+      "title": "Connect with your friends",
+      "description": "These are some methods to connect with your friends and start chatting.",
+      "code": "Invite code",
+      "link": "Invitation link",
+      "code-copy": "Copy invite code",
+      "link-copy": "Copy invitation link",
+      "copy-success": "Copied to clipboard!"
+    }
   }
 }

@@ -51,7 +51,7 @@
   },
   "header": {
     "logout": "Cerrar sesión",
-    "profile": "Tu Perfil"
+    "account": "Tu Cuenta"
   },
   "create-channel": {
     "friend-code": "Código de invitación...",
@@ -113,5 +113,23 @@
   },
   "dark-mode": {
     "title": "Cambiar modo oscuro"
+  },
+  "account": {
+    "title": "Tu Cuenta",
+    "description": "Cambia la configuración de tu cuenta y cómo otros usuarios pueden verte.",
+    "full-name": "Nombre completo",
+    "email": "Correo electrónico",
+    "error": "No se ha podido cargar la información de tu cuenta.",
+    "reset": "Reestablecer contraseña",
+    "save": "Guardar cambios",
+    "connect": {
+      "title": "Conecta con tus amigos",
+      "description": "Aquí tienes algunos métodos para conectar con tus amigos y comenzar a chatear.",
+      "code": "Código de invitación",
+      "link": "Enlace de invitación",
+      "code-copy": "Copia tu código de invitación",
+      "link-copy": "Copia tu enlace de invitación",
+      "copy-success": "Código copiado!"
+    }
   }
 }

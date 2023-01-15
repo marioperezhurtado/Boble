@@ -1,0 +1,81 @@
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { Link } from 'wouter'
+import { useAuth } from '../../contexts/AuthContext'
+import { getProfile } from '../../hooks/useProfile'
+import { useTranslation } from 'react-i18next'
+
+import Header from '../../layout/Header/Header'
+import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
+import ConnectFriends from '../../components/ConnectFriends/ConnectFriends'
+
+export default function Account() {
+  const { t } = useTranslation('global')
+  const [name, setName] = useState<string>('')
+  const { currentUser } = useAuth()
+
+  const { data: profile, isLoading: isProfileLoading } = useQuery({
+    queryKey: ['profile', currentUser?.id],
+    queryFn: async () => await getProfile(currentUser?.id ?? ''),
+    onSuccess: (data) => {
+      setName(data?.full_name ?? '')
+    }
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value)
+  }
+
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen px-4 bg-zinc-50 dark:bg-zinc-800 pt-14 md:pt-20">
+        <div className="max-w-xl p-6 mx-auto mt-5 bg-white border rounded-md shadow-md dark:border-zinc-600 dark:bg-zinc-700">
+          <h1 className="mb-5 text-2xl font-semibold">{t('account.title')}</h1>
+          <h2 className="mb-5">{t('account.description')}</h2>
+          {isProfileLoading && <LoadSpinner />}
+          {!isProfileLoading && (
+            <>
+              <p className="flex flex-wrap gap-x-3">
+                {t('account.email')}:
+                <span className="font-semibold break-all">
+                  {profile?.email}
+                </span>
+              </p>
+              <form name="accountForm" className="flex flex-col">
+                <label htmlFor="name" className="pt-3">
+                  {t('account.full-name')}
+                </label>
+                <input
+                  value={name}
+                  onChange={handleChange}
+                  type="text"
+                  name="name"
+                  id="name"
+                  className="px-2 py-1.5 border rounded-md dark:bg-zinc-600 dark:border-zinc-500"
+                />
+                <div className="flex flex-wrap items-center justify-between pt-5 gap-y-3">
+                  <Link
+                    to="/reset-password"
+                    className="font-semibold w-fit text-cyan-700 dark:text-cyan-400">
+                    {t('account.reset')}
+                  </Link>
+                  <button
+                    type="submit"
+                    className="bg-cyan-700 hover:bg-cyan-600 transition px-2 py-1.5 rounded-md text-cyan-50 text-sm">
+                    {t('account.save')}
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+        </div>
+
+        <ConnectFriends
+          id={currentUser?.id ?? ''}
+          email={profile?.email ?? ''}
+        />
+      </main>
+    </>
+  )
+}

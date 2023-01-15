@@ -89,7 +89,7 @@ export default function Login() {
             <button
               disabled={isLoading}
               type="submit"
-              className="py-2 mt-8 font-bold rounded-md bg-cyan-700 text-cyan-50">
+              className="py-2 mt-8 font-bold transition rounded-md bg-cyan-700 text-cyan-50 hover:bg-cyan-600">
               {t('login.submit')}
             </button>
             {signInError && (
