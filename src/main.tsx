@@ -10,6 +10,7 @@ import i18next from 'i18next'
 
 import global_en from './translations/en/global.json'
 import global_es from './translations/es/global.json'
+import global_fr from './translations/fr/global.json'
 
 const queryClient = new QueryClient()
 
@@ -18,7 +19,8 @@ await i18next.init({
   lng: 'en',
   resources: {
     en: { global: global_en },
-    es: { global: global_es }
+    es: { global: global_es },
+    fr: { global: global_fr }
   }
 })
 

@@ -10,7 +10,7 @@
     "password": "Contraseña",
     "submit": "Iniciar sesión",
     "forgot": "¿Olvidaste tu contraseña?",
-    "need": "Todavía no tienes una cuenta?",
+    "need": "¿Todavía no tienes una cuenta?",
     "signup": "Regístrate"
   },
   "signup": {
@@ -19,7 +19,7 @@
     "password": "Contraseña",
     "confirm": "Confirma tu contraseña",
     "submit": "Crear Cuenta",
-    "already": "Ya tienes una cuenta?",
+    "already": "¿Ya tienes una cuenta?",
     "login": "Inicia sesión",
     "success": "Sigue el enlace que hemos enviado a tu dirección de correo electrónico para verificar tu cuenta."
   },
@@ -36,7 +36,7 @@
     "success": "Comprueba tu correo para restablecer tu contraseña."
   },
   "change-password": {
-    "title": "Reestablece tu contraseña",
+    "title": "Restablece tu contraseña",
     "security": {
       "title": "Recomendaciones de seguridad:",
       "1": "Al menos 8 caracteres (12+ recomendado).",
@@ -47,7 +47,7 @@
     "confirm": "Confirma tu contraseña",
     "submit": "Reestablecer contraseña",
     "start": "Comienza a chatear",
-    "success": "Tu contraseña ha sido reestablecida correctamente."
+    "success": "Tu contraseña ha sido restablecida correctamente."
   },
   "header": {
     "logout": "Cerrar sesión",
@@ -74,7 +74,7 @@
   },
   "channels": {
     "empty": {
-      "title": "Todavía no has creado ningún canal.",
+      "title": "Todavía no has creado ningún canal",
       "description": "Crea uno y comienza a chatear con tus amigos."
     },
     "errors": {
@@ -89,8 +89,8 @@
     }
   },
   "gifs": {
-    "placeholder": "Busca GIF's...",
-    "error": "No se han podido cargar los GIF's en tendencia.",
+    "placeholder": "Busca GIFs...",
+    "error": "No se han podido cargar los GIFs en tendencia",
     "no-results": {
       "title": "No hay resultados",
       "description": "Inténtalo otra vez con otras palabras."
@@ -123,7 +123,7 @@
     "reset": "Reestablecer contraseña",
     "save": "Guardar cambios",
     "update-error": "No se han podido actualizar los detalles de tu cuenta.",
-    "update-success": "Tu cuenta se ha actualizado correctamente",
+    "update-success": "Tu cuenta se ha actualizado correctamente.",
     "connect": {
       "title": "Conecta con tus amigos",
       "description": "Aquí tienes algunos métodos para conectar con tus amigos y comenzar a chatear.",

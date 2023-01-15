@@ -28,6 +28,11 @@ export default function ChangeLanguage() {
     setOptionsOpen(false)
   }
 
+  const handleChangeToFrench = async () => {
+    await changeLanguage('fr')
+    setOptionsOpen(false)
+  }
+
   const toggleOptionsOpen = () => setOptionsOpen((prev) => !prev)
 
   return (
@@ -52,8 +57,15 @@ export default function ChangeLanguage() {
           <li>
             <button
               onClick={handleChangeToSpanish}
-              className="px-3 py-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-600">
+              className="px-3 py-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-600 border-r dark:border-zinc-600">
               Es
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={handleChangeToFrench}
+              className="px-3 py-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-600">
+              Fr
             </button>
           </li>
         </ul>

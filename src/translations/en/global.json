@@ -47,7 +47,7 @@
     "confirm": "Confirm password",
     "submit": "Reset password",
     "start": "Start chatting",
-    "success": "Your password has been reset succesfully."
+    "success": "Your password has been reset successfully."
   },
   "header": {
     "logout": "Logout",

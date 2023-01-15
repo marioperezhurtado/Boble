@@ -1,0 +1,137 @@
+{
+  "home": {
+    "description": "Chat web gratuit en ligne",
+    "about": "A propos de ce projet",
+    "start": "Commencez à chatter"
+  },
+  "login": {
+    "title": "Connectez-vous à votre compte",
+    "email": "Courrier électronique",
+    "password": "Mot de passe",
+    "submit": "S'identifier",
+    "forgot": "Mot de passe oublié?",
+    "need": "Besoin d'un compte?",
+    "signup": "S'inscrire"
+  },
+  "signup": {
+    "title": "Créez votre compte",
+    "email": "Courrier électronique",
+    "password": "Mot de passe",
+    "confirm": "Confirmez le mot de passe",
+    "submit": "Créez un compte",
+    "already": "Vous avez déjà un compte?",
+    "login": "Connectez-vous",
+    "success": "Veuillez suivre le lien que nous avons envoyé à votre e-mail pour vérifier votre compte."
+  },
+  "social-login": {
+    "google": "Connectez-vous avec Google",
+    "github": "Connectez-vous avec Github"
+  },
+  "forgot-password": {
+    "title": "Avez-vous oublié votre mot de passe?",
+    "description": "Saisissez votre adresse électronique et nous vous enverrons des instructions pour réinitialiser votre mot de passe.",
+    "email": "Courrier électronique",
+    "submit": "Envoyer un courriel de réinitialisation",
+    "back": "Retour à la page d'accueil",
+    "success": "Veuillez vérifier votre e-mail pour récupérer votre mot de passe."
+  },
+  "change-password": {
+    "title": "Réinitialiser votre mot de passe",
+    "security": {
+      "title": "Recommandations de sécurité:",
+      "1": "Au minimum 8 caractères (12+ recommandés).",
+      "2": "Contient des lettres majuscules et minuscules, des chiffres et des caractères spéciaux.",
+      "3": "Ne correspond pas ou ne contient pas votre nom, votre adresse électronique, votre nom d'utilisateur ou d'autres informations personnelles."
+    },
+    "password": "Nouveau mot de passe",
+    "confirm": "Confirmez le mot de passe",
+    "submit": "Réinitialiser le mot de passe",
+    "start": "Commencez à chatter",
+    "success": "Votre mot de passe a bien été réinitialisé"
+  },
+  "header": {
+    "logout": "Fermeture de session",
+    "account": "Votre Compte"
+  },
+  "create-channel": {
+    "friend-code": "Entrez le code d'invitation...",
+    "submit": "Créer un canal",
+    "clipboard": "Copiez votre code d'invitation",
+    "clipboard-success": "Copié dans le presse-papiers!"
+  },
+  "chat": {
+    "select-channel": {
+      "title": "Sélectionnez un canal pour commencer à chatter",
+      "description": "Vous pouvez créer un nouveau canal ou rejoindre un canal existant."
+    },
+    "empty": {
+      "title": "Aucun message pour le moment",
+      "description": "Commencez la conversation pour voir vos messages ici."
+    }
+  },
+  "chat-input": {
+    "placeholder": "Tapez un message..."
+  },
+  "channels": {
+    "empty": {
+      "title": "Vous n'avez pas encore créé de canal",
+      "description": "Créez-en un et commencez à chatter avec vos amis."
+    },
+    "errors": {
+      "get": "Échec du chargement des canaux.",
+      "create": "Échec de la création du canal."
+    }
+  },
+  "messages": {
+    "errors": {
+      "get": "Échec du chargement des messages.",
+      "send": "Échec de l'envoi du message."
+    }
+  },
+  "gifs": {
+    "placeholder": "Recherchez les GIF...",
+    "error": "Échec du chargement des GIF tendance",
+    "no-results": {
+      "title": "Pas de résultats trouvés",
+      "description": "Essayez à nouveau avec d'autres mots-clés."
+    }
+  },
+  "page-not-found": {
+    "title": "Oups! Page non trouvée",
+    "description": "Désolé, la page que vous recherchez n'existe pas.",
+    "recommendation": "Êtes-vous sûr d'avoir tapé la bonne URL ?",
+    "back": "Retour à l'accueil"
+  },
+  "validation": {
+    "email-error": "Veuillez saisir votre adresse électronique.",
+    "empty-error": "Il y a des champs vides",
+    "password-match-error": "Les mots de passe ne correspondent pas"
+  },
+  "translation": {
+    "change-error": "Échec du changement de langue",
+    "title": "Changer de langue"
+  },
+  "dark-mode": {
+    "title": "Basculer le mode sombre"
+  },
+  "account": {
+    "title": "Votre Compte",
+    "description": "Modifier les paramètres de votre compte et la façon dont les autres utilisateurs vous voient.",
+    "full-name": "Nom complet",
+    "email": "Courrier électronique",
+    "error": "Impossible de charger les détails de votre compte.",
+    "reset": "Réinitialiser le mot de passe",
+    "save": "Sauvegarder les changements",
+    "update-error": "La mise à jour des données de votre compte a échoué.",
+    "update-success": "Votre compte a été mis à jour avec succès.",
+    "connect": {
+      "title": "Connectez-vous avec vos amis",
+      "description": "Voici quelques méthodes pour vous connecter à vos amis et commencer à chatter.",
+      "code": "Code d'invitation",
+      "link": "Lien d'invitation",
+      "code-copy": "Copier le code d'invitation",
+      "link-copy": "Copier le lien d'invitation",
+      "copy-success": "Copié dans le presse-papiers!"
+    }
+  }
+}
