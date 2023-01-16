@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 
+const availableLanguages = ['en', 'es', 'fr']
+
 export default function useTranslate() {
   const { t, i18n } = useTranslation()
 
@@ -9,7 +11,8 @@ export default function useTranslate() {
     return language
   }
 
-  const changeLanguage = (lang: 'en' | 'es') => {
+  const changeLanguage = (lang: string) => {
+    if (!availableLanguages.includes(lang)) return
     i18n.changeLanguage(lang).catch(() => {
       throw Error(t('translation.change-error') ?? 'Failed to change language.')
     })
@@ -18,14 +21,13 @@ export default function useTranslate() {
   useEffect(() => {
     // Set stored language or user configured language
     const storedLang = localStorage.getItem('lang')
-    if (storedLang === 'en' || storedLang === 'es') {
+    if (storedLang) {
       changeLanguage(storedLang)
       return
     }
     const defaultLang = detectLanguage()
-    if (defaultLang === 'en' || defaultLang === 'es') {
-      changeLanguage(defaultLang)
-    }
+    if (!defaultLang) return
+    changeLanguage(defaultLang)
   }, [])
 
   useEffect(() => {
