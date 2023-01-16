@@ -1,7 +1,7 @@
 {
   "home": {
     "description": "Chat web gratuit en ligne",
-    "about": "A propos de ce projet",
+    "about": "À propos de ce projet",
     "start": "Commencez à chatter"
   },
   "login": {
@@ -50,7 +50,7 @@
     "success": "Votre mot de passe a bien été réinitialisé"
   },
   "header": {
-    "logout": "Fermeture de session",
+    "logout": "Déconnexion",
     "account": "Votre Compte"
   },
   "create-channel": {
@@ -75,7 +75,7 @@
   "channels": {
     "empty": {
       "title": "Vous n'avez pas encore créé de canal",
-      "description": "Créez-en un et commencez à chatter avec vos amis."
+      "description": "Créez un nouveau et commencez à chatter avec vos amis."
     },
     "errors": {
       "get": "Échec du chargement des canaux.",
@@ -112,7 +112,7 @@
     "title": "Changer de langue"
   },
   "dark-mode": {
-    "title": "Basculer le mode sombre"
+    "title": "Changez le thème sombre"
   },
   "account": {
     "title": "Votre Compte",
@@ -122,7 +122,7 @@
     "error": "Impossible de charger les détails de votre compte.",
     "reset": "Réinitialiser le mot de passe",
     "save": "Sauvegarder les changements",
-    "update-error": "La mise à jour des données de votre compte a échoué.",
+    "update-error": "Échec de la mise à jour des données de votre compte.",
     "update-success": "Votre compte a été mis à jour avec succès.",
     "connect": {
       "title": "Connectez-vous avec vos amis",
@@ -133,5 +133,13 @@
       "link-copy": "Copier le lien d'invitation",
       "copy-success": "Copié dans le presse-papiers!"
     }
+  },
+  "invite": {
+    "title": "Commencez une nouvelle conversation",
+    "description": "vous a invité à rejoindre un nouveau canal et à commencer à chatter.",
+    "accept": "Accepter l'invitation",
+    "back": "Retour à la page d'accueil",
+    "profile-error": "Oups ! Cet utilisateur n'existe pas.",
+    "accept-error": "N'a pas pu accepter l'invitation."
   }
 }

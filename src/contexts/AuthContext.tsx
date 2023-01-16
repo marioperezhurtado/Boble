@@ -51,7 +51,10 @@ export function AuthProvider({ children }: Props) {
   const signUp = async ({ email, password }: SignIn) => {
     const { error } = await supabase.auth.signUp({
       email,
-      password
+      password,
+      options: {
+        emailRedirectTo: `${import.meta.env.VITE_APP_URL}/login`
+      }
     })
     if (error) throw Error('Failed to create an account')
   }
@@ -71,14 +74,20 @@ export function AuthProvider({ children }: Props) {
 
   const signInGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google'
+      provider: 'google',
+      options: {
+        redirectTo: `${import.meta.env.VITE_APP_URL}/login`
+      }
     })
     if (error) throw Error('Failed to sign in with Google')
   }
 
   const signInGithub = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'github'
+      provider: 'github',
+      options: {
+        redirectTo: `${import.meta.env.VITE_APP_URL}/login`
+      }
     })
     if (error) throw Error('Failed to sign in with Github')
   }

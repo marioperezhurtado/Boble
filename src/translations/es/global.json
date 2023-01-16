@@ -133,5 +133,13 @@
       "link-copy": "Copia tu enlace de invitación",
       "copy-success": "Código copiado!"
     }
+  },
+  "invite": {
+    "title": "Comienza una nueva conversación",
+    "description": "te ha invitado a unirte a un nuevo canal y comenzar a chatear.",
+    "accept": "Aceptar invitación",
+    "back": "Volver al inicio",
+    "profile-error": "Ups! Este usuario no existe.",
+    "accept-error": "No se ha podido aceptar la invitación."
   }
 }

@@ -70,7 +70,7 @@ export default function Signup() {
             name="signupForm"
             className="flex flex-col mt-2">
             {isSuccess && (
-              <p className="p-1.5 pl-3 mt-5 bg-green-100 border-l-4 border-green-600">
+              <p className="p-1.5 pl-3 mt-5 bg-green-100 border-l-4 border-green-600 text-zinc-700 dark:bg-green-200">
                 {t('signup.success')}
               </p>
             )}

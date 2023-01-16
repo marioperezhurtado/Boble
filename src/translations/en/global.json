@@ -133,5 +133,13 @@
       "link-copy": "Copy invitation link",
       "copy-success": "Copied to clipboard!"
     }
+  },
+  "invite": {
+    "title": "Start a new conversation",
+    "description": "has invited you to join a new channel and start chatting.",
+    "accept": "Accept invitation",
+    "back": "Back to home",
+    "profile-error": "Oops! This user does not exist.",
+    "accept-error": "Failed to accept invitation."
   }
 }

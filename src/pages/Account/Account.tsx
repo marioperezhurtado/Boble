@@ -52,7 +52,7 @@ export default function Account() {
   return (
     <>
       <Header />
-      <main className="min-h-screen px-4 bg-zinc-50 dark:bg-zinc-800 pt-14 md:pt-20">
+      <main className="min-h-screen px-4 bg-zinc-50 dark:bg-zinc-800 pt-14 md:pt-20 pb-5">
         <div className="max-w-xl p-6 mx-auto mt-5 bg-white border rounded-md shadow-md dark:border-zinc-600 dark:bg-zinc-700">
           <h1 className="mb-5 text-2xl font-semibold">{t('account.title')}</h1>
           <h2 className="mb-5">{t('account.description')}</h2>
@@ -109,10 +109,7 @@ export default function Account() {
           )}
         </div>
 
-        <ConnectFriends
-          id={currentUser?.id ?? ''}
-          email={profile?.email ?? ''}
-        />
+        <ConnectFriends id={currentUser?.id ?? ''} />
       </main>
     </>
   )

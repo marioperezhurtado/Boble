@@ -7,11 +7,12 @@ import useTranslate from './hooks/useTranslate'
 
 import Home from './pages/Home/Home'
 import Chat from './pages/Chat/Chat'
+import Account from './pages/Account/Account'
+import Invite from './pages/Invite/Invite'
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
-import Account from './pages/Account/Account'
 import PageNotFound from './pages/PageNotFound/PageNotFound'
 
 export default function App() {
@@ -36,6 +37,18 @@ export default function App() {
             </ProtectedRoute>
           )}
         </Route>
+        <Route path="/account">
+          <ProtectedRoute>
+            <Account />
+          </ProtectedRoute>
+        </Route>
+        <Route path="/invite/:userId">
+          {(params) => (
+            <ProtectedRoute>
+              <Invite userId={params.userId} />
+            </ProtectedRoute>
+          )}
+        </Route>
         <Route path="/login">
           <AuthRoute>
             <Login />
@@ -54,11 +67,6 @@ export default function App() {
         <Route path="/reset-password">
           <ProtectedRoute>
             <ResetPassword />
-          </ProtectedRoute>
-        </Route>
-        <Route path="/account">
-          <ProtectedRoute>
-            <Account />
           </ProtectedRoute>
         </Route>
         <Route path="/:rest*">

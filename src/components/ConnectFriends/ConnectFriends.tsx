@@ -6,15 +6,14 @@ import QRCode from 'react-qr-code'
 
 interface Props {
   id: string
-  email: string
 }
 
-export default function ConnectFriends({ id, email }: Props) {
+export default function ConnectFriends({ id }: Props) {
   const { t } = useTranslation('global')
   const [codeCopied, setCodeCopied] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
-  const inviteLink = `${import.meta.env.VITE_APP_URL}/invite/${email}`
+  const inviteLink = `${import.meta.env.VITE_APP_URL}/invite/${id}`
 
   const handleCopyCode = async () => {
     await navigator.clipboard?.writeText(id)
@@ -43,7 +42,7 @@ export default function ConnectFriends({ id, email }: Props) {
         onClick={handleCopyCode}
         title={t('account.connect.code-copy')}
         className="border px-2 py-1.5 rounded-md dark:border-zinc-500 dark:bg-zinc-600 bg-zinc-50 flex items-center gap-2 relative">
-        {id}
+        <p className="text-left">{id}</p>
         <span className="w-fit">
           <CopyIcon />
           {codeCopied && (
@@ -58,7 +57,7 @@ export default function ConnectFriends({ id, email }: Props) {
         onClick={handleCopyLink}
         title={t('account.connect.link-copy')}
         className="border px-2 py-1.5 rounded-md dark:border-zinc-500 dark:bg-zinc-600 bg-zinc-50 flex items-center gap-2 break-all relative">
-        {inviteLink}
+        <p className="text-left">{inviteLink}</p>
         <span className="w-fit">
           <CopyIcon />
           {linkCopied && (
