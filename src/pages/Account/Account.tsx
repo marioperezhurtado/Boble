@@ -53,7 +53,7 @@ export default function Account() {
   return (
     <>
       <Header />
-      <main className="min-h-screen px-4 bg-zinc-50 dark:bg-zinc-800 pt-14 md:pt-20 pb-5">
+      <main className="min-h-screen px-4 pb-5 bg-zinc-50 dark:bg-zinc-800 pt-14 md:pt-20">
         <div className="max-w-xl p-6 mx-auto mt-5 bg-white border rounded-md shadow-md dark:border-zinc-600 dark:bg-zinc-700">
           <h1 className="mb-5 text-2xl font-semibold">{t('account.title')}</h1>
           <h2 className="mb-5">{t('account.description')}</h2>
@@ -67,16 +67,10 @@ export default function Account() {
               {t('account.update-success')}
             </p>
           )}
-
           {isProfileLoading && <LoadSpinner />}
           {!isProfileLoading && (
             <>
-              <p className="flex flex-wrap gap-4 mt-5 items-center">
-                <ChangeAvatar />
-                <span className="font-semibold break-all">
-                  {profile?.email}
-                </span>
-              </p>
+              <ChangeAvatar />
               <form
                 onSubmit={handleSubmit}
                 name="accountForm"
@@ -109,7 +103,6 @@ export default function Account() {
             </>
           )}
         </div>
-
         <ConnectFriends />
       </main>
     </>

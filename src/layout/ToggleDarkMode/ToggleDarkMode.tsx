@@ -5,6 +5,8 @@ export default function ToggleDarkMode() {
   const { t } = useTranslation('global')
   const { theme, toggleTheme } = useDarkTheme()
 
+  if (!theme) return
+
   if (theme === 'dark') {
     return (
       <button
