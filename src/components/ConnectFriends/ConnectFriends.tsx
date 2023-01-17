@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from '../../contexts/AuthContext'
 
 import CopyIcon from '../../assets/CopyIcon'
 import QRCode from 'react-qr-code'
 
-interface Props {
-  id: string
-}
-
-export default function ConnectFriends({ id }: Props) {
+export default function ConnectFriends() {
   const { t } = useTranslation('global')
+  const { currentUser } = useAuth()
+  const id = currentUser?.id ?? ''
   const [codeCopied, setCodeCopied] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 

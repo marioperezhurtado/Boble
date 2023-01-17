@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { getTrendingGifs, getSearchGifs } from '../../hooks/useGifs'
 import useOnClickOutside from '../../hooks/useOnClickOutside'
@@ -16,6 +16,7 @@ export default function GifModal({ onClose, onSend }: Props) {
   const { t } = useTranslation('global')
   const [search, setSearch] = useState('')
   const modalRef = useRef<HTMLDivElement>(null)
+  const searchRef = useRef<HTMLInputElement>(null)
 
   useOnClickOutside({ ref: modalRef, handler: onClose })
 
@@ -56,6 +57,10 @@ export default function GifModal({ onClose, onSend }: Props) {
     onClose()
   }
 
+  useEffect(() => {
+    searchRef.current?.focus()
+  }, [])
+
   const isLoading = isSearching || isTrendingLoading
   const isError = isSearchError || isTrendingError
   const gifs = searchedGifs ?? trendingGifs
@@ -70,6 +75,7 @@ export default function GifModal({ onClose, onSend }: Props) {
         className="flex max-w-md gap-2 mx-auto mb-2">
         <input
           value={search}
+          ref={searchRef}
           onChange={handleChange}
           type="text"
           name="search"

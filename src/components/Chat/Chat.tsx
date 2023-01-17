@@ -55,7 +55,7 @@ export default function Chat({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col md:pt-20 bg-zinc-100 dark:bg-zinc-800 h-full">
+      <div className="flex flex-col md:pt-20 bg-zinc-100 dark:bg-zinc-800 h-screen">
         <LoadSpinner />
         <ChatInput channelId={channelId} />
       </div>
@@ -64,8 +64,8 @@ export default function Chat({ channelId }: Props) {
 
   if (chatError?.message) {
     return (
-      <div className="px-8 py-8 bg-zinc-100">
-        <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 dark:bg-zinc-800">
+      <div className="px-8 py-8 bg-zinc-100 h-screen dark:bg-zinc-800">
+        <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 dark:bg-red-200 text-zinc-700">
           {t('messages.errors.get')}
         </p>
       </div>
