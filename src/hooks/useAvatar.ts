@@ -8,7 +8,7 @@ interface Props {
 export async function uploadAvatar({ id, avatar }: Props) {
   const { data: uploadData, error: uploadError } = await supabase.storage
     .from('avatars')
-    .upload(`${id}.png`, avatar, {
+    .upload(id, avatar, {
       upsert: true
     })
   if (uploadError) throw Error('Failed to upload avatar')
