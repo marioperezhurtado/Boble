@@ -20,7 +20,7 @@ export default function App() {
   useTranslate()
 
   return (
-    <div className="select-text text-zinc-700 dark:text-zinc-200">
+    <div className="select-none text-zinc-700 dark:text-zinc-200">
       <Switch>
         <Route path="/">
           <Home />

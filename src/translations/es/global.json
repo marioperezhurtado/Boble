@@ -141,5 +141,8 @@
     "back": "Volver al inicio",
     "profile-error": "Ups! Este usuario no existe.",
     "accept-error": "No se ha podido aceptar la invitación."
+  },
+  "message": {
+    "media-error": "No se ha podido cargar el contenido."
   }
 }

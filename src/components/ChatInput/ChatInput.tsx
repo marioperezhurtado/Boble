@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { sendMessage } from '../../hooks/useMessages'
+import { sendImage } from '../../hooks/useImage'
 import { capitalize } from '../../utils/text'
 import { useTranslation } from 'react-i18next'
 
@@ -39,6 +40,9 @@ export default function ChatInput({ channelId }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(capitalize(e.target.value))
   }
+  const handleToggleGifModal = () => {
+    setShowGifModal((s) => !s)
+  }
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -48,12 +52,15 @@ export default function ChatInput({ channelId }: Props) {
     setText('')
   }
 
-  const handleToggleGifModal = () => {
-    setShowGifModal((s) => !s)
-  }
-
   const handleSendGif = (url: string) => {
     mutate({ text: '', mediaLink: url })
+  }
+
+  const handleSendImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    await sendImage({ senderId: currentUser?.id ?? '', channelId, image: file })
   }
 
   return (
@@ -72,8 +79,15 @@ export default function ChatInput({ channelId }: Props) {
         <button
           type="button"
           disabled={isLoading}
-          className="px-2 border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500 dark:hover:bg-zinc-500">
+          className="px-2 border rounded-md md:px-3 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500 dark:hover:bg-zinc-500 relative">
           <CameraIcon />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleSendImage}
+            className="absolute top-0 left-0 w-full h-full opacity-0"
+            title=""
+          />
         </button>
         <input
           value={text}

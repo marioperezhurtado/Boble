@@ -141,5 +141,8 @@
     "back": "Back to home",
     "profile-error": "Oops! This user does not exist.",
     "accept-error": "Failed to accept invitation."
+  },
+  "message": {
+    "media-error": "Failed to load media."
   }
 }

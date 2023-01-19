@@ -141,5 +141,8 @@
     "back": "Retour à la page d'accueil",
     "profile-error": "Oups ! Cet utilisateur n'existe pas.",
     "accept-error": "N'a pas pu accepter l'invitation."
+  },
+  "message": {
+    "media-error": "Échec du chargement du contenu."
   }
 }

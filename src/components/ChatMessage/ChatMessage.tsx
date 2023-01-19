@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import useTimestamp from '../../hooks/useTimestamp'
+import { useTranslation } from 'react-i18next'
 
 import { Message } from '../../types/chat'
 
@@ -8,7 +10,11 @@ interface Props {
 }
 
 export default function ChatMessage({ message }: Props) {
+  const { t } = useTranslation('global')
   const { currentUser } = useAuth()
+  const [imgError, setImgError] = useState(false)
+
+  const handleImgError = () => setImgError(true)
 
   const dateTime = useTimestamp(message.created_at)
 
@@ -20,8 +26,18 @@ export default function ChatMessage({ message }: Props) {
             ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
             : 'bg-white mr-auto rounded-bl-none dark:bg-zinc-600'
         } `}>
-        {message.media_link && (
-          <img src={message.media_link} alt="media" className="rounded-md" />
+        {!imgError && message.media_link && (
+          <img
+            src={message.media_link}
+            alt="media"
+            className="rounded-md"
+            onError={handleImgError}
+          />
+        )}
+        {imgError && (
+          <p className="p-1.5 pl-3 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
+            {t('message.media-error')}
+          </p>
         )}
         <p>{message.text}</p>
         <p className="self-end flex-grow text-xs text-right">{dateTime}</p>
