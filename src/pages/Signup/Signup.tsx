@@ -5,6 +5,7 @@ import { Link } from 'wouter'
 import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'
+import PasswordInput from '../../layout/PasswordInput/PasswordInput'
 import SocialLogin from '../../components/SocialLogin/SocialLogin'
 
 interface FormState {
@@ -98,7 +99,7 @@ export default function Signup() {
             <label htmlFor="password" className="pt-5">
               {t('signup.password')}
             </label>
-            <input
+            <PasswordInput
               onChange={handleChange}
               value={password}
               type="password"
@@ -109,7 +110,7 @@ export default function Signup() {
             <label htmlFor="confirmPassword" className="pt-5">
               {t('signup.confirm')}
             </label>
-            <input
+            <PasswordInput
               onChange={handleChange}
               value={confirmPassword}
               type="password"

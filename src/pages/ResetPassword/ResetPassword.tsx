@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'
+import PasswordInput from '../../layout/PasswordInput/PasswordInput'
 
 const initialState = {
   password: '',
@@ -81,7 +82,7 @@ export default function ForgotPassword() {
               <label htmlFor="password" className="font-bold">
                 {t('change-password.password')}
               </label>
-              <input
+              <PasswordInput
                 value={formState.password}
                 onChange={handleChange}
                 type="password"
@@ -94,7 +95,7 @@ export default function ForgotPassword() {
               <label htmlFor="passwordRepeat" className="font-bold">
                 {t('change-password.confirm')}
               </label>
-              <input
+              <PasswordInput
                 value={formState.passwordRepeat}
                 onChange={handleChange}
                 type="password"
