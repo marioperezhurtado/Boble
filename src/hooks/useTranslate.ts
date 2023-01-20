@@ -6,6 +6,8 @@ const availableLanguages = ['en', 'es', 'fr']
 export default function useTranslate() {
   const { t, i18n } = useTranslation()
 
+  const language = i18n.language
+
   const detectLanguage = () => {
     const language = (navigator.language || navigator.languages[0]).slice(0, 2)
     return language
@@ -31,6 +33,8 @@ export default function useTranslate() {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('lang', i18n.language)
-  }, [i18n.language])
+    localStorage.setItem('lang', language)
+  }, [language])
+
+  return { language, changeLanguage }
 }

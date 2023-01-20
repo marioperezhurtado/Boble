@@ -1,22 +1,20 @@
 import { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useUserConfig } from '../../contexts/UserConfigContext'
 import useOnClickOutside from '../../hooks/useOnClickOutside'
 
 import TranslateIcon from '../../assets/TranslateIcon'
 
 export default function ChangeLanguage() {
+  const { t } = useTranslation('global')
+  const { language, changeLanguage } = useUserConfig()
   const ref = useRef<HTMLDivElement>(null)
   const [optionsOpen, setOptionsOpen] = useState(false)
-  const { t, i18n } = useTranslation('global')
 
   useOnClickOutside({
     ref,
     handler: () => setOptionsOpen(false)
   })
-
-  const changeLanguage = async (lng: string) => {
-    await i18n.changeLanguage(lng)
-  }
 
   const handleChangeToEnglish = async () => {
     await changeLanguage('en')
@@ -50,21 +48,24 @@ export default function ChangeLanguage() {
           <li>
             <button
               onClick={handleChangeToEnglish}
-              className="px-3 py-1.5 border-r hover:bg-zinc-100 dark:border-zinc-600 dark:hover:bg-zinc-600">
+              className={`px-3 py-1.5 border-r hover:bg-zinc-100 dark:border-zinc-500 dark:hover:bg-zinc-600 
+              ${language === 'en' ? 'bg-zinc-100 dark:bg-zinc-500' : ''}`}>
               En
             </button>
           </li>
           <li>
             <button
               onClick={handleChangeToSpanish}
-              className="px-3 py-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-600 border-r dark:border-zinc-600">
+              className={`px-3 py-1.5 border-r hover:bg-zinc-100 dark:border-zinc-500 dark:hover:bg-zinc-600 
+              ${language === 'es' ? 'bg-zinc-100 dark:bg-zinc-500' : ''}`}>
               Es
             </button>
           </li>
           <li>
             <button
               onClick={handleChangeToFrench}
-              className="px-3 py-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-600">
+              className={`px-3 py-1.5 hover:bg-zinc-100 dark:border-zinc-600 dark:hover:bg-zinc-600 
+              ${language === 'fr' ? 'bg-zinc-100 dark:bg-zinc-500' : ''}`}>
               Fr
             </button>
           </li>

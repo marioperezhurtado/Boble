@@ -1,14 +1,13 @@
 import { supabase } from '../supabase'
 
 interface Props {
-  senderId: string
   channelId: string
   image: File
 }
 
 const PRIVATE_IMAGE_EXPIRATION = 31536000 // 1 year in seconds
 
-export async function sendImage({ senderId, channelId, image }: Props) {
+export async function uploadImage({ channelId, image }: Props) {
   const url = `${channelId}/${Date.now().toString()}`
 
   const { data: uploadData, error: uploadError } = await supabase.storage
@@ -25,11 +24,5 @@ export async function sendImage({ senderId, channelId, image }: Props) {
 
   const { signedUrl } = urlData
 
-  const { error } = await supabase.from('private_messages').insert({
-    sender_id: senderId,
-    private_channel_id: channelId,
-    text: '',
-    media_link: signedUrl
-  })
-  if (error) throw Error('Failed to send image')
+  return signedUrl
 }

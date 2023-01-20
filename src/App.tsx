@@ -2,9 +2,6 @@ import { Switch, Route } from 'wouter'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import AuthRoute from './components/AuthRoute/AuthRoute'
 
-import useDarkTheme from './hooks/useDarkTheme'
-import useTranslate from './hooks/useTranslate'
-
 import Home from './pages/Home/Home'
 import Chat from './pages/Chat/Chat'
 import Account from './pages/Account/Account'
@@ -16,9 +13,6 @@ import ResetPassword from './pages/ResetPassword/ResetPassword'
 import PageNotFound from './pages/PageNotFound/PageNotFound'
 
 export default function App() {
-  useDarkTheme()
-  useTranslate()
-
   return (
     <div className="select-none text-zinc-700 dark:text-zinc-200">
       <Switch>

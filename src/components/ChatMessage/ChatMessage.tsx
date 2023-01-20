@@ -21,7 +21,7 @@ export default function ChatMessage({ message }: Props) {
   if (message.media_link) {
     return (
       <div
-        className={`max-w-sm p-2 pb-1 mt-4 rounded-md shadow-md w-fit flex flex-col gap-1 ${
+        className={`w-3/4 sm:max-w-xs md:max-w-sm p-1 pb-1 mt-4 rounded-md shadow-md flex flex-col gap-1 ${
           currentUser?.id === message.sender_id
             ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
             : 'bg-white mr-auto rounded-bl-none dark:bg-zinc-600'

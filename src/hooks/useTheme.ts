@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function useDarkTheme() {
+export default function useTheme() {
   const [isDarkTheme, setIsDarkTheme] = useState(false)
 
   const theme = isDarkTheme ? 'dark' : 'light'

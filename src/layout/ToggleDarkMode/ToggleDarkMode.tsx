@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next'
-import useDarkTheme from '../../hooks/useDarkTheme'
+import { useUserConfig } from '../../contexts/UserConfigContext'
 
 export default function ToggleDarkMode() {
   const { t } = useTranslation('global')
-  const { theme, toggleTheme } = useDarkTheme()
-
-  if (!theme) return
+  const { theme, toggleTheme } = useUserConfig()
 
   if (theme === 'dark') {
     return (

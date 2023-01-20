@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useQuery, useMutation } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { getProfile } from '../../hooks/useProfile'
 import { uploadAvatar } from '../../hooks/useAvatar'
@@ -16,25 +16,26 @@ export default function ChangeAvatar() {
     setDate(Date.now())
   }
 
-  const { data: profile, isLoading: isProfileLoading } = useQuery({
+  const {
+    data: profile,
+    isLoading: isProfileLoading,
+    refetch
+  } = useQuery({
     queryKey: ['profile', currentUser?.id],
     queryFn: async () => await getProfile(currentUser?.id ?? '')
   })
 
-  const { mutate: handleUpload } = useMutation({
-    mutationFn: async (file: File) =>
-      await uploadAvatar({
-        id: currentUser?.id ?? '',
-        avatar: file
-      }),
-    onSuccess: () => refreshAvatar()
-  })
-
-  const handleChangeAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeAvatar = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
 
-    handleUpload(file)
+    await uploadAvatar({
+      id: currentUser?.id ?? '',
+      avatar: file
+    })
+
+    await refetch()
+    refreshAvatar()
   }
 
   return (

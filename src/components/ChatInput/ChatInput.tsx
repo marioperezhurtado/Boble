@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { sendMessage } from '../../hooks/useMessages'
-import { sendImage } from '../../hooks/useImage'
+import { uploadImage } from '../../hooks/useImage'
 import { capitalize } from '../../utils/text'
 import { useTranslation } from 'react-i18next'
 
@@ -60,7 +60,9 @@ export default function ChatInput({ channelId }: Props) {
     const file = e.target.files?.[0]
     if (!file) return
 
-    await sendImage({ senderId: currentUser?.id ?? '', channelId, image: file })
+    const url = await uploadImage({ channelId, image: file })
+
+    mutate({ text: '', mediaLink: url })
   }
 
   return (
