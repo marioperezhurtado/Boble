@@ -14,7 +14,7 @@ import PageNotFound from './pages/PageNotFound/PageNotFound'
 
 export default function App() {
   return (
-    <div className="select-none text-zinc-700 dark:text-zinc-200">
+    <div className="w-screen overflow-hidden select-none text-zinc-600 dark:text-zinc-200">
       <Switch>
         <Route path="/">
           <Home />

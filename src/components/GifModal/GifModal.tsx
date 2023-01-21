@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { getTrendingGifs, getSearchGifs } from '../../hooks/useGifs'
 import useOnClickOutside from '../../hooks/useOnClickOutside'
@@ -56,10 +56,6 @@ export default function GifModal({ onClose, onSend }: Props) {
     onSend(url)
     onClose()
   }
-
-  useEffect(() => {
-    searchRef.current?.focus()
-  }, [])
 
   const isLoading = isSearching || isTrendingLoading
   const isError = isSearchError || isTrendingError

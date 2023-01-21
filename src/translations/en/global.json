@@ -2,7 +2,35 @@
   "home": {
     "description": "Online free web chat",
     "about": "About this project",
-    "start": "Start chatting"
+    "start": "Start chatting",
+    "overview": {
+      "chat": {
+        "title": "Chat with your friends from",
+        "bold": " any device",
+        "description": "You will only need an email account and Internet connection."
+      },
+      "share": {
+        "title": "Share",
+        "bold": " images, GIF's, stickers... ",
+        "title2": "And more!",
+        "description": "Your messages are saved in the cloud, you can access them at any time."
+      },
+      "customize": {
+        "bold": "Customize ",
+        "title": "your account",
+        "description": "You can change how other users can see you, and customize the application as you wish."
+      },
+      "secure": {
+        "title": "Your private chats...",
+        "bold": " really are!",
+        "description": "No one other than you and your friends can see the messages you send."
+      },
+      "fast": {
+        "title": "Fast and",
+        "bold": " easy to use",
+        "description": "BOBLE offers a simple and intuitive user experience, so you can chat quickly and efficiently."
+      }
+    }
   },
   "login": {
     "title": "Login to your account",

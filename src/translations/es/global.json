@@ -2,7 +2,35 @@
   "home": {
     "description": "Chat web en línea gratuito",
     "about": "Acerca de este proyecto",
-    "start": "Comienza a chatear"
+    "start": "Comienza a chatear",
+    "overview": {
+      "chat": {
+        "title": "Chatea con tus amigos desde",
+        "bold": " cualquier dispositivo",
+        "description": "Solo necesitarás una cuenta de correo electrónico y conexión a Internet."
+      },
+      "share": {
+        "title": "Comparte",
+        "bold": " imágenes, GIFs, stickers... ",
+        "title2": "Y mucho más!",
+        "description": "Tus mensajes se guardan en la nube, podrás verlos en cualquier momento."
+      },
+      "customize": {
+        "bold": "Personaliza ",
+        "title": "tu cuenta",
+        "description": "Puedes cambiar cómo otros usuarios pueden verte, y configurar la aplicación a tu gusto."
+      },
+      "secure": {
+        "title": "Tus chats privados...",
+        "bold": " realmente lo son!",
+        "description": "Nadie más que tú y tus amigos podrá ver los mensajes que envíes."
+      },
+      "fast": {
+        "title": "Rápido y",
+        "bold": " fácil de usar",
+        "description": "BOBLE ofrece una experiencia de usuario intuitiva y sencilla, para que puedas chatear de forma rápida y eficiente."
+      }
+    }
   },
   "login": {
     "title": "Inicia sesión en tu cuenta",

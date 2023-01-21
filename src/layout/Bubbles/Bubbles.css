@@ -1,0 +1,21 @@
+.bubble1 {
+  animation: float 4s ease-in-out infinite 300ms;
+}
+.bubble2 {
+  animation: float 4s ease-in-out infinite;
+}
+.bubble3 {
+  animation: float 4s ease-in-out infinite 500ms;
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-10px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
