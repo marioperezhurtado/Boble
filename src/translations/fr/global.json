@@ -172,5 +172,8 @@
   },
   "message": {
     "media-error": "Échec du chargement du contenu."
+  },
+  "channel-preview": {
+    "own": "Vous"
   }
 }

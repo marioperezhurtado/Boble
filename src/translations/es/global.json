@@ -172,5 +172,8 @@
   },
   "message": {
     "media-error": "No se ha podido cargar el contenido."
+  },
+  "channel-preview": {
+    "own": "Tú"
   }
 }
