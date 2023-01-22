@@ -3,6 +3,11 @@
     "description": "Chat web en línea gratuito",
     "about": "Acerca de este proyecto",
     "start": "Comienza a chatear",
+    "ready": "¿Todo listo?",
+    "more-info": "Más información",
+    "details": "Detalles del proyecto",
+    "questions": "¿Tienes alguna pregunta?",
+    "contact": "Contacta con nosotros",
     "overview": {
       "chat": {
         "title": "Chatea con tus amigos desde",
@@ -12,7 +17,7 @@
       "share": {
         "title": "Comparte",
         "bold": " imágenes, GIFs, stickers... ",
-        "title2": "Y mucho más!",
+        "title2": "¡Y mucho más!",
         "description": "Tus mensajes se guardan en la nube, podrás verlos en cualquier momento."
       },
       "customize": {
@@ -22,13 +27,17 @@
       },
       "secure": {
         "title": "Tus chats privados...",
-        "bold": " realmente lo son!",
+        "bold": " ¡realmente lo son!",
         "description": "Nadie más que tú y tus amigos podrá ver los mensajes que envíes."
       },
       "fast": {
         "title": "Rápido y",
         "bold": " fácil de usar",
-        "description": "BOBLE ofrece una experiencia de usuario intuitiva y sencilla, para que puedas chatear de forma rápida y eficiente."
+        "description": "Experiencia de usuario intuitiva y sencilla, para que puedas chatear de forma rápida y eficiente."
+      },
+      "open-source": {
+        "title": "Código abierto",
+        "description": "Puedes acceder al código de este proyecto para ver cómo funciona y contribuir a su desarrollo."
       }
     }
   },

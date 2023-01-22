@@ -3,6 +3,11 @@
     "description": "Online free web chat",
     "about": "About this project",
     "start": "Start chatting",
+    "ready": "Are you ready?",
+    "more-info": "More information",
+    "details": "Proyect details",
+    "questions": "Any questions?",
+    "contact": "Contact us",
     "overview": {
       "chat": {
         "title": "Chat with your friends from",
@@ -28,7 +33,11 @@
       "fast": {
         "title": "Fast and",
         "bold": " easy to use",
-        "description": "BOBLE offers a simple and intuitive user experience, so you can chat quickly and efficiently."
+        "description": "Simple and intuitive user experience, so you can chat quickly and efficiently."
+      },
+      "open-source": {
+        "title": "Open source",
+        "description": "You can access the code of this project to see how it works and contribute to its development."
       }
     }
   },

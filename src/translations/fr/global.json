@@ -3,6 +3,11 @@
     "description": "Chat web gratuit en ligne",
     "about": "À propos de ce projet",
     "start": "Commencez à chatter",
+    "ready": "Tout est prêt?",
+    "more-info": "Plus d'informations",
+    "details": "Détails du projet",
+    "questions": "Avez-vous des questions ?",
+    "contact": "Contactez-nous",
     "overview": {
       "chat": {
         "title": "Chattez avec vos amis depuis",
@@ -28,7 +33,11 @@
       "fast": {
         "title": "Rapide et",
         "bold": " facile à utiliser",
-        "description": "BOBLE offre une expérience utilisateur intuitive et simple, afin que vous puissiez chatter rapidement et efficacement."
+        "description": "Expérience utilisateur intuitive et simple, afin que vous puissiez chatter rapidement et efficacement."
+      },
+      "open-source": {
+        "title": "Source ouverte",
+        "description": "Vous pouvez accéder au code de ce projet pour voir comment il fonctionne et contribuer à son développement."
       }
     }
   },

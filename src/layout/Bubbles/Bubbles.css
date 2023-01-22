@@ -8,6 +8,11 @@
   animation: float 4s ease-in-out infinite 500ms;
 }
 
+.bubbleShadow {
+  border-radius: 50%;
+  animation: shadow 4s ease-in-out infinite;
+}
+
 @keyframes float {
   0% {
     transform: translatey(0px);
@@ -17,5 +22,17 @@
   }
   100% {
     transform: translatey(0px);
+  }
+}
+
+@keyframes shadow {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(1);
   }
 }
