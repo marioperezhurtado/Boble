@@ -11,12 +11,14 @@ import SecureIcon from '../../assets/SecureIcon'
 import FastIcon from '../../assets/FastIcon'
 import GitIcon from '../../assets/GitIcon'
 
+import './Home.css'
+
 export default function Home() {
   const { t } = useTranslation('global')
 
   return (
     <main className="min-h-screen px-4 md:px-12 bg-zinc-50 dark:bg-zinc-800">
-      <div className="flex max-w-screen-lg gap-4 pt-10 mx-auto sm:pt-16">
+      <div className="flex max-w-screen-lg gap-4 pt-10 mx-auto sm:pt-16 title">
         <Bubbles />
         <div>
           <h1 className="mb-2 text-3xl font-bold">BOBLE</h1>
@@ -38,12 +40,12 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex gap-2 mx-auto mt-5 sm:mt-10 w-fit">
+      <div className="flex gap-2 mx-auto mt-5 sm:mt-10 w-fit buttons">
         <ToggleDarkMode />
         <ChangeLanguage />
       </div>
-      <section className="grid max-w-screen-lg gap-4 py-5 mx-auto sm:py-10 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="p-4 transition bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
+      <ul className="grid max-w-screen-lg gap-4 py-5 mx-auto sm:py-10 sm:grid-cols-2 lg:grid-cols-3 overview">
+        <li className="p-4 transition-transform bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
           <ChattingIcon />
           <p className="pt-2 mb-2 text-lg">
             {t('home.overview.chat.title')}
@@ -52,8 +54,8 @@ export default function Home() {
             </span>
           </p>
           <p>{t('home.overview.chat.description')}</p>
-        </div>
-        <div className="p-4 transition bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
+        </li>
+        <li className="p-4 transition-transform bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
           <ImagesIcon />
           <p className="pt-2 mb-2 text-lg">
             {t('home.overview.share.title')}
@@ -63,8 +65,8 @@ export default function Home() {
             {t('home.overview.share.title2')}
           </p>
           <p>{t('home.overview.share.description')}</p>
-        </div>
-        <div className="p-4 transition bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
+        </li>
+        <li className="p-4 transition-transform bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
           <CustomizeIcon />
           <p className="pt-2 mb-2 text-lg">
             <span className="font-semibold">
@@ -73,8 +75,8 @@ export default function Home() {
             {t('home.overview.customize.title')}
           </p>
           <p>{t('home.overview.customize.description')}</p>
-        </div>
-        <div className="p-4 transition bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
+        </li>
+        <li className="p-4 transition-transform bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
           <SecureIcon />
           <p className="pt-2 mb-2 text-lg">
             {t('home.overview.secure.title')}
@@ -83,8 +85,8 @@ export default function Home() {
             </span>
           </p>
           <p>{t('home.overview.secure.description')}</p>
-        </div>
-        <div className="p-4 transition bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
+        </li>
+        <li className="p-4 transition-transform bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
           <FastIcon />
           <p className="pt-2 mb-2 text-lg">
             {t('home.overview.fast.title')}
@@ -93,16 +95,16 @@ export default function Home() {
             </span>
           </p>
           <p>{t('home.overview.fast.description')}</p>
-        </div>
-        <div className="p-4 transition bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
+        </li>
+        <li className="p-4 transition-transform bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
           <GitIcon />
           <p className="pt-2 mb-2 text-lg font-semibold">
             {t('home.overview.open-source.title')}
           </p>
           <p>{t('home.overview.open-source.description')}</p>
-        </div>
-      </section>
-      <section className="grid max-w-screen-lg gap-4 pt-5 mx-auto text-center pb-14 lg:pt-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        </li>
+      </ul>
+      <section className="grid max-w-screen-lg gap-4 pt-5 mx-auto text-center pb-14 lg:pt-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 actions">
         <div>
           <p className="mb-5 text-xl">{t('home.ready')}</p>
           <Link to="/chat">

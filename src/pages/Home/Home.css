@@ -1,0 +1,57 @@
+.title {
+  animation: slideDown 500ms ease-in-out;
+}
+
+.buttons {
+  animation: fadeIn 500ms ease-in-out;
+}
+
+.overview {
+  animation: slideInFromLeft 500ms ease-in-out;
+}
+
+.actions {
+  animation: slideUp 500ms ease-in-out;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-2rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-8rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
