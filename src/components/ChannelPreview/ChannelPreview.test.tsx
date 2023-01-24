@@ -21,7 +21,7 @@ describe('ChannelPreview', async () => {
 
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
 
-  test('Renders link to channel with avatar and name', () => {
+  test("Renders link to channel with the other user's avatar and name", () => {
     render(
       <ChannelPreview
         channel={{
@@ -49,6 +49,32 @@ describe('ChannelPreview', async () => {
     expect(screen.getByAltText('Test name 2 avatar')).toBeTruthy()
     expect(screen.getByText('Test name 2')).toBeTruthy()
     expect(screen.queryByText('mail@test.com')).toBeNull()
+
+    render(
+      <ChannelPreview
+        channel={{
+          id: '1',
+          created_at: '999',
+          user1: {
+            id: '2',
+            created_at: '999',
+            full_name: 'Test name 1',
+            email: 'mail@test.com',
+            avatar_url: 'https://test.com'
+          },
+          user2: {
+            id: '1',
+            created_at: '999',
+            full_name: 'Test name 2',
+            email: 'mail@test.com',
+            avatar_url: 'https://test.com'
+          }
+        }}
+      />
+    )
+
+    expect(screen.getByAltText('Test name 1 avatar')).toBeTruthy()
+    expect(screen.getByText('Test name 1')).toBeTruthy()
   })
 
   test("Renders email if name isn't provided", () => {
@@ -60,7 +86,7 @@ describe('ChannelPreview', async () => {
           user1: {
             id: '1',
             created_at: '999',
-            email: 'mail@test2.com'
+            email: 'mail@test1.com'
           },
           user2: {
             id: '2',
@@ -106,12 +132,14 @@ describe('ChannelPreview', async () => {
           user1: {
             id: '1',
             created_at: '999',
+            avatar_url: 'https://test.com',
             full_name: 'Test name 3',
             email: ''
           },
           user2: {
             id: '1',
             created_at: '999',
+            avatar_url: 'https://test.com',
             full_name: 'Test name 3',
             email: ''
           }
@@ -119,5 +147,29 @@ describe('ChannelPreview', async () => {
       />
     )
     expect(screen.getByText('channel-preview.own')).toBeTruthy()
+    expect(screen.getByAltText('Test name 3 avatar')).toBeTruthy()
+    expect(screen.getByText('Test name 3')).toBeTruthy()
+
+    render(
+      <ChannelPreview
+        channel={{
+          id: '1',
+          created_at: '999',
+          user1: {
+            id: '1',
+            created_at: '999',
+            email: 'mail@own-test.com'
+          },
+          user2: {
+            id: '1',
+            created_at: '999',
+
+            email: 'mail@own-test.com'
+          }
+        }}
+      />
+    )
+
+    expect(screen.getAllByText('M')).toBeTruthy()
   })
 })

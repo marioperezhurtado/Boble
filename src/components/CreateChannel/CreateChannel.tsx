@@ -37,7 +37,9 @@ export default function CreateChannel() {
   const createError = error as Error
 
   const handleCopyIdToClipboard = async () => {
-    await navigator.clipboard?.writeText(currentUser?.id ?? '')
+    if (!currentUser?.id) return
+
+    await navigator.clipboard?.writeText(currentUser?.id)
     setIsCopied(true)
     setTimeout(() => {
       setIsCopied(false)
@@ -75,7 +77,7 @@ export default function CreateChannel() {
           <button
             disabled={isLoading}
             className="px-2 py-1 transition rounded-md sm:text-sm bg-cyan-700 text-cyan-50 hover:bg-cyan-600">
-            {t('create-channel.submit') ?? ''}
+            {t('create-channel.submit')}
           </button>
         </form>
         {createError && (

@@ -38,7 +38,7 @@ describe('CreateChannel', async () => {
     await waitFor(() => expect(createChannel).not.toHaveBeenCalled())
   })
 
-  test('Creates channels and resets input', async () => {
+  test('Creates channel with current user id', async () => {
     const input = screen.getByRole('textbox')
     fireEvent.change(input, { target: { value: '456' } })
     const form = screen.getByRole('form')
@@ -71,7 +71,7 @@ describe('CreateChannel', async () => {
     )
   })
 
-  test('Copies user id to clipboard', async () => {
+  test('Copies user id to clipboard and shows message', async () => {
     const copyToClipboard = vi.fn()
     Object.assign(navigator, { clipboard: { writeText: copyToClipboard } })
 
@@ -85,5 +85,17 @@ describe('CreateChannel', async () => {
     fireEvent.click(inviteButton)
 
     await waitFor(() => expect(copyToClipboard).toHaveBeenCalledWith('123'))
+    await waitFor(() =>
+      expect(screen.getByText('create-channel.clipboard-success')).toBeTruthy()
+    )
+
+    vi.useFakeTimers()
+    vi.runAllTimers()
+
+    await waitFor(() =>
+      expect(screen.queryByText('create-channel.clipboard-success')).toBeNull()
+    )
+
+    vi.useRealTimers()
   })
 })

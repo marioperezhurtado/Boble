@@ -40,7 +40,7 @@ describe('ChannelList', async () => {
     expect(screen.getByRole('status')).toBeTruthy()
   })
 
-  test('Renders a list of channels with the other user info', async () => {
+  test('Renders a list of channels with the user info', async () => {
     getChannels.mockReturnValueOnce([
       {
         id: '999',
@@ -109,5 +109,20 @@ describe('ChannelList', async () => {
     )
 
     expect(await screen.findByText('channels.empty.title')).toBeTruthy()
+  })
+
+  test("Gets channels from current user's id", () => {
+    expect(getChannels).toHaveBeenCalledWith({ userId: '1' })
+  })
+
+  test("Does not get channels if there's no current user", () => {
+    useAuth.mockReturnValue({ currentUser: null })
+    render(
+      <QueryClientProvider client={queryClient}>
+        <ChannelList channelId="999" />
+      </QueryClientProvider>
+    )
+
+    expect(getChannels).toHaveBeenCalledWith({ userId: '' })
   })
 })

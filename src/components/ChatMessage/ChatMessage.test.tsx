@@ -1,5 +1,5 @@
 import { describe, test, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 
 import ChatMessage from './ChatMessage'
 
@@ -75,5 +75,13 @@ describe('ChatMessage', async () => {
     expect(otherMediaMessage.parentElement?.className).toContain('mr-auto')
     const images = screen.getAllByRole('img')
     expect(images).toHaveLength(2)
+  })
+
+  test('Shows an error if media fails to load', () => {
+    const image = screen.getAllByRole('img')[0]
+
+    fireEvent.error(image)
+
+    expect(screen.getByText('message.media-error')).toBeTruthy()
   })
 })

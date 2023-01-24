@@ -46,9 +46,9 @@ export default function ChangeAvatar() {
           <div className="relative overflow-hidden rounded-full w-fit group">
             <div className="transition group-hover:brightness-50">
               <Avatar
-                avatarUrl={`${profile?.avatar_url ?? ''}?${date}`}
+                avatarUrl={`${profile.avatar_url ?? ''}?${date}`}
                 size={'medium'}
-                name={profile.email}
+                name={profile.full_name ?? ''}
               />
             </div>
             <div className="absolute font-bold text-white transition -translate-x-1/2 -translate-y-1/2 opacity-0 cursor-pointer group-hover:opacity-100 top-1/2 left-1/2">
@@ -61,11 +61,12 @@ export default function ChangeAvatar() {
               accept="image/*"
               className="absolute top-0 left-0 z-10 w-full h-full opacity-0"
               title=""
+              aria-label="Upload avatar"
             />
           </div>
         )}
       </div>
-      <span className="font-semibold break-all">{currentUser?.email}</span>
+      <span className="font-semibold break-all">{profile?.email}</span>
     </div>
   )
 }
