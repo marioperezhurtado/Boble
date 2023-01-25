@@ -45,6 +45,23 @@ export default function ChatMessage({ message }: Props) {
     )
   }
 
+  if (message.audio_link) {
+    return (
+      <div
+        className={`w-fit p-1 pb-1 mt-4 rounded-md shadow-md flex flex-col gap-1 ${
+          currentUser?.id === message.sender_id
+            ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
+            : 'bg-white mr-auto rounded-bl-none dark:bg-zinc-600'
+        } `}>
+        <audio controls>
+          <source src={message.audio_link} type="audio/webm" />
+        </audio>
+        <p>{message.text}</p>
+        <p className="self-end flex-grow text-xs text-right">{dateTime}</p>
+      </div>
+    )
+  }
+
   return (
     <div
       className={`max-w-lg pl-3 pr-2 py-1 mt-4 rounded-md rounded-br-none shadow-md w-fit flex gap-2 ${

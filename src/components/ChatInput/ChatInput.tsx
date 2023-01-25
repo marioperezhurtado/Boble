@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { sendMessage } from '../../hooks/useMessages'
-import { uploadImage } from '../../hooks/useImage'
+import { uploadImage, uploadAudio } from '../../hooks/useMedia'
 import { capitalize } from '../../utils/text'
 import { useTranslation } from 'react-i18next'
 
 import GifModal from '../GifModal/GifModal'
+import AudioRecord from '../AudioRecord/AudioRecord'
 
 import GifIcon from '../../assets/GifIcon'
 import CameraIcon from '../../assets/CameraIcon'
@@ -18,41 +19,45 @@ interface Props {
 interface SendMessage {
   text: string
   mediaLink: string | null
+  audioLink: string | null
 }
 
 export default function ChatInput({ channelId }: Props) {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const [text, setText] = useState('')
-  const [showGifModal, setShowGifModal] = useState(false)
+  const [showGif, setShowGif] = useState(false)
+  const [showAudioRecord, setShowAudioRecord] = useState(false)
 
   const { mutate, isLoading } = useMutation(
-    async ({ text, mediaLink }: SendMessage) =>
+    async ({ text, mediaLink, audioLink }: SendMessage) =>
       await sendMessage({
         senderId: currentUser?.id ?? '',
         channelId,
         text,
-        mediaLink
+        mediaLink,
+        audioLink
       })
   )
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(capitalize(e.target.value))
   }
-  const handleToggleGifModal = () => {
-    setShowGifModal((s) => !s)
-  }
+
+  const handleToggleGif = () => setShowGif((s) => !s)
+
+  const handleToggleAudioRecord = () => setShowAudioRecord((s) => !s)
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!text) return
 
-    mutate({ text, mediaLink: null })
+    mutate({ text, mediaLink: null, audioLink: null })
     setText('')
   }
 
   const handleSendGif = (url: string) => {
-    mutate({ text: '', mediaLink: url })
+    mutate({ text: '', mediaLink: url, audioLink: null })
   }
 
   const handleSendImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +66,13 @@ export default function ChatInput({ channelId }: Props) {
 
     const url = await uploadImage({ channelId, image: file })
 
-    mutate({ text: '', mediaLink: url })
+    mutate({ text: '', mediaLink: url, audioLink: null })
+  }
+
+  const handleSendAudio = async (audio: File) => {
+    const url = await uploadAudio({ channelId, audio })
+
+    mutate({ text: '', mediaLink: null, audioLink: url })
   }
 
   return (
@@ -72,7 +83,7 @@ export default function ChatInput({ channelId }: Props) {
         className="fixed bottom-0 z-10 flex justify-center w-full gap-2 p-2 border-t bg-zinc-50 md:absolute dark:bg-zinc-700 dark:border-zinc-600">
         <button
           type="button"
-          onClick={handleToggleGifModal}
+          onClick={handleToggleGif}
           disabled={isLoading}
           className="px-1.5 border rounded-md md:px-2.5 text-cyan-50 min-w-fit hover:bg-zinc-100 dark:bg-zinc-600 dark:border-zinc-500 dark:hover:bg-zinc-500">
           <GifIcon />
@@ -99,19 +110,29 @@ export default function ChatInput({ channelId }: Props) {
             title=""
           />
         </button>
-        <button
-          disabled={isLoading}
-          className="px-3 rounded-md bg-cyan-700 text-cyan-50 min-w-fit hover:bg-cyan-600">
-          {text && (
+        {text && (
+          <button
+            disabled={isLoading}
+            className="px-3 rounded-md bg-cyan-700 text-cyan-50 min-w-fit hover:bg-cyan-600">
             <img src="/send.svg" alt="send message" className="w-5 h-5" />
-          )}
-          {!text && (
+          </button>
+        )}
+        {!text && (
+          <button
+            type="button"
+            onClick={handleToggleAudioRecord}
+            disabled={isLoading}
+            className="px-3 rounded-md bg-cyan-700 text-cyan-50 min-w-fit hover:bg-cyan-600">
             <img src="/audio.svg" alt="start recording" className="w-5 h-5" />
-          )}
-        </button>
+          </button>
+        )}
       </form>
-      {showGifModal && (
-        <GifModal onClose={handleToggleGifModal} onSend={handleSendGif} />
+      {showGif && <GifModal onClose={handleToggleGif} onSend={handleSendGif} />}
+      {showAudioRecord && (
+        <AudioRecord
+          onClose={handleToggleAudioRecord}
+          onSend={handleSendAudio}
+        />
       )}
     </>
   )

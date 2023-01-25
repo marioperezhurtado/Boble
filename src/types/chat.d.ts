@@ -20,4 +20,5 @@ export interface Message {
   private_channel_id: string
   text: string
   media_link: string | null
+  audio_link: string | null
 }

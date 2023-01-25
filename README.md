@@ -35,13 +35,15 @@ Online Web Chat
 
 **Linting:** [ESLint](https://eslint.org/)
 
+**Testing:** [Vitest](https://vitest.dev/)
+
 **Integration with Supabase:** [Supabase-js](https://github.com/supabase/supabase-js)
 
 **Translation:** [React-i18next](https://react.i18next.com/)
 
 **QR Code:** [React-qr-code](https://www.npmjs.com/package/react-qr-code)
 
-**Testing:** [Vitest](https://vitest.dev/)
+**Audio Recorder:** [React-audio-voice-recorder](https://github.com/samhirtarif/react-audio-recorder/)
 
 ## 📡 External API's
 

@@ -8,6 +8,7 @@ interface SendMessage {
   channelId: string
   text: string
   mediaLink: string | null
+  audioLink: string | null
 }
 interface MessagesListener {
   channelId: string
@@ -28,13 +29,15 @@ export async function sendMessage({
   senderId,
   channelId,
   text,
-  mediaLink
+  mediaLink,
+  audioLink
 }: SendMessage) {
   const { error } = await supabase.from('private_messages').insert({
     sender_id: senderId,
     private_channel_id: channelId,
     text,
-    media_link: mediaLink
+    media_link: mediaLink,
+    audio_link: audioLink
   })
   if (error) throw Error('Failed to send message')
 }

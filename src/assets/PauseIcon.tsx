@@ -1,0 +1,19 @@
+export default function PauseIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="800"
+      height="800"
+      fill="none"
+      viewBox="0 0 24 24"
+      className="w-10 h-10">
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1"
+        d="M10.72 14.53V9.47c0-.48-.2-.67-.71-.67h-1.3c-.51 0-.71.19-.71.67v5.06c0 .48.2.67.71.67H10c.52 0 .72-.19.72-.67zM16 14.53V9.47c0-.48-.2-.67-.71-.67H14c-.51 0-.71.19-.71.67v5.06c0 .48.2.67.71.67h1.29c.51 0 .71-.19.71-.67z"
+        className="stroke-zinc-600 dark:stroke-zinc-300"
+      />
+    </svg>
+  )
+}
