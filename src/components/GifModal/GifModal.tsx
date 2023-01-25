@@ -77,6 +77,7 @@ export default function GifModal({ onClose, onSend }: Props) {
           name="search"
           placeholder={t('gifs.placeholder') ?? ''}
           className="rounded-md border px-2 py-1.5 w-full dark:bg-zinc-600 dark:border-zinc-500 dark:placeholder:text-zinc-300"
+          autoComplete="off"
         />
         <button className="bg-cyan-700 text-cyan-50 rounded-md px-3 py-1.5 text-sm hover:bg-cyan-600 transition">
           <img src="/search.svg" alt="search" className="w-6 h-6" />

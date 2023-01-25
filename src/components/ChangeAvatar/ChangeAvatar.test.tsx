@@ -56,6 +56,18 @@ describe('ChangeAvatar', async () => {
     expect(avatar.src).toBe('https://test.com?123')
   })
 
+  test('does not change avatar if there is no file', async () => {
+    const input = await screen.findByLabelText('Upload avatar')
+
+    fireEvent.change(input, {
+      target: {
+        files: null
+      }
+    })
+
+    expect(uploadAvatar).not.toHaveBeenCalled()
+  })
+
   test('Changes avatar with current user id and input file', async () => {
     const input = await screen.findByLabelText('Upload avatar')
 
