@@ -32,4 +32,17 @@ describe('Avatar', () => {
     expect(screen.getByText('T')).toBeTruthy()
     expect(screen.queryByAltText('third avatar')).toBeNull()
   })
+
+  test('Expands avatar and closes it', () => {
+    const image = screen.getByAltText('first avatar')
+    fireEvent.load(image)
+    fireEvent.click(image)
+
+    const imageExpanded = screen.getByAltText('first avatar expanded')
+    expect(imageExpanded).toBeTruthy()
+
+    fireEvent.click(imageExpanded)
+
+    expect(screen.queryByAltText('first avatar expanded')).toBeNull()
+  })
 })
