@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
-import { createChannel } from '../../hooks/useChannels'
+import { createChannel } from '../../services/channels'
 import { useTranslation } from 'react-i18next'
 
 import CopyIcon from '../../assets/CopyIcon'

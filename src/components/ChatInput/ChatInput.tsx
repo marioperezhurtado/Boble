@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
-import { sendMessage } from '../../hooks/useMessages'
-import { uploadImage, uploadAudio } from '../../hooks/useMedia'
+import { sendMessage } from '../../services/messages'
+import { uploadImage, uploadAudio } from '../../services/media'
 import { capitalize } from '../../utils/text'
 import { useTranslation } from 'react-i18next'
 

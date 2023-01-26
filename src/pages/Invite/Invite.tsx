@@ -1,8 +1,8 @@
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { Link, useLocation } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
-import { getProfile } from '../../hooks/useProfile'
-import { createChannel } from '../../hooks/useChannels'
+import { getProfile } from '../../services/profile'
+import { createChannel } from '../../services/channels'
 import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'

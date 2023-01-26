@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { getTrendingGifs, getSearchGifs } from '../../hooks/useGifs'
+import { getTrendingGifs, getSearchGifs } from '../../services/gifs'
 import useOnClickOutside from '../../hooks/useOnClickOutside'
 import { capitalize } from '../../utils/text'
 import { useTranslation } from 'react-i18next'

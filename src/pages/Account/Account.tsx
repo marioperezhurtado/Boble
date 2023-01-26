@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Link } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
-import { getProfile, updateProfile } from '../../hooks/useProfile'
+import { getProfile, updateProfile } from '../../services/profile'
 import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'

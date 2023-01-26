@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getMessages, messagesListener } from '../../hooks/useMessages'
+import { getMessages, messagesListener } from '../../services/messages'
 import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'

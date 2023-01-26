@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
-import { getProfile } from '../../hooks/useProfile'
-import { uploadAvatar } from '../../hooks/useAvatar'
+import { getProfile } from '../../services/profile'
+import { uploadAvatar } from '../../services/avatar'
 
 import Avatar from '../../layout/Avatar/Avatar'
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'

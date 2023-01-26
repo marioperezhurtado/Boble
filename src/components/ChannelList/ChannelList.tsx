@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
-import { getChannels, channelsListener } from '../../hooks/useChannels'
+import { getChannels, channelsListener } from '../../services/channels'
 import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
