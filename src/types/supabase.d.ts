@@ -1,3 +1,5 @@
+import { User } from './chat'
+
 export type Json =
   | string
   | number
@@ -11,66 +13,71 @@ export interface Database {
     Tables: {
       private_channels: {
         Row: {
-          id: string
           created_at: string | null
+          id: string
           user1: User
           user2: User
         }
         Insert: {
-          id?: string
           created_at?: string | null
+          id?: string
           user1: string
           user2: string
         }
         Update: {
-          id?: string
           created_at?: string | null
+          id?: string
           user1?: string
           user2?: string
         }
       }
       private_messages: {
         Row: {
+          audio_link: string | null
           created_at: string | null
-          text: string
-          media_link: string | null
           id: string
-          sender_id: string
+          media_link: string | null
           private_channel_id: string
+          sender_id: string
+          text: string | null
         }
         Insert: {
+          audio_link?: string | null
           created_at?: string | null
-          text: string
           id?: string
-          sender_id: string
+          media_link?: string | null
           private_channel_id: string
+          sender_id: string
+          text?: string | null
         }
         Update: {
+          audio_link?: string | null
           created_at?: string | null
-          text?: string
           id?: string
-          sender_id?: string
+          media_link?: string | null
           private_channel_id?: string
+          sender_id?: string
+          text?: string | null
         }
       }
       profiles: {
         Row: {
-          id: string
-          full_name: string | null
           avatar_url: string | null
           email: string
+          full_name: string | null
+          id: string
         }
         Insert: {
-          id: string
-          full_name?: string | null
           avatar_url?: string | null
           email: string
+          full_name?: string | null
+          id: string
         }
         Update: {
-          id?: string
-          full_name?: string | null
           avatar_url?: string | null
           email?: string
+          full_name?: string | null
+          id?: string
         }
       }
     }
