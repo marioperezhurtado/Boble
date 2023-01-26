@@ -13,7 +13,7 @@ const queryClient = new QueryClient({
 })
 
 vi.mock('../../contexts/AuthContext')
-vi.mock('../../hooks/useChannels')
+vi.mock('../../services/channels')
 
 interface UseChannels {
   getChannels: any
@@ -25,7 +25,7 @@ describe('ChannelList', async () => {
     '../../contexts/AuthContext'
   )
   const { getChannels, channelsListener }: UseChannels = await import(
-    '../../hooks/useChannels'
+    '../../services/channels'
   )
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
   channelsListener.mockReturnValue({})

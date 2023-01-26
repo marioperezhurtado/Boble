@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../hooks/useGifs')
+vi.mock('../../services/gifs')
 
 describe('GifModal', async () => {
   const {
@@ -24,7 +24,7 @@ describe('GifModal', async () => {
   }: {
     getTrendingGifs: any
     getSearchGifs: any
-  } = await import('../../hooks/useGifs')
+  } = await import('../../services/gifs')
 
   const onClose = vi.fn()
   const onSend = vi.fn()

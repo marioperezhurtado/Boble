@@ -13,14 +13,14 @@ const queryClient = new QueryClient({
 })
 
 vi.mock('../../contexts/AuthContext')
-vi.mock('../../hooks/useChannels')
+vi.mock('../../services/channels')
 
 describe('CreateChannel', async () => {
   const { useAuth }: { useAuth: any } = await import(
     '../../contexts/AuthContext'
   )
   const { createChannel }: { createChannel: any } = await import(
-    '../../hooks/useChannels'
+    '../../services/channels'
   )
 
   useAuth.mockReturnValue({ currentUser: { id: '123' } })

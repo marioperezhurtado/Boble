@@ -20,7 +20,8 @@ describe('ChatMessage', async () => {
           text: 'Own message',
           private_channel_id: '1',
           sender_id: '1',
-          media_link: null
+          media_link: null,
+          audio_link: null
         }}
       />
     )
@@ -35,7 +36,8 @@ describe('ChatMessage', async () => {
           text: 'Other user message',
           private_channel_id: '1',
           sender_id: '2',
-          media_link: null
+          media_link: null,
+          audio_link: null
         }}
       />
     )
@@ -50,7 +52,8 @@ describe('ChatMessage', async () => {
           text: 'Own media message',
           private_channel_id: '1',
           sender_id: '1',
-          media_link: 'https://example.com'
+          media_link: 'https://example.com',
+          audio_link: null
         }}
       />
     )
@@ -66,7 +69,8 @@ describe('ChatMessage', async () => {
           text: 'Other media message',
           private_channel_id: '1',
           sender_id: '2',
-          media_link: 'https://example.com'
+          media_link: 'https://example.com',
+          audio_link: null
         }}
       />
     )

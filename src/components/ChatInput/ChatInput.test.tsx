@@ -13,14 +13,14 @@ const queryClient = new QueryClient({
 })
 
 vi.mock('../../contexts/AuthContext')
-vi.mock('../../hooks/useMessages')
+vi.mock('../../services/messages')
 
 describe('ChatInput', async () => {
   const { useAuth }: { useAuth: any } = await import(
     '../../contexts/AuthContext'
   )
   const { sendMessage }: { sendMessage: any } = await import(
-    '../../hooks/useMessages'
+    '../../services/messages'
   )
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
 
@@ -52,7 +52,8 @@ describe('ChatInput', async () => {
         senderId: '1',
         channelId: '1',
         text: 'Test message',
-        mediaLink: null
+        mediaLink: null,
+        audioLink: null
       })
     )
 
@@ -73,7 +74,8 @@ describe('ChatInput', async () => {
         senderId: '',
         channelId: '1',
         text: 'Test message 2',
-        mediaLink: null
+        mediaLink: null,
+        audioLink: null
       })
     )
   })
