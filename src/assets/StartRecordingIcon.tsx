@@ -6,14 +6,14 @@ export default function StartRecordIcon() {
       height="800"
       fill="none"
       viewBox="0 0 24 24"
-      className="w-10 h-10">
+      className="w-5 h-5">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeMiterlimit="10"
-        strokeWidth="1"
-        d="M12 16.23a4.23 4.23 0 100-8.46 4.23 4.23 0 000 8.46z"
-        className="stroke-red-600 dark:stroke-red-300"
+        strokeWidth="2"
+        d="M12 21a9 9 0 100-18 9 9 0 000 18z"
+        className="stroke-red-600 dark:stroke-red-400"
       />
     </svg>
   )

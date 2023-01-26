@@ -21,8 +21,8 @@ export default function AudioRecord({ onClose, onSend }: Props) {
     startRecording,
     stopRecording,
     togglePauseResume,
-    isPaused,
     isRecording,
+    isPaused,
     recordingTime,
     recordingBlob
   } = useAudioRecorder()
@@ -35,8 +35,33 @@ export default function AudioRecord({ onClose, onSend }: Props) {
     }
   })
 
-  useEffect(() => {
+  const handleTogglePauseResume = () => {
+    if (!isRecording) return
+    togglePauseResume()
+  }
+
+  const handleToggleStartStop = () => {
+    if (isRecording) {
+      stopRecording()
+      return
+    }
     startRecording()
+  }
+
+  const handleSend = async () => {
+    stopRecording()
+    if (!recordingBlob) return
+
+    const file = new File([recordingBlob], 'audio.webm', {
+      type: 'audio/webm'
+    })
+
+    onSend(file)
+    onClose()
+  }
+
+  useEffect(() => {
+    startRecording() // Start recording on mount
   }, [])
 
   useEffect(() => {
@@ -47,28 +72,6 @@ export default function AudioRecord({ onClose, onSend }: Props) {
       stopRecording()
     }
   }, [recordingTime])
-
-  const handleToggleStartStop = () =>
-    isRecording ? stopRecording() : startRecording()
-
-  const handleTogglePauseResume = () => {
-    if (!isRecording) return
-    togglePauseResume()
-  }
-
-  const handleSend = () => {
-    console.log(recordingBlob)
-
-    if (recordingTime < 1 || !recordingBlob) return
-
-    console.log('sending...')
-
-    const file = new File([recordingBlob], 'audio.webm', {
-      type: 'audio/webm'
-    })
-
-    onSend(file)
-  }
 
   const getMinutesSecondsTime = (timeInSeconds: number) => {
     const minutes = Math.floor(timeInSeconds / 60)
@@ -86,7 +89,7 @@ export default function AudioRecord({ onClose, onSend }: Props) {
 
   return (
     <div
-      className="fixed bottom-14 bg-zinc-50 w-full p-2 z-10 border-y md:absolute dark:bg-zinc-700 dark:border-zinc-600"
+      className="fixed bottom-14 bg-zinc-50 w-full p-3 z-10 border-y md:absolute dark:bg-zinc-700 dark:border-zinc-600"
       ref={ref}>
       <div className="max-w-md mx-auto flex gap-4 items-center justify-between">
         <p className="sm:text-xl w-24 text-center block">{currentTime}</p>
@@ -104,9 +107,11 @@ export default function AudioRecord({ onClose, onSend }: Props) {
             {isRecording && <StopRecordIcon />}
             {!isRecording && <StartRecordIcon />}
           </button>
-          <button onClick={handleSend} className="ml-3">
-            <SendAudioIcon />
-          </button>
+          {!isRecording && recordingBlob && (
+            <button onClick={handleSend} className="ml-2">
+              <SendAudioIcon />
+            </button>
+          )}
         </div>
       </div>
     </div>
