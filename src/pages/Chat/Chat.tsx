@@ -6,6 +6,7 @@ import CreateChannel from '../../components/CreateChannel/CreateChannel'
 import Chat from '../../components/Chat/Chat'
 
 import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
+import ChangeFontSize from '../../layout/ChangeFontSize/ChangeFontSize'
 import ChangeLanguage from '../../layout/ChangeLanguage/ChangeLanguage'
 
 interface Props {
@@ -38,6 +39,7 @@ export default function ChatPage({ channelId }: Props) {
               <div className="flex gap-2 mx-auto w-fit lg:ml-0">
                 <ToggleDarkMode />
                 <ChangeLanguage />
+                <ChangeFontSize />
               </div>
             </div>
           </div>

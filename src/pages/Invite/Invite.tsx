@@ -48,12 +48,12 @@ export default function Invite({ userId }: Props) {
           <h1 className="text-xl font-semibold mb-7">{t('invite.title')}</h1>
           {isProfileLoading && <LoadSpinner />}
           {profileError && (
-            <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
+            <p className="p-1.5 pl-3 mb-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
               {t('invite.profile-error')}
             </p>
           )}
           {channelError && (
-            <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
+            <p className="p-1.5 pl-3 mb-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
               {t('invite.accept-error')}
             </p>
           )}

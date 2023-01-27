@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import Bubbles from '../../layout/Bubbles/Bubbles'
 import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
 import ChangeLanguage from '../../layout/ChangeLanguage/ChangeLanguage'
+import ChangeFontSize from '../../layout/ChangeFontSize/ChangeFontSize'
+
 import ChattingIcon from '../../assets/ChattingIcon'
 import ImagesIcon from '../../assets/ImagesIcon'
 import CustomizeIcon from '../../assets/CustomizeIcon'
@@ -43,6 +45,7 @@ export default function Home() {
       <div className="flex gap-2 mx-auto mt-5 sm:mt-10 w-fit buttons">
         <ToggleDarkMode />
         <ChangeLanguage />
+        <ChangeFontSize />
       </div>
       <ul className="grid max-w-screen-lg gap-4 py-5 mx-auto sm:py-10 sm:grid-cols-2 lg:grid-cols-3 overview">
         <li className="p-4 transition-transform bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
