@@ -3,6 +3,8 @@ import useTheme from '../hooks/useTheme'
 import useFontSize from '../hooks/useFontSize'
 import useTranslate from '../hooks/useTranslate'
 
+import type { Theme } from '../hooks/useTheme'
+import type { Language } from '../hooks/useTranslate'
 import type { FontSize } from '../hooks/useFontSize'
 
 interface Props {
@@ -10,18 +12,18 @@ interface Props {
 }
 
 interface UserConfigContext {
-  theme: string
+  theme: Theme
   toggleTheme: () => void
-  language: string
-  changeLanguage: (language: string) => void
+  language: Language
+  changeLanguage: (language: Language) => void
   fontSize: FontSize
   changeFontSize: (fontSize: FontSize) => void
 }
 
 const initialAuthCtx = {
-  theme: 'light',
+  theme: 'light' as Theme,
   toggleTheme: () => {},
-  language: 'en',
+  language: 'en' as Language,
   changeLanguage: () => {},
   fontSize: 'medium' as FontSize,
   changeFontSize: () => {}
