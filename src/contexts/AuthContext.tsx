@@ -25,8 +25,8 @@ interface AuthContext {
   signUp: (params: SignIn) => Promise<void>
   signIn: (params: SignIn) => Promise<void>
   signOut: () => Promise<void>
-  signInGoogle: () => Promise<void>
-  signInGithub: () => Promise<void>
+  signInGoogle: (redirectTo: string) => Promise<void>
+  signInGithub: (redirectTo: string) => Promise<void>
   sendResetPasswordEmail: (params: SendResetPasswordEmail) => Promise<void>
   changePassword: (params: ChangePassword) => Promise<void>
 }
@@ -36,8 +36,8 @@ const initialAuthCtx = {
   signUp: async () => {},
   signIn: async () => {},
   signOut: async () => {},
-  signInGoogle: async () => {},
-  signInGithub: async () => {},
+  signInGoogle: async (redirectTo: string) => {},
+  signInGithub: async (redirecTo: string) => {},
   sendResetPasswordEmail: async () => {},
   changePassword: async () => {}
 }
@@ -72,21 +72,21 @@ export function AuthProvider({ children }: Props) {
     if (error) throw Error('Failed to sign out')
   }
 
-  const signInGoogle = async () => {
+  const signInGoogle = async (redirectTo: string) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${import.meta.env.VITE_APP_URL}/login`
+        redirectTo: `${import.meta.env.VITE_APP_URL}${redirectTo}`
       }
     })
     if (error) throw Error('Failed to sign in with Google')
   }
 
-  const signInGithub = async () => {
+  const signInGithub = async (redirectTo: string) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `${import.meta.env.VITE_APP_URL}/login`
+        redirectTo: `${import.meta.env.VITE_APP_URL}${redirectTo}`
       }
     })
     if (error) throw Error('Failed to sign in with Github')
@@ -105,6 +105,7 @@ export function AuthProvider({ children }: Props) {
     if (error) throw Error('Failed to change password')
   }
 
+  // Subscribe to auth changes
   useEffect(() => {
     supabase.auth
       .getSession()

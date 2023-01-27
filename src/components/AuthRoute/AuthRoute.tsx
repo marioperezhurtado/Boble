@@ -3,12 +3,15 @@ import { useAuth } from '../../contexts/AuthContext'
 
 interface Props {
   children: React.ReactNode
+  redirectTo?: string
 }
 
-export default function ProtectedRoute({ children }: Props) {
+export default function AuthRoute({ children, redirectTo }: Props) {
   const { currentUser } = useAuth()
 
-  if (currentUser) return <Redirect to="/chat" />
+  const url = redirectTo ? `/${redirectTo}` : '/chat'
+
+  if (currentUser) return <Redirect to={url} />
 
   return <>{children}</>
 }

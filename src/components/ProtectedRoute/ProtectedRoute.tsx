@@ -1,4 +1,4 @@
-import { Redirect } from 'wouter'
+import { Redirect, useLocation } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
 
 interface Props {
@@ -8,7 +8,11 @@ interface Props {
 export default function ProtectedRoute({ children }: Props) {
   const { currentUser } = useAuth()
 
-  if (!currentUser) return <Redirect to="/login" />
+  const [location] = useLocation()
+
+  const url = `/login${location}`
+
+  if (!currentUser) return <Redirect to={url} />
 
   return <>{children}</>
 }

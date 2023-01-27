@@ -1,22 +1,24 @@
+import { useLocation } from 'wouter'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '../../contexts/AuthContext'
 import { useTranslation } from 'react-i18next'
 
 export default function SocialLogin() {
   const { t } = useTranslation('global')
+  const [location] = useLocation()
   const { signInGoogle, signInGithub } = useAuth()
 
   const {
     mutate: handleSignInGoogle,
     isLoading: googleLoading,
     error: googleError
-  } = useMutation(signInGoogle)
+  } = useMutation(async () => await signInGoogle(location))
 
   const {
     mutate: handleSignInGithub,
     isLoading: githubLoading,
     error: githubError
-  } = useMutation(signInGithub)
+  } = useMutation(async () => await signInGithub(location))
 
   const isLoading = googleLoading || githubLoading
   const error = (googleError as Error) || (githubError as Error)

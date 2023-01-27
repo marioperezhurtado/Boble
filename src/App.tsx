@@ -43,10 +43,12 @@ export default function App() {
             </ProtectedRoute>
           )}
         </Route>
-        <Route path="/login">
-          <AuthRoute>
-            <Login />
-          </AuthRoute>
+        <Route path="/login/:rest*">
+          {(params) => (
+            <AuthRoute redirectTo={params.rest}>
+              <Login />
+            </AuthRoute>
+          )}
         </Route>
         <Route path="/signup">
           <AuthRoute>
