@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getMessages, messagesListener } from '../../services/messages'
+import useResizeObserver from 'use-resize-observer'
 import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
@@ -37,10 +38,13 @@ export default function Chat({ channelId }: Props) {
     })
   }, [channelId])
 
+  const { ref: heightRef, height: chatHeight } = useResizeObserver()
+
   useEffect(() => {
     // Scroll to bottom of chat
-    chatRef.current?.scrollTo(0, chatRef.current.scrollHeight)
-  })
+    if (!chatHeight) return
+    chatRef.current?.scrollTo(0, chatHeight)
+  }, [chatHeight])
 
   if (!channelId) {
     return (
@@ -91,11 +95,13 @@ export default function Chat({ channelId }: Props) {
       <ul
         ref={chatRef}
         className="z-10 flex-col flex-grow px-4 pb-20 overflow-y-auto scroll-smooth">
-        {messages.map((m) => (
-          <li key={m.id}>
-            <ChatMessage message={m} />
-          </li>
-        ))}
+        <div ref={heightRef}>
+          {messages.map((m) => (
+            <li key={m.id}>
+              <ChatMessage message={m} />
+            </li>
+          ))}
+        </div>
       </ul>
       <ChatInput channelId={channelId} />
     </div>

@@ -6,7 +6,7 @@ import useOnClickOutside from '../../hooks/useOnClickOutside'
 import FontSizeIcon from '../../assets/FontSizeIcon'
 
 export default function ChangeFontSize() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('global')
   const { fontSize, changeFontSize } = useUserConfig()
   const ref = useRef<HTMLDivElement>(null)
   const [optionsOpen, setOptionsOpen] = useState(false)
@@ -33,7 +33,7 @@ export default function ChangeFontSize() {
   return (
     <div ref={ref} className="relative">
       <button
-        title={t('translation.title')}
+        title={t('font-size.title')}
         onClick={toggleOptionsOpen}
         className={`mx-auto bg-white border rounded-md shadow-md w-fit lg:mx-0 hover:bg-zinc-100 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:bg-zinc-600 p-2 ${
           optionsOpen ? 'shadow-none' : ''

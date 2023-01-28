@@ -151,6 +151,9 @@
   "dark-mode": {
     "title": "Toggle dark mode"
   },
+  "font-size": {
+    "title": "Change font size"
+  },
   "account": {
     "title": "Your Account",
     "description": "Change your account settings and how other users see you.",

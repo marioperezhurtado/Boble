@@ -33,9 +33,9 @@ Online Web Chat
 
 **Server state management:** [TanStack Query](https://tanstack.com/query/v4/)
 
-**Linting:** [ESLint](https://eslint.org/)
-
 **Testing:** [Vitest](https://vitest.dev/)
+
+**Linting:** [ESLint](https://eslint.org/)
 
 **Integration with Supabase:** [Supabase-js](https://github.com/supabase/supabase-js)
 
@@ -44,6 +44,8 @@ Online Web Chat
 **QR Code:** [React-qr-code](https://www.npmjs.com/package/react-qr-code)
 
 **Audio Recorder:** [React-audio-voice-recorder](https://github.com/samhirtarif/react-audio-recorder/)
+
+**Resize Observer:** [Use-resize-observer](https://github.com/ZeeCoder/use-resize-observer)
 
 ## 📡 External API's
 

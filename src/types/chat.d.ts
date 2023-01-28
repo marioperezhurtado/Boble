@@ -18,7 +18,7 @@ export interface Message {
   created_at: string | null
   sender_id: string
   private_channel_id: string
-  text: string
+  text: string | null
   media_link: string | null
   audio_link: string | null
 }

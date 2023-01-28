@@ -149,7 +149,10 @@
     "title": "Changer de langue"
   },
   "dark-mode": {
-    "title": "Changez le thème sombre"
+    "title": "Changer le thème sombre"
+  },
+  "font-size": {
+    "title": "Changer la taille des lletres"
   },
   "account": {
     "title": "Votre Compte",

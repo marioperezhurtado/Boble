@@ -4,11 +4,22 @@ export default function PauseIcon() {
       xmlns="http://www.w3.org/2000/svg"
       width="800"
       height="800"
-      viewBox="-11.5 0 32 32"
-      className="w-8 h-8">
+      fill="none"
+      viewBox="0 0 24 24"
+      className="w-7 h-7">
       <path
-        d="M8.2 22.48a.82.82 0 01-.84-.84V10.36c0-.48.36-.84.84-.84s.84.36.84.84v11.32c0 .44-.36.8-.84.8zm-7.36 0a.82.82 0 01-.84-.84V10.36c0-.48.36-.84.84-.84s.84.36.84.84v11.32c-.04.44-.36.8-.84.8z"
-        className="fill-zinc-600 dark:fill-zinc-300"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+        d="M11.97 22c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z"
+        className="stroke-zinc-600 dark:stroke-zinc-300"
+      />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+        d="M10.72 14.53V9.47c0-.48-.2-.67-.71-.67h-1.3c-.51 0-.71.19-.71.67v5.06c0 .48.2.67.71.67H10c.52 0 .72-.19.72-.67zM16 14.53V9.47c0-.48-.2-.67-.71-.67H14c-.51 0-.71.19-.71.67v5.06c0 .48.2.67.71.67h1.29c.51 0 .71-.19.71-.67z"
+        className="stroke-zinc-600 dark:stroke-zinc-300"
       />
     </svg>
   )

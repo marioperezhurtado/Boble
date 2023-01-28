@@ -151,6 +151,9 @@
   "dark-mode": {
     "title": "Cambiar modo oscuro"
   },
+  "font-size": {
+    "title": "Cambiar tamaño de letra"
+  },
   "account": {
     "title": "Tu Cuenta",
     "description": "Cambia la configuración de tu cuenta y cómo otros usuarios pueden verte.",

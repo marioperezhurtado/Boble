@@ -89,7 +89,7 @@ export default function AudioRecord({ onClose, onSend }: Props) {
 
   return (
     <div
-      className="fixed bottom-14 bg-zinc-50 w-full p-3 z-10 border-y md:absolute dark:bg-zinc-700 dark:border-zinc-600"
+      className="fixed bottom-14 bg-zinc-50 w-full py-5 z-10 border-y md:absolute dark:bg-zinc-700 dark:border-zinc-600"
       ref={ref}>
       <div className="max-w-md mx-auto flex gap-4 items-center justify-between">
         <p className="sm:text-xl w-24 text-center block">{currentTime}</p>
@@ -99,16 +99,16 @@ export default function AudioRecord({ onClose, onSend }: Props) {
             style={{ width: `${timePercentage}%` }}></div>
         </div>
         <div className="flex">
-          <button onClick={handleTogglePauseResume}>
+          <button onClick={handleTogglePauseResume} className="p-1">
             {isPaused && <PlayIcon />}
             {!isPaused && <PauseIcon />}
           </button>
-          <button onClick={handleToggleStartStop}>
+          <button onClick={handleToggleStartStop} className="p-1">
             {isRecording && <StopRecordIcon />}
             {!isRecording && <StartRecordIcon />}
           </button>
           {!isRecording && recordingBlob && (
-            <button onClick={handleSend} className="ml-2">
+            <button onClick={handleSend} className="p-1">
               <SendAudioIcon />
             </button>
           )}

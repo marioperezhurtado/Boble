@@ -4,11 +4,25 @@ export default function PlayIcon() {
       xmlns="http://www.w3.org/2000/svg"
       width="800"
       height="800"
-      viewBox="-8 0 32 32"
-      className="w-8 h-8">
+      fill="none"
+      viewBox="0 0 24 24"
+      className="w-7 h-7">
       <path
-        d="M.84 23.52c-.16 0-.32-.04-.44-.12a.894.894 0 01-.4-.72V9.32c0-.28.16-.56.4-.72s.56-.16.8-.04l14.28 6.68c.28.12.48.44.48.76s-.2.64-.48.76L1.2 23.44c-.08.04-.2.08-.36.08zm.84-12.88v10.68L13.2 16 1.68 10.64z"
-        className="fill-zinc-600 dark:fill-zinc-300"
+        stroke="#292D32"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+        d="M11.97 22c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10z"
+        className="stroke-zinc-600 dark:stroke-zinc-300"
+      />
+      <path
+        stroke="#292D32"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        strokeWidth="1.5"
+        d="M8.74 12.23v-1.67c0-2.08 1.47-2.93 3.27-1.89l1.45.84 1.45.84c1.8 1.04 1.8 2.74 0 3.78l-1.45.84-1.45.84c-1.8 1.04-3.27.19-3.27-1.89v-1.69z"
+        className="stroke-zinc-600 dark:stroke-zinc-300"
       />
     </svg>
   )

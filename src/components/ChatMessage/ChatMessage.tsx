@@ -12,8 +12,10 @@ interface Props {
 export default function ChatMessage({ message }: Props) {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
+  const [imgLoaded, setImgLoaded] = useState(false)
   const [imgError, setImgError] = useState(false)
 
+  const handleLoadImg = () => setImgLoaded(true)
   const handleImgError = () => setImgError(true)
 
   const dateTime = useTimestamp(message.created_at)
@@ -25,12 +27,14 @@ export default function ChatMessage({ message }: Props) {
           currentUser?.id === message.sender_id
             ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
             : 'bg-white mr-auto rounded-bl-none dark:bg-zinc-600'
-        } `}>
+        } 
+        ${!imgLoaded ? 'hidden' : ''}`}>
         {!imgError && message.media_link && (
           <img
             src={message.media_link}
             alt="media"
             className="rounded-md"
+            onLoad={handleLoadImg}
             onError={handleImgError}
           />
         )}
