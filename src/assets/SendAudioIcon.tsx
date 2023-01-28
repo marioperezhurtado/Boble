@@ -7,6 +7,7 @@ export default function SendAudioIcon() {
       fill="none"
       viewBox="0 0 24 24"
       className="w-7 h-7">
+      <title>Send</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

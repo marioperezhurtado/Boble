@@ -7,6 +7,7 @@ export default function StopRecordIcon() {
       fill="none"
       viewBox="0 0 24 24"
       className="w-7 h-7">
+      <title>Stop</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

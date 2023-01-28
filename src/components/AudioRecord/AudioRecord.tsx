@@ -4,7 +4,7 @@ import useOnClickOutside from '../../hooks/useOnClickOutside'
 
 import StartRecordIcon from '../../assets/StartRecordingIcon'
 import StopRecordIcon from '../../assets/StopRecordIcon'
-import PlayIcon from '../../assets/PlayIcon'
+import ResumeRecordIcon from '../../assets/ResumeRecordingIcon'
 import PauseIcon from '../../assets/PauseIcon'
 import SendAudioIcon from '../../assets/SendAudioIcon'
 
@@ -99,11 +99,17 @@ export default function AudioRecord({ onClose, onSend }: Props) {
             style={{ width: `${timePercentage}%` }}></div>
         </div>
         <div className="flex">
-          <button onClick={handleTogglePauseResume} className="p-1">
-            {isPaused && <PlayIcon />}
+          <button
+            onClick={handleTogglePauseResume}
+            className="p-1"
+            title="Pause / resume recording">
+            {isPaused && <ResumeRecordIcon />}
             {!isPaused && <PauseIcon />}
           </button>
-          <button onClick={handleToggleStartStop} className="p-1">
+          <button
+            onClick={handleToggleStartStop}
+            className="p-1"
+            title="Start / stop recording">
             {isRecording && <StopRecordIcon />}
             {!isRecording && <StartRecordIcon />}
           </button>

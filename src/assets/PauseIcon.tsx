@@ -7,6 +7,7 @@ export default function PauseIcon() {
       fill="none"
       viewBox="0 0 24 24"
       className="w-7 h-7">
+      <title>Pause</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -1,4 +1,4 @@
-export default function PlayIcon() {
+export default function ResumeRecordingIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -7,6 +7,7 @@ export default function PlayIcon() {
       fill="none"
       viewBox="0 0 24 24"
       className="w-7 h-7">
+      <title>Resume</title>
       <path
         stroke="#292D32"
         strokeLinecap="round"
