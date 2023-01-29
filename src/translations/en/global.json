@@ -90,9 +90,9 @@
     "logout": "Logout",
     "account": "Your Account"
   },
-  "create-channel": {
+  "create-chat": {
     "friend-code": "Enter invite code...",
-    "submit": "Create channel",
+    "submit": "Create chat",
     "clipboard": "Copy your invite code",
     "clipboard-success": "Copied to clipboard!"
   },
@@ -117,7 +117,9 @@
     "errors": {
       "get": "Failed to load channels.",
       "create": "Failed to create channel."
-    }
+    },
+    "chats": "Chats",
+    "groups": "Groups"
   },
   "messages": {
     "errors": {

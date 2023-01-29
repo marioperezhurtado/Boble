@@ -1,6 +1,6 @@
 import { Switch, Route } from 'wouter'
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import AuthRoute from './components/AuthRoute/AuthRoute'
+import ProtectedRoute from './components/Routes/ProtectedRoute/ProtectedRoute'
+import AuthRoute from './components/Routes/AuthRoute/AuthRoute'
 
 import Home from './pages/Home/Home'
 import Chat from './pages/Chat/Chat'
@@ -19,15 +19,27 @@ export default function App() {
         <Route path="/">
           <Home />
         </Route>
-        <Route path="/chat">
+        <Route path="/chats">
           <ProtectedRoute>
-            <Chat channelId="" />
+            <Chat channelId="" type="chat" />
           </ProtectedRoute>
         </Route>
-        <Route path="/chat/:channelId">
+        <Route path="/groups">
+          <ProtectedRoute>
+            <Chat channelId="" type="group" />
+          </ProtectedRoute>
+        </Route>
+        <Route path="/chats/:channelId">
           {(params) => (
             <ProtectedRoute>
-              <Chat channelId={params.channelId} />
+              <Chat channelId={params.channelId} type="chat" />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/groups/:channelId">
+          {(params) => (
+            <ProtectedRoute>
+              <Chat channelId={params.channelId} type="group" />
             </ProtectedRoute>
           )}
         </Route>

@@ -35,13 +35,13 @@ export default function ChangeFontSize() {
       <button
         title={t('font-size.title')}
         onClick={toggleOptionsOpen}
-        className={`mx-auto bg-white border rounded-md shadow-md w-fit lg:mx-0 hover:bg-zinc-100 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:bg-zinc-600 p-2 ${
+        className={`bg-white border rounded-md shadow-md w-fit lg:mx-0 hover:bg-zinc-100 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:bg-zinc-600 p-2 ${
           optionsOpen ? 'shadow-none' : ''
         }`}>
         <FontSizeIcon />
       </button>
       {optionsOpen && (
-        <ul className="absolute top-0 flex overflow-hidden font-semibold bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 z-10">
+        <ul className="absolute top-0 z-10 flex overflow-hidden font-semibold bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600">
           <li>
             <button
               onClick={handleChangeToMedium}

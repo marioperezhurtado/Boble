@@ -2,7 +2,7 @@ import { describe, test, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import Chat from './Chat'
+import Channel from './Channel'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,23 +12,23 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../services/messages')
+vi.mock('../../../services/messages')
 
 interface UseMessages {
-  getMessages: any
-  messagesListener: any
+  getChatMessages: any
+  chatMessagesListener: any
 }
 
 describe('Chat', async () => {
-  const { getMessages, messagesListener }: UseMessages = await import(
-    '../../services/messages'
+  const { getChatMessages, chatMessagesListener }: UseMessages = await import(
+    '../../../services/messages'
   )
-  messagesListener.mockReturnValue({})
+  chatMessagesListener.mockReturnValue({})
 
   test("Shows a message if there's no channel selected", () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <Chat channelId="" />
+        <Channel channelId="" type="chat" />
       </QueryClientProvider>
     )
 
@@ -38,7 +38,7 @@ describe('Chat', async () => {
   test('Shows loading spinner while fetching messages', () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <Chat channelId="999" />
+        <Channel channelId="999" type="chat" />
       </QueryClientProvider>
     )
 
@@ -46,11 +46,11 @@ describe('Chat', async () => {
   })
 
   test("Shows error if there's an error fetching messages", async () => {
-    getMessages.mockRejectedValueOnce(new Error('messages.errors.get'))
+    getChatMessages.mockRejectedValueOnce(new Error('messages.errors.get'))
 
     render(
       <QueryClientProvider client={queryClient}>
-        <Chat channelId="999" />
+        <Channel channelId="999" type="chat" />
       </QueryClientProvider>
     )
 
@@ -58,11 +58,11 @@ describe('Chat', async () => {
   })
 
   test("Shows message if there's no messages in the channel", async () => {
-    getMessages.mockReturnValueOnce([])
+    getChatMessages.mockReturnValueOnce([])
 
     render(
       <QueryClientProvider client={queryClient}>
-        <Chat channelId="999" />
+        <Channel channelId="999" type="chat" />
       </QueryClientProvider>
     )
 
@@ -70,7 +70,7 @@ describe('Chat', async () => {
   })
 
   test('Renders a list of messages', async () => {
-    getMessages.mockReturnValueOnce([
+    getChatMessages.mockReturnValueOnce([
       {
         id: '1',
         created_at: '123',
@@ -89,7 +89,7 @@ describe('Chat', async () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <Chat channelId="999" />
+        <Channel channelId="999" type="chat" />
       </QueryClientProvider>
     )
 

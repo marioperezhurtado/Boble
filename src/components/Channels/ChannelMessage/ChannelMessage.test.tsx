@@ -1,62 +1,78 @@
 import { describe, test, expect, vi } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 
-import ChatMessage from './ChatMessage'
+import ChannelMessage from './ChannelMessage'
 
-vi.mock('../../contexts/AuthContext')
+vi.mock('../../../contexts/AuthContext')
 
 describe('ChatMessage', async () => {
   const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
+    '../../../contexts/AuthContext'
   )
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
 
   test('Renders messages with different styles depending on sender', () => {
     render(
-      <ChatMessage
+      <ChannelMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Own message',
-          private_channel_id: '1',
-          sender_id: '1',
+          chat_id: '1',
+          sender_id: {
+            id: '1',
+            email: 'mail@test.com'
+          },
           media_link: null,
           audio_link: null
         }}
+        type="chat"
       />
     )
     const ownMessage = screen.getByText('Own message')
-    expect(ownMessage.parentElement?.className).toContain('ml-auto')
+    expect(ownMessage.parentElement?.parentElement?.className).toContain(
+      'ml-auto'
+    )
 
     render(
-      <ChatMessage
+      <ChannelMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Other user message',
-          private_channel_id: '1',
-          sender_id: '2',
+          chat_id: '1',
+          sender_id: {
+            id: '2',
+            email: 'mail@test.com'
+          },
           media_link: null,
           audio_link: null
         }}
+        type="chat"
       />
     )
     const otherMessage = screen.getByText('Other user message')
-    expect(otherMessage.parentElement?.className).toContain('mr-auto')
+    expect(otherMessage.parentElement?.parentElement?.className).toContain(
+      'mr-auto'
+    )
   })
 
   test('Renders media messages with different styles depending on sender', () => {
     render(
-      <ChatMessage
+      <ChannelMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Own media message',
-          private_channel_id: '1',
-          sender_id: '1',
+          chat_id: '1',
+          sender_id: {
+            id: '1',
+            email: 'mail@test.com'
+          },
           media_link: 'https://example.com',
           audio_link: null
         }}
+        type="chat"
       />
     )
 
@@ -64,16 +80,20 @@ describe('ChatMessage', async () => {
     expect(ownMediaMessage.parentElement?.className).toContain('ml-auto')
 
     render(
-      <ChatMessage
+      <ChannelMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Other media message',
-          private_channel_id: '1',
-          sender_id: '2',
+          chat_id: '1',
+          sender_id: {
+            id: '2',
+            email: 'mail@test.com'
+          },
           media_link: 'https://example.com',
           audio_link: null
         }}
+        type="chat"
       />
     )
 
@@ -104,16 +124,20 @@ describe('ChatMessage', async () => {
 
   test('Renders audio messages with different styles depending on sender', () => {
     render(
-      <ChatMessage
+      <ChannelMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Own audio message',
-          private_channel_id: '1',
-          sender_id: '1',
+          chat_id: '1',
+          sender_id: {
+            id: '1',
+            email: 'mail@test.com'
+          },
           media_link: null,
           audio_link: 'https://example.com'
         }}
+        type="chat"
       />
     )
 
@@ -121,16 +145,20 @@ describe('ChatMessage', async () => {
     expect(ownAudioMessage.parentElement?.className).toContain('ml-auto')
 
     render(
-      <ChatMessage
+      <ChannelMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Other audio message',
-          private_channel_id: '1',
-          sender_id: '2',
+          chat_id: '1',
+          sender_id: {
+            id: '2',
+            email: 'mail@test.com'
+          },
           media_link: null,
           audio_link: 'https://example.com'
         }}
+        type="chat"
       />
     )
 

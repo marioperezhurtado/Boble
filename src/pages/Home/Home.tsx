@@ -26,7 +26,7 @@ export default function Home() {
           <h1 className="mb-2 text-3xl font-bold">BOBLE</h1>
           <h2 className="text-xl md:text-3xl">{t('home.description')}</h2>
           <div className="flex flex-wrap mt-5 gap-x-2 gap-y-4 w-fit">
-            <Link to="/chat">
+            <Link to="/chats">
               <button className="bg-cyan-700 text-cyan-50 px-3 py-1.5 rounded-md shadow-md hover:bg-cyan-600">
                 {t('home.start')}
               </button>

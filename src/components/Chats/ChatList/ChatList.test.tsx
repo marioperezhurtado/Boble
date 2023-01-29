@@ -2,7 +2,7 @@ import { describe, test, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import ChannelList from './ChannelList'
+import ChatList from './ChatList'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,36 +12,36 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../contexts/AuthContext')
-vi.mock('../../services/channels')
+vi.mock('../../../contexts/AuthContext')
+vi.mock('../../../services/chats')
 
 interface UseChannels {
-  getChannels: any
-  channelsListener: any
+  getChats: any
+  chatsListener: any
 }
 
-describe('ChannelList', async () => {
+describe('ChatList', async () => {
   const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
+    '../../../contexts/AuthContext'
   )
-  const { getChannels, channelsListener }: UseChannels = await import(
-    '../../services/channels'
+  const { getChats, chatsListener }: UseChannels = await import(
+    '../../../services/chats'
   )
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
-  channelsListener.mockReturnValue({})
+  chatsListener.mockReturnValue({})
 
-  test('Shows loading spinner while fetching channels', () => {
+  test('Shows loading spinner while fetching chats', () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ChannelList channelId="999" />
+        <ChatList chatId="999" />
       </QueryClientProvider>
     )
 
     expect(screen.getByRole('status')).toBeTruthy()
   })
 
-  test('Renders a list of channels with the user info', async () => {
-    getChannels.mockReturnValueOnce([
+  test('Renders a list of chats with the user info', async () => {
+    getChats.mockReturnValueOnce([
       {
         id: '999',
         created_at: '2023-01-06T13:07:48.16155+00:00',
@@ -78,7 +78,7 @@ describe('ChannelList', async () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <ChannelList channelId="999" />
+        <ChatList chatId="999" />
       </QueryClientProvider>
     )
 
@@ -87,42 +87,42 @@ describe('ChannelList', async () => {
     expect(await screen.queryByText('Current user')).toBeNull()
   })
 
-  test("Shows error if there's an error fetching channels", async () => {
-    getChannels.mockRejectedValueOnce(new Error('channels.errors.get'))
+  test("Shows error if there's an error fetching chats", async () => {
+    getChats.mockRejectedValueOnce(new Error('channels.errors.get'))
 
     render(
       <QueryClientProvider client={queryClient}>
-        <ChannelList channelId="999" />
+        <ChatList chatId="999" />
       </QueryClientProvider>
     )
 
     expect(await screen.findByText('channels.errors.get')).toBeTruthy()
   })
 
-  test("Shows message if there's no channels", async () => {
-    getChannels.mockReturnValueOnce([])
+  test("Shows message if there's no chats", async () => {
+    getChats.mockReturnValueOnce([])
 
     render(
       <QueryClientProvider client={queryClient}>
-        <ChannelList channelId="999" />
+        <ChatList chatId="999" />
       </QueryClientProvider>
     )
 
     expect(await screen.findByText('channels.empty.title')).toBeTruthy()
   })
 
-  test("Gets channels from current user's id", () => {
-    expect(getChannels).toHaveBeenCalledWith({ userId: '1' })
+  test("Gets chats from current user's id", () => {
+    expect(getChats).toHaveBeenCalledWith({ userId: '1' })
   })
 
-  test("Does not get channels if there's no current user", () => {
+  test("Does not get chats if there's no current user", () => {
     useAuth.mockReturnValue({ currentUser: null })
     render(
       <QueryClientProvider client={queryClient}>
-        <ChannelList channelId="999" />
+        <ChatList chatId="999" />
       </QueryClientProvider>
     )
 
-    expect(getChannels).toHaveBeenCalledWith({ userId: '' })
+    expect(getChats).toHaveBeenCalledWith({ userId: '' })
   })
 })

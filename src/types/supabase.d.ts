@@ -1,4 +1,4 @@
-import { User } from './chat'
+import { User, Group } from './chat'
 
 export type Json =
   | string
@@ -11,53 +11,131 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      private_channels: {
-        Row: {
-          created_at: string | null
-          id: string
-          user1: User
-          user2: User
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          user1: string
-          user2: string
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          user1?: string
-          user2?: string
-        }
-      }
-      private_messages: {
+      chat_messages: {
         Row: {
           audio_link: string | null
-          created_at: string | null
+          chat_id: string
+          created_at: string
           id: string
           media_link: string | null
-          private_channel_id: string
-          sender_id: string
+          sender_id: User
           text: string | null
         }
         Insert: {
           audio_link?: string | null
-          created_at?: string | null
+          chat_id: string
+          created_at?: string
           id?: string
           media_link?: string | null
-          private_channel_id: string
           sender_id: string
           text?: string | null
         }
         Update: {
           audio_link?: string | null
-          created_at?: string | null
+          chat_id?: string
+          created_at?: string
           id?: string
           media_link?: string | null
-          private_channel_id?: string
           sender_id?: string
           text?: string | null
+        }
+      }
+      chats: {
+        Row: {
+          audio_link: string | null
+          created_at: string
+          id: string
+          media_link: string | null
+          text: string | null
+          user1: User
+          user2: User
+        }
+        Insert: {
+          audio_link?: string | null
+          created_at?: string
+          id?: string
+          media_link?: string | null
+          text?: string | null
+          user1: string
+          user2: string
+        }
+        Update: {
+          audio_link?: string | null
+          created_at?: string
+          id?: string
+          media_link?: string | null
+          text?: string | null
+          user1?: string
+          user2?: string
+        }
+      }
+      group_channels: {
+        Row: {
+          created_at: string
+          creator_id: string | null
+          id: string
+          image_url: string | null
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          creator_id?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+        }
+        Update: {
+          created_at?: string
+          creator_id?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+        }
+      }
+      group_messages: {
+        Row: {
+          audio_link: string | null
+          created_at: string
+          group_id: string
+          id: string
+          media_link: string | null
+          sender_id: User
+          text: string | null
+        }
+        Insert: {
+          audio_link?: string | null
+          created_at?: string
+          group_id: string
+          id?: string
+          media_link?: string | null
+          sender_id: string
+          text?: string | null
+        }
+        Update: {
+          audio_link?: string | null
+          created_at?: string
+          group_id?: string
+          id?: string
+          media_link?: string | null
+          sender_id?: string
+          text?: string | null
+        }
+      }
+      group_participants: {
+        Row: {
+          group_id: Group
+          joined_at: string
+          user_id: string
+        }
+        Insert: {
+          group_id: string
+          joined_at?: string
+          user_id: string
+        }
+        Update: {
+          group_id?: string
+          joined_at?: string
+          user_id?: string
         }
       }
       profiles: {

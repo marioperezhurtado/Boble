@@ -1,5 +1,5 @@
 import { Redirect } from 'wouter'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '../../../contexts/AuthContext'
 
 interface Props {
   children: React.ReactNode

@@ -2,7 +2,7 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import { Link, useLocation } from 'wouter'
 import { useAuth } from '../../contexts/AuthContext'
 import { getProfile } from '../../services/profile'
-import { createChannel } from '../../services/channels'
+import { createChat } from '../../services/chats'
 import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'
@@ -28,12 +28,12 @@ export default function Invite({ userId }: Props) {
   })
 
   const {
-    mutate: handleCreateChannel,
-    isLoading: isCreatingChannel,
-    isError: channelError
+    mutate: handleCreateChat,
+    isLoading: isCreatingChat,
+    isError: chatError
   } = useMutation({
     mutationFn: async () =>
-      await createChannel({
+      await createChat({
         userId: currentUser?.id ?? '',
         friendId: profile?.id ?? ''
       }),
@@ -52,7 +52,7 @@ export default function Invite({ userId }: Props) {
               {t('invite.profile-error')}
             </p>
           )}
-          {channelError && (
+          {chatError && (
             <p className="p-1.5 pl-3 mb-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
               {t('invite.accept-error')}
             </p>
@@ -64,8 +64,8 @@ export default function Invite({ userId }: Props) {
             </h2>
           )}
           <button
-            onClick={() => handleCreateChannel()}
-            disabled={isCreatingChannel || !profile}
+            onClick={() => handleCreateChat()}
+            disabled={isCreatingChat || !profile}
             className="bg-cyan-700 text-cyan-50 px-2 py-1.5 rounded-md  w-full mt-5 hover:bg-cyan-600 transition">
             {t('invite.accept')}
           </button>

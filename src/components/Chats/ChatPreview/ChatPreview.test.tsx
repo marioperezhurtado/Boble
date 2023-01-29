@@ -1,18 +1,18 @@
 import { describe, test, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
-import ChannelPreview from './ChannelPreview'
+import ChatPreview from './ChatPreview'
 
 vi.mock('react-i18next')
-vi.mock('../../contexts/AuthContext')
+vi.mock('../../../contexts/AuthContext')
 
-describe('ChannelPreview', async () => {
+describe('ChatPreview', async () => {
   const { useTranslation }: { useTranslation: any } = await import(
     'react-i18next'
   )
 
   const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
+    '../../../contexts/AuthContext'
   )
 
   useTranslation.mockReturnValue({
@@ -23,8 +23,8 @@ describe('ChannelPreview', async () => {
 
   test("Renders link to channel with the other user's avatar and name", () => {
     render(
-      <ChannelPreview
-        channel={{
+      <ChatPreview
+        chat={{
           id: '1',
           created_at: '999',
           user1: {
@@ -51,8 +51,8 @@ describe('ChannelPreview', async () => {
     expect(screen.queryByText('mail@test.com')).toBeNull()
 
     render(
-      <ChannelPreview
-        channel={{
+      <ChatPreview
+        chat={{
           id: '1',
           created_at: '999',
           user1: {
@@ -79,8 +79,8 @@ describe('ChannelPreview', async () => {
 
   test("Renders email if name isn't provided", () => {
     render(
-      <ChannelPreview
-        channel={{
+      <ChatPreview
+        chat={{
           id: '1',
           created_at: '999',
           user1: {
@@ -101,8 +101,8 @@ describe('ChannelPreview', async () => {
 
   test('Renders default avatar if no avatar url is provided', () => {
     render(
-      <ChannelPreview
-        channel={{
+      <ChatPreview
+        chat={{
           id: '1',
           created_at: '999',
           user1: {
@@ -125,8 +125,8 @@ describe('ChannelPreview', async () => {
 
   test('Renders own chat if both users are the current authenticated user', () => {
     render(
-      <ChannelPreview
-        channel={{
+      <ChatPreview
+        chat={{
           id: '1',
           created_at: '999',
           user1: {
@@ -151,8 +151,8 @@ describe('ChannelPreview', async () => {
     expect(screen.getByText('Test name 3')).toBeTruthy()
 
     render(
-      <ChannelPreview
-        channel={{
+      <ChatPreview
+        chat={{
           id: '1',
           created_at: '999',
           user1: {

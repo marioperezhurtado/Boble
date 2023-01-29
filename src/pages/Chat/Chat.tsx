@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'wouter'
+import { useTranslation } from 'react-i18next'
 
 import Header from '../../layout/Header/Header'
-import ChannelList from '../../components/ChannelList/ChannelList'
-import CreateChannel from '../../components/CreateChannel/CreateChannel'
-import Chat from '../../components/Chat/Chat'
+import ChatList from '../../components/Chats/ChatList/ChatList'
+import GroupList from '../../components/Groups/GroupList/GroupList'
+import CreateChat from '../../components/Chats/CreateChat/CreateChat'
+
+import Channel from '../../components/Channels/Channel/Channel'
 
 import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
 import ChangeFontSize from '../../layout/ChangeFontSize/ChangeFontSize'
@@ -11,9 +15,11 @@ import ChangeLanguage from '../../layout/ChangeLanguage/ChangeLanguage'
 
 interface Props {
   channelId: string
+  type: 'chat' | 'group'
 }
 
-export default function ChatPage({ channelId }: Props) {
+export default function ChatPage({ channelId, type }: Props) {
+  const { t } = useTranslation('global')
   const [channelsHidden, setChannelsHidden] = useState(true)
 
   useEffect(() => {
@@ -32,14 +38,42 @@ export default function ChatPage({ channelId }: Props) {
           className={`w-full lg:max-w-md border dark:border-zinc-600 flex-col lg:flex dark:bg-zinc-800
           ${channelsHidden ? 'hidden' : 'flex'}
           `}>
-          <ChannelList channelId={channelId} />
+          {type === 'chat' && <ChatList chatId={channelId} />}
+          {type === 'group' && <GroupList groupId={channelId} />}
+
           <div className="flex-grow border-t dark:border-zinc-600">
-            <div className="flex flex-col justify-between h-full gap-4 px-4 py-4 mx-auto w-fit">
-              <CreateChannel />
-              <div className="flex gap-2 mx-auto w-fit lg:ml-0">
-                <ToggleDarkMode />
-                <ChangeLanguage />
-                <ChangeFontSize />
+            <div className="flex flex-col justify-between h-full gap-4 px-4 py-4">
+              <div className=" mx-auto w-fit">
+                <CreateChat />
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex gap-2 w-fit">
+                  <ToggleDarkMode />
+                  <ChangeLanguage />
+                  <ChangeFontSize />
+                </div>
+                <div className="flex gap-2 pt-3 pb-2 text-sm w-fit">
+                  <Link to="/chats">
+                    <button
+                      className={`border px-2 py-1.5 rounded-md dark:border-zinc-600 shadow-md ${
+                        type === 'chat'
+                          ? 'bg-cyan-700 border-none text-cyan-50'
+                          : ''
+                      }`}>
+                      {t('channels.chats')}
+                    </button>
+                  </Link>
+                  <Link to="/groups">
+                    <button
+                      className={`border px-2 py-1.5 rounded-md dark:border-zinc-600 shadow-md ${
+                        type === 'group'
+                          ? 'bg-cyan-700 border-none text-cyan-50'
+                          : ''
+                      }`}>
+                      {t('channels.groups')}
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -48,7 +82,7 @@ export default function ChatPage({ channelId }: Props) {
           className={`relative flex-grow lg:block border-r dark:border-zinc-600
           ${channelsHidden ? '' : 'hidden'}
           `}>
-          <Chat channelId={channelId} />
+          <Channel channelId={channelId} type={type} />
         </div>
       </main>
     </div>

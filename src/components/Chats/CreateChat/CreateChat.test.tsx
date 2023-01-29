@@ -2,7 +2,7 @@ import { describe, test, expect, vi } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import CreateChannel from './CreateChannel'
+import CreateChat from './CreateChat'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,15 +12,15 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../contexts/AuthContext')
-vi.mock('../../services/channels')
+vi.mock('../../../contexts/AuthContext')
+vi.mock('../../../services/chats')
 
-describe('CreateChannel', async () => {
+describe('CreateChat', async () => {
   const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
+    '../../../contexts/AuthContext'
   )
-  const { createChannel }: { createChannel: any } = await import(
-    '../../services/channels'
+  const { createChat }: { createChat: any } = await import(
+    '../../../services/chats'
   )
 
   useAuth.mockReturnValue({ currentUser: { id: '123' } })
@@ -28,36 +28,36 @@ describe('CreateChannel', async () => {
   test('Doesnt submit if friend code is empty', async () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <CreateChannel />
+        <CreateChat />
       </QueryClientProvider>
     )
 
     const form = screen.getByRole('form')
     fireEvent.submit(form)
 
-    await waitFor(() => expect(createChannel).not.toHaveBeenCalled())
+    await waitFor(() => expect(createChat).not.toHaveBeenCalled())
   })
 
-  test('Creates channel with current user id', async () => {
+  test('Creates chat with current user id', async () => {
     const input = screen.getByRole('textbox')
     fireEvent.change(input, { target: { value: '456' } })
     const form = screen.getByRole('form')
     fireEvent.submit(form)
 
     await waitFor(() =>
-      expect(createChannel).toHaveBeenCalledWith({
+      expect(createChat).toHaveBeenCalledWith({
         userId: '123',
         friendId: '456'
       })
     )
   })
 
-  test('Shows error if create channel fails', async () => {
-    createChannel.mockRejectedValueOnce(new Error('channels.errors.create'))
+  test('Shows error if create chat fails', async () => {
+    createChat.mockRejectedValueOnce(new Error('channels.errors.create'))
 
     render(
       <QueryClientProvider client={queryClient}>
-        <CreateChannel />
+        <CreateChat />
       </QueryClientProvider>
     )
 
@@ -77,7 +77,7 @@ describe('CreateChannel', async () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <CreateChannel />
+        <CreateChat />
       </QueryClientProvider>
     )
 
@@ -86,14 +86,14 @@ describe('CreateChannel', async () => {
 
     await waitFor(() => expect(copyToClipboard).toHaveBeenCalledWith('123'))
     await waitFor(() =>
-      expect(screen.getByText('create-channel.clipboard-success')).toBeTruthy()
+      expect(screen.getByText('create-chat.clipboard-success')).toBeTruthy()
     )
 
     vi.useFakeTimers()
     vi.runAllTimers()
 
     await waitFor(() =>
-      expect(screen.queryByText('create-channel.clipboard-success')).toBeNull()
+      expect(screen.queryByText('create-chat.clipboard-success')).toBeNull()
     )
 
     vi.useRealTimers()

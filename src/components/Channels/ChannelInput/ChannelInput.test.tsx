@@ -2,7 +2,7 @@ import { describe, test, expect, vi } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import ChatInput from './ChatInput'
+import ChatInput from './ChannelInput'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,35 +12,35 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../contexts/AuthContext')
-vi.mock('../../services/messages')
+vi.mock('../../../contexts/AuthContext')
+vi.mock('../../../services/messages')
 
 describe('ChatInput', async () => {
   const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
+    '../../../contexts/AuthContext'
   )
-  const { sendMessage }: { sendMessage: any } = await import(
-    '../../services/messages'
+  const { sendChatMessage }: { sendChatMessage: any } = await import(
+    '../../../services/messages'
   )
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
 
   test('Does not send message if text is empty', async () => {
-    sendMessage.mockResolvedValue({})
+    sendChatMessage.mockResolvedValue({})
 
     render(
       <QueryClientProvider client={queryClient}>
-        <ChatInput channelId="1" />
+        <ChatInput channelId="1" type="chat" />
       </QueryClientProvider>
     )
 
     const form = screen.getByRole('form')
     fireEvent.submit(form)
 
-    await waitFor(() => expect(sendMessage).not.toHaveBeenCalled())
+    await waitFor(() => expect(sendChatMessage).not.toHaveBeenCalled())
   })
 
   test('Sends message and resets text', async () => {
-    sendMessage.mockResolvedValue({})
+    sendChatMessage.mockResolvedValue({})
 
     const form = screen.getByRole('form')
     const input = screen.getByRole<HTMLInputElement>('textbox')
@@ -48,7 +48,7 @@ describe('ChatInput', async () => {
     fireEvent.submit(form)
 
     await waitFor(() =>
-      expect(sendMessage).toHaveBeenCalledWith({
+      expect(sendChatMessage).toHaveBeenCalledWith({
         senderId: '1',
         channelId: '1',
         text: 'Test message',
@@ -62,7 +62,7 @@ describe('ChatInput', async () => {
 
   test('Sends message with empty sender if current user is not defined', async () => {
     useAuth.mockReturnValue({})
-    sendMessage.mockResolvedValue({})
+    sendChatMessage.mockResolvedValue({})
 
     const form = screen.getByRole('form')
     const input = screen.getByRole<HTMLInputElement>('textbox')
@@ -70,7 +70,7 @@ describe('ChatInput', async () => {
     fireEvent.submit(form)
 
     await waitFor(() =>
-      expect(sendMessage).toHaveBeenCalledWith({
+      expect(sendChatMessage).toHaveBeenCalledWith({
         senderId: '',
         channelId: '1',
         text: 'Test message 2',
@@ -83,7 +83,7 @@ describe('ChatInput', async () => {
   test('Toggles gif modal on gif button click', () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ChatInput channelId="1" />
+        <ChatInput channelId="1" type="chat" />
       </QueryClientProvider>
     )
 

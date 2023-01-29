@@ -1,12 +1,12 @@
 import { useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { useAuth } from '../../contexts/AuthContext'
-import { createChannel } from '../../services/channels'
+import { useAuth } from '../../../contexts/AuthContext'
+import { createChat } from '../../../services/chats'
 import { useTranslation } from 'react-i18next'
 
-import CopyIcon from '../../assets/CopyIcon'
+import CopyIcon from '../../../assets/CopyIcon'
 
-export default function CreateChannel() {
+export default function CreateChat() {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const [friendId, setFriendId] = useState('')
@@ -14,12 +14,12 @@ export default function CreateChannel() {
   const formRef = useRef<HTMLFormElement>(null)
 
   const {
-    mutate: handleCreateChannel,
+    mutate: handleCreateChat,
     isLoading,
     error
   } = useMutation(
     async (friendId: string) =>
-      await createChannel({ userId: currentUser?.id ?? '', friendId })
+      await createChat({ userId: currentUser?.id ?? '', friendId })
   )
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +30,7 @@ export default function CreateChannel() {
     e.preventDefault()
     if (!friendId) return
 
-    handleCreateChannel(friendId)
+    handleCreateChat(friendId)
     formRef.current?.reset()
   }
 
@@ -58,7 +58,7 @@ export default function CreateChannel() {
             onChange={handleChange}
             type="text"
             name="friendId"
-            placeholder={t('create-channel.friend-code')}
+            placeholder={t('create-chat.friend-code')}
             className="px-2 py-1 border rounded-md dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder:text-zinc-300"
             autoComplete="off"
           />
@@ -66,19 +66,19 @@ export default function CreateChannel() {
             onClick={handleCopyIdToClipboard}
             type="button"
             aria-label="Copy your invite code"
-            title={t('create-channel.clipboard')}
+            title={t('create-chat.clipboard')}
             className="p-1.5 border rounded-md bg-white hover:bg-zinc-100 dark:bg-zinc-700 dark:border-zinc-600 dark:hover:bg-zinc-600 relative text-sm">
             <CopyIcon />
             {isCopied && (
               <span className="absolute -top-10 right-0 p-1.5 bg-white rounded-md dark:bg-zinc-700 border dark:border-zinc-600 w-max">
-                {t('create-channel.clipboard-success')}
+                {t('create-chat.clipboard-success')}
               </span>
             )}
           </button>
           <button
             disabled={isLoading}
             className="px-2 py-1 transition rounded-md sm:text-sm bg-cyan-700 text-cyan-50 hover:bg-cyan-600">
-            {t('create-channel.submit')}
+            {t('create-chat.submit')}
           </button>
         </form>
         {createError && (

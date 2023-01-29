@@ -90,9 +90,9 @@
     "logout": "Déconnexion",
     "account": "Votre Compte"
   },
-  "create-channel": {
+  "create-chat": {
     "friend-code": "Entrez le code d'invitation...",
-    "submit": "Créer un canal",
+    "submit": "Créer un chat",
     "clipboard": "Copiez votre code d'invitation",
     "clipboard-success": "Copié dans le presse-papiers!"
   },
@@ -117,7 +117,9 @@
     "errors": {
       "get": "Échec du chargement des canaux.",
       "create": "Échec de la création du canal."
-    }
+    },
+    "chats": "Chats",
+    "groups": "Groupes"
   },
   "messages": {
     "errors": {

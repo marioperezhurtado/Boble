@@ -1,24 +1,24 @@
 import { Link } from 'wouter'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '../../../contexts/AuthContext'
 import { useTranslation } from 'react-i18next'
 
-import Avatar from '../../layout/Avatar/Avatar'
+import Avatar from '../../../layout/Avatar/Avatar'
 
-import type { Channel } from '../../types/chat'
+import type { Chat } from '../../../types/chat'
 
 interface Props {
-  channel: Channel
+  chat: Chat
 }
 
-export default function ChannelPreview({ channel }: Props) {
+export default function ChatPreview({ chat }: Props) {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
-  const { id, user1, user2 } = channel
+  const { id, user1, user2 } = chat
 
   if (user1.id === currentUser?.id && user2.id === currentUser?.id) {
     return (
       <Link
-        to={`/chat/${channel.id}`}
+        to={`/chats/${id}`}
         className="flex items-center w-full gap-4 px-6 py-3 border-t dark:border-zinc-600">
         <Avatar
           size="medium"
@@ -34,7 +34,7 @@ export default function ChannelPreview({ channel }: Props) {
 
   return (
     <Link
-      to={`/chat/${id}`}
+      to={`/chats/${id}`}
       className="flex items-center w-full gap-4 px-6 py-3 border-t dark:border-zinc-600">
       <Avatar
         size="medium"

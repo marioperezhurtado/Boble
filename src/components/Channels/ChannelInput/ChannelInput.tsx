@@ -1,19 +1,25 @@
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { useAuth } from '../../contexts/AuthContext'
-import { sendMessage } from '../../services/messages'
-import { uploadImage, uploadAudio } from '../../services/media'
-import { capitalize } from '../../utils/text'
+import { useAuth } from '../../../contexts/AuthContext'
+import { sendChatMessage, sendGroupMessage } from '../../../services/messages'
+import {
+  uploadChatImage,
+  uploadGroupImage,
+  uploadChatAudio,
+  uploadGroupAudio
+} from '../../../services/media'
+import { capitalize } from '../../../utils/text'
 import { useTranslation } from 'react-i18next'
 
-import GifModal from '../GifModal/GifModal'
-import AudioRecord from '../AudioRecord/AudioRecord'
+import GifModal from '../../GifModal/GifModal'
+import AudioRecord from '../../AudioRecord/AudioRecord'
 
-import GifIcon from '../../assets/GifIcon'
-import CameraIcon from '../../assets/CameraIcon'
+import GifIcon from '../../../assets/GifIcon'
+import CameraIcon from '../../../assets/CameraIcon'
 
 interface Props {
   channelId: string
+  type: 'chat' | 'group'
 }
 
 interface SendMessage {
@@ -22,12 +28,16 @@ interface SendMessage {
   audioLink: string | null
 }
 
-export default function ChatInput({ channelId }: Props) {
+export default function ChannelInput({ channelId, type }: Props) {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const [text, setText] = useState('')
   const [showGif, setShowGif] = useState(false)
   const [showAudioRecord, setShowAudioRecord] = useState(false)
+
+  const sendMessage = type === 'chat' ? sendChatMessage : sendGroupMessage
+  const uploadImage = type === 'chat' ? uploadChatImage : uploadGroupImage
+  const uploadAudio = type === 'chat' ? uploadChatAudio : uploadGroupAudio
 
   const { mutate, isLoading } = useMutation(
     async ({ text, mediaLink, audioLink }: SendMessage) =>

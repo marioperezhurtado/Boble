@@ -1,20 +1,30 @@
 import { useEffect, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getMessages, messagesListener } from '../../services/messages'
+import {
+  getChatMessages,
+  chatMessagesListener,
+  getGroupMessages,
+  groupMessagesListener
+} from '../../../services/messages'
 import useResizeObserver from 'use-resize-observer'
 import { useTranslation } from 'react-i18next'
 
-import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
-import ChatMessage from '../ChatMessage/ChatMessage'
-import ChatInput from '../ChatInput/ChatInput'
+import LoadSpinner from '../../../layout/LoadSpinner/LoadSpinner'
+import ChannelMessage from '../ChannelMessage/ChannelMessage'
+import ChannelInput from '../ChannelInput/ChannelInput'
 
 interface Props {
   channelId: string
+  type: 'chat' | 'group'
 }
 
-export default function Chat({ channelId }: Props) {
+export default function Chat({ channelId, type }: Props) {
   const { t } = useTranslation('global')
   const chatRef = useRef<HTMLUListElement>(null)
+
+  const getMessages = type === 'chat' ? getChatMessages : getGroupMessages
+  const messagesListener =
+    type === 'chat' ? chatMessagesListener : groupMessagesListener
 
   const {
     data: messages,
@@ -59,9 +69,9 @@ export default function Chat({ channelId }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col md:pt-20 bg-zinc-100 dark:bg-zinc-800 h-screen">
+      <div className="flex flex-col pt-10 md:pt-20 bg-zinc-100 dark:bg-zinc-800 h-screen">
         <LoadSpinner />
-        <ChatInput channelId={channelId} />
+        <ChannelInput channelId={channelId} type={type} />
       </div>
     )
   }
@@ -85,7 +95,7 @@ export default function Chat({ channelId }: Props) {
           </p>
           <p className="text-center">{t('chat.empty.description')}</p>
         </div>
-        <ChatInput channelId={channelId} />
+        <ChannelInput channelId={channelId} type={type} />
       </div>
     )
   }
@@ -98,12 +108,12 @@ export default function Chat({ channelId }: Props) {
         <div ref={heightRef}>
           {messages.map((m) => (
             <li key={m.id}>
-              <ChatMessage message={m} />
+              <ChannelMessage message={m} type={type} />
             </li>
           ))}
         </div>
       </ul>
-      <ChatInput channelId={channelId} />
+      <ChannelInput channelId={channelId} type={type} />
     </div>
   )
 }

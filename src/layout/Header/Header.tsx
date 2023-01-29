@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <header className="fixed z-20 w-full px-6 md:px-8 lg:px-12 bg-cyan-900 text-cyan-50">
       <div className="flex justify-between mx-auto max-w-screen-2xl">
-        <Link to="/chat">
+        <Link to="/chats">
           <div className="flex items-center gap-1 cursor-pointer py-3">
             <img src="/boble-light.svg" alt="boble logo" className="w-5 h-5" />
             <h1 className="text-xl font-semibold">BOBLE</h1>

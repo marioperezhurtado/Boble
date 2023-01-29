@@ -1,20 +1,20 @@
 import { supabase } from '../lib/supabase'
 
-interface GetChannels {
+interface GetChats {
   userId: string
 }
-interface CreateChannel {
+interface CreateChat {
   userId: string
   friendId: string
 }
-interface ChannelsListener {
+interface ChatsListener {
   userId: string
   callback: () => void
 }
 
-export async function getChannels({ userId }: GetChannels) {
+export async function getChats({ userId }: GetChats) {
   const { data, error } = await supabase
-    .from('private_channels')
+    .from('chats')
     .select('*, user1(*), user2(*)')
     .or(`user1.eq.${userId},user2.eq.${userId}`)
     .order('created_at', { ascending: false })
@@ -22,25 +22,25 @@ export async function getChannels({ userId }: GetChannels) {
   return data
 }
 
-export async function createChannel({ userId, friendId }: CreateChannel) {
+export async function createChat({ userId, friendId }: CreateChat) {
   const { error } = await supabase
-    .from('private_channels')
+    .from('chats')
     .insert({ user1: userId, user2: friendId })
   if (error) {
     throw Error('Failed to create channel')
   }
 }
 
-export function channelsListener({ userId, callback }: ChannelsListener) {
+export function chatsListener({ userId, callback }: ChatsListener) {
   return supabase
-    .channel('public:private_channels')
+    .channel('public:chats')
     .on(
       'postgres_changes',
       {
         event: '*',
         schema: 'public',
-        table: 'private_channels',
-        filter: `user1=eq.${userId}`
+        table: 'chats',
+        filter: `user1=eq.${userId},user2=eq.${userId}`
       },
       callback
     )
