@@ -10,7 +10,8 @@ import useResizeObserver from 'use-resize-observer'
 import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '../../../layout/LoadSpinner/LoadSpinner'
-import ChannelMessage from '../ChannelMessage/ChannelMessage'
+import ChatMessage from '../../Chats/ChatMessage/ChatMessage'
+import GroupMessage from '../../Groups/GroupMessage/GroupMessage'
 import ChannelInput from '../ChannelInput/ChannelInput'
 
 interface Props {
@@ -58,8 +59,8 @@ export default function Chat({ channelId, type }: Props) {
 
   if (!channelId) {
     return (
-      <div className="h-full px-4 bg-zinc-100 dark:bg-zinc-800 text-center">
-        <p className="pt-12 text-lg font-semibold mb-5">
+      <div className="h-full px-4 text-center bg-zinc-100 dark:bg-zinc-800">
+        <p className="pt-12 mb-5 text-lg font-semibold">
           {t('chat.select-channel.title')}
         </p>
         <p>{t('chat.select-channel.description')}</p>
@@ -69,7 +70,7 @@ export default function Chat({ channelId, type }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col pt-10 md:pt-20 bg-zinc-100 dark:bg-zinc-800 h-screen">
+      <div className="flex flex-col h-screen pt-10 md:pt-20 bg-zinc-100 dark:bg-zinc-800">
         <LoadSpinner />
         <ChannelInput channelId={channelId} type={type} />
       </div>
@@ -78,7 +79,7 @@ export default function Chat({ channelId, type }: Props) {
 
   if (chatError?.message) {
     return (
-      <div className="px-8 py-8 bg-zinc-100 h-screen dark:bg-zinc-800">
+      <div className="h-screen px-8 py-8 bg-zinc-100 dark:bg-zinc-800">
         <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 dark:bg-red-200 text-zinc-700">
           {t('messages.errors.get')}
         </p>
@@ -106,9 +107,12 @@ export default function Chat({ channelId, type }: Props) {
         ref={chatRef}
         className="z-10 flex-col flex-grow px-4 pb-20 overflow-y-auto scroll-smooth">
         <div ref={heightRef}>
-          {messages.map((m) => (
+          {messages.map((m, i) => (
             <li key={m.id}>
-              <ChannelMessage message={m} type={type} />
+              {type === 'chat' && <ChatMessage message={m} />}
+              {type === 'group' && (
+                <GroupMessage message={m} prevMessage={messages[i - 1]} />
+              )}
             </li>
           ))}
         </div>

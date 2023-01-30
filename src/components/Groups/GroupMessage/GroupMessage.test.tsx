@@ -1,11 +1,11 @@
 import { describe, test, expect, vi } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 
-import ChannelMessage from './ChannelMessage'
+import GroupMessage from './GroupMessage'
 
 vi.mock('../../../contexts/AuthContext')
 
-describe('ChatMessage', async () => {
+describe('GroupMessage', async () => {
   const { useAuth }: { useAuth: any } = await import(
     '../../../contexts/AuthContext'
   )
@@ -13,12 +13,12 @@ describe('ChatMessage', async () => {
 
   test('Renders messages with different styles depending on sender', () => {
     render(
-      <ChannelMessage
+      <GroupMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Own message',
-          chat_id: '1',
+          channel_id: '1',
           sender_id: {
             id: '1',
             email: 'mail@test.com'
@@ -26,7 +26,6 @@ describe('ChatMessage', async () => {
           media_link: null,
           audio_link: null
         }}
-        type="chat"
       />
     )
     const ownMessage = screen.getByText('Own message')
@@ -35,12 +34,12 @@ describe('ChatMessage', async () => {
     )
 
     render(
-      <ChannelMessage
+      <GroupMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Other user message',
-          chat_id: '1',
+          channel_id: '1',
           sender_id: {
             id: '2',
             email: 'mail@test.com'
@@ -48,7 +47,6 @@ describe('ChatMessage', async () => {
           media_link: null,
           audio_link: null
         }}
-        type="chat"
       />
     )
     const otherMessage = screen.getByText('Other user message')
@@ -59,12 +57,12 @@ describe('ChatMessage', async () => {
 
   test('Renders media messages with different styles depending on sender', () => {
     render(
-      <ChannelMessage
+      <GroupMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Own media message',
-          chat_id: '1',
+          channel_id: '1',
           sender_id: {
             id: '1',
             email: 'mail@test.com'
@@ -72,7 +70,6 @@ describe('ChatMessage', async () => {
           media_link: 'https://example.com',
           audio_link: null
         }}
-        type="chat"
       />
     )
 
@@ -80,12 +77,12 @@ describe('ChatMessage', async () => {
     expect(ownMediaMessage.parentElement?.className).toContain('ml-auto')
 
     render(
-      <ChannelMessage
+      <GroupMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Other media message',
-          chat_id: '1',
+          channel_id: '1',
           sender_id: {
             id: '2',
             email: 'mail@test.com'
@@ -93,7 +90,6 @@ describe('ChatMessage', async () => {
           media_link: 'https://example.com',
           audio_link: null
         }}
-        type="chat"
       />
     )
 
@@ -105,7 +101,7 @@ describe('ChatMessage', async () => {
   })
 
   test("Does not show media until it's loaded", () => {
-    const image = screen.getAllByRole('img')[0]
+    const image = screen.getAllByRole('img')[1]
 
     expect(image.parentElement?.classList.contains('hidden')).toBeTruthy()
 
@@ -124,12 +120,12 @@ describe('ChatMessage', async () => {
 
   test('Renders audio messages with different styles depending on sender', () => {
     render(
-      <ChannelMessage
+      <GroupMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Own audio message',
-          chat_id: '1',
+          channel_id: '1',
           sender_id: {
             id: '1',
             email: 'mail@test.com'
@@ -137,7 +133,6 @@ describe('ChatMessage', async () => {
           media_link: null,
           audio_link: 'https://example.com'
         }}
-        type="chat"
       />
     )
 
@@ -145,12 +140,12 @@ describe('ChatMessage', async () => {
     expect(ownAudioMessage.parentElement?.className).toContain('ml-auto')
 
     render(
-      <ChannelMessage
+      <GroupMessage
         message={{
           id: '1',
           created_at: '123',
           text: 'Other audio message',
-          chat_id: '1',
+          channel_id: '1',
           sender_id: {
             id: '2',
             email: 'mail@test.com'
@@ -158,7 +153,6 @@ describe('ChatMessage', async () => {
           media_link: null,
           audio_link: 'https://example.com'
         }}
-        type="chat"
       />
     )
 

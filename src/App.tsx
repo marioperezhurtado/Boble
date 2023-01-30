@@ -32,14 +32,14 @@ export default function App() {
         <Route path="/chats/:channelId">
           {(params) => (
             <ProtectedRoute>
-              <Chat channelId={params.channelId} type="chat" />
+              <Chat channelId={params.channelId ?? ''} type="chat" />
             </ProtectedRoute>
           )}
         </Route>
         <Route path="/groups/:channelId">
           {(params) => (
             <ProtectedRoute>
-              <Chat channelId={params.channelId} type="group" />
+              <Chat channelId={params.channelId ?? ''} type="group" />
             </ProtectedRoute>
           )}
         </Route>
@@ -51,7 +51,7 @@ export default function App() {
         <Route path="/invite/:userId">
           {(params) => (
             <ProtectedRoute>
-              <Invite userId={params.userId} />
+              <Invite userId={params.userId ?? ''} />
             </ProtectedRoute>
           )}
         </Route>

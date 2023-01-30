@@ -22,7 +22,16 @@ export async function getChatMessages({ channelId }: GetMessages) {
     .eq('chat_id', channelId)
     .order('created_at', { ascending: true })
   if (error) throw Error('Failed to get chat messages')
-  return data
+  if (!data) return []
+  // Rename chat_id to channel_id
+  const messages = data.map((message) => {
+    const { chat_id: chatId, ...rest } = message
+    return {
+      ...rest,
+      channel_id: chatId
+    }
+  })
+  return messages
 }
 
 export async function getGroupMessages({ channelId }: GetMessages) {
@@ -32,8 +41,17 @@ export async function getGroupMessages({ channelId }: GetMessages) {
     .eq('group_id', channelId)
     .order('created_at', { ascending: true })
   if (error) throw Error('Failed to get group messages')
+  if (!data) return []
+  // Rename group_id to channel_id
+  const messages = data.map((message) => {
+    const { group_id: groupId, ...rest } = message
+    return {
+      ...rest,
+      channel_id: groupId
+    }
+  })
 
-  return data
+  return messages
 }
 
 export async function sendChatMessage({
