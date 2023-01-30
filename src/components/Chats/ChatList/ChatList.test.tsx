@@ -12,8 +12,8 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../../contexts/AuthContext')
-vi.mock('../../../services/chats')
+vi.mock('@/contexts/AuthContext')
+vi.mock('@/services/chats')
 
 interface UseChannels {
   getChats: any
@@ -21,11 +21,9 @@ interface UseChannels {
 }
 
 describe('ChatList', async () => {
-  const { useAuth }: { useAuth: any } = await import(
-    '../../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
   const { getChats, chatsListener }: UseChannels = await import(
-    '../../../services/chats'
+    '@/services/chats'
   )
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
   chatsListener.mockReturnValue({})

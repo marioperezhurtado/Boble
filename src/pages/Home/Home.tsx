@@ -1,17 +1,17 @@
 import { Link } from 'wouter'
 import { useTranslation } from 'react-i18next'
 
-import Bubbles from '../../layout/Bubbles/Bubbles'
-import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
-import ChangeLanguage from '../../layout/ChangeLanguage/ChangeLanguage'
-import ChangeFontSize from '../../layout/ChangeFontSize/ChangeFontSize'
+import Bubbles from '@/layout/Bubbles/Bubbles'
+import ToggleDarkMode from '@/layout/ToggleDarkMode/ToggleDarkMode'
+import ChangeLanguage from '@/layout/ChangeLanguage/ChangeLanguage'
+import ChangeFontSize from '@/layout/ChangeFontSize/ChangeFontSize'
 
-import ChattingIcon from '../../assets/ChattingIcon'
-import ImagesIcon from '../../assets/ImagesIcon'
-import CustomizeIcon from '../../assets/CustomizeIcon'
-import SecureIcon from '../../assets/SecureIcon'
-import FastIcon from '../../assets/FastIcon'
-import GitIcon from '../../assets/GitIcon'
+import ChattingIcon from '@/assets/ChattingIcon'
+import ImagesIcon from '@/assets/ImagesIcon'
+import CustomizeIcon from '@/assets/CustomizeIcon'
+import SecureIcon from '@/assets/SecureIcon'
+import FastIcon from '@/assets/FastIcon'
+import GitIcon from '@/assets/GitIcon'
 
 import './Home.css'
 

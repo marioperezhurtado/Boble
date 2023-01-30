@@ -1,11 +1,11 @@
 import { createContext, useContext } from 'react'
-import useTheme from '../hooks/useTheme'
-import useFontSize from '../hooks/useFontSize'
-import useTranslate from '../hooks/useTranslate'
+import useTheme from '@/hooks/useTheme'
+import useFontSize from '@/hooks/useFontSize'
+import useTranslate from '@/hooks/useTranslate'
 
-import type { Theme } from '../hooks/useTheme'
-import type { Language } from '../hooks/useTranslate'
-import type { FontSize } from '../hooks/useFontSize'
+import type { Theme } from '@/hooks/useTheme'
+import type { Language } from '@/hooks/useTranslate'
+import type { FontSize } from '@/hooks/useFontSize'
 
 interface Props {
   children: React.ReactNode

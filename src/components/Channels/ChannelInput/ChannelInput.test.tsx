@@ -12,15 +12,13 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../../contexts/AuthContext')
-vi.mock('../../../services/messages')
+vi.mock('@/contexts/AuthContext')
+vi.mock('@/services/messages')
 
 describe('ChatInput', async () => {
-  const { useAuth }: { useAuth: any } = await import(
-    '../../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
   const { sendChatMessage }: { sendChatMessage: any } = await import(
-    '../../../services/messages'
+    '@/services/messages'
   )
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
 

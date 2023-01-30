@@ -12,12 +12,10 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../contexts/AuthContext')
+vi.mock('@/contexts/AuthContext')
 
 describe('ResetPassword', async () => {
-  const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
 
   const changePassword = vi.fn()
   useAuth.mockReturnValue({ changePassword })

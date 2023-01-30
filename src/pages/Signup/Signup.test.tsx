@@ -6,12 +6,10 @@ import Signup from './Signup'
 
 const queryClient = new QueryClient()
 
-vi.mock('../../contexts/AuthContext')
+vi.mock('@/contexts/AuthContext')
 
 describe('Signup', async () => {
-  const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
   useAuth.mockReturnValue({ signUp: () => {} })
 
   const testSignup = {

@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useUserConfig } from '../../contexts/UserConfigContext'
-import useOnClickOutside from '../../hooks/useOnClickOutside'
+import { useUserConfig } from '@/contexts/UserConfigContext'
+import useOnClickOutside from '@/hooks/useOnClickOutside'
 
-import TranslateIcon from '../../assets/TranslateIcon'
+import TranslateIcon from '@/assets/TranslateIcon'
 
 export default function ChangeLanguage() {
   const { t } = useTranslation('global')

@@ -12,7 +12,7 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../../services/messages')
+vi.mock('@/services/messages')
 
 interface UseMessages {
   getChatMessages: any
@@ -21,7 +21,7 @@ interface UseMessages {
 
 describe('Chat', async () => {
   const { getChatMessages, chatMessagesListener }: UseMessages = await import(
-    '../../../services/messages'
+    '@/services/messages'
   )
   chatMessagesListener.mockReturnValue({})
 

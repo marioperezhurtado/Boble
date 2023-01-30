@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react'
 import { Link } from 'wouter'
 import { useTranslation } from 'react-i18next'
 
-import Header from '../../layout/Header/Header'
-import ChatList from '../../components/Chats/ChatList/ChatList'
-import GroupList from '../../components/Groups/GroupList/GroupList'
-import CreateChat from '../../components/Chats/CreateChat/CreateChat'
+import Header from '@/layout/Header/Header'
+import ChatList from '@/components/Chats/ChatList/ChatList'
+import GroupList from '@/components/Groups/GroupList/GroupList'
+import CreateChat from '@/components/Chats/CreateChat/CreateChat'
 
-import Channel from '../../components/Channels/Channel/Channel'
+import Channel from '@/components/Channels/Channel/Channel'
 
-import ToggleDarkMode from '../../layout/ToggleDarkMode/ToggleDarkMode'
-import ChangeFontSize from '../../layout/ChangeFontSize/ChangeFontSize'
-import ChangeLanguage from '../../layout/ChangeLanguage/ChangeLanguage'
+import ToggleDarkMode from '@/layout/ToggleDarkMode/ToggleDarkMode'
+import ChangeFontSize from '@/layout/ChangeFontSize/ChangeFontSize'
+import ChangeLanguage from '@/layout/ChangeLanguage/ChangeLanguage'
 
 interface Props {
   channelId: string

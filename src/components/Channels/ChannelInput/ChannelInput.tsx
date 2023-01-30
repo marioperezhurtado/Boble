@@ -1,21 +1,21 @@
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { useAuth } from '../../../contexts/AuthContext'
-import { sendChatMessage, sendGroupMessage } from '../../../services/messages'
+import { useAuth } from '@/contexts/AuthContext'
+import { sendChatMessage, sendGroupMessage } from '@/services/messages'
 import {
   uploadChatImage,
   uploadGroupImage,
   uploadChatAudio,
   uploadGroupAudio
-} from '../../../services/media'
-import { capitalize } from '../../../utils/text'
+} from '@/services/media'
+import { capitalize } from '@/utils/text'
 import { useTranslation } from 'react-i18next'
 
-import GifModal from '../../GifModal/GifModal'
-import AudioRecord from '../../AudioRecord/AudioRecord'
+import GifModal from '@/components/GifModal/GifModal'
+import AudioRecord from '@/components/AudioRecord/AudioRecord'
 
-import GifIcon from '../../../assets/GifIcon'
-import CameraIcon from '../../../assets/CameraIcon'
+import GifIcon from '@/assets/GifIcon'
+import CameraIcon from '@/assets/CameraIcon'
 
 interface Props {
   channelId: string

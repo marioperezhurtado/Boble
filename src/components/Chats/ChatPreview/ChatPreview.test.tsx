@@ -4,16 +4,14 @@ import { render, screen } from '@testing-library/react'
 import ChatPreview from './ChatPreview'
 
 vi.mock('react-i18next')
-vi.mock('../../../contexts/AuthContext')
+vi.mock('@/contexts/AuthContext')
 
 describe('ChatPreview', async () => {
   const { useTranslation }: { useTranslation: any } = await import(
     'react-i18next'
   )
 
-  const { useAuth }: { useAuth: any } = await import(
-    '../../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
 
   useTranslation.mockReturnValue({
     t: (key: string) => key

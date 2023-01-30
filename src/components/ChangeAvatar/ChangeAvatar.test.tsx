@@ -12,19 +12,15 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../services/profile')
-vi.mock('../../services/avatar')
-vi.mock('../../contexts/AuthContext')
+vi.mock('@/services/profile')
+vi.mock('@/services/avatar')
+vi.mock('@/contexts/AuthContext')
 
 describe('ChangeAvatar', async () => {
-  const { getProfile }: { getProfile: any } = await import(
-    '../../services/profile'
-  )
-  const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
-  )
+  const { getProfile }: { getProfile: any } = await import('@/services/profile')
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
   const { uploadAvatar }: { uploadAvatar: any } = await import(
-    '../../services/avatar'
+    '@/services/avatar'
   )
 
   getProfile.mockResolvedValue({

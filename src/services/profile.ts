@@ -1,6 +1,6 @@
-import { supabase } from '../lib/supabase'
+import { supabase } from '@/lib/supabase'
 
-import type { User } from '../types/chat'
+import type { User } from '@/types/chat'
 
 export async function getProfile(userId: string) {
   const { data, error } = await supabase

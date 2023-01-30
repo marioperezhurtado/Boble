@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { useAuth } from '../../../contexts/AuthContext'
-import { createChat } from '../../../services/chats'
+import { useAuth } from '@/contexts/AuthContext'
+import { createChat } from '@/services/chats'
 import { useTranslation } from 'react-i18next'
 
-import CopyIcon from '../../../assets/CopyIcon'
+import CopyIcon from '@/assets/CopyIcon'
 
 export default function CreateChat() {
   const { t } = useTranslation('global')

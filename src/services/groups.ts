@@ -1,6 +1,6 @@
-import { supabase } from '../lib/supabase'
+import { supabase } from '@/lib/supabase'
 
-import type { Group } from '../types/chat'
+import type { Group } from '@/types/chat'
 
 interface GetGroups {
   userId: string

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import ShowPasswordIcon from '../../assets/ShowPasswordIcon'
+import ShowPasswordIcon from '@/assets/ShowPasswordIcon'
 
 export default function PasswordInput(
   inputProps: React.InputHTMLAttributes<HTMLInputElement>

@@ -5,14 +5,14 @@ import {
   chatMessagesListener,
   getGroupMessages,
   groupMessagesListener
-} from '../../../services/messages'
+} from '@/services/messages'
 import useResizeObserver from 'use-resize-observer'
 import { useTranslation } from 'react-i18next'
 
-import LoadSpinner from '../../../layout/LoadSpinner/LoadSpinner'
-import ChatMessage from '../../Chats/ChatMessage/ChatMessage'
-import GroupMessage from '../../Groups/GroupMessage/GroupMessage'
-import ChannelInput from '../ChannelInput/ChannelInput'
+import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
+import ChatMessage from '@/components/Chats/ChatMessage/ChatMessage'
+import GroupMessage from '@/components/Groups/GroupMessage/GroupMessage'
+import ChannelInput from '@/components/Channels/ChannelInput/ChannelInput'
 
 interface Props {
   channelId: string

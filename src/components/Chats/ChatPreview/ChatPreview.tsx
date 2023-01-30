@@ -1,10 +1,10 @@
 import { Link } from 'wouter'
-import { useAuth } from '../../../contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from 'react-i18next'
 
-import Avatar from '../../../layout/Avatar/Avatar'
+import Avatar from '@/layout/Avatar/Avatar'
 
-import type { Chat } from '../../../types/chat'
+import type { Chat } from '@/types/chat'
 
 interface Props {
   chat: Chat

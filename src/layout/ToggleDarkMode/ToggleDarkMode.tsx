@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useUserConfig } from '../../contexts/UserConfigContext'
+import { useUserConfig } from '@/contexts/UserConfigContext'
 
 export default function ToggleDarkMode() {
   const { t } = useTranslation('global')

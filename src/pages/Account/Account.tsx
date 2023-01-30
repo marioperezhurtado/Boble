@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Link } from 'wouter'
-import { useAuth } from '../../contexts/AuthContext'
-import { getProfile, updateProfile } from '../../services/profile'
+import { useAuth } from '@/contexts/AuthContext'
+import { getProfile, updateProfile } from '@/services/profile'
 import { useTranslation } from 'react-i18next'
 
-import Header from '../../layout/Header/Header'
-import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
-import ChangeAvatar from '../../components/ChangeAvatar/ChangeAvatar'
-import ConnectFriends from '../../components/ConnectFriends/ConnectFriends'
+import Header from '@/layout/Header/Header'
+import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
+import ChangeAvatar from '@/components/ChangeAvatar/ChangeAvatar'
+import ConnectFriends from '@/components/ConnectFriends/ConnectFriends'
 
 export default function Account() {
   const { t } = useTranslation('global')
@@ -17,7 +17,7 @@ export default function Account() {
 
   const { data: profile, isLoading: isProfileLoading } = useQuery({
     queryKey: ['profile', currentUser?.id],
-    queryFn: async () => await getProfile(currentUser?.id ?? ''),
+    queryFn: () => getProfile(currentUser?.id ?? ''),
     onSuccess: (data) => {
       setName(data?.full_name ?? '')
     }
@@ -37,7 +37,7 @@ export default function Account() {
     isSuccess: updateSuccess
   } = useMutation({
     mutationKey: ['updateProfile'],
-    mutationFn: async () => await updateProfile(newProfile),
+    mutationFn: () => updateProfile(newProfile),
     onSuccess: () => setName(newProfile.full_name)
   })
 

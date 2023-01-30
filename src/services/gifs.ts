@@ -1,4 +1,4 @@
-import type Gif from '../types/giphy'
+import type Gif from '@/types/giphy'
 
 const apiKey = import.meta.env.VITE_APP_GIPHY_API_KEY
 

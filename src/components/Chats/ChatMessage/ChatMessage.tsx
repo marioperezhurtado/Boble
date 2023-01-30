@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { useAuth } from '../../../contexts/AuthContext'
-import useTimestamp from '../../../hooks/useTimestamp'
+import { useAuth } from '@/contexts/AuthContext'
+import useTimestamp from '@/hooks/useTimestamp'
 import { useTranslation } from 'react-i18next'
 
-import { Message } from '../../../types/chat'
+import { Message } from '@/types/chat'
 
 interface Props {
   message: Message

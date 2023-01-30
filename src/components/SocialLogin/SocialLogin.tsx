@@ -1,6 +1,6 @@
 import { useLocation } from 'wouter'
 import { useMutation } from '@tanstack/react-query'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from 'react-i18next'
 
 export default function SocialLogin() {

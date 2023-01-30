@@ -3,14 +3,12 @@ import { render, screen } from '@testing-library/react'
 
 import AuthRoute from './AuthRoute'
 
-vi.mock('../../../contexts/AuthContext')
+vi.mock('@/contexts/AuthContext')
 
 // Prevent access to authentication routes if user is already logged
 
 describe('AuthRoute', async () => {
-  const { useAuth }: { useAuth: any } = await import(
-    '../../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
 
   test('Renders children if user is NOT logged', async () => {
     useAuth.mockReturnValueOnce({ currentUser: false })

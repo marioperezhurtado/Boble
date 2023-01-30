@@ -1,7 +1,7 @@
 import { Link } from 'wouter'
 import { useTranslation } from 'react-i18next'
 
-import Header from '../../layout/Header/Header'
+import Header from '@/layout/Header/Header'
 
 export default function PageNotFound() {
   const { t } = useTranslation('global')

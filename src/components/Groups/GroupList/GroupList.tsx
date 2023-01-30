@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useAuth } from '../../../contexts/AuthContext'
-import { getGroups, groupsListener } from '../../../services/groups'
+import { useAuth } from '@/contexts/AuthContext'
+import { getGroups, groupsListener } from '@/services/groups'
 import { useTranslation } from 'react-i18next'
 
-import LoadSpinner from '../../../layout/LoadSpinner/LoadSpinner'
+import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
 import GroupPreview from '../GroupPreview/GroupPreview'
 
 interface Props {

@@ -21,7 +21,7 @@ export default function useHashIdToColor({ id, userId }: HashIdToColor) {
     return hash
   }
 
-  const color = colors[hash(id + userId) % colors.length]
+  const color = colors[hash(id + userId) % colors.length] || colors[0]
 
   return color
 }

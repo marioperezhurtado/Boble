@@ -3,12 +3,10 @@ import { fireEvent, render, screen } from '@testing-library/react'
 
 import GroupMessage from './GroupMessage'
 
-vi.mock('../../../contexts/AuthContext')
+vi.mock('@/contexts/AuthContext')
 
 describe('GroupMessage', async () => {
-  const { useAuth }: { useAuth: any } = await import(
-    '../../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
 
   test('Renders messages with different styles depending on sender', () => {

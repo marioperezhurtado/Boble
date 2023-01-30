@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
 import { Link } from 'wouter'
 import { useTranslation } from 'react-i18next'
 

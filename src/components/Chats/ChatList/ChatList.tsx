@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useAuth } from '../../../contexts/AuthContext'
-import { getChats, chatsListener } from '../../../services/chats'
+import { useAuth } from '@/contexts/AuthContext'
+import { getChats, chatsListener } from '@/services/chats'
 import { useTranslation } from 'react-i18next'
 
-import LoadSpinner from '../../../layout/LoadSpinner/LoadSpinner'
-import ChatPreview from '../ChatPreview/ChatPreview'
+import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
+import ChatPreview from '@/components/Chats/ChatPreview/ChatPreview'
 
 interface Props {
   chatId: string

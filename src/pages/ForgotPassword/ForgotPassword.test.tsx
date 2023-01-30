@@ -12,12 +12,10 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('../../contexts/AuthContext')
+vi.mock('@/contexts/AuthContext')
 
 describe('ForgotPassword', async () => {
-  const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
 
   test('Does not send recovery email if email is not provided and shows validation error', async () => {
     const sendResetPasswordEmail = vi.fn()

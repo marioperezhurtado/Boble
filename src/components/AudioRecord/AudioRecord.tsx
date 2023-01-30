@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { useAudioRecorder } from 'react-audio-voice-recorder'
-import useOnClickOutside from '../../hooks/useOnClickOutside'
+import useOnClickOutside from '@/hooks/useOnClickOutside'
 
-import StartRecordIcon from '../../assets/StartRecordingIcon'
-import StopRecordIcon from '../../assets/StopRecordIcon'
-import ResumeRecordIcon from '../../assets/ResumeRecordingIcon'
-import PauseIcon from '../../assets/PauseIcon'
-import SendAudioIcon from '../../assets/SendAudioIcon'
+import StartRecordIcon from '@/assets/StartRecordingIcon'
+import StopRecordIcon from '@/assets/StopRecordIcon'
+import ResumeRecordIcon from '@/assets/ResumeRecordIcon'
+import PauseRecordIcon from '@/assets/PauseRecordIcon'
+import SendAudioIcon from '@/assets/SendAudioIcon'
 
 const MAX_RECORDING_TIME = 90
 
@@ -104,7 +104,7 @@ export default function AudioRecord({ onClose, onSend }: Props) {
             className="p-1"
             title="Pause / resume recording">
             {isPaused && <ResumeRecordIcon />}
-            {!isPaused && <PauseIcon />}
+            {!isPaused && <PauseRecordIcon />}
           </button>
           <button
             onClick={handleToggleStartStop}

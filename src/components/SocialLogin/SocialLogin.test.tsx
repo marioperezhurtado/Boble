@@ -6,12 +6,10 @@ import SocialLogin from './SocialLogin'
 
 const queryClient = new QueryClient()
 
-vi.mock('../../contexts/AuthContext')
+vi.mock('@/contexts/AuthContext')
 
 describe('SocialLogin', async () => {
-  const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
   useAuth.mockReturnValue({ signInGoogle: () => {}, signInGithub: () => {} })
 
   test('Shows google login error', async () => {

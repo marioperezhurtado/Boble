@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { Link } from 'wouter'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from 'react-i18next'
 
-import Header from '../../layout/Header/Header'
-import PasswordInput from '../../layout/PasswordInput/PasswordInput'
+import Header from '@/layout/Header/Header'
+import PasswordInput from '@/layout/PasswordInput/PasswordInput'
 
 const initialState = {
   password: '',

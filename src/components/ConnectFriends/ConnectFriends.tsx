@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
 
-import CopyIcon from '../../assets/CopyIcon'
+import CopyIcon from '@/assets/CopyIcon'
 import QRCode from 'react-qr-code'
 
 export default function ConnectFriends() {

@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useUserConfig } from '../../contexts/UserConfigContext'
-import useOnClickOutside from '../../hooks/useOnClickOutside'
+import { useUserConfig } from '@/contexts/UserConfigContext'
+import useOnClickOutside from '@/hooks/useOnClickOutside'
 
-import FontSizeIcon from '../../assets/FontSizeIcon'
+import FontSizeIcon from '@/assets/FontSizeIcon'
 
 export default function ChangeFontSize() {
   const { t } = useTranslation('global')

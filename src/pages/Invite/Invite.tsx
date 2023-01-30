@@ -1,12 +1,12 @@
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { Link, useLocation } from 'wouter'
-import { useAuth } from '../../contexts/AuthContext'
-import { getProfile } from '../../services/profile'
-import { createChat } from '../../services/chats'
+import { useAuth } from '@/contexts/AuthContext'
+import { getProfile } from '@/services/profile'
+import { createChat } from '@/services/chats'
 import { useTranslation } from 'react-i18next'
 
-import Header from '../../layout/Header/Header'
-import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
+import Header from '@/layout/Header/Header'
+import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
 
 interface Props {
   userId: string

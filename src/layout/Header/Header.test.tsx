@@ -4,13 +4,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import Header from './Header'
 
-vi.mock('../../contexts/AuthContext')
+vi.mock('@/contexts/AuthContext')
 
 describe('Header', async () => {
   const queryClient = new QueryClient()
-  const { useAuth }: { useAuth: any } = await import(
-    '../../contexts/AuthContext'
-  )
+  const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
   useAuth.mockReturnValue({ currentUser: false, signOut: () => {} })
 
   test('Only shows title if user is not logged in', () => {

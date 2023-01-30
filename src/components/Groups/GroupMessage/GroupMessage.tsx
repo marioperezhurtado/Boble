@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { useAuth } from '../../../contexts/AuthContext'
-import useTimestamp from '../../../hooks/useTimestamp'
+import { useAuth } from '@/contexts/AuthContext'
+import useTimestamp from '@/hooks/useTimestamp'
 import { useTranslation } from 'react-i18next'
-import useHashIdToColor from '../../../hooks/useHashIdToColor'
+import useHashIdToColor from '@/hooks/useHashIdToColor'
 
-import Avatar from '../../../layout/Avatar/Avatar'
+import Avatar from '@/layout/Avatar/Avatar'
 
-import { Message } from '../../../types/chat'
+import { Message } from '@/types/chat'
 
 interface Props {
   message: Message
@@ -45,11 +45,13 @@ export default function GroupMessage({ message, prevMessage }: Props) {
     return (
       <div className="flex justify-end gap-2 mt-4">
         {isFirstMessageByUser && (
-          <Avatar
-            avatarUrl={senderId.avatar_url ?? ''}
-            name={senderId.email}
-            size={'small'}
-          />
+          <div className="shadow-md h-fit rounded-full">
+            <Avatar
+              avatarUrl={senderId.avatar_url ?? ''}
+              name={senderId.email}
+              size={'small'}
+            />
+          </div>
         )}
         <div
           className={`w-3/4 sm:max-w-xs md:max-w-sm p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 ${
@@ -88,13 +90,15 @@ export default function GroupMessage({ message, prevMessage }: Props) {
 
   if (audioLink) {
     return (
-      <div className="flex gap-2 mt-4">
+      <div className="flex gap-2 mt-4 justify-end">
         {isFirstMessageByUser && (
-          <Avatar
-            avatarUrl={senderId.avatar_url ?? ''}
-            name={senderId.email}
-            size={'small'}
-          />
+          <div className="shadow-md h-fit rounded-full">
+            <Avatar
+              avatarUrl={senderId.avatar_url ?? ''}
+              name={senderId.email}
+              size={'small'}
+            />
+          </div>
         )}
         <div
           className={`w-fit max-w-full p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 ${
@@ -107,7 +111,14 @@ export default function GroupMessage({ message, prevMessage }: Props) {
             <source src={audioLink} type="audio/webm" />
           </audio>
           <p>{text}</p>
-          <p className="text-xs text-right">{dateTime}</p>
+          <div className="flex justify-between">
+            {isFirstMessageByUser && (
+              <p className="text-sm font-semibold">
+                ~ {senderId.full_name ?? senderId.email}
+              </p>
+            )}
+            <p className="self-end flex-grow text-xs text-right">{dateTime}</p>
+          </div>
         </div>
       </div>
     )
@@ -116,11 +127,13 @@ export default function GroupMessage({ message, prevMessage }: Props) {
   return (
     <div className="flex justify-end gap-2 mt-4">
       {isFirstMessageByUser && (
-        <Avatar
-          avatarUrl={senderId.avatar_url ?? ''}
-          name={senderId.email}
-          size={'small'}
-        />
+        <div className="shadow-md h-fit rounded-full">
+          <Avatar
+            avatarUrl={senderId.avatar_url ?? ''}
+            name={senderId.email}
+            size={'small'}
+          />
+        </div>
       )}
       <div
         className={`w-fit max-w-full p-1 px-2 pb-1 rounded-md shadow-md flex flex-col ${

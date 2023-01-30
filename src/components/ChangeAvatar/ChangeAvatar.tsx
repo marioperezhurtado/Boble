@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useAuth } from '../../contexts/AuthContext'
-import { getProfile } from '../../services/profile'
-import { uploadAvatar } from '../../services/avatar'
+import { useAuth } from '@/contexts/AuthContext'
+import { getProfile } from '@/services/profile'
+import { uploadAvatar } from '@/services/avatar'
 
-import Avatar from '../../layout/Avatar/Avatar'
-import LoadSpinner from '../../layout/LoadSpinner/LoadSpinner'
+import Avatar from '@/layout/Avatar/Avatar'
+import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
 
 export default function ChangeAvatar() {
   const { currentUser } = useAuth()

@@ -1,10 +1,12 @@
 import { Redirect } from 'wouter'
-import { useAuth } from '../../../contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface Props {
   children: React.ReactNode
   redirectTo?: string
 }
+
+// Redirect to other route if user is logged in
 
 export default function AuthRoute({ children, redirectTo }: Props) {
   const { currentUser } = useAuth()

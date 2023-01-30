@@ -1,4 +1,4 @@
-export default function ResumeRecordingIcon() {
+export default function ResumeRecordIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

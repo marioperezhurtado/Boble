@@ -1,8 +1,8 @@
 import { Link } from 'wouter'
 
-import Avatar from '../../../layout/Avatar/Avatar'
+import Avatar from '@/layout/Avatar/Avatar'
 
-import type { Group } from '../../../types/chat'
+import type { Group } from '@/types/chat'
 
 interface Props {
   group: Group
