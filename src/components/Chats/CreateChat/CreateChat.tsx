@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
 import { createChat } from '@/services/chats'
@@ -10,7 +10,7 @@ export default function CreateChat() {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const [isCopied, setIsCopied] = useState(false)
-  const formRef = useRef<HTMLFormElement>(null)
+  const [friendId, setFriendId] = useState<string>('')
 
   const {
     mutate: handleCreateChat,
@@ -23,12 +23,14 @@ export default function CreateChat() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const friendId = formRef.current?.friendId.value
     if (!friendId) return
 
     handleCreateChat(friendId)
-    formRef.current?.reset()
+    setFriendId('')
   }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFriendId(e.target.value)
 
   const createError = error as Error
 
@@ -46,13 +48,15 @@ export default function CreateChat() {
     <>
       <div className="flex flex-col gap-2 sm:gap-4">
         <form
-          ref={formRef}
           onSubmit={handleSubmit}
           name="createChannel"
           className="flex flex-wrap justify-center gap-2">
           <input
+            value={friendId}
+            onChange={handleChange}
             type="text"
             name="friendId"
+            id="friendId"
             placeholder={t('create-chat.friend-code')}
             className="px-2 py-1 border rounded-md dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder:text-zinc-300"
             autoComplete="off"
@@ -78,7 +82,7 @@ export default function CreateChat() {
         </form>
         {createError && (
           <p className="p-1.5 px-3 mx-auto w-fit bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
-            {t('channels.errors.create')}
+            {t('chats.errors.create')}
           </p>
         )}
       </div>

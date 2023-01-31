@@ -49,7 +49,7 @@ describe('CreateChat', async () => {
   })
 
   test('Shows error if create chat fails', async () => {
-    createChat.mockRejectedValueOnce(new Error('channels.errors.create'))
+    createChat.mockRejectedValueOnce(new Error('chats.errors.create'))
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -63,7 +63,7 @@ describe('CreateChat', async () => {
     fireEvent.submit(form)
 
     await waitFor(() =>
-      expect(screen.getByText('channels.errors.create')).toBeTruthy()
+      expect(screen.getByText('chats.errors.create')).toBeTruthy()
     )
   })
 

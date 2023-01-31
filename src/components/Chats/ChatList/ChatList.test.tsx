@@ -86,7 +86,7 @@ describe('ChatList', async () => {
   })
 
   test("Shows error if there's an error fetching chats", async () => {
-    getChats.mockRejectedValueOnce(new Error('channels.errors.get'))
+    getChats.mockRejectedValueOnce(new Error('chats.errors.get'))
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -94,7 +94,7 @@ describe('ChatList', async () => {
       </QueryClientProvider>
     )
 
-    expect(await screen.findByText('channels.errors.get')).toBeTruthy()
+    expect(await screen.findByText('chats.errors.get')).toBeTruthy()
   })
 
   test("Shows message if there's no chats", async () => {
@@ -106,7 +106,7 @@ describe('ChatList', async () => {
       </QueryClientProvider>
     )
 
-    expect(await screen.findByText('channels.empty.title')).toBeTruthy()
+    expect(await screen.findByText('chats.empty.title')).toBeTruthy()
   })
 
   test("Gets chats from current user's id", () => {

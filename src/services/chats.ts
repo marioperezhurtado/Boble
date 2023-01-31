@@ -40,7 +40,17 @@ export function chatsListener({ userId, callback }: ChatsListener) {
         event: '*',
         schema: 'public',
         table: 'chats',
-        filter: `user1=eq.${userId},user2=eq.${userId}`
+        filter: `user1=eq.${userId}`
+      },
+      callback
+    )
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'chats',
+        filter: `user2=eq.${userId}`
       },
       callback
     )

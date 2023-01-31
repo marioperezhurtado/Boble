@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
 import { createGroup } from '@/services/groups'
@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 export default function CreateGroup() {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
-  const formRef = useRef<HTMLFormElement>(null)
+  const [groupName, setGroupName] = useState<string>('')
 
   const {
     mutate: handleCreateGroup,
@@ -23,17 +23,21 @@ export default function CreateGroup() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const groupName = formRef.current?.groupName.value
     if (!groupName) return
 
     handleCreateGroup(groupName)
-    formRef.current?.reset()
+    setGroupName('')
   }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setGroupName(e.target.value)
 
   return (
     <div className="flex flex-col gap-2 sm:gap-4">
-      <form ref={formRef} onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSubmit} className="flex gap-2">
         <input
+          value={groupName}
+          onChange={handleChange}
           type="text"
           name="groupName"
           id="groupName"
