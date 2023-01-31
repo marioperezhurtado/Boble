@@ -43,7 +43,7 @@ export default function ChatPage({ channelId, type }: Props) {
           {type === 'group' && <GroupList groupId={channelId} />}
           <div className="flex-grow border-t dark:border-zinc-600">
             <div className="flex flex-col justify-between h-full gap-4 px-4 py-4">
-              <div className=" mx-auto w-fit">
+              <div className="mx-auto w-fit">
                 {type === 'chat' && <CreateChat />}
                 {type === 'group' && <CreateGroup />}
               </div>
@@ -56,20 +56,20 @@ export default function ChatPage({ channelId, type }: Props) {
                 <div className="flex gap-2 pt-3 pb-2 text-sm w-fit">
                   <Link to="/chats">
                     <button
-                      className={`border px-2 py-1.5 rounded-md dark:border-zinc-600 shadow-md ${
+                      className={`border px-2 py-1.5 rounded-md shadow-md ${
                         type === 'chat'
-                          ? 'bg-cyan-700 border-none text-cyan-50'
-                          : 'dark:bg-zinc-700 bg-white'
+                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50'
+                          : 'dark:bg-zinc-700 dark:border-zinc-600 bg-white'
                       }`}>
                       {t('channels.chats')}
                     </button>
                   </Link>
                   <Link to="/groups">
                     <button
-                      className={`border px-2 py-1.5 rounded-md dark:border-zinc-600 shadow-md ${
+                      className={`border px-2 py-1.5 rounded-md shadow-md ${
                         type === 'group'
-                          ? 'bg-cyan-700 border-none text-cyan-50'
-                          : 'dark:bg-zinc-700 bg-white'
+                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50'
+                          : 'dark:bg-zinc-700 dark:border-zinc-600 bg-white'
                       }`}>
                       {t('channels.groups')}
                     </button>

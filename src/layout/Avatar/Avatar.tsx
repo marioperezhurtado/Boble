@@ -59,14 +59,19 @@ export default function Avatar({ size, avatarUrl, name }: Props) {
         createPortal(
           <div onClick={handleClose}>
             <div className="fixed top-0 left-0 z-10 w-full h-full bg-black opacity-75 dark:opacity-60" />
-            <img
-              onLoad={handleLoad}
-              onError={handleError}
-              src={avatarUrl}
-              alt={`${name} avatar expanded`}
-              className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-md sm:shadow-md max-h-64 md:max-h-96 p-4 sm:p-0 lg:max-w-xl
-              ${loaded ? '' : 'hidden'}`}
-            />
+            <div
+              className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-md sm:shadow-md max-h-64 md:max-h-96 lg:max-w-xl overflow-hidden
+              ${loaded ? '' : 'hidden'}`}>
+              <img
+                onLoad={handleLoad}
+                onError={handleError}
+                src={avatarUrl}
+                alt={`${name} avatar expanded`}
+              />
+              <p className="absolute bottom-0 right-0 px-2 bg-zinc-100 rounded-tl-md py-1.5 font-semibold text-sm break-words max-w-full">
+                {name}
+              </p>
+            </div>
           </div>,
           document.body
         )}
