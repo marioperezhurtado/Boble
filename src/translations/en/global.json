@@ -96,6 +96,10 @@
     "clipboard": "Copy your invite code",
     "clipboard-success": "Copied to clipboard!"
   },
+  "create-group": {
+    "name": "Group name...",
+    "submit": "Create group"
+  },
   "chat": {
     "select-channel": {
       "title": "Select a channel to start chatting",
@@ -110,6 +114,10 @@
     "placeholder": "Type a message.."
   },
   "channels": {
+    "chats": "Chats",
+    "groups": "Groupes"
+  },
+  "chats": {
     "empty": {
       "title": "You have not created any channel yet",
       "description": "Create one and start chatting with your friends."
@@ -117,9 +125,17 @@
     "errors": {
       "get": "Failed to load channels.",
       "create": "Failed to create channel."
+    }
+  },
+  "groups": {
+    "empty": {
+      "title": "You have not created any group yet",
+      "description": "Create one and start chatting with your friends."
     },
-    "chats": "Chats",
-    "groups": "Groups"
+    "errors": {
+      "get": "Failed to load groups.",
+      "create": "Failed to create group."
+    }
   },
   "messages": {
     "errors": {

@@ -96,6 +96,10 @@
     "clipboard": "Copiez votre code d'invitation",
     "clipboard-success": "Copié dans le presse-papiers!"
   },
+  "create-group": {
+    "name": "Nom du groupe...",
+    "submit": "Créer un groupe"
+  },
   "chat": {
     "select-channel": {
       "title": "Sélectionnez un canal pour commencer à chatter",
@@ -110,16 +114,28 @@
     "placeholder": "Tapez un message..."
   },
   "channels": {
+    "chats": "Chats",
+    "groups": "Groupes"
+  },
+  "chats": {
     "empty": {
-      "title": "Vous n'avez pas encore créé de canal",
+      "title": "Vous n'avez pas encore créé de chat",
       "description": "Créez un nouveau et commencez à chatter avec vos amis."
     },
     "errors": {
-      "get": "Échec du chargement des canaux.",
-      "create": "Échec de la création du canal."
+      "get": "Échec du chargement des chats.",
+      "create": "Échec de la création du chat."
+    }
+  },
+  "groups": {
+    "empty": {
+      "title": "Vous n'avez pas encore créé de groupe",
+      "description": "Créez un nouveau et commencez à chatter avec vos amis."
     },
-    "chats": "Chats",
-    "groups": "Groupes"
+    "errors": {
+      "get": "Échec du chargement des groupes.",
+      "create": "Échec de la création du groupe."
+    }
   },
   "messages": {
     "errors": {

@@ -48,7 +48,7 @@ export default function GroupList({ groupId }: Props) {
     return (
       <ul className="flex flex-col p-4 bg-zinc-50 dark:bg-zinc-800">
         <p className="p-1.5 pl-3 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
-          {t('channels.errors.get')}
+          {t('groups.errors.get')}
         </p>
       </ul>
     )
@@ -57,8 +57,8 @@ export default function GroupList({ groupId }: Props) {
   if (!groups?.length) {
     return (
       <ul className="flex flex-col p-8 text-center bg-zinc-50 dark:bg-zinc-800">
-        <h2 className="mb-5 text-xl font-bold">{t('channels.empty.title')}</h2>
-        <p>{t('channels.empty.description')}</p>
+        <h2 className="mb-5 text-xl font-bold">{t('groups.empty.title')}</h2>
+        <p>{t('groups.empty.description')}</p>
       </ul>
     )
   }

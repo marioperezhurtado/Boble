@@ -96,6 +96,10 @@
     "clipboard": "Copia tu código de invitación",
     "clipboard-success": "Código copiado!"
   },
+  "create-group": {
+    "name": "Nombre del grupo...",
+    "submit": "Crear grupo"
+  },
   "chat": {
     "select-channel": {
       "title": "Selecciona un canal para comenzar a chatear",
@@ -110,29 +114,33 @@
     "placeholder": "Escribe un mensaje..."
   },
   "channels": {
+    "chats": "Chats",
+    "groups": "Grupos"
+  },
+  "chats": {
     "empty": {
-      "title": "Todavía no has creado ningún canal",
+      "title": "Todavía no has creado ningún chat",
       "description": "Crea uno y comienza a chatear con tus amigos."
     },
     "errors": {
-      "get": "No se han podido cargar los canales.",
-      "create": "No se ha podido crear el canal."
+      "get": "No se han podido cargar los chat.",
+      "create": "No se ha podido crear el chat."
+    }
+  },
+  "groups": {
+    "empty": {
+      "title": "Todavía no has creado ningún grupo",
+      "description": "Crea uno y comienza a chatear con tus amigos."
     },
-    "chats": "Chats",
-    "groups": "Grupos"
+    "errors": {
+      "get": "No se han podido cargar los grupos.",
+      "create": "No se ha podido crear el grupo."
+    }
   },
   "messages": {
     "errors": {
       "get": "No se han podido cargar los mensajes.",
       "send": "No se ha podido enviar el mensaje."
-    }
-  },
-  "gifs": {
-    "placeholder": "Busca GIFs...",
-    "error": "No se han podido cargar los GIFs en tendencia",
-    "no-results": {
-      "title": "No hay resultados",
-      "description": "Inténtalo otra vez con otras palabras."
     }
   },
   "page-not-found": {

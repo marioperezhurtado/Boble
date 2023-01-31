@@ -2,8 +2,10 @@ import { useRef } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
 import { createGroup } from '@/services/groups'
+import { useTranslation } from 'react-i18next'
 
 export default function CreateGroup() {
+  const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -35,18 +37,18 @@ export default function CreateGroup() {
           type="text"
           name="groupName"
           id="groupName"
-          placeholder="Group name..."
+          placeholder={t('create-group.name')}
           className="border rounded-md px-2 py-1.5"
         />
         <button
           disabled={isLoading}
           className="px-2 py-1 transition rounded-md sm:text-sm bg-cyan-700 text-cyan-50 hover:bg-cyan-600">
-          Create group
+          {t('create-group.submit')}
         </button>
       </form>
       {isError && (
         <p className="p-1.5 px-3 mx-auto w-fit bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
-          Failed to create group
+          {t('groups.errors.get')}
         </p>
       )}
     </div>
