@@ -28,23 +28,32 @@ export async function getGroups({ userId }: GetGroups) {
 }
 
 export async function createGroup({ creatorId, name }: CreateGroup) {
-  const { error } = await supabase
-    .from('group_channels')
+  const { error: createError, data } = await supabase
+    .from('groups')
     .insert({ creator_id: creatorId, name })
-  if (error) {
+    .select('id')
+  if (createError) {
     throw Error('Failed to create group')
+  }
+  const groupId = data[0].id
+
+  const { error: joinError } = await supabase
+    .from('group_participants')
+    .insert({ group_id: groupId, user_id: creatorId })
+  if (joinError) {
+    throw Error('Failed to join to group')
   }
 }
 
 export function groupsListener({ userId, callback }: GroupsListener) {
   return supabase
-    .channel('public:group_channels')
+    .channel('public:group_participants')
     .on(
       'postgres_changes',
       {
         event: '*',
         schema: 'public',
-        table: 'group_channels',
+        table: 'group_participants',
         filter: `user_id=eq.${userId}`
       },
       callback

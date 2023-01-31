@@ -6,6 +6,7 @@ import Header from '@/layout/Header/Header'
 import ChatList from '@/components/Chats/ChatList/ChatList'
 import GroupList from '@/components/Groups/GroupList/GroupList'
 import CreateChat from '@/components/Chats/CreateChat/CreateChat'
+import CreateGroup from '@/components/Groups/CreateGroup/CreateGroup'
 
 import Channel from '@/components/Channels/Channel/Channel'
 
@@ -40,11 +41,11 @@ export default function ChatPage({ channelId, type }: Props) {
           `}>
           {type === 'chat' && <ChatList chatId={channelId} />}
           {type === 'group' && <GroupList groupId={channelId} />}
-
           <div className="flex-grow border-t dark:border-zinc-600">
             <div className="flex flex-col justify-between h-full gap-4 px-4 py-4">
               <div className=" mx-auto w-fit">
-                <CreateChat />
+                {type === 'chat' && <CreateChat />}
+                {type === 'group' && <CreateGroup />}
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex gap-2 w-fit">

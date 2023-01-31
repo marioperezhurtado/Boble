@@ -69,7 +69,7 @@ export interface Database {
           user2?: string
         }
       }
-      group_channels: {
+      groups: {
         Row: {
           created_at: string
           creator_id: string | null

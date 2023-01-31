@@ -9,7 +9,6 @@ import CopyIcon from '@/assets/CopyIcon'
 export default function CreateChat() {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
-  const [friendId, setFriendId] = useState('')
   const [isCopied, setIsCopied] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -22,12 +21,9 @@ export default function CreateChat() {
       await createChat({ userId: currentUser?.id ?? '', friendId })
   )
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFriendId(e.target.value)
-  }
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const friendId = formRef.current?.friendId.value
     if (!friendId) return
 
     handleCreateChat(friendId)
@@ -55,7 +51,6 @@ export default function CreateChat() {
           name="createChannel"
           className="flex flex-wrap justify-center gap-2">
           <input
-            onChange={handleChange}
             type="text"
             name="friendId"
             placeholder={t('create-chat.friend-code')}
