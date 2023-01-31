@@ -36,12 +36,12 @@ export default function ChatPage({ channelId, type }: Props) {
       <Header />
       <main className="flex flex-grow w-full h-full max-w-screen-xl pt-12 mx-auto shadow-md bg-zinc-50">
         <div
-          className={`w-full lg:max-w-md border dark:border-zinc-600 flex-col lg:flex dark:bg-zinc-800
+          className={`w-full lg:max-w-md border dark:border-zinc-700 flex-col lg:flex dark:bg-zinc-800
           ${channelsHidden ? 'hidden' : 'flex'}
           `}>
           {type === 'chat' && <ChatList chatId={channelId} />}
           {type === 'group' && <GroupList groupId={channelId} />}
-          <div className="flex-grow border-t dark:border-zinc-600">
+          <div className="flex-grow border-t dark:border-zinc-700">
             <div className="flex flex-col justify-between h-full gap-4 px-4 py-4">
               <div className="mx-auto w-fit">
                 {type === 'chat' && <CreateChat />}
@@ -80,7 +80,7 @@ export default function ChatPage({ channelId, type }: Props) {
           </div>
         </div>
         <div
-          className={`relative flex-grow lg:block border-r dark:border-zinc-600
+          className={`relative flex-grow lg:block border-r dark:border-zinc-700
           ${channelsHidden ? '' : 'hidden'}
           `}>
           <Channel channelId={channelId} type={type} />

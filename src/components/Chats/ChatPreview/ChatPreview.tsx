@@ -19,7 +19,7 @@ export default function ChatPreview({ chat }: Props) {
     return (
       <Link
         to={`/chats/${id}`}
-        className="flex items-center w-full gap-4 px-6 py-3 border-t dark:border-zinc-600">
+        className="flex items-center w-full gap-4 px-6 py-3 border-t dark:border-zinc-700">
         <Avatar
           size="medium"
           avatarUrl={user1.avatar_url ?? null}
@@ -35,7 +35,7 @@ export default function ChatPreview({ chat }: Props) {
   return (
     <Link
       to={`/chats/${id}`}
-      className="flex items-center w-full gap-4 px-6 py-3 border-t dark:border-zinc-600">
+      className="flex items-center w-full gap-4 px-6 py-3 border-t dark:border-zinc-700">
       <Avatar
         size="medium"
         avatarUrl={user.avatar_url ?? null}

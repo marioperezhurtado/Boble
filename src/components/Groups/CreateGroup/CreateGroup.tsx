@@ -42,7 +42,7 @@ export default function CreateGroup() {
           name="groupName"
           id="groupName"
           placeholder={t('create-group.name')}
-          className="border rounded-md px-2 py-1.5"
+          className="border rounded-md px-2 py-1.5 dark:bg-zinc-700 dark:border-zinc-600"
         />
         <button
           disabled={isLoading}
