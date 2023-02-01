@@ -84,7 +84,8 @@
     "confirm": "Confirma tu contraseña",
     "submit": "Reestablecer contraseña",
     "start": "Comienza a chatear",
-    "success": "Tu contraseña ha sido restablecida correctamente."
+    "success": "Tu contraseña ha sido restablecida correctamente.",
+    "error": "No se ha podido restablecer tu contraseña."
   },
   "header": {
     "logout": "Cerrar sesión",
@@ -144,7 +145,7 @@
     }
   },
   "page-not-found": {
-    "title": "Ups! Página no encontrada",
+    "title": "¡Ups! Página no encontrada",
     "description": "Parece que la página que estás buscando no existe.",
     "recommendation": "¿Estás seguro de que has escrito bien la URL?",
     "back": "Volver al inicio"
@@ -181,7 +182,7 @@
       "link": "Enlace de invitación",
       "code-copy": "Copia tu código de invitación",
       "link-copy": "Copia tu enlace de invitación",
-      "copy-success": "Código copiado!"
+      "copy-success": "¡Código copiado!"
     }
   },
   "invite": {
@@ -189,7 +190,7 @@
     "description": "te ha invitado a unirte a un nuevo canal y comenzar a chatear.",
     "accept": "Aceptar invitación",
     "back": "Volver al inicio",
-    "profile-error": "Ups! Este usuario no existe.",
+    "profile-error": "¡Ups! Este usuario no existe.",
     "accept-error": "No se ha podido aceptar la invitación."
   },
   "message": {
@@ -197,5 +198,17 @@
   },
   "channel-preview": {
     "own": "Tú"
+  },
+  "group-info": {
+    "error": "No se han podido cargar los detalles de este grupo.",
+    "not-found": "¡Ups! Este grupo no existe.",
+    "back": "Volver a grupos",
+    "recommendation": "Quizá el grupo ha sido eliminado o no tienes permisos para verlo.",
+    "created": "Creado el"
+  },
+  "group-participants": {
+    "error": "No se han podido cargar los participantes del grupo.",
+    "try-again": "Inténtalo de nuevo más tarde.",
+    "title": "Participantes"
   }
 }

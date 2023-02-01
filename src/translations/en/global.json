@@ -84,7 +84,8 @@
     "confirm": "Confirm password",
     "submit": "Reset password",
     "start": "Start chatting",
-    "success": "Your password has been reset successfully."
+    "success": "Your password has been reset successfully.",
+    "error": "Failed to reset your password."
   },
   "header": {
     "logout": "Logout",
@@ -115,7 +116,7 @@
   },
   "channels": {
     "chats": "Chats",
-    "groups": "Groupes"
+    "groups": "Groups"
   },
   "chats": {
     "empty": {
@@ -205,5 +206,17 @@
   },
   "channel-preview": {
     "own": "You"
+  },
+  "group-info": {
+    "error": "Failed to load group details.",
+    "not-found": "Oops! This group does not exist.",
+    "back": "Back to groups",
+    "recommendation": "Perhaps the group has been deleted or you do not have permissions to view it.",
+    "created": "Created on"
+  },
+  "group-participants": {
+    "error": "Failed to load group participants.",
+    "try-again": "Try again later.",
+    "title": "Participants"
   }
 }

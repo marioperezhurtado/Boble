@@ -30,7 +30,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
     created_at: createdAt
   } = message
 
-  const dateTime = useTimestamp(createdAt)
+  const time = useTimestamp({ timestamp: createdAt, type: 'time' })
 
   const generatedColor = useHashIdToColor({
     id: currentUser?.id ?? '',
@@ -45,7 +45,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
     return (
       <div className="flex justify-end gap-2 mt-4">
         {isFirstMessageByUser && (
-          <div className="shadow-md h-fit rounded-full">
+          <div className="rounded-full shadow-md h-fit">
             <Avatar
               avatarUrl={senderId.avatar_url ?? ''}
               name={senderId.email}
@@ -81,7 +81,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
                 ~ {senderId.full_name ?? senderId.email}
               </p>
             )}
-            <p className="self-end flex-grow text-xs text-right">{dateTime}</p>
+            <p className="self-end flex-grow text-xs text-right">{time}</p>
           </div>
         </div>
       </div>
@@ -90,9 +90,9 @@ export default function GroupMessage({ message, prevMessage }: Props) {
 
   if (audioLink) {
     return (
-      <div className="flex gap-2 mt-4 justify-end">
+      <div className="flex justify-end gap-2 mt-4">
         {isFirstMessageByUser && (
-          <div className="shadow-md h-fit rounded-full">
+          <div className="rounded-full shadow-md h-fit">
             <Avatar
               avatarUrl={senderId.avatar_url ?? ''}
               name={senderId.email}
@@ -117,7 +117,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
                 ~ {senderId.full_name ?? senderId.email}
               </p>
             )}
-            <p className="self-end flex-grow text-xs text-right">{dateTime}</p>
+            <p className="self-end flex-grow text-xs text-right">{time}</p>
           </div>
         </div>
       </div>
@@ -127,7 +127,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
   return (
     <div className="flex justify-end gap-2 mt-4">
       {isFirstMessageByUser && (
-        <div className="shadow-md h-fit rounded-full">
+        <div className="rounded-full shadow-md h-fit">
           <Avatar
             avatarUrl={senderId.avatar_url ?? ''}
             name={senderId.email}
@@ -149,7 +149,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
         )}
         <div className="flex gap-2 ">
           <p className="my-1.5 break-all">{text}</p>
-          <p className="self-end pt-1 text-xs text-right">{dateTime}</p>
+          <p className="self-end pt-1 text-xs text-right">{time}</p>
         </div>
       </div>
     </div>

@@ -27,6 +27,17 @@ export async function getGroups({ userId }: GetGroups) {
   return groups as Group[]
 }
 
+export async function getGroup({ groupId }: { groupId: string }) {
+  const { data, error } = await supabase
+    .from('groups')
+    .select('*')
+    .eq('id', groupId)
+    .single()
+  if (error) throw Error('Failed to get group')
+
+  return data
+}
+
 export async function createGroup({ creatorId, name }: CreateGroup) {
   const { error: createError, data } = await supabase
     .from('groups')

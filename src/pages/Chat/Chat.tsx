@@ -36,7 +36,7 @@ export default function ChatPage({ channelId, type }: Props) {
       <Header />
       <main className="flex flex-grow w-full h-full max-w-screen-xl pt-12 mx-auto shadow-md bg-zinc-50">
         <div
-          className={`w-full lg:max-w-md border dark:border-zinc-700 flex-col lg:flex dark:bg-zinc-800
+          className={`w-full lg:max-w-md lg:border dark:border-zinc-700 flex-col lg:flex dark:bg-zinc-800
           ${channelsHidden ? 'hidden' : 'flex'}
           `}>
           {type === 'chat' && <ChatList chatId={channelId} />}

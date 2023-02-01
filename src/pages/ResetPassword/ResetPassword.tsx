@@ -63,7 +63,7 @@ export default function ForgotPassword() {
           )}
           {resetError && (
             <p className="p-1.5 pl-3 mt-5 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
-              {resetError.message}
+              {t('change-password.error')}
             </p>
           )}
           {validationError && (

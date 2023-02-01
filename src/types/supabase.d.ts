@@ -125,7 +125,7 @@ export interface Database {
         Row: {
           group_id: Group
           joined_at: string
-          user_id: string
+          user_id: User
         }
         Insert: {
           group_id: string

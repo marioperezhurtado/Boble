@@ -84,7 +84,8 @@
     "confirm": "Confirmez le mot de passe",
     "submit": "Réinitialiser le mot de passe",
     "start": "Commencez à chatter",
-    "success": "Votre mot de passe a bien été réinitialisé"
+    "success": "Votre mot de passe a bien été réinitialisé.",
+    "error": "Échec de la réinitialisation du mot de passe."
   },
   "header": {
     "logout": "Déconnexion",
@@ -205,5 +206,17 @@
   },
   "channel-preview": {
     "own": "Vous"
+  },
+  "group-info": {
+    "error": "Échec du chargement des détails de ce groupe.",
+    "not-found": "Oups! Ce groupe n'existe pas.",
+    "back": "Retour aux groupes",
+    "recommendation": "Le groupe a peut-être été supprimé ou vous n'avez pas le droit de le consulter.",
+    "created": "Creé le"
+  },
+  "group-participants": {
+    "error": "Échec du chargement des participants du groupe.",
+    "try-again": "réessayez plus tard.",
+    "title": "Participants"
   }
 }

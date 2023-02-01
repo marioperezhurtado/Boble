@@ -26,7 +26,7 @@ export default function ChatMessage({ message }: Props) {
     created_at: createdAt
   } = message
 
-  const dateTime = useTimestamp(createdAt)
+  const time = useTimestamp({ timestamp: createdAt, type: 'time' })
 
   const isOwnMessage = currentUser?.id === senderId.id
 
@@ -53,7 +53,7 @@ export default function ChatMessage({ message }: Props) {
           </p>
         )}
         <p>{text}</p>
-        <p className="text-xs text-right">{dateTime}</p>
+        <p className="text-xs text-right">{time}</p>
       </div>
     )
   }
@@ -70,7 +70,7 @@ export default function ChatMessage({ message }: Props) {
           <source src={audioLink} type="audio/webm" />
         </audio>
         <p>{text}</p>
-        <p className="self-end flex-grow text-xs text-right">{dateTime}</p>
+        <p className="self-end flex-grow text-xs text-right">{time}</p>
       </div>
     )
   }
@@ -84,7 +84,7 @@ export default function ChatMessage({ message }: Props) {
       }`}>
       <div className="flex gap-2 ">
         <p className="my-1.5 break-all">{text}</p>
-        <p className="self-end flex-grow pt-1 text-xs text-right">{dateTime}</p>
+        <p className="self-end flex-grow pt-1 text-xs text-right">{time}</p>
       </div>
     </div>
   )
