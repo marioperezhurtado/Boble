@@ -24,6 +24,7 @@ export default function ChatPreview({ chat }: Props) {
           size="medium"
           avatarUrl={user1.avatar_url ?? null}
           name={user1.full_name ?? user1.email}
+          id={user1.id}
         />
         <p className="font-bold break-all">{t('channel-preview.own')}</p>
       </Link>
@@ -40,6 +41,7 @@ export default function ChatPreview({ chat }: Props) {
         size="medium"
         avatarUrl={user.avatar_url ?? null}
         name={user.full_name ?? user.email}
+        id={user.id}
       />
       <p className="font-bold break-all">{user.full_name ?? user.email}</p>
     </Link>

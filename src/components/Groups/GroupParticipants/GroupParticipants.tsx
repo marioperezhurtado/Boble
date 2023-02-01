@@ -63,6 +63,7 @@ export default function GroupParticipants({ groupId, creatorId }: Props) {
               avatarUrl={creator?.avatar_url ?? ''}
               name={creator?.full_name ?? creator?.email}
               size="large"
+              id={creator?.id}
             />
           </li>
         )}
@@ -72,6 +73,7 @@ export default function GroupParticipants({ groupId, creatorId }: Props) {
               avatarUrl={p.avatar_url ?? ''}
               name={p.full_name ?? p.email}
               size="large"
+              id={p.id}
             />
           </li>
         ))}

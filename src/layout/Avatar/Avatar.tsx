@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 
+import CopyInviteCode from '../CopyInviteCode/CopyInviteCode'
+
 interface Props {
   size: 'small' | 'medium' | 'large'
   avatarUrl: string | null
   name: string
+  id?: string
 }
 
 const SIZES = {
@@ -13,7 +16,7 @@ const SIZES = {
   large: 'w-20 h-20'
 }
 
-export default function Avatar({ size, avatarUrl, name }: Props) {
+export default function Avatar({ size, avatarUrl, name, id }: Props) {
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -45,7 +48,7 @@ export default function Avatar({ size, avatarUrl, name }: Props) {
     <>
       <div
         onClick={handleExpand}
-        className={`overflow-hidden rounded-full min-w-fit ${SIZES[size]}`}>
+        className={`overflow-hidden rounded-full min-w-fit cursor-pointer ${SIZES[size]}`}>
         <img
           onLoad={handleLoad}
           onError={handleError}
@@ -57,10 +60,13 @@ export default function Avatar({ size, avatarUrl, name }: Props) {
       </div>
       {expanded &&
         createPortal(
-          <div onClick={handleClose}>
-            <div className="fixed top-0 left-0 z-10 w-full h-full bg-black opacity-75 dark:opacity-60" />
+          <>
             <div
-              className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-md sm:shadow-md max-h-64 md:max-h-96 lg:max-w-xl overflow-hidden
+              onClick={handleClose}
+              className="fixed top-0 left-0 z-10 w-full h-full bg-black opacity-75 dark:opacity-50"
+            />
+            <div
+              className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-md sm:shadow-md lg:max-w-xl overflow-hidden border dark:border-zinc-700
               ${loaded ? '' : 'hidden'}`}>
               <img
                 onLoad={handleLoad}
@@ -68,11 +74,14 @@ export default function Avatar({ size, avatarUrl, name }: Props) {
                 src={avatarUrl}
                 alt={`${name} avatar expanded`}
               />
-              <p className="absolute bottom-0 right-0 px-2 bg-zinc-100 rounded-tl-md py-1.5 font-semibold text-sm break-words max-w-full">
-                {name}
-              </p>
+              <div className="flex items-center justify-between max-w-full p-1 break-words bg-zinc-100 dark:bg-zinc-800">
+                <p className="ml-2 font-semibold text-zinc-700 dark:text-zinc-200">
+                  ~ {name}
+                </p>
+                {id && <CopyInviteCode id={id} />}
+              </div>
             </div>
-          </div>,
+          </>,
           document.body
         )}
     </>
