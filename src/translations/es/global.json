@@ -204,11 +204,29 @@
     "not-found": "¡Ups! Este grupo no existe.",
     "back": "Volver a grupos",
     "recommendation": "Quizá el grupo ha sido eliminado o no tienes permisos para verlo.",
-    "created": "Creado el"
+    "created": "Creado el",
+    "leave": "Abandonar grupo",
+    "delete": "Eliminar grupo"
   },
   "group-participants": {
     "error": "No se han podido cargar los participantes del grupo.",
     "try-again": "Inténtalo de nuevo más tarde.",
     "title": "Participantes"
+  },
+  "group-actions": {
+    "leave": {
+      "title": "¿Estás seguro de que quieres abandonar este grupo?",
+      "info": "No podrás volver a participar en este grupo, a menos que el administrador te vuelva a añadir.",
+      "cancel": "Cancelar",
+      "leave": "Abandonar grupo"
+    },
+    "delete": {
+      "title": "¿Estás seguro de que quieres eliminar este grupo?",
+      "info": "Este grupo y todos sus mensajes serán eliminados",
+      "info2": "permanentemente.",
+      "info3": "",
+      "cancel": "Cancelar",
+      "delete": "Eliminar grupo"
+    }
   }
 }

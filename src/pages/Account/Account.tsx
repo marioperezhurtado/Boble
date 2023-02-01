@@ -17,7 +17,7 @@ export default function Account() {
 
   const { data: profile, isLoading: isProfileLoading } = useQuery({
     queryKey: ['profile', currentUser?.id],
-    queryFn: () => getProfile(currentUser?.id ?? ''),
+    queryFn: async () => await getProfile(currentUser?.id ?? ''),
     onSuccess: (data) => {
       setName(data?.full_name ?? '')
     }
@@ -37,7 +37,7 @@ export default function Account() {
     isSuccess: updateSuccess
   } = useMutation({
     mutationKey: ['updateProfile'],
-    mutationFn: () => updateProfile(newProfile),
+    mutationFn: async () => await updateProfile(newProfile),
     onSuccess: () => setName(newProfile.full_name)
   })
 

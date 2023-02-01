@@ -9,6 +9,9 @@ interface CreateGroup {
   creatorId: string
   name: string
 }
+interface DeleteGroup {
+  groupId: string
+}
 interface GroupsListener {
   userId: string
   callback: () => void
@@ -54,6 +57,11 @@ export async function createGroup({ creatorId, name }: CreateGroup) {
   if (joinError) {
     throw Error('Failed to join to group')
   }
+}
+
+export async function deleteGroup({ groupId }: DeleteGroup) {
+  const { error } = await supabase.from('groups').delete().eq('id', groupId)
+  if (error) throw Error('Failed to delete group')
 }
 
 export function groupsListener({ userId, callback }: GroupsListener) {

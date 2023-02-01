@@ -212,11 +212,29 @@
     "not-found": "Oops! This group does not exist.",
     "back": "Back to groups",
     "recommendation": "Perhaps the group has been deleted or you do not have permissions to view it.",
-    "created": "Created on"
+    "created": "Created on",
+    "leave": "Leave group",
+    "delete": "Delete group"
   },
   "group-participants": {
     "error": "Failed to load group participants.",
     "try-again": "Try again later.",
     "title": "Participants"
+  },
+  "group-actions": {
+    "leave": {
+      "title": "Are you sure you want to leave this group?",
+      "info": "You will not be able to join this group again unless you are invited by the group owner",
+      "cancel": "Cancel",
+      "leave": "Leave group"
+    },
+    "delete": {
+      "title": "Are you sure you want to delete this group?",
+      "info": "This group and all its messages will be",
+      "info2": "permanently",
+      "info3": "deleted",
+      "cancel": "Cancel",
+      "delete": "Delete group"
+    }
   }
 }

@@ -21,7 +21,7 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
   const [error, setError] = useState(false)
   const [expanded, setExpanded] = useState(false)
 
-  const defaultLetter = name[0].toUpperCase()
+  const defaultLetter = name[0]?.toUpperCase()
 
   const handleLoad = () => setLoaded(true)
   const handleError = () => setError(true)
@@ -54,7 +54,7 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
           onError={handleError}
           src={avatarUrl}
           alt={`${name} avatar`}
-          className={`object-cover w-full h-full aspect-square 
+          className={`object-cover w-full h-full aspect-square bg-zinc-100 dark:bg-zinc-800 
         ${loaded ? '' : 'hidden'}`}
         />
       </div>
@@ -66,15 +66,16 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
               className="fixed top-0 left-0 z-10 w-full h-full bg-black opacity-75 dark:opacity-50"
             />
             <div
-              className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-md sm:shadow-md lg:max-w-xl overflow-hidden border dark:border-zinc-700
+              className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-md sm:shadow-md lg:max-w-xl overflow-hidden border dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800
               ${loaded ? '' : 'hidden'}`}>
               <img
                 onLoad={handleLoad}
                 onError={handleError}
                 src={avatarUrl}
                 alt={`${name} avatar expanded`}
+                className="w-full"
               />
-              <div className="flex items-center justify-between max-w-full p-1 break-words bg-zinc-100 dark:bg-zinc-800">
+              <div className="flex items-center justify-between max-w-full p-1 break-words gap-4">
                 <p className="ml-2 font-semibold text-zinc-700 dark:text-zinc-200">
                   ~ {name}
                 </p>

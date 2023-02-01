@@ -53,7 +53,7 @@ export default function GroupParticipants({ groupId, creatorId }: Props) {
   return (
     <div className="px-8 pt-4 border-b dark:border-zinc-700">
       <h2 className="text-lg font-semibold">{t('group-participants.title')}</h2>
-      <ul className="flex items-center gap-6 py-4 mt-4 overflow-x-auto">
+      <ul className="flex items-center gap-6 py-4 mt-2 overflow-x-auto">
         {creator && (
           <li key={creator?.id} className="relative rounded-full ">
             <span className="absolute -translate-x-1/2 -top-5 left-1/2">
@@ -62,7 +62,7 @@ export default function GroupParticipants({ groupId, creatorId }: Props) {
             <Avatar
               avatarUrl={creator?.avatar_url ?? ''}
               name={creator?.full_name ?? creator?.email}
-              size="large"
+              size="medium"
               id={creator?.id}
             />
           </li>
@@ -72,7 +72,7 @@ export default function GroupParticipants({ groupId, creatorId }: Props) {
             <Avatar
               avatarUrl={p.avatar_url ?? ''}
               name={p.full_name ?? p.email}
-              size="large"
+              size="medium"
               id={p.id}
             />
           </li>

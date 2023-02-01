@@ -212,11 +212,29 @@
     "not-found": "Oups! Ce groupe n'existe pas.",
     "back": "Retour aux groupes",
     "recommendation": "Le groupe a peut-être été supprimé ou vous n'avez pas le droit de le consulter.",
-    "created": "Creé le"
+    "created": "Creé le",
+    "leave": "Quitter le groupe",
+    "delete": "Supprimer le groupe"
   },
   "group-participants": {
     "error": "Échec du chargement des participants du groupe.",
     "try-again": "réessayez plus tard.",
     "title": "Participants"
+  },
+  "group-actions": {
+    "leave": {
+      "title": "Êtes-vous sûr de vouloir quitter ce groupe ?",
+      "info": "Vous ne pourrez plus rejoindre ce groupe, à moins d'être ajouté par le propriétaire du groupe.",
+      "cancel": "Annuler",
+      "leave": "Quitter le groupe"
+    },
+    "delete": {
+      "title": "Êtes-vous sûr de vouloir supprimer ce groupe ?",
+      "info": "Ce groupe et tous ses messages seront",
+      "info2": "définitivement",
+      "info3": "supprimés.",
+      "cancel": "Annuler",
+      "delete": "Supprimer le groupe"
+    }
   }
 }

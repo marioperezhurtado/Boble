@@ -7,6 +7,10 @@ interface AddParticipant {
   groupId: string
   userId: string
 }
+interface RemoveParticipant {
+  groupId: string
+  userId: string
+}
 
 export async function getParticipants({ groupId }: GetParticipants) {
   const { data, error } = await supabase
@@ -26,4 +30,16 @@ export async function addParticipant({ groupId, userId }: AddParticipant) {
     .from('group_participants')
     .insert({ group_id: groupId, user_id: userId })
   if (error) throw Error('Failed to add participant')
+}
+
+export async function removeParticipant({
+  groupId,
+  userId
+}: RemoveParticipant) {
+  const { error } = await supabase
+    .from('group_participants')
+    .delete()
+    .eq('group_id', groupId)
+    .eq('user_id', userId)
+  if (error) throw Error('Failed to remove participant')
 }

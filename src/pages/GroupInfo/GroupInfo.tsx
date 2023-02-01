@@ -11,6 +11,7 @@ import GroupParticipants from '@/components/Groups/GroupParticipants/GroupPartic
 import ToggleDarkMode from '@/layout/ToggleDarkMode/ToggleDarkMode'
 import ChangeLanguage from '@/layout/ChangeLanguage/ChangeLanguage'
 import ChangeFontSize from '@/layout/ChangeFontSize/ChangeFontSize'
+import GroupDangerActions from '@/components/Groups/GroupDangerActions/GroupDangerActions'
 
 interface Props {
   groupId: string
@@ -87,7 +88,7 @@ export default function GroupInfo({ groupId }: Props) {
               <h1 className="text-xl font-semibold">{group.name}</h1>
             </div>
             <p className="text-sm">
-              {t('group-info.created')} {date}
+              {t('group-info.created')} <strong>{date}</strong>
             </p>
           </div>
           <GroupParticipants
@@ -95,10 +96,13 @@ export default function GroupInfo({ groupId }: Props) {
             creatorId={group.creator_id ?? ''}
           />
         </div>
-        <div className="flex gap-2 p-4 pb-6 w-fit">
-          <ToggleDarkMode />
-          <ChangeLanguage />
-          <ChangeFontSize />
+        <div className="flex items-center justify-between p-4 pb-6">
+          <div className="flex gap-2">
+            <ToggleDarkMode />
+            <ChangeLanguage />
+            <ChangeFontSize />
+          </div>
+          <GroupDangerActions groupId={groupId} creatorId={group?.creator_id} />
         </div>
       </main>
     </div>
