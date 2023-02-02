@@ -65,6 +65,7 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
           <>
             <div
               onClick={handleClose}
+              role="presentation"
               className="fixed top-0 left-0 z-10 w-full h-full bg-black opacity-75 dark:opacity-50"
             />
             <div

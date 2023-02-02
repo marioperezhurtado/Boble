@@ -1,5 +1,6 @@
+import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getParticipants } from '@/services/participants'
+import { getParticipants, participantsListener } from '@/services/participants'
 import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
@@ -17,7 +18,8 @@ export default function GroupParticipants({ groupId, creatorId }: Props) {
   const {
     data: participants,
     isLoading,
-    error
+    error,
+    refetch
   } = useQuery({
     queryKey: ['participants', groupId],
     queryFn: async () => await getParticipants({ groupId })
@@ -30,6 +32,14 @@ export default function GroupParticipants({ groupId, creatorId }: Props) {
   const otherParticipants = participants?.filter(
     (participant) => participant.id !== creatorId
   )
+
+  useEffect(() => {
+    // Subscribe to realtime participants updates
+    participantsListener({
+      groupId,
+      callback: refetch
+    })
+  }, [groupId])
 
   if (isLoading) {
     return (
@@ -56,7 +66,7 @@ export default function GroupParticipants({ groupId, creatorId }: Props) {
       <ul className="flex items-center gap-4 py-4 mt-2 overflow-x-auto">
         {creator && (
           <li key={creator?.id} className="relative rounded-full ">
-            <span className="absolute -translate-x-1/2 -top-5 left-1/2">
+            <span className="absolute -translate-x-1/2 -top-3 left-1/2">
               <CreatorIcon />
             </span>
             <Avatar

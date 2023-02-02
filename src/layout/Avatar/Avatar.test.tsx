@@ -15,6 +15,20 @@ describe('Avatar', () => {
     expect(screen.getByAltText('first avatar')).toBeTruthy()
   })
 
+  test('Expands avatar and closes it', () => {
+    const image = screen.getByAltText('first avatar')
+    fireEvent.load(image)
+    fireEvent.click(image)
+
+    const imageExpanded = screen.getByAltText('first avatar expanded')
+    expect(imageExpanded).toBeTruthy()
+
+    const backdrop = screen.getByRole('presentation')
+    fireEvent.click(backdrop)
+
+    expect(screen.queryByAltText('first avatar expanded')).toBeNull()
+  })
+
   test('Renders default avatar with letter if no avatarUrl is provided', () => {
     render(<Avatar size="small" name="second" avatarUrl={null} />)
 
@@ -31,18 +45,5 @@ describe('Avatar', () => {
 
     expect(screen.getByText('T')).toBeTruthy()
     expect(screen.queryByAltText('third avatar')).toBeNull()
-  })
-
-  test('Expands avatar and closes it', () => {
-    const image = screen.getByAltText('first avatar')
-    fireEvent.load(image)
-    fireEvent.click(image)
-
-    const imageExpanded = screen.getByAltText('first avatar expanded')
-    expect(imageExpanded).toBeTruthy()
-
-    fireEvent.click(imageExpanded)
-
-    expect(screen.queryByAltText('first avatar expanded')).toBeNull()
   })
 })

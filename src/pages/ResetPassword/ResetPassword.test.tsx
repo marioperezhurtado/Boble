@@ -58,7 +58,7 @@ describe('ResetPassword', async () => {
   })
 
   test('Shows error if changing password fails', async () => {
-    changePassword.mockRejectedValueOnce(new Error('Failed to change password'))
+    changePassword.mockRejectedValueOnce({})
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -75,6 +75,6 @@ describe('ResetPassword', async () => {
     fireEvent.change(repeatPassword, { target: { value: '123' } })
     fireEvent.submit(form)
 
-    expect(await screen.findByText('Failed to change password')).toBeTruthy()
+    expect(await screen.findByText('change-password.error')).toBeTruthy()
   })
 })

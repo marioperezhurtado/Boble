@@ -11,6 +11,10 @@ interface RemoveParticipant {
   groupId: string
   userId: string
 }
+interface ParticipantsListener {
+  groupId: string
+  callback: () => void
+}
 
 export async function getParticipants({ groupId }: GetParticipants) {
   const { data, error } = await supabase
@@ -42,4 +46,23 @@ export async function removeParticipant({
     .eq('group_id', groupId)
     .eq('user_id', userId)
   if (error) throw Error('Failed to remove participant')
+}
+
+export function participantsListener({
+  groupId,
+  callback
+}: ParticipantsListener) {
+  return supabase
+    .channel('public:group-participants')
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'group_participants',
+        filter: `group_id=eq.${groupId}`
+      },
+      callback
+    )
+    .subscribe()
 }

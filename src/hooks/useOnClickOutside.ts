@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 interface UseOnClickOutside {
   ref: React.RefObject<HTMLElement>
-  handler: (event: MouseEvent | TouchEvent) => void
+  handler: (event: React.MouseEvent<any>) => void
 }
 
 export default function useOnClickOutside({ ref, handler }: UseOnClickOutside) {

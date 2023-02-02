@@ -10,6 +10,7 @@ export default function Modal({ onClose, children }: Props) {
     <>
       <div
         onClick={onClose}
+        role="presentation"
         className="fixed top-0 left-0 z-10 w-full h-full bg-black opacity-75 dark:opacity-50"
       />
       <div className="fixed z-10 w-10/12 -translate-x-1/2 -translate-y-1/2 top-1/3 left-1/2 sm:max-w-xl">

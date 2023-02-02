@@ -92,9 +92,9 @@
     "account": "Your Account"
   },
   "create-chat": {
-    "friend-code": "Enter invite code...",
+    "friend-code": "Enter user code...",
     "submit": "Create chat",
-    "clipboard": "Copy your invite code",
+    "clipboard": "Copy your user code",
     "clipboard-success": "Copied to clipboard!"
   },
   "create-group": {
@@ -236,5 +236,11 @@
       "cancel": "Cancel",
       "delete": "Delete group"
     }
+  },
+  "add-participant": {
+    "title": "Add to group",
+    "placeholder": "Enter user code...",
+    "error": "Failed to add participant to group",
+    "success": "The participant has been successfully added to the group"
   }
 }

@@ -1,5 +1,6 @@
 import { Link } from 'wouter'
 import { useQuery } from '@tanstack/react-query'
+import { useAuth } from '@/contexts/AuthContext'
 import { getGroup } from '@/services/groups'
 import useTimestamp from '@/hooks/useTimestamp'
 import { useTranslation } from 'react-i18next'
@@ -8,6 +9,7 @@ import Header from '@/layout/Header/Header'
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
 import Avatar from '@/layout/Avatar/Avatar'
 import GroupParticipants from '@/components/Groups/GroupParticipants/GroupParticipants'
+import AddParticipant from '@/components/Groups/AddParticipant/AddParticipant'
 import ToggleDarkMode from '@/layout/ToggleDarkMode/ToggleDarkMode'
 import ChangeLanguage from '@/layout/ChangeLanguage/ChangeLanguage'
 import ChangeFontSize from '@/layout/ChangeFontSize/ChangeFontSize'
@@ -19,6 +21,7 @@ interface Props {
 
 export default function GroupInfo({ groupId }: Props) {
   const { t } = useTranslation('global')
+  const { currentUser } = useAuth()
 
   const {
     data: group,
@@ -34,12 +37,14 @@ export default function GroupInfo({ groupId }: Props) {
     type: 'date'
   })
 
+  const isAdmin = currentUser?.id === group?.creator_id
+
   if (isLoading) {
     return (
       <div className="flex flex-col h-screen bg-zinc-200 dark:bg-zinc-900">
         <Header />
         <main className="flex flex-col flex-grow w-full h-full max-w-screen-lg pt-12 mx-auto shadow-md bg-zinc-50 dark:bg-zinc-800 lg:border dark:border-zinc-700 border-x">
-          <div className="flex mx-auto mt-10 w-fit flex-grow">
+          <div className="flex flex-grow mx-auto mt-10 w-fit">
             <LoadSpinner />
           </div>
           <div className="flex gap-2 p-4 pb-6 w-fit">
@@ -56,7 +61,7 @@ export default function GroupInfo({ groupId }: Props) {
     return (
       <div className="flex flex-col h-screen bg-zinc-200 dark:bg-zinc-900">
         <Header />
-        <main className="flex flex-col flex-grow w-full h-full max-w-screen-lg pt-12 mx-auto shadow-md bg-zinc-50 dark:bg-zinc-800 lg:border dark:border-zinc-700 border-x text-center">
+        <main className="flex flex-col flex-grow w-full h-full max-w-screen-lg pt-12 mx-auto text-center shadow-md bg-zinc-50 dark:bg-zinc-800 lg:border dark:border-zinc-700 border-x">
           <div className="flex-grow py-4">
             <h1 className="mt-10 text-xl font-semibold">
               {t('group-info.error')}
@@ -100,6 +105,7 @@ export default function GroupInfo({ groupId }: Props) {
             groupId={groupId}
             creatorId={group.creator_id ?? ''}
           />
+          {isAdmin && <AddParticipant groupId={groupId} />}
         </div>
         <div className="flex items-center justify-between p-4 pb-6">
           <div className="flex gap-2">
