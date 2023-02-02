@@ -219,7 +219,8 @@
   "group-participants": {
     "error": "Failed to load group participants.",
     "try-again": "Try again later.",
-    "title": "Participants"
+    "title": "Participants",
+    "remove": "Remove"
   },
   "group-actions": {
     "leave": {

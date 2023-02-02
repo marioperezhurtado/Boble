@@ -211,7 +211,8 @@
   "group-participants": {
     "error": "No se han podido cargar los participantes del grupo.",
     "try-again": "Inténtalo de nuevo más tarde.",
-    "title": "Participantes"
+    "title": "Participantes",
+    "remove": "Eliminar"
   },
   "group-actions": {
     "leave": {

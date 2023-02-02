@@ -24,9 +24,7 @@ export async function getParticipants({ groupId }: GetParticipants) {
     .order('joined_at', { ascending: false })
   if (error) throw Error('Failed to get participants')
 
-  const participants = data.map((participant) => participant.user_id)
-
-  return participants
+  return data
 }
 
 export async function addParticipant({ groupId, userId }: AddParticipant) {

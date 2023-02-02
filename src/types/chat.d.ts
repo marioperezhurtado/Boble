@@ -30,3 +30,9 @@ export interface Message {
   media_link: string | null
   audio_link: string | null
 }
+
+export interface Participant {
+  group_id: string
+  joined_at?: string
+  user_id: User
+}

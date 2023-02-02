@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 import Header from '@/layout/Header/Header'
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
 import Avatar from '@/layout/Avatar/Avatar'
-import GroupParticipants from '@/components/Groups/GroupParticipants/GroupParticipants'
+import ParticipantsList from '@/components/Groups/ParticipantsList/ParticipantsList'
 import AddParticipant from '@/components/Groups/AddParticipant/AddParticipant'
 import ToggleDarkMode from '@/layout/ToggleDarkMode/ToggleDarkMode'
 import ChangeLanguage from '@/layout/ChangeLanguage/ChangeLanguage'
@@ -101,7 +101,7 @@ export default function GroupInfo({ groupId }: Props) {
               {t('group-info.created')} <strong>{date}</strong>
             </p>
           </div>
-          <GroupParticipants
+          <ParticipantsList
             groupId={groupId}
             creatorId={group.creator_id ?? ''}
           />

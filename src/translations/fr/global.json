@@ -219,7 +219,8 @@
   "group-participants": {
     "error": "Échec du chargement des participants du groupe.",
     "try-again": "réessayez plus tard.",
-    "title": "Participants"
+    "title": "Participants",
+    "remove": "Supprimer"
   },
   "group-actions": {
     "leave": {

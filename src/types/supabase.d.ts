@@ -1,4 +1,4 @@
-import { User, Group } from './chat'
+import { User } from '@types/chat'
 
 export type Json =
   | string
@@ -123,7 +123,7 @@ export interface Database {
       }
       group_participants: {
         Row: {
-          group_id: Group
+          group_id: string
           joined_at: string
           user_id: User
         }
