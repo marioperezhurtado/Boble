@@ -38,9 +38,14 @@ export default function GroupInfo({ groupId }: Props) {
     return (
       <div className="flex flex-col h-screen bg-zinc-200 dark:bg-zinc-900">
         <Header />
-        <main className="flex-grow w-full h-full max-w-screen-xl px-4 pt-12 mx-auto shadow-md bg-zinc-50 dark:bg-zinc-800 lg:border dark:border-zinc-700">
-          <div className="flex mx-auto mt-10 w-fit">
+        <main className="flex flex-col flex-grow w-full h-full max-w-screen-lg pt-12 mx-auto shadow-md bg-zinc-50 dark:bg-zinc-800 lg:border dark:border-zinc-700 border-x">
+          <div className="flex mx-auto mt-10 w-fit flex-grow">
             <LoadSpinner />
+          </div>
+          <div className="flex gap-2 p-4 pb-6 w-fit">
+            <ToggleDarkMode />
+            <ChangeLanguage />
+            <ChangeFontSize />
           </div>
         </main>
       </div>
@@ -51,7 +56,7 @@ export default function GroupInfo({ groupId }: Props) {
     return (
       <div className="flex flex-col h-screen bg-zinc-200 dark:bg-zinc-900">
         <Header />
-        <main className="flex flex-col flex-grow w-full h-full max-w-screen-xl px-4 pt-12 mx-auto text-center shadow-md bg-zinc-50 dark:bg-zinc-800 lg:border dark:border-zinc-700">
+        <main className="flex flex-col flex-grow w-full h-full max-w-screen-lg pt-12 mx-auto shadow-md bg-zinc-50 dark:bg-zinc-800 lg:border dark:border-zinc-700 border-x text-center">
           <div className="flex-grow py-4">
             <h1 className="mt-10 text-xl font-semibold">
               {t('group-info.error')}
@@ -63,7 +68,7 @@ export default function GroupInfo({ groupId }: Props) {
               </button>
             </Link>
           </div>
-          <div className="flex gap-2 py-4 w-fit">
+          <div className="flex gap-2 p-4 pb-6 w-fit">
             <ToggleDarkMode />
             <ChangeLanguage />
             <ChangeFontSize />

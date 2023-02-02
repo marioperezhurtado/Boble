@@ -45,13 +45,11 @@ export default function GroupMessage({ message, prevMessage }: Props) {
     return (
       <div className="flex justify-end gap-2 mt-4">
         {isFirstMessageByUser && (
-          <div className="rounded-full shadow-md h-fit">
-            <Avatar
-              avatarUrl={senderId.avatar_url ?? ''}
-              name={senderId.email}
-              size={'small'}
-            />
-          </div>
+          <Avatar
+            avatarUrl={senderId.avatar_url ?? ''}
+            name={senderId.email}
+            size={'small'}
+          />
         )}
         <div
           className={`w-3/4 sm:max-w-xs md:max-w-sm p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 ${
@@ -92,13 +90,11 @@ export default function GroupMessage({ message, prevMessage }: Props) {
     return (
       <div className="flex justify-end gap-2 mt-4">
         {isFirstMessageByUser && (
-          <div className="rounded-full shadow-md h-fit">
-            <Avatar
-              avatarUrl={senderId.avatar_url ?? ''}
-              name={senderId.email}
-              size={'small'}
-            />
-          </div>
+          <Avatar
+            avatarUrl={senderId.avatar_url ?? ''}
+            name={senderId.email}
+            size={'small'}
+          />
         )}
         <div
           className={`w-fit max-w-full p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 ${
@@ -127,13 +123,11 @@ export default function GroupMessage({ message, prevMessage }: Props) {
   return (
     <div className="flex justify-end gap-2 mt-4">
       {isFirstMessageByUser && (
-        <div className="rounded-full shadow-md h-fit">
-          <Avatar
-            avatarUrl={senderId.avatar_url ?? ''}
-            name={senderId.email}
-            size={'small'}
-          />
-        </div>
+        <Avatar
+          avatarUrl={senderId.avatar_url ?? ''}
+          name={senderId.email}
+          size={'small'}
+        />
       )}
       <div
         className={`w-fit max-w-full p-1 px-2 pb-1 rounded-md shadow-md flex flex-col ${

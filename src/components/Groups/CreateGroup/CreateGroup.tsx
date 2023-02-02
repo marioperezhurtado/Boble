@@ -52,7 +52,7 @@ export default function CreateGroup() {
       </form>
       {isError && (
         <p className="p-1.5 px-3 mx-auto w-fit bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
-          {t('groups.errors.get')}
+          {t('groups.errors.create')}
         </p>
       )}
     </div>

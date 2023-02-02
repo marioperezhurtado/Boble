@@ -58,8 +58,8 @@ export default function ChatPage({ channelId, type }: Props) {
                     <button
                       className={`border px-2 py-1.5 rounded-md shadow-md ${
                         type === 'chat'
-                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50'
-                          : 'dark:bg-zinc-700 dark:border-zinc-600 bg-white'
+                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50 hover:bg-cyan-600 transition'
+                          : 'dark:bg-zinc-700 dark:border-zinc-600 bg-white hover:bg-zinc-100 transition'
                       }`}>
                       {t('channels.chats')}
                     </button>
@@ -68,8 +68,8 @@ export default function ChatPage({ channelId, type }: Props) {
                     <button
                       className={`border px-2 py-1.5 rounded-md shadow-md ${
                         type === 'group'
-                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50'
-                          : 'dark:bg-zinc-700 dark:border-zinc-600 bg-white'
+                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50 hover:bg-cyan-600 transition'
+                          : 'dark:bg-zinc-700 dark:border-zinc-600 bg-white hover:bg-zinc-100 transition'
                       }`}>
                       {t('channels.groups')}
                     </button>

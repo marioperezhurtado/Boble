@@ -26,7 +26,9 @@ export default function ChannelPreview({ group }: Props) {
       className="flex items-center w-full gap-4 px-6 py-3 border-t dark:border-zinc-700">
       <Avatar size="medium" avatarUrl={imageUrl} name={`${name} group chat`} />
       <p className="font-bold break-all">{name}</p>
-      <button onClick={handleClick} className="ml-auto p-2">
+      <button
+        onClick={handleClick}
+        className="p-2 ml-auto transition rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-600">
         <InfoIcon />
       </button>
     </Link>

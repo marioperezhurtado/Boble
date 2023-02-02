@@ -11,8 +11,8 @@ interface Props {
 }
 
 const SIZES = {
-  small: 'w-8 h-8',
-  medium: 'w-14 h-14',
+  small: 'w-10 h-10',
+  medium: 'w-16 h-16',
   large: 'w-20 h-20'
 }
 
@@ -38,8 +38,10 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
   if (!avatarUrl || error) {
     return (
       <div
-        className={`overflow-hidden rounded-full min-w-fit items-center flex justify-center  bg-cyan-700 text-cyan-50 ${SIZES[size]}`}>
-        <p className="text-2xl font-bold">{defaultLetter}</p>
+        className={`overflow-hidden rounded-full min-w-fit    p-1.5 hover:bg-zinc-200 dark:hover:bg-zinc-700 ${SIZES[size]}`}>
+        <div className="flex items-center justify-center w-full h-full rounded-full bg-cyan-700 text-cyan-50">
+          <p className="text-2xl font-bold">{defaultLetter}</p>
+        </div>
       </div>
     )
   }
@@ -48,13 +50,13 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
     <>
       <div
         onClick={handleExpand}
-        className={`overflow-hidden rounded-full min-w-fit cursor-pointer ${SIZES[size]}`}>
+        className={`overflow-hidden rounded-full min-w-fit cursor-pointer p-1.5 hover:bg-zinc-200 dark:hover:bg-zinc-700 ${SIZES[size]}`}>
         <img
           onLoad={handleLoad}
           onError={handleError}
           src={avatarUrl}
           alt={`${name} avatar`}
-          className={`object-cover w-full h-full aspect-square bg-zinc-100 dark:bg-zinc-800 
+          className={`object-cover w-full h-full aspect-square rounded-full bg-zinc-100 dark:bg-zinc-800 
         ${loaded ? '' : 'hidden'}`}
         />
       </div>
@@ -75,7 +77,7 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
                 alt={`${name} avatar expanded`}
                 className="w-full"
               />
-              <div className="flex items-center justify-between max-w-full p-1 break-words gap-4">
+              <div className="flex items-center justify-between max-w-full gap-4 p-1 break-words">
                 <p className="ml-2 font-semibold text-zinc-700 dark:text-zinc-200">
                   ~ {name}
                 </p>
