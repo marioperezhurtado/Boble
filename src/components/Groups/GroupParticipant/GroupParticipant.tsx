@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default function GroupParticipant({ participant, creatorId }: Props) {
-  const { t } = useTranslation()
+  const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const [isActionsOpen, setIsActionsOpen] = useState(false)
   const ref = useRef<HTMLButtonElement>(null)
