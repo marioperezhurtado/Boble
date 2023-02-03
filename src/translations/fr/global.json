@@ -243,5 +243,11 @@
     "placeholder": "Entrez le code utilisateur...",
     "error": "Erreur lors de l'ajout du participant au groupe.",
     "success": "Le participant a été ajouté avec succès."
+  },
+  "remove-participant": {
+    "title": "Êtes-vous sûr de vouloir supprimer ce participant?",
+    "info": "Ce utilisateur ne pourra pas rejoindre le groupe à moins que vous ne le réajoutiez.",
+    "cancel": "Annuler",
+    "remove": "Supprimer le participant"
   }
 }

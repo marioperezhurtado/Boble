@@ -16,7 +16,7 @@
       },
       "share": {
         "title": "Comparte",
-        "bold": " imágenes, GIFs, audios... ",
+        "bold": " imágenes, audios... ",
         "title2": "¡Y mucho más!",
         "description": "Tus mensajes se guardan en la nube, podrás verlos en cualquier momento."
       },
@@ -144,6 +144,14 @@
       "send": "No se ha podido enviar el mensaje."
     }
   },
+  "gifs": {
+    "placeholder": "Busca GIF's...",
+    "error": "No se ha podido cargar los GIF's",
+    "no-results": {
+      "title": "No se han encontrado resultados",
+      "description": "Prueba otra vez con diferentes palabras."
+    }
+  },
   "page-not-found": {
     "title": "¡Ups! Página no encontrada",
     "description": "Parece que la página que estás buscando no existe.",
@@ -235,5 +243,11 @@
     "placeholder": "Código de usuario...",
     "error": "No se ha podido añadir al participante al grupo.",
     "success": "El participante se ha añadido correctamente."
+  },
+  "remove-participant": {
+    "title": "¿Estás seguro de que quieres eliminar a este participante?",
+    "info": "Este usuario no podrá volver a unirse al grupo a menos que le vuelvas a añadir.",
+    "cancel": "Cancelar",
+    "remove": "Eliminar participante"
   }
 }

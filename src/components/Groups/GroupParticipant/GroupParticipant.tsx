@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 import Avatar from '@/layout/Avatar/Avatar'
 import CreatorIcon from '@/assets/CreatorIcon'
 import ActionsIcon from '@/assets/ActionsIcon'
+import Modal from '@/layout/Modal/Modal'
 
 import type { Participant } from '@/types/chat'
 
@@ -20,6 +21,7 @@ export default function GroupParticipant({ participant, creatorId }: Props) {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const [isActionsOpen, setIsActionsOpen] = useState(false)
+  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false)
   const ref = useRef<HTMLButtonElement>(null)
   const {
     id,
@@ -39,6 +41,8 @@ export default function GroupParticipant({ participant, creatorId }: Props) {
 
   const handleOpenActions = () => setIsActionsOpen(true)
   const handleCloseActions = () => setIsActionsOpen(false)
+  const handleOpenRemove = () => setIsRemoveModalOpen(true)
+  const handleCancelRemove = () => setIsRemoveModalOpen(false)
 
   useOnClickOutside({
     ref,
@@ -62,31 +66,53 @@ export default function GroupParticipant({ participant, creatorId }: Props) {
   }
 
   return (
-    <div className="relative">
-      {isUserCreator && (
-        <>
-          {isActionsOpen && (
+    <>
+      <div className="relative">
+        {isUserCreator && (
+          <>
+            {isActionsOpen && (
+              <button
+                ref={ref}
+                onClick={handleOpenRemove}
+                disabled={isLoading}
+                className="absolute bottom-0 -right-1 z-10 bg-red-100 text-red-700 text text-sm rounded-md px-2 py-1.5 hover:bg-red-200 transition">
+                {t('group-participants.remove')}
+              </button>
+            )}
             <button
-              ref={ref}
-              onClick={() => handleRemoveParticipant()}
-              disabled={isLoading}
-              className="absolute bottom-0 -right-1 z-10 bg-red-100 text-red-700 text text-sm rounded-md px-2 py-1.5 hover:bg-red-200 transition">
-              {t('group-participants.remove')}
+              onClick={handleOpenActions}
+              className="absolute bottom-0 -right-4">
+              <ActionsIcon />
             </button>
-          )}
-          <button
-            onClick={handleOpenActions}
-            className="absolute bottom-0 -right-4">
-            <ActionsIcon />
-          </button>
-        </>
+          </>
+        )}
+        <Avatar
+          avatarUrl={avatarUrl ?? ''}
+          name={fullName ?? email}
+          size="medium"
+          id={id}
+        />
+      </div>
+      {isRemoveModalOpen && (
+        <Modal onClose={handleCancelRemove}>
+          <h1 className="text-2xl font-semibold text-center">
+            {t('remove-participant.title')}
+          </h1>
+          <h2 className="mt-5 text-center">{t('remove-participant.info')}</h2>
+          <div className="flex justify-center gap-4 mt-12">
+            <button
+              onClick={() => handleRemoveParticipant()}
+              className="bg-red-7 bg-red-700 text-red-50 shadow-md rounded-md px-2 py-1.5 text-sm hover:bg-red-600 transition">
+              {t('remove-participant.remove')}
+            </button>
+            <button
+              onClick={handleCancelRemove}
+              className="bg-cyan-700 text-cyan-50 rounded-md px-2 py-1.5 text-sm shadow-md hover:bg-cyan-600 transition">
+              {t('remove-participant.cancel')}
+            </button>
+          </div>
+        </Modal>
       )}
-      <Avatar
-        avatarUrl={avatarUrl ?? ''}
-        name={fullName ?? email}
-        size="medium"
-        id={id}
-      />
-    </div>
+    </>
   )
 }

@@ -21,7 +21,7 @@ export async function getParticipants({ groupId }: GetParticipants) {
     .from('group_participants')
     .select('*, user_id(*)')
     .eq('group_id', groupId)
-    .order('joined_at', { ascending: false })
+    .order('joined_at', { ascending: true })
   if (error) throw Error('Failed to get participants')
 
   return data

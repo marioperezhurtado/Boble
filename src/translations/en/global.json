@@ -243,5 +243,11 @@
     "placeholder": "Enter user code...",
     "error": "Failed to add participant to group",
     "success": "The participant has been successfully added to the group"
+  },
+  "remove-participant": {
+    "title": "Are you sure you want to remove this participant?",
+    "info": "This user will not be able to join this group again unless you add him again.",
+    "cancel": "Cancel",
+    "remove": "Remove participant"
   }
 }

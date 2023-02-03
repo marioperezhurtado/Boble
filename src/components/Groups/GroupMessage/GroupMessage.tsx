@@ -56,7 +56,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
             isOwnMessage
               ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
               : `${generatedColor} mr-auto rounded-tl-none`
-          } ${imgLoaded ? '' : 'hidden'} ${isFirstMessageByUser ? '' : 'ml-10'}
+          } ${imgLoaded ? '' : 'hidden'} ${isFirstMessageByUser ? '' : 'ml-12'}
         `}>
           {!imgError && mediaLink && (
             <img
@@ -135,7 +135,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
             ? 'bg-cyan-700 text-cyan-50 rounded-br-none ml-auto'
             : `${generatedColor} mr-auto rounded-tl-none`
         } 
-          ${isFirstMessageByUser ? '' : 'ml-10'}`}>
+          ${isFirstMessageByUser ? '' : 'ml-12'}`}>
         {isFirstMessageByUser && (
           <p className="text-sm font-semibold">
             ~ {senderId.full_name ?? senderId.email}
