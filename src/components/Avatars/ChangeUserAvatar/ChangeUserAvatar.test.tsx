@@ -1,8 +1,8 @@
 import { describe, test, expect, vi } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import ChangeAvatar from './ChangeAvatar'
+import ChangeAvatar from './ChangeUserAvatar'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,10 +16,10 @@ vi.mock('@/services/profile')
 vi.mock('@/services/avatar')
 vi.mock('@/contexts/AuthContext')
 
-describe('ChangeAvatar', async () => {
+describe('ChangeUserAvatar', async () => {
   const { getProfile }: { getProfile: any } = await import('@/services/profile')
   const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
-  const { uploadAvatar }: { uploadAvatar: any } = await import(
+  const { uploadUserAvatar }: { uploadUserAvatar: any } = await import(
     '@/services/avatar'
   )
 
@@ -61,7 +61,7 @@ describe('ChangeAvatar', async () => {
       }
     })
 
-    expect(uploadAvatar).not.toHaveBeenCalled()
+    await waitFor(() => expect(uploadUserAvatar).not.toHaveBeenCalled())
   })
 
   test('Changes avatar with current user id and input file', async () => {
@@ -73,9 +73,11 @@ describe('ChangeAvatar', async () => {
       }
     })
 
-    expect(uploadAvatar).toHaveBeenCalledWith({
-      id: '1',
-      avatar: 'Test Image'
-    })
+    await waitFor(() =>
+      expect(uploadUserAvatar).toHaveBeenCalledWith({
+        id: '1',
+        avatar: 'Test Image'
+      })
+    )
   })
 })

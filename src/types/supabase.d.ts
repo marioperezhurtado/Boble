@@ -72,23 +72,23 @@ export interface Database {
       groups: {
         Row: {
           created_at: string
-          creator_id: string | null
+          creator_id: string
           id: string
-          image_url: string | null
+          avatar_url: string | null
           name: string
         }
         Insert: {
           created_at?: string
           creator_id?: string | null
           id?: string
-          image_url?: string | null
+          avatar_url?: string | null
           name: string
         }
         Update: {
           created_at?: string
           creator_id?: string | null
           id?: string
-          image_url?: string | null
+          avatar_url?: string | null
           name?: string
         }
       }

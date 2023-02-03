@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 import Header from '@/layout/Header/Header'
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
-import ChangeAvatar from '@/components/ChangeAvatar/ChangeAvatar'
+import ChangeAvatar from '@/components/Avatars/ChangeUserAvatar/ChangeUserAvatar'
 import ConnectFriends from '@/components/ConnectFriends/ConnectFriends'
 
 export default function Account() {

@@ -49,6 +49,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
             avatarUrl={senderId.avatar_url ?? ''}
             name={senderId.email}
             size={'small'}
+            id={senderId.id}
           />
         )}
         <div
@@ -94,6 +95,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
             avatarUrl={senderId.avatar_url ?? ''}
             name={senderId.email}
             size={'small'}
+            id={senderId.id}
           />
         )}
         <div
@@ -127,6 +129,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
           avatarUrl={senderId.avatar_url ?? ''}
           name={senderId.email}
           size={'small'}
+          id={senderId.id}
         />
       )}
       <div

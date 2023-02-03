@@ -10,14 +10,14 @@ import CreatorIcon from '@/assets/CreatorIcon'
 import ActionsIcon from '@/assets/ActionsIcon'
 import Modal from '@/layout/Modal/Modal'
 
-import type { Participant } from '@/types/chat'
+import type { Participant as GroupParticipant } from '@/types/chat'
 
 interface Props {
-  participant: Participant
+  participant: GroupParticipant
   creatorId: string
 }
 
-export default function GroupParticipant({ participant, creatorId }: Props) {
+export default function Participant({ participant, creatorId }: Props) {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
   const [isActionsOpen, setIsActionsOpen] = useState(false)

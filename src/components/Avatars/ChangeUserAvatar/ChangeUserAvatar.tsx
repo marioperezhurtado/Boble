@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
 import { getProfile } from '@/services/profile'
-import { uploadAvatar } from '@/services/avatar'
+import { uploadUserAvatar } from '@/services/avatar'
 
 import Avatar from '@/layout/Avatar/Avatar'
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
@@ -11,10 +11,7 @@ export default function ChangeAvatar() {
   const { currentUser } = useAuth()
   const [date, setDate] = useState<number>(Date.now())
 
-  const refreshAvatar = () => {
-    // Changes a parameter in the avatar url to force a reload of the image
-    setDate(Date.now())
-  }
+  const refreshAvatar = () => setDate(Date.now())
 
   const {
     data: profile,
@@ -25,17 +22,24 @@ export default function ChangeAvatar() {
     queryFn: async () => await getProfile(currentUser?.id ?? '')
   })
 
+  const { mutate } = useMutation({
+    mutationFn: async ({ avatar }: { avatar: File }) => {
+      await uploadUserAvatar({
+        id: currentUser?.id ?? '',
+        avatar
+      })
+    },
+    onSuccess: async () => {
+      await refetch()
+      refreshAvatar()
+    }
+  })
+
   const handleChangeAvatar = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
 
-    await uploadAvatar({
-      id: currentUser?.id ?? '',
-      avatar: file
-    })
-
-    await refetch()
-    refreshAvatar()
+    mutate({ avatar: file })
   }
 
   return (

@@ -4,7 +4,7 @@ import { getParticipants, participantsListener } from '@/services/participants'
 import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
-import Participant from '@/components/Groups/GroupParticipant/GroupParticipant'
+import Participant from '@/components/Participants/Participant/Participant'
 
 interface Props {
   groupId: string
@@ -32,6 +32,11 @@ export default function ParticipantsList({ groupId, creatorId }: Props) {
     })
   }, [groupId])
 
+  const creator = participants?.find((p) => p.user_id.id === creatorId)
+  const otherParticipants = participants?.filter(
+    (p) => p.user_id.id !== creatorId
+  )
+
   if (isLoading) {
     return (
       <div className="py-4">
@@ -55,7 +60,12 @@ export default function ParticipantsList({ groupId, creatorId }: Props) {
     <div className="px-8 pt-4 border-b dark:border-zinc-700">
       <h2 className="text-lg font-semibold">{t('group-participants.title')}</h2>
       <ul className="flex items-center gap-4 py-4 overflow-x-auto">
-        {participants.map((p) => (
+        {creator && (
+          <li key={creator.user_id.id}>
+            <Participant participant={creator} creatorId={creatorId} />
+          </li>
+        )}
+        {otherParticipants?.map((p) => (
           <li key={p.user_id.id}>
             <Participant participant={p} creatorId={creatorId} />
           </li>

@@ -18,7 +18,7 @@ interface Group {
   created_at: string | null
   creator_id: string
   name: string
-  image_url: string | null
+  avatar_url: string | null
 }
 
 export interface Message {

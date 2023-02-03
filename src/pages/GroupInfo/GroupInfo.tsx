@@ -2,14 +2,13 @@ import { Link } from 'wouter'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
 import { getGroup } from '@/services/groups'
-import useTimestamp from '@/hooks/useTimestamp'
 import { useTranslation } from 'react-i18next'
 
 import Header from '@/layout/Header/Header'
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
-import Avatar from '@/layout/Avatar/Avatar'
-import ParticipantsList from '@/components/Groups/ParticipantsList/ParticipantsList'
-import AddParticipant from '@/components/Groups/AddParticipant/AddParticipant'
+import GroupDetails from '@/components/Groups/GroupDetails/GroupDetails'
+import ParticipantsList from '@/components/Participants/ParticipantsList/ParticipantsList'
+import AddParticipant from '@/components/Participants/AddParticipant/AddParticipant'
 import ToggleDarkMode from '@/layout/ToggleDarkMode/ToggleDarkMode'
 import ChangeLanguage from '@/layout/ChangeLanguage/ChangeLanguage'
 import ChangeFontSize from '@/layout/ChangeFontSize/ChangeFontSize'
@@ -30,11 +29,6 @@ export default function GroupInfo({ groupId }: Props) {
   } = useQuery({
     queryKey: ['group', groupId],
     queryFn: async () => await getGroup({ groupId })
-  })
-
-  const date = useTimestamp({
-    timestamp: group?.created_at ?? '',
-    type: 'date'
   })
 
   const isAdmin = currentUser?.id === group?.creator_id
@@ -88,19 +82,7 @@ export default function GroupInfo({ groupId }: Props) {
       <Header />
       <main className="flex flex-col flex-grow w-full h-full max-w-screen-lg pt-12 mx-auto shadow-md bg-zinc-50 dark:bg-zinc-800 lg:border dark:border-zinc-700 border-x">
         <div className="flex-grow">
-          <div className="flex flex-wrap items-center gap-4 px-8 py-4 mx-auto border-y dark:border-zinc-700">
-            <div className="flex items-center flex-grow gap-4 md:gap-8">
-              <Avatar
-                avatarUrl={group.image_url}
-                name={group.name}
-                size="large"
-              />
-              <h1 className="text-xl font-semibold">{group.name}</h1>
-            </div>
-            <p className="text-sm">
-              {t('group-info.created')} <strong>{date}</strong>
-            </p>
-          </div>
+          <GroupDetails group={group} />
           <ParticipantsList
             groupId={groupId}
             creatorId={group.creator_id ?? ''}

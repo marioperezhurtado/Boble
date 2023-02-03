@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function ChannelPreview({ group }: Props) {
-  const { id, name, image_url: imageUrl } = group
+  const { id, name, avatar_url: imageUrl } = group
 
   const [, setLocation] = useLocation()
 
@@ -24,7 +24,7 @@ export default function ChannelPreview({ group }: Props) {
     <Link
       to={`/groups/${id}`}
       className="flex items-center w-full gap-4 px-6 py-3 border-t dark:border-zinc-700">
-      <Avatar size="medium" avatarUrl={imageUrl} name={`${name} group chat`} />
+      <Avatar size="medium" avatarUrl={imageUrl} name={name} />
       <p className="font-bold break-all">{name}</p>
       <button
         onClick={handleClick}
