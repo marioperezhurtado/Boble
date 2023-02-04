@@ -9,6 +9,7 @@ import CreateChat from '@/components/Chats/CreateChat/CreateChat'
 import CreateGroup from '@/components/Groups/CreateGroup/CreateGroup'
 
 import Channel from '@/components/Channels/Channel/Channel'
+import Back from '@/layout/Back/Back'
 
 import ToggleDarkMode from '@/layout/ToggleDarkMode/ToggleDarkMode'
 import ChangeFontSize from '@/layout/ChangeFontSize/ChangeFontSize'
@@ -79,6 +80,7 @@ export default function ChatPage({ channelId, type }: Props) {
             </div>
           </div>
         </div>
+        {channelsHidden && <Back to={`/${type}s`} />}
         <div
           className={`relative flex-grow lg:block border-r dark:border-zinc-700
           ${channelsHidden ? '' : 'hidden'}

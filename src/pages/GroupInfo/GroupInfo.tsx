@@ -5,15 +5,16 @@ import { useAuth } from '@/contexts/AuthContext'
 import { getGroup, groupListener } from '@/services/groups'
 import { useTranslation } from 'react-i18next'
 
-import Header from '@/layout/Header/Header'
-import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
 import GroupDetails from '@/components/Groups/GroupDetails/GroupDetails'
 import ParticipantsList from '@/components/Participants/ParticipantsList/ParticipantsList'
 import AddParticipant from '@/components/Participants/AddParticipant/AddParticipant'
+import GroupDangerActions from '@/components/Groups/GroupDangerActions/GroupDangerActions'
+
+import Header from '@/layout/Header/Header'
+import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
 import ToggleDarkMode from '@/layout/ToggleDarkMode/ToggleDarkMode'
 import ChangeLanguage from '@/layout/ChangeLanguage/ChangeLanguage'
 import ChangeFontSize from '@/layout/ChangeFontSize/ChangeFontSize'
-import GroupDangerActions from '@/components/Groups/GroupDangerActions/GroupDangerActions'
 
 interface Props {
   groupId: string
