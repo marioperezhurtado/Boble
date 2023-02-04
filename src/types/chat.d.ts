@@ -1,9 +1,9 @@
 interface User {
   id: string
-  created_at?: string
+  created_at: string | null
   email: string
-  full_name?: string
-  avatar_url?: string
+  full_name: string | null
+  avatar_url: string | null
 }
 
 interface Chat {

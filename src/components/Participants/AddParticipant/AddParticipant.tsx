@@ -26,7 +26,7 @@ export default function AddParticipant({ groupId }: Props) {
 
   return (
     <div className="flex flex-col gap-2 p-4 sm:gap-4">
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSubmit} className="flex gap-2 flex-wrap">
         <input
           value={userId}
           onChange={handleChange}

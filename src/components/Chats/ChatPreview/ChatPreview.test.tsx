@@ -83,13 +83,17 @@ describe('ChatPreview', async () => {
           created_at: '999',
           user1: {
             id: '1',
-            created_at: '999',
-            email: 'mail@test1.com'
+            email: 'mail@test1.com',
+            avatar_url: '',
+            full_name: '',
+            created_at: '999'
           },
           user2: {
             id: '2',
-            created_at: '999',
-            email: 'mail@test2.com'
+            email: 'mail@test2.com',
+            avatar_url: '',
+            full_name: '',
+            created_at: '999'
           }
         }}
       />
@@ -105,15 +109,17 @@ describe('ChatPreview', async () => {
           created_at: '999',
           user1: {
             id: '1',
-            created_at: '999',
             full_name: 'Test name 3',
-            email: ''
+            email: '',
+            avatar_url: '',
+            created_at: '999'
           },
           user2: {
             id: '2',
-            created_at: '999',
             full_name: 'Test name 3',
-            email: ''
+            email: '',
+            avatar_url: '',
+            created_at: '999'
           }
         }}
       />
@@ -156,13 +162,16 @@ describe('ChatPreview', async () => {
           user1: {
             id: '1',
             created_at: '999',
-            email: 'mail@own-test.com'
+            email: 'mail@own-test.com',
+            avatar_url: null,
+            full_name: null
           },
           user2: {
             id: '1',
             created_at: '999',
-
-            email: 'mail@own-test.com'
+            email: 'mail@own-test.com',
+            avatar_url: null,
+            full_name: null
           }
         }}
       />

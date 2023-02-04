@@ -12,23 +12,15 @@ const queryClient = new QueryClient({
   }
 })
 
-vi.mock('@/services/profile')
 vi.mock('@/services/avatar')
 vi.mock('@/contexts/AuthContext')
 
 describe('ChangeUserAvatar', async () => {
-  const { getProfile }: { getProfile: any } = await import('@/services/profile')
   const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
   const { uploadUserAvatar }: { uploadUserAvatar: any } = await import(
     '@/services/avatar'
   )
 
-  getProfile.mockResolvedValue({
-    id: '1',
-    email: 'mail@test.com',
-    avatar_url: 'https://test.com',
-    full_name: 'Test User'
-  })
   useAuth.mockReturnValue({
     currentUser: {
       id: '1'
@@ -40,7 +32,15 @@ describe('ChangeUserAvatar', async () => {
   test('Shows email and profile img with date', async () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ChangeAvatar />
+        <ChangeAvatar
+          profile={{
+            id: '1',
+            email: 'mail@test.com',
+            avatar_url: 'https://test.com',
+            full_name: 'Test User',
+            created_at: null
+          }}
+        />
       </QueryClientProvider>
     )
 

@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Link } from 'wouter'
 import { useAuth } from '@/contexts/AuthContext'
-import { getProfile, updateProfile } from '@/services/profile'
+import { getProfile, updateProfile, profileListener } from '@/services/profile'
 import { useTranslation } from 'react-i18next'
 
 import Header from '@/layout/Header/Header'
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
-import ChangeAvatar from '@/components/Avatars/ChangeUserAvatar/ChangeUserAvatar'
+import ChangeUserAvatar from '@/components/Avatars/ChangeUserAvatar/ChangeUserAvatar'
 import ConnectFriends from '@/components/ConnectFriends/ConnectFriends'
 
 export default function Account() {
@@ -15,7 +15,11 @@ export default function Account() {
   const [name, setName] = useState<string>('')
   const { currentUser } = useAuth()
 
-  const { data: profile, isLoading: isProfileLoading } = useQuery({
+  const {
+    data: profile,
+    isLoading: isProfileLoading,
+    refetch
+  } = useQuery({
     queryKey: ['profile', currentUser?.id],
     queryFn: async () => await getProfile(currentUser?.id ?? ''),
     onSuccess: (data) => {
@@ -26,8 +30,9 @@ export default function Account() {
   const newProfile = {
     id: profile?.id ?? '',
     email: profile?.email ?? '',
-    avatar_url: profile?.avatar_url ?? '',
-    full_name: name
+    avatar_url: profile?.avatar_url ?? null,
+    full_name: name,
+    created_at: null
   }
 
   const {
@@ -47,8 +52,16 @@ export default function Account() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await handleUpdateProfile()
+    handleUpdateProfile()
   }
+
+  useEffect(() => {
+    // Subscribe to realtime profile updates
+    profileListener({
+      userId: currentUser?.id ?? '',
+      callback: refetch
+    })
+  }, [currentUser?.id])
 
   return (
     <>
@@ -68,9 +81,9 @@ export default function Account() {
             </p>
           )}
           {isProfileLoading && <LoadSpinner />}
-          {!isProfileLoading && (
+          {profile && (
             <>
-              <ChangeAvatar />
+              <ChangeUserAvatar profile={profile} />
               <form
                 onSubmit={handleSubmit}
                 name="accountForm"

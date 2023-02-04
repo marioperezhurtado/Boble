@@ -19,7 +19,10 @@ describe('ChatMessage', async () => {
           channel_id: '1',
           sender_id: {
             id: '1',
-            email: 'mail@test.com'
+            email: 'mail@test.com',
+            avatar_url: '',
+            full_name: '',
+            created_at: null
           },
           media_link: null,
           audio_link: null
@@ -40,7 +43,10 @@ describe('ChatMessage', async () => {
           channel_id: '1',
           sender_id: {
             id: '2',
-            email: 'mail@test.com'
+            email: 'mail@test.com',
+            avatar_url: '',
+            full_name: '',
+            created_at: null
           },
           media_link: null,
           audio_link: null
@@ -63,7 +69,10 @@ describe('ChatMessage', async () => {
           channel_id: '1',
           sender_id: {
             id: '1',
-            email: 'mail@test.com'
+            email: 'mail@test.com',
+            avatar_url: '',
+            full_name: '',
+            created_at: null
           },
           media_link: 'https://example.com',
           audio_link: null
@@ -83,7 +92,10 @@ describe('ChatMessage', async () => {
           channel_id: '1',
           sender_id: {
             id: '2',
-            email: 'mail@test.com'
+            email: 'mail@test.com',
+            avatar_url: '',
+            full_name: '',
+            created_at: null
           },
           media_link: 'https://example.com',
           audio_link: null
@@ -126,7 +138,10 @@ describe('ChatMessage', async () => {
           channel_id: '1',
           sender_id: {
             id: '1',
-            email: 'mail@test.com'
+            email: 'mail@test.com',
+            avatar_url: '',
+            full_name: '',
+            created_at: null
           },
           media_link: null,
           audio_link: 'https://example.com'
@@ -146,7 +161,10 @@ describe('ChatMessage', async () => {
           channel_id: '1',
           sender_id: {
             id: '2',
-            email: 'mail@test.com'
+            email: 'mail@test.com',
+            avatar_url: '',
+            full_name: '',
+            created_at: null
           },
           media_link: null,
           audio_link: 'https://example.com'

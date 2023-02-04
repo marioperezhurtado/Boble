@@ -12,8 +12,16 @@ interface CreateGroup {
 interface DeleteGroup {
   groupId: string
 }
+interface UpdateGroup {
+  groupId: string
+  name: string
+}
 interface GroupsListener {
   userId: string
+  callback: () => void
+}
+interface GroupListener {
+  groupId: string
   callback: () => void
 }
 
@@ -64,6 +72,15 @@ export async function deleteGroup({ groupId }: DeleteGroup) {
   if (error) throw Error('Failed to delete group')
 }
 
+export async function updateGroup({ groupId, name }: UpdateGroup) {
+  const { error } = await supabase
+    .from('groups')
+    .update({ name })
+    .eq('id', groupId)
+
+  if (error) throw Error('Failed to update group')
+}
+
 export function groupsListener({ userId, callback }: GroupsListener) {
   return supabase
     .channel('public:group_participants')
@@ -74,6 +91,22 @@ export function groupsListener({ userId, callback }: GroupsListener) {
         schema: 'public',
         table: 'group_participants',
         filter: `user_id=eq.${userId}`
+      },
+      callback
+    )
+    .subscribe()
+}
+
+export function groupListener({ groupId, callback }: GroupListener) {
+  return supabase
+    .channel('public:groups')
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'groups',
+        filter: `id=eq.${groupId}`
       },
       callback
     )

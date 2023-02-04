@@ -64,7 +64,7 @@ export default function GifModal({ onClose, onSend }: Props) {
   return (
     <div
       ref={modalRef}
-      className="fixed z-10 w-full p-2 bottom-14 border-y bg-zinc-50 md:absolute dark:bg-zinc-700 dark:border-zinc-600">
+      className="fixed z-10 w-full pt-2 bottom-14 border-y bg-zinc-50 md:absolute dark:bg-zinc-700 dark:border-zinc-600">
       <form
         onSubmit={handleSearch}
         name="searchForm"
@@ -83,7 +83,7 @@ export default function GifModal({ onClose, onSend }: Props) {
           <img src="/search.svg" alt="search" className="w-6 h-6" />
         </button>
       </form>
-      <ul className="flex flex-wrap items-center justify-center gap-2 overflow-y-auto rounded-md max-h-60">
+      <ul className="flex flex-wrap items-center justify-center gap-2 overflow-y-auto border-t rounded-md h-96">
         {isLoading && <LoadSpinner />}
         {isError && (
           <p className="p-1.5 px-5 w-fit  bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
@@ -106,7 +106,7 @@ export default function GifModal({ onClose, onSend }: Props) {
                 onClick={() => handleSend(gif.images.downsized.url)}
                 src={gif.images.downsized.url}
                 alt={gif.alt_text}
-                className="max-w-screen overflow-hidden rounded-md shadow-md w-fit max-h-56 border dark:border-zinc-600"
+                className="overflow-hidden border rounded-md shadow-md max-w-screen w-fit max-h-56 dark:border-zinc-600"
               />
             </li>
           ))}

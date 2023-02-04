@@ -1,7 +1,8 @@
+import { useEffect } from 'react'
 import { Link } from 'wouter'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
-import { getGroup } from '@/services/groups'
+import { getGroup, groupListener } from '@/services/groups'
 import { useTranslation } from 'react-i18next'
 
 import Header from '@/layout/Header/Header'
@@ -25,13 +26,22 @@ export default function GroupInfo({ groupId }: Props) {
   const {
     data: group,
     isLoading,
-    error
+    error,
+    refetch
   } = useQuery({
     queryKey: ['group', groupId],
     queryFn: async () => await getGroup({ groupId })
   })
 
   const isAdmin = currentUser?.id === group?.creator_id
+
+  useEffect(() => {
+    // Subscribe to realtime group updates
+    groupListener({
+      groupId,
+      callback: refetch
+    })
+  }, [groupId])
 
   if (isLoading) {
     return (

@@ -39,7 +39,7 @@ export default function GroupDangerActions({ groupId, creatorId }: Props) {
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 flex-wrap justify-end">
       {isCreator && (
         <button
           onClick={() => setIsDeleting(true)}

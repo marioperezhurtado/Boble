@@ -1,26 +1,17 @@
 import { useState } from 'react'
-import { useQuery, useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
-import { getProfile } from '@/services/profile'
 import { uploadUserAvatar } from '@/services/avatar'
 
 import Avatar from '@/layout/Avatar/Avatar'
-import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
 
-export default function ChangeAvatar() {
+import type { User } from '@/types/chat'
+
+export default function ChangeAvatar({ profile }: { profile: User }) {
   const { currentUser } = useAuth()
   const [date, setDate] = useState<number>(Date.now())
 
   const refreshAvatar = () => setDate(Date.now())
-
-  const {
-    data: profile,
-    isLoading: isProfileLoading,
-    refetch
-  } = useQuery({
-    queryKey: ['profile', currentUser?.id],
-    queryFn: async () => await getProfile(currentUser?.id ?? '')
-  })
 
   const { mutate } = useMutation({
     mutationFn: async ({ avatar }: { avatar: File }) => {
@@ -29,10 +20,7 @@ export default function ChangeAvatar() {
         avatar
       })
     },
-    onSuccess: async () => {
-      await refetch()
-      refreshAvatar()
-    }
+    onSuccess: refreshAvatar
   })
 
   const handleChangeAvatar = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +33,6 @@ export default function ChangeAvatar() {
   return (
     <div className="flex flex-wrap items-center gap-4 mt-5">
       <div className="flex flex-wrap items-center gap-4">
-        {isProfileLoading && <LoadSpinner />}
         {profile && (
           <div className="relative overflow-hidden rounded-full w-fit group">
             <div className="transition group-hover:brightness-50">
