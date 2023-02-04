@@ -83,7 +83,7 @@ export default function GifModal({ onClose, onSend }: Props) {
           <img src="/search.svg" alt="search" className="w-6 h-6" />
         </button>
       </form>
-      <ul className="flex flex-wrap items-center justify-center gap-2 overflow-y-auto border-t rounded-md h-96">
+      <ul className="flex flex-wrap items-center justify-center gap-2 overflow-y-auto border-t h-96 dark:border-zinc-600">
         {isLoading && <LoadSpinner />}
         {isError && (
           <p className="p-1.5 px-5 w-fit  bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
