@@ -3,6 +3,8 @@ import { useAuth } from '@/contexts/AuthContext'
 import useTimestamp from '@/hooks/useTimestamp'
 import { useTranslation } from 'react-i18next'
 
+import Media from '@/layout/Media/Media'
+
 import { Message } from '@/types/chat'
 
 interface Props {
@@ -39,13 +41,15 @@ export default function ChatMessage({ message }: Props) {
             : 'bg-white dark:bg-zinc-700 mr-auto rounded-tl-none'
         } ${imgLoaded ? '' : 'hidden'}`}>
         {!imgError && mediaLink && (
-          <img
-            src={mediaLink}
-            alt="media"
-            className="rounded-md"
-            onLoad={handleLoadImg}
-            onError={handleImgError}
-          />
+          <Media>
+            <img
+              src={mediaLink}
+              alt="media"
+              className="rounded-md w-full"
+              onLoad={handleLoadImg}
+              onError={handleImgError}
+            />
+          </Media>
         )}
         {imgError && (
           <p className="p-1.5 pl-3 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">

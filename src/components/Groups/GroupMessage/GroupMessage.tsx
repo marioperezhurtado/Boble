@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import useHashIdToColor from '@/hooks/useHashIdToColor'
 
 import Avatar from '@/layout/Avatar/Avatar'
+import Media from '@/layout/Media/Media'
 
 import { Message } from '@/types/chat'
 
@@ -60,13 +61,15 @@ export default function GroupMessage({ message, prevMessage }: Props) {
           } ${imgLoaded ? '' : 'hidden'} ${isFirstMessageByUser ? '' : 'ml-12'}
         `}>
           {!imgError && mediaLink && (
-            <img
-              src={mediaLink}
-              alt="media"
-              className="rounded-md"
-              onLoad={handleLoadImg}
-              onError={handleImgError}
-            />
+            <Media>
+              <img
+                src={mediaLink}
+                alt="media"
+                className="rounded-md w-full"
+                onLoad={handleLoadImg}
+                onError={handleImgError}
+              />
+            </Media>
           )}
           {imgError && (
             <p className="p-1.5 pl-3 bg-red-100 border-l-4 border-red-600 text-zinc-700 dark:bg-red-200">
