@@ -1,6 +1,27 @@
-# Boble
+# BOBLE
 
-Online Web Chat
+Online Free Web Chat. Live at [chat.marioph.com](https://www.chat.marioph.com/)
+
+📸 **[Screenshots](./doc/screenshots/)**
+
+#### Key features:
+
+- **Private chats** 👥
+- **Groups** with unlimited participants 📢
+- Share text messages, images, GIFs, stickers and audio recordings in **real-time** 📡
+- All your data is stored in the **cloud** and **protected** through your account 🔒
+- **Create** and **delete** chats and messages, and **manage** your groups ✏️
+- Access from **all your devices**, since you only need a browser 💫
+- Only requires a verified email address, no phone number, payment or other personal information 😇
+- **Translated** into different languages (_currently English, Spanish and French_) 🌎
+
+This project was made to **learn** about some tools.
+
+This is **not** a professional or for-profit project.
+
+If you want to make a similar project with some of this tools, this could be a **reference example** (_that's why I share it_), but don't expect everything to be as correct as it could be.
+
+If you have any suggestions or encounter any problems, feel free to **report** them.
 
 <p>
 	<img src='https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB'/>
@@ -23,7 +44,13 @@ Online Web Chat
 
 ## 🧑‍💻 Tech Stack
 
-[React](https://es.reactjs.org/), [Typescript](https://www.typescriptlang.org/), [TailwindCSS](https://tailwindcss.com/), [Supabase](https://supabase.com/)
+**[React](https://es.reactjs.org/)** - JavaScript library for building user interfaces
+
+**[Typescript](https://www.typescriptlang.org/)** - Strongly typed JavaScript
+
+**[TailwindCSS](https://tailwindcss.com/)** - Utility-first CSS framework
+
+**[Supabase](https://supabase.com/)** - Open source backend as a service
 
 ## 🔧 Tools / Dependencies
 
@@ -68,10 +95,14 @@ https://supabase.com/docs
 - Create a new project in the Supabase dashboard
 
 - Enable and configure authentication providers (google, github)
+
   https://app.supabase.com/project/^your-proyect^/auth/providers
 
-- Create RLS (Row Level Security) authorization rules  
-   https://app.supabase.com/project/^your-proyect^/auth/policies
+- Create tables and setup its RLS (Row Level Security) policies
+
+  You can find the SQL queries and policies of this project [here](./doc/Boble.sql), or you might create your own.
+
+  https://app.supabase.com/project/^your-proyect^/auth/policies
 
 ## 💬 Environment Variables
 
@@ -97,14 +128,4 @@ Supabase env variables can be found at https://app.supabase.com/project/^your-pr
 
 ```bash
   npm run test
-```
-
-```bash
-  npm run coverage
-```
-
-## 🛠️ Build for production
-
-```bash
-  npm run build
 ```

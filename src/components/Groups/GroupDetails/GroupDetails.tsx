@@ -16,7 +16,7 @@ export default function GroupDetails({ group }: { group: Group }) {
   })
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 px-8 py-4 mx-auto border-y dark:border-zinc-700">
+    <div className="flex flex-wrap items-center justify-between gap-4 px-2 py-2 mx-auto md:py-4 sm:px-4 md:px-8 border-y dark:border-zinc-700">
       <div className="flex flex-wrap items-center gap-2 sm:gap-4">
         <ChangeGroupAvatar group={group} />
         <ChangeGroupName group={group} />

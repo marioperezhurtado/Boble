@@ -9,7 +9,7 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
   background: #164e632d;

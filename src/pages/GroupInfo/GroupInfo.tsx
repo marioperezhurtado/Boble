@@ -100,7 +100,7 @@ export default function GroupInfo({ groupId }: Props) {
           />
           {isAdmin && <AddParticipant groupId={groupId} />}
         </div>
-        <div className="flex items-center justify-between p-4 pb-6">
+        <div className="flex items-end justify-between p-4 pb-6">
           <div className="flex gap-2">
             <ToggleDarkMode />
             <ChangeLanguage />

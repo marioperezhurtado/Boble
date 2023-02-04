@@ -57,7 +57,7 @@ export default function ParticipantsList({ groupId, creatorId }: Props) {
   }
 
   return (
-    <div className="px-8 pt-4 border-b dark:border-zinc-700">
+    <div className="px-2 pt-4 border-b md:px-8 sm:px-4 dark:border-zinc-700">
       <h2 className="text-lg font-semibold">{t('group-participants.title')}</h2>
       <ul className="flex items-center gap-4 py-4 overflow-x-auto">
         {creator && (
