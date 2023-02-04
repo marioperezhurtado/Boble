@@ -2,7 +2,7 @@
 
 Online Free Web Chat. Live at [chat.marioph.com](https://www.chat.marioph.com/)
 
-📸 **[Screenshots](./doc/screenshots/)**
+📸 **[Screenshots](https://github.com/marioperezhurtado/Boble/tree/main/doc/screenshots)**
 
 #### Key features:
 

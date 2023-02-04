@@ -36,7 +36,7 @@ export default function ChatMessage({ message }: Props) {
         className={`w-3/4 sm:max-w-xs md:max-w-sm p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 mt-4 ${
           isOwnMessage
             ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
-            : 'bg-white dark:bg-zinc-700 mr-auto rounded-tl-none ml-10'
+            : 'bg-white dark:bg-zinc-700 mr-auto rounded-tl-none'
         } ${imgLoaded ? '' : 'hidden'}`}>
         {!imgError && mediaLink && (
           <img
@@ -77,13 +77,13 @@ export default function ChatMessage({ message }: Props) {
 
   return (
     <div
-      className={`w-fit max-w-full p-1 px-2 pb-1 rounded-md shadow-md flex flex-col gap-1 mt-4 ${
+      className={`w-fit max-w-lg p-1 px-2 pb-1 rounded-md shadow-md flex flex-col gap-1 mt-4 ${
         isOwnMessage
           ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
           : 'bg-white dark:bg-zinc-700 mr-auto rounded-tl-none'
       }`}>
       <div className="flex gap-2 ">
-        <p className="my-1.5 break-all">{text}</p>
+        <p className="my-1.5 break-words">{text}</p>
         <p className="self-end flex-grow pt-1 text-xs text-right">{time}</p>
       </div>
     </div>

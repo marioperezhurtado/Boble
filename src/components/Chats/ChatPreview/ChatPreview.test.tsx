@@ -27,14 +27,12 @@ describe('ChatPreview', async () => {
           created_at: '999',
           user1: {
             id: '1',
-            created_at: '999',
             full_name: 'Test name 1',
             email: 'mail@test.com',
             avatar_url: 'https://test.com'
           },
           user2: {
             id: '2',
-            created_at: '999',
             full_name: 'Test name 2',
             email: 'mail@test.com',
             avatar_url: 'https://test.com'
@@ -55,14 +53,12 @@ describe('ChatPreview', async () => {
           created_at: '999',
           user1: {
             id: '2',
-            created_at: '999',
             full_name: 'Test name 1',
             email: 'mail@test.com',
             avatar_url: 'https://test.com'
           },
           user2: {
             id: '1',
-            created_at: '999',
             full_name: 'Test name 2',
             email: 'mail@test.com',
             avatar_url: 'https://test.com'
@@ -85,15 +81,13 @@ describe('ChatPreview', async () => {
             id: '1',
             email: 'mail@test1.com',
             avatar_url: '',
-            full_name: '',
-            created_at: '999'
+            full_name: ''
           },
           user2: {
             id: '2',
             email: 'mail@test2.com',
             avatar_url: '',
-            full_name: '',
-            created_at: '999'
+            full_name: null
           }
         }}
       />
@@ -111,15 +105,13 @@ describe('ChatPreview', async () => {
             id: '1',
             full_name: 'Test name 3',
             email: '',
-            avatar_url: '',
-            created_at: '999'
+            avatar_url: ''
           },
           user2: {
             id: '2',
             full_name: 'Test name 3',
             email: '',
-            avatar_url: '',
-            created_at: '999'
+            avatar_url: ''
           }
         }}
       />
@@ -135,14 +127,12 @@ describe('ChatPreview', async () => {
           created_at: '999',
           user1: {
             id: '1',
-            created_at: '999',
             avatar_url: 'https://test.com',
             full_name: 'Test name 3',
             email: ''
           },
           user2: {
             id: '1',
-            created_at: '999',
             avatar_url: 'https://test.com',
             full_name: 'Test name 3',
             email: ''
@@ -161,14 +151,12 @@ describe('ChatPreview', async () => {
           created_at: '999',
           user1: {
             id: '1',
-            created_at: '999',
             email: 'mail@own-test.com',
             avatar_url: null,
             full_name: null
           },
           user2: {
             id: '1',
-            created_at: '999',
             email: 'mail@own-test.com',
             avatar_url: null,
             full_name: null

@@ -37,8 +37,7 @@ describe('ChangeUserAvatar', async () => {
             id: '1',
             email: 'mail@test.com',
             avatar_url: 'https://test.com',
-            full_name: 'Test User',
-            created_at: null
+            full_name: 'Test User'
           }}
         />
       </QueryClientProvider>

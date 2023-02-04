@@ -21,8 +21,7 @@ describe('ChatMessage', async () => {
             id: '1',
             email: 'mail@test.com',
             avatar_url: '',
-            full_name: '',
-            created_at: null
+            full_name: ''
           },
           media_link: null,
           audio_link: null
@@ -45,8 +44,7 @@ describe('ChatMessage', async () => {
             id: '2',
             email: 'mail@test.com',
             avatar_url: '',
-            full_name: '',
-            created_at: null
+            full_name: ''
           },
           media_link: null,
           audio_link: null
@@ -71,8 +69,7 @@ describe('ChatMessage', async () => {
             id: '1',
             email: 'mail@test.com',
             avatar_url: '',
-            full_name: '',
-            created_at: null
+            full_name: ''
           },
           media_link: 'https://example.com',
           audio_link: null
@@ -94,8 +91,7 @@ describe('ChatMessage', async () => {
             id: '2',
             email: 'mail@test.com',
             avatar_url: '',
-            full_name: '',
-            created_at: null
+            full_name: ''
           },
           media_link: 'https://example.com',
           audio_link: null
@@ -140,8 +136,7 @@ describe('ChatMessage', async () => {
             id: '1',
             email: 'mail@test.com',
             avatar_url: '',
-            full_name: '',
-            created_at: null
+            full_name: ''
           },
           media_link: null,
           audio_link: 'https://example.com'
@@ -163,8 +158,7 @@ describe('ChatMessage', async () => {
             id: '2',
             email: 'mail@test.com',
             avatar_url: '',
-            full_name: '',
-            created_at: null
+            full_name: ''
           },
           media_link: null,
           audio_link: 'https://example.com'

@@ -31,8 +31,7 @@ export default function Account() {
     id: profile?.id ?? '',
     email: profile?.email ?? '',
     avatar_url: profile?.avatar_url ?? null,
-    full_name: name,
-    created_at: null
+    full_name: name
   }
 
   const {
