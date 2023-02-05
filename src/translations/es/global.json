@@ -165,13 +165,19 @@
   },
   "translation": {
     "change-error": "No se ha podido cambiar el idioma.",
-    "title": "Cambiar idioma"
+    "title": "Cambiar idioma",
+    "en": "Inglés",
+    "es": "Español",
+    "fr": "Francés"
   },
   "dark-mode": {
     "title": "Cambiar modo oscuro"
   },
   "font-size": {
-    "title": "Cambiar tamaño de letra"
+    "title": "Cambiar tamaño de letra",
+    "normal": "Normal",
+    "large": "Grande",
+    "extra-large": "Extra grande"
   },
   "account": {
     "title": "Tu Cuenta",

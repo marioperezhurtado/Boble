@@ -6,7 +6,12 @@ import Avatar from './Avatar'
 describe('Avatar', () => {
   test('Renders avatar if url can load', () => {
     render(
-      <Avatar size="small" name="first" avatarUrl="https://i.pravatar.cc/100" />
+      <Avatar
+        size="small"
+        name="first"
+        avatarUrl="https://i.pravatar.cc/100"
+        id="123"
+      />
     )
     const image = screen.getByAltText('first avatar')
 
@@ -16,12 +21,36 @@ describe('Avatar', () => {
   })
 
   test('Expands avatar and closes it', () => {
-    const image = screen.getByAltText('first avatar')
-    fireEvent.load(image)
+    render(
+      <Avatar
+        size="medium"
+        name="second"
+        avatarUrl="https://i.pravatar.cc/100"
+        id="123"
+      />
+    )
+
+    const image = screen.getByAltText('second avatar')
     fireEvent.click(image)
 
-    const imageExpanded = screen.getByAltText('first avatar expanded')
+    const imageExpanded = screen.getByAltText('second avatar expanded')
+    expect(
+      imageExpanded.parentElement?.classList.contains('hidden')
+    ).toBeTruthy()
+
+    fireEvent.load(image)
+
+    expect(
+      imageExpanded.parentElement?.classList.contains('hidden')
+    ).toBeFalsy()
+
+    const nameExpanded = screen.getByText('~ second')
+    const copyId = screen.getByTitle('create-chat.clipboard')
+
     expect(imageExpanded).toBeTruthy()
+
+    expect(nameExpanded).toBeTruthy()
+    expect(copyId).toBeTruthy()
 
     const backdrop = screen.getByRole('presentation')
     fireEvent.click(backdrop)
@@ -30,20 +59,20 @@ describe('Avatar', () => {
   })
 
   test('Renders default avatar with letter if no avatarUrl is provided', () => {
-    render(<Avatar size="small" name="second" avatarUrl={null} />)
+    render(<Avatar size="small" name="third" avatarUrl={null} />)
 
-    expect(screen.getByText('S')).toBeTruthy()
-    expect(screen.queryByAltText('second avatar')).toBeNull()
+    expect(screen.getByText('T')).toBeTruthy()
+    expect(screen.queryByAltText('third avatar')).toBeNull()
   })
 
   test('Renders default avatar with letter if avatarUrl fails to load', () => {
-    render(<Avatar size="small" name="third" avatarUrl="invalid url" />)
+    render(<Avatar size="small" name="fourth" avatarUrl="invalid url" />)
 
-    const image = screen.getByAltText('third avatar')
+    const image = screen.getByAltText('fourth avatar')
 
     fireEvent.error(image)
 
     expect(screen.getByText('T')).toBeTruthy()
-    expect(screen.queryByAltText('third avatar')).toBeNull()
+    expect(screen.queryByAltText('fourth avatar')).toBeNull()
   })
 })

@@ -3,7 +3,7 @@ interface Props {
 }
 
 export default function ShowPasswordIcon({ isShown }: Props) {
-  if (isShown) {
+  if (!isShown) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"

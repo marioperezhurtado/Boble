@@ -14,17 +14,17 @@ export default function ChangeLanguage() {
   useOnClickOutside({ ref, handler: () => setOptionsOpen(false) })
 
   const handleChangeToEnglish = async () => {
-    await changeLanguage('en')
+    changeLanguage('en')
     setOptionsOpen(false)
   }
 
   const handleChangeToSpanish = async () => {
-    await changeLanguage('es')
+    changeLanguage('es')
     setOptionsOpen(false)
   }
 
   const handleChangeToFrench = async () => {
-    await changeLanguage('fr')
+    changeLanguage('fr')
     setOptionsOpen(false)
   }
 
@@ -45,6 +45,7 @@ export default function ChangeLanguage() {
           <li>
             <button
               onClick={handleChangeToEnglish}
+              title={t('translation.en')}
               className={`px-3 py-1.5 border-r hover:bg-zinc-100 dark:border-zinc-500 dark:hover:bg-zinc-600
               ${language === 'en' ? 'bg-zinc-100 dark:bg-zinc-500' : ''}`}>
               En
@@ -53,6 +54,7 @@ export default function ChangeLanguage() {
           <li>
             <button
               onClick={handleChangeToSpanish}
+              title={t('translation.es')}
               className={`px-3 py-1.5 border-r hover:bg-zinc-100 dark:border-zinc-500 dark:hover:bg-zinc-600
               ${language === 'es' ? 'bg-zinc-100 dark:bg-zinc-500' : ''}`}>
               Es
@@ -61,6 +63,7 @@ export default function ChangeLanguage() {
           <li>
             <button
               onClick={handleChangeToFrench}
+              title={t('translation.fr')}
               className={`px-3 py-1.5 hover:bg-zinc-100 dark:border-zinc-600 dark:hover:bg-zinc-600
               ${language === 'fr' ? 'bg-zinc-100 dark:bg-zinc-500' : ''}`}>
               Fr

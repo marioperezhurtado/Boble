@@ -19,7 +19,7 @@ export default function Home() {
   const { t } = useTranslation('global')
 
   return (
-    <main className="min-h-screen px-4 md:px-12 bg-zinc-50 dark:bg-zinc-800">
+    <main className="min-h-screen px-4 sm:px-8 md:px-12 bg-zinc-50 dark:bg-zinc-800 overflow-x-hidden">
       <div className="flex max-w-screen-lg gap-4 pt-10 mx-auto sm:pt-16 title">
         <Bubbles />
         <div>

@@ -103,17 +103,21 @@ describe('GroupMessage', async () => {
     expect(otherMediaMessage.parentElement?.className).toContain('mr-auto')
 
     const images = screen.getAllByRole('img')
-    expect(images).toHaveLength(2)
+    expect(images).toHaveLength(4)
   })
 
   test("Does not show media until it's loaded", () => {
-    const image = screen.getAllByRole('img')[1]
+    const image = screen.getAllByRole('img')[0]
 
-    expect(image.parentElement?.classList.contains('hidden')).toBeTruthy()
+    expect(
+      image.parentElement?.parentElement?.classList.contains('hidden')
+    ).toBeTruthy()
 
     fireEvent.load(image)
 
-    expect(image.parentElement?.classList.contains('hidden')).toBeFalsy()
+    expect(
+      image.parentElement?.parentElement?.classList.contains('hidden')
+    ).toBeFalsy()
   })
 
   test('Shows an error if media fails to load', () => {
