@@ -11,7 +11,6 @@ import ImagesIcon from '@/assets/ImagesIcon'
 import CustomizeIcon from '@/assets/CustomizeIcon'
 import SecureIcon from '@/assets/SecureIcon'
 import FastIcon from '@/assets/FastIcon'
-import GitIcon from '@/assets/GitIcon'
 
 import './Home.css'
 
@@ -100,7 +99,7 @@ export default function Home() {
           <p>{t('home.overview.fast.description')}</p>
         </li>
         <li className="p-4 transition-transform bg-white border rounded-md shadow-md dark:bg-zinc-700 dark:border-zinc-600 -skew-x-2 -skew-y-2 hover:skew-x-0 hover:skew-y-0">
-          <GitIcon />
+          <img src="/opensource.svg" alt="Open Source" className="w-6 h-6" />
           <p className="pt-2 mb-2 text-lg font-semibold">
             {t('home.overview.open-source.title')}
           </p>

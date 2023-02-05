@@ -6,7 +6,6 @@ import useOnClickOutside from '@/hooks/useOnClickOutside'
 import { useTranslation } from 'react-i18next'
 
 import Avatar from '@/layout/Avatar/Avatar'
-import CreatorIcon from '@/assets/CreatorIcon'
 import ActionsIcon from '@/assets/ActionsIcon'
 import Modal from '@/layout/Modal/Modal'
 
@@ -53,7 +52,7 @@ export default function Participant({ participant, creatorId }: Props) {
     return (
       <div className="relative">
         <span className="absolute right-0 bottom-1">
-          <CreatorIcon />
+          <img src="/crown.svg" alt="creator" className="w-5 h-5" />
         </span>
         <Avatar
           avatarUrl={avatarUrl ?? ''}
