@@ -90,19 +90,37 @@ npm install
 
 https://supabase.com/docs
 
-- Create an account on Supabase
+You can find the SQL queries and policies of this project [here](./doc/Boble.sql), or you might create your own.
 
-- Create a new project in the Supabase dashboard
+Resulting database schema: (Generated w/ [supabase-schema](https://github.com/zernonia/supabase-schema) )
 
-- Enable and configure authentication providers (google, github)
+[Database Schema](./doc/screenshots/db-schema.png)
+
+- Create an account on Supabase.
+
+- Create a new project in the Supabase dashboard.
+
+- Get the URL and the anon key of your project, and set them in your [.env file](#-environment-variables)
+
+  https://app.supabase.com/project/^your-proyect^/settings/api
+
+- Run "User Management Starter" SQL query.
+
+![User Management Starter](./doc/profile-starter.png)
+
+- Enable and configure authentication providers (google, github).
 
   https://app.supabase.com/project/^your-proyect^/auth/providers
 
-- Create tables and setup its RLS (Row Level Security) policies
-
-  You can find the SQL queries and policies of this project [here](./doc/Boble.sql), or you might create your own.
+- Create tables and setup its RLS (Row Level Security) policies.
 
   https://app.supabase.com/project/^your-proyect^/auth/policies
+
+- Enable realtime updates.
+
+- Enable storage, create buckets and setup its policies.
+
+  https://app.supabase.com/project/^your-proyect^/storage/buckets
 
 ## 💬 Environment Variables
 
