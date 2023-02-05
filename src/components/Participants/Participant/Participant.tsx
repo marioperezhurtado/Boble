@@ -97,8 +97,18 @@ export default function Participant({ participant, creatorId }: Props) {
           <h1 className="text-2xl font-semibold text-center">
             {t('remove-participant.title')}
           </h1>
+
           <h2 className="mt-5 text-center">{t('remove-participant.info')}</h2>
-          <div className="flex justify-center gap-4 mt-12">
+          <div className="flex flex-col items-center justify-center mt-5 pointer-events-none">
+            <Avatar
+              avatarUrl={avatarUrl ?? ''}
+              name={fullName ?? email}
+              size="large"
+              id={id}
+            />
+            <strong>{fullName ?? email}</strong>
+          </div>
+          <div className="flex justify-center gap-4 mt-5">
             <button
               onClick={() => handleRemoveParticipant()}
               className="bg-red-7 bg-red-700 text-red-50 shadow-md rounded-md px-2 py-1.5 text-sm hover:bg-red-600 transition">
