@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase'
 
+import type { Chat } from '@/types/chat'
 interface GetChats {
   userId: string
 }
@@ -22,7 +23,7 @@ export async function getChats({ userId }: GetChats) {
     .or(`user1.eq.${userId},user2.eq.${userId}`)
     .order('created_at', { ascending: false })
   if (error) throw Error('Failed to get chats')
-  return data
+  return data as Chat[]
 }
 
 export async function createChat({ userId, friendId }: CreateChat) {

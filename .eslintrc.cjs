@@ -20,6 +20,7 @@ module.exports = {
     '@typescript-eslint/space-before-function-paren': 'off',
     'react/prop-types': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
-    '@typescript-eslint/strict-boolean-expressions': 'off'
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off'
   }
 }

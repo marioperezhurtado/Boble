@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
 import { getGroups, groupsListener } from '@/services/groups'
+import { capitalize } from '@/utils/text'
 import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
@@ -14,6 +15,7 @@ interface Props {
 export default function GroupList({ groupId }: Props) {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
+  const [search, setSearch] = useState('')
 
   const {
     data: groups,
@@ -35,6 +37,13 @@ export default function GroupList({ groupId }: Props) {
       callback: refetch
     })
   }, [currentUser])
+
+  const matchingGroups = groups?.filter((g) =>
+    g.name?.toLowerCase().includes(search.toLowerCase())
+  )
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setSearch(capitalize(e.target.value))
 
   if (isLoading) {
     return (
@@ -64,16 +73,32 @@ export default function GroupList({ groupId }: Props) {
   }
 
   return (
-    <ul className="flex flex-col overflow-y-auto bg-zinc-50 dark:bg-zinc-800">
-      {groups.map((g) => (
-        <li
-          key={g.id}
-          className={`flex items-center ${
-            g.id === groupId ? 'bg-zinc-100 dark:bg-zinc-700' : ''
-          }`}>
-          <GroupPreview group={g} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <input
+        value={search}
+        onChange={handleChange}
+        type="text"
+        placeholder={t('groups.search.placeholder')}
+        className="border rounded-md px-2 py-1 max-w-full mx-4 mt-2.5 mb-2 "
+        autoComplete="off"
+      />
+      <ul className="flex flex-col overflow-y-auto bg-zinc-50 dark:bg-zinc-800">
+        {matchingGroups?.map((g) => (
+          <li
+            key={g.id}
+            className={`flex items-center ${
+              g.id === groupId ? 'bg-zinc-100 dark:bg-zinc-700' : ''
+            }`}>
+            <GroupPreview group={g} />
+          </li>
+        ))}
+        {!matchingGroups?.length && (
+          <p className="py-5 text-center border-t">
+            {t('groups.search.no-results')}
+            <span className="font-bold"> {`"${search}"`}</span>
+          </p>
+        )}
+      </ul>
+    </>
   )
 }

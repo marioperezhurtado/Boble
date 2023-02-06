@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
 import { getChats, chatsListener } from '@/services/chats'
+import { capitalize } from '@/utils/text'
 import { useTranslation } from 'react-i18next'
 
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
@@ -14,6 +15,7 @@ interface Props {
 export default function ChatList({ chatId }: Props) {
   const { t } = useTranslation('global')
   const { currentUser } = useAuth()
+  const [search, setSearch] = useState('')
 
   const {
     data: chats,
@@ -35,6 +37,17 @@ export default function ChatList({ chatId }: Props) {
       callback: refetch
     })
   }, [currentUser])
+
+  const matchingChats = chats?.filter(
+    (c) =>
+      c.user1?.full_name?.toLowerCase().includes(search.toLowerCase()) ||
+      c.user2?.full_name?.toLowerCase().includes(search.toLowerCase()) ||
+      c.user1?.email.toLowerCase().includes(search.toLowerCase()) ||
+      c.user2?.email.toLowerCase().includes(search.toLowerCase())
+  )
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setSearch(capitalize(e.target.value))
 
   if (isLoading) {
     return (
@@ -64,16 +77,32 @@ export default function ChatList({ chatId }: Props) {
   }
 
   return (
-    <ul className="flex flex-col overflow-y-auto bg-zinc-50 dark:bg-zinc-800">
-      {chats.map((c) => (
-        <li
-          key={c.id}
-          className={`flex items-center ${
-            c.id === chatId ? 'bg-zinc-100 dark:bg-zinc-700' : ''
-          }`}>
-          <ChatPreview chat={c} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <input
+        value={search}
+        onChange={handleChange}
+        type="text"
+        placeholder={t('chats.search.placeholder')}
+        className="border rounded-md px-2 py-1 max-w-full mx-4 mt-2.5 mb-2 "
+        autoComplete="off"
+      />
+      <ul className="flex flex-col overflow-y-auto bg-zinc-50 dark:bg-zinc-800">
+        {matchingChats?.map((c) => (
+          <li
+            key={c.id}
+            className={`flex items-center ${
+              c.id === chatId ? 'bg-zinc-100 dark:bg-zinc-700' : ''
+            }`}>
+            <ChatPreview chat={c} />
+          </li>
+        ))}
+        {!matchingChats?.length && (
+          <p className="py-5 text-center border-t">
+            {t('chats.search.no-results')}
+            <span className="font-bold"> {`"${search}"`}</span>
+          </p>
+        )}
+      </ul>
+    </>
   )
 }

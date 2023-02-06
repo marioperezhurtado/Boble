@@ -126,6 +126,10 @@
     "errors": {
       "get": "No se han podido cargar los chat.",
       "create": "No se ha podido crear el chat."
+    },
+    "search": {
+      "placeholder": "Busca chats...",
+      "no-results": "No se han encontrado chats con"
     }
   },
   "groups": {
@@ -136,6 +140,10 @@
     "errors": {
       "get": "No se han podido cargar los grupos.",
       "create": "No se ha podido crear el grupo."
+    },
+    "search": {
+      "placeholder": "Busca grupos...",
+      "no-results": "No se han encontrado grupos con"
     }
   },
   "messages": {

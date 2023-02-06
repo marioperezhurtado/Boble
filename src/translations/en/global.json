@@ -126,6 +126,10 @@
     "errors": {
       "get": "Failed to load channels.",
       "create": "Failed to create channel."
+    },
+    "search": {
+      "placeholder": "Search chats...",
+      "no-results": "No chats found with"
     }
   },
   "groups": {
@@ -136,6 +140,10 @@
     "errors": {
       "get": "Failed to load groups.",
       "create": "Failed to create group."
+    },
+    "search": {
+      "placeholder": "Search groups...",
+      "no-results": "No groups found with"
     }
   },
   "messages": {

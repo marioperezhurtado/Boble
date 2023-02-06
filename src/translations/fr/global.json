@@ -126,6 +126,10 @@
     "errors": {
       "get": "Échec du chargement des chats.",
       "create": "Échec de la création du chat."
+    },
+    "search": {
+      "placeholder": "Rechercher des chats...",
+      "no-results": "Aucune discussion trouvée avec"
     }
   },
   "groups": {
@@ -136,6 +140,10 @@
     "errors": {
       "get": "Échec du chargement des groupes.",
       "create": "Échec de la création du groupe."
+    },
+    "search": {
+      "placeholder": "Rechercher des groupes...",
+      "no-results": "Aucun groupe trouvé avec"
     }
   },
   "messages": {
