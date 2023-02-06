@@ -7,6 +7,9 @@ interface CreateChat {
   userId: string
   friendId: string
 }
+interface DeleteChat {
+  chatId: string
+}
 interface ChatsListener {
   userId: string
   callback: () => void
@@ -18,7 +21,7 @@ export async function getChats({ userId }: GetChats) {
     .select('*, user1(*), user2(*)')
     .or(`user1.eq.${userId},user2.eq.${userId}`)
     .order('created_at', { ascending: false })
-  if (error) throw Error('Failed to get channels')
+  if (error) throw Error('Failed to get chats')
   return data
 }
 
@@ -26,9 +29,12 @@ export async function createChat({ userId, friendId }: CreateChat) {
   const { error } = await supabase
     .from('chats')
     .insert({ user1: userId, user2: friendId })
-  if (error) {
-    throw Error('Failed to create channel')
-  }
+  if (error) throw Error('Failed to create chat')
+}
+
+export async function deleteChat({ chatId }: DeleteChat) {
+  const { error } = await supabase.from('chats').delete().eq('id', chatId)
+  if (error) throw Error('Failed to delete chat')
 }
 
 export function chatsListener({ userId, callback }: ChatsListener) {

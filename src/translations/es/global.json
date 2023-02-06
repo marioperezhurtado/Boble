@@ -244,6 +244,17 @@
       "delete": "Eliminar grupo"
     }
   },
+  "chat-actions": {
+    "delete": {
+      "title": "¿Estas seguro de que quieres eliminar este chat?",
+      "info": "Este chat y todos sus mensajes serán eliminados",
+      "info2": "permanentemente.",
+      "info3": "",
+      "cancel": "Cancelar",
+      "delete": "Eliminar chat",
+      "button": "Eliminar"
+    }
+  },
   "add-participant": {
     "title": "Añadir al grupo",
     "placeholder": "Código de usuario...",

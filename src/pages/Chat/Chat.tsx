@@ -9,6 +9,7 @@ import CreateChat from '@/components/Chats/CreateChat/CreateChat'
 import CreateGroup from '@/components/Groups/CreateGroup/CreateGroup'
 
 import Channel from '@/components/Channels/Channel/Channel'
+import GroupInfo from '@/components/Groups/GroupInfo/GroupInfo'
 import Back from '@/layout/Back/Back'
 
 import ToggleDarkMode from '@/layout/ToggleDarkMode/ToggleDarkMode'
@@ -18,9 +19,10 @@ import ChangeLanguage from '@/layout/ChangeLanguage/ChangeLanguage'
 interface Props {
   channelId: string
   type: 'chat' | 'group'
+  info?: boolean
 }
 
-export default function ChatPage({ channelId, type }: Props) {
+export default function ChatPage({ channelId, type, info }: Props) {
   const { t } = useTranslation('global')
   const [channelsHidden, setChannelsHidden] = useState(true)
 
@@ -59,7 +61,7 @@ export default function ChatPage({ channelId, type }: Props) {
                     <button
                       className={`border px-2 py-1.5 rounded-md shadow-md ${
                         type === 'chat'
-                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50 hover:bg-cyan-600 transition'
+                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50 hover:bg-cyan-600 transition hover:border-cyan-600'
                           : 'dark:bg-zinc-700 dark:border-zinc-600 bg-white hover:bg-zinc-100 transition'
                       }`}>
                       {t('channels.chats')}
@@ -69,7 +71,7 @@ export default function ChatPage({ channelId, type }: Props) {
                     <button
                       className={`border px-2 py-1.5 rounded-md shadow-md ${
                         type === 'group'
-                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50 hover:bg-cyan-600 transition'
+                          ? 'bg-cyan-700 border-cyan-700 text-cyan-50 hover:bg-cyan-600 transition hover:border-cyan-600'
                           : 'dark:bg-zinc-700 dark:border-zinc-600 bg-white hover:bg-zinc-100 transition'
                       }`}>
                       {t('channels.groups')}
@@ -85,7 +87,8 @@ export default function ChatPage({ channelId, type }: Props) {
           className={`relative flex-grow lg:block border-r dark:border-zinc-700
           ${channelsHidden ? '' : 'hidden'}
           `}>
-          <Channel channelId={channelId} type={type} />
+          {info && <GroupInfo groupId={channelId} />}
+          {!info && <Channel channelId={channelId} type={type} />}
         </div>
       </main>
     </div>

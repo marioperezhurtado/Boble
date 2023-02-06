@@ -3,7 +3,7 @@
 --chats
 create table chats(
   id uuid default uuid_generate_v4() primary key,
-  created_at timestamp default now() not null,
+  created_at timestampz default now(),
   user1 uuid references profiles (id) on delete cascade not null,
   user2 uuid references profiles (id) on delete cascade not null,
 );
@@ -11,9 +11,9 @@ create table chats(
 --chat messages
 create table chat_messages (
   id uuid default uuid_generate_v4() primary key,
-  created_at timestamp default now() not null,
-  sender_id uuid references profiles (id) not null on delete cascade ,
-  chat_id uuid references chats (id)  not null on delete cascade,
+  created_at timestampz default now(),
+  sender_id uuid references profiles (id) on delete cascade not null,
+  chat_id uuid references chats (id) on delete cascade not null,
   text text,
   media_link text,
   audio_link text
@@ -22,7 +22,7 @@ create table chat_messages (
 --groups
 create table groups(
   id uuid default uuid_generate_v4() primary key,
-  created_at timestamp default now() not null,
+  created_at timestampz default now(),
   creator_id uuid references profiles (id)  not null on delete cascade,
   name text not null,
   image_url text
@@ -30,7 +30,7 @@ create table groups(
 
 --group participants 
 create table group_participants (
-  joined_at timestamp default now() not null,
+  joined_at timestampz default now(),
   user_id uuid references profiles (id) not null on delete cascade,
   group_id uuid references groups (id) not null on delete cascade,
   primary key (user_id, group_id)
@@ -39,7 +39,7 @@ create table group_participants (
 --group messages
 create table group_messages (
   id uuid default uuid_generate_v4() primary key,
-  created_at timestamp default now() not null,
+  created_at timestampz default now(),
   sender_id uuid references profiles (id) not null on delete cascade,
   group_id uuid references groups (id) not null on delete cascade,
   text text,
@@ -59,12 +59,13 @@ true
 --CHATS table policies
 
 --Users can select their own chats
---Users can insert their own channels
+--Users can insert their own chats
+--Users can delete their own chats
 ((uid() = user1) OR (uid() = user2))
 
 --CHATS_MESSAGES table policies
 
--- Users can select messages all in chats they belong to
+-- Users can select all messages in chats they belong to
 ((uid() IN ( SELECT chats.user1
   FROM chats
   WHERE (chat_messages.chat_id = chats.id))) OR 
@@ -84,6 +85,7 @@ true
 --GROUPS table policies
 
 --Authenticated users can select all groups
+true
 --Users can insert their own groups
 --Users can update their own groups
 (uid() = creator_id)

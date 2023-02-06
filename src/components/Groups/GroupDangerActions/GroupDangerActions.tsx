@@ -39,7 +39,7 @@ export default function GroupDangerActions({ groupId, creatorId }: Props) {
   }
 
   return (
-    <div className="flex gap-2 flex-wrap justify-end">
+    <div className="flex flex-wrap justify-end gap-2">
       {isCreator && (
         <button
           onClick={() => setIsDeleting(true)}
@@ -65,7 +65,7 @@ export default function GroupDangerActions({ groupId, creatorId }: Props) {
           <div className="flex justify-center gap-4 mt-12">
             <button
               onClick={() => handleDeleteGroup()}
-              className="bg-red-7 bg-red-700 text-red-50 shadow-md rounded-md px-2 py-1.5 text-sm hover:bg-red-600 transition">
+              className="bg-red-7 bg-red-200 text-red-800 shadow-md rounded-md px-2 py-1.5 text-sm hover:bg-red-300 transition">
               {t('group-actions.delete.delete')}
             </button>
             <button
@@ -85,7 +85,7 @@ export default function GroupDangerActions({ groupId, creatorId }: Props) {
           <div className="flex justify-center gap-4 mt-12">
             <button
               onClick={() => handleLeaveGroup()}
-              className="bg-red-7 bg-red-700 text-red-50 shadow-md rounded-md px-2 py-1.5 text-sm hover:bg-red-600 transition">
+              className="bg-red-7 bg-red-200 text-red-800 shadow-md rounded-md px-2 py-1.5 text-sm hover:bg-red-300 transition">
               {t('group-actions.leave.leave')}
             </button>
             <button

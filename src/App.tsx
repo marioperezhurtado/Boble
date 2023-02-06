@@ -4,7 +4,6 @@ import AuthRoute from './components/Routes/AuthRoute/AuthRoute'
 
 import Home from './pages/Home/Home'
 import Chat from './pages/Chat/Chat'
-import GroupInfo from './pages/GroupInfo/GroupInfo'
 import Account from './pages/Account/Account'
 import Invite from './pages/Invite/Invite'
 import Login from './pages/Login/Login'
@@ -47,7 +46,11 @@ export default function App() {
         <Route path="/groups/:channelId/info">
           {(params) => (
             <ProtectedRoute>
-              <GroupInfo groupId={params.channelId ?? ''} />
+              <Chat
+                channelId={params.channelId ?? ''}
+                type="group"
+                info={true}
+              />
             </ProtectedRoute>
           )}
         </Route>

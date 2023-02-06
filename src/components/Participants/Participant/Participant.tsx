@@ -80,7 +80,7 @@ export default function Participant({ participant, creatorId }: Props) {
             )}
             <button
               onClick={handleOpenActions}
-              className="absolute bottom-0 -right-4">
+              className="absolute bottom-0 transition rounded-full -right-4 hover:bg-zinc-200 dark:hover:bg-zinc-600">
               <ActionsIcon />
             </button>
           </>
@@ -97,7 +97,6 @@ export default function Participant({ participant, creatorId }: Props) {
           <h1 className="text-2xl font-semibold text-center">
             {t('remove-participant.title')}
           </h1>
-
           <h2 className="mt-5 text-center">{t('remove-participant.info')}</h2>
           <div className="flex flex-col items-center justify-center mt-5 pointer-events-none">
             <Avatar
@@ -111,7 +110,7 @@ export default function Participant({ participant, creatorId }: Props) {
           <div className="flex justify-center gap-4 mt-5">
             <button
               onClick={() => handleRemoveParticipant()}
-              className="bg-red-7 bg-red-700 text-red-50 shadow-md rounded-md px-2 py-1.5 text-sm hover:bg-red-600 transition">
+              className="bg-red-7 bg-red-200 text-red-800 shadow-md rounded-md px-2 py-1.5 text-sm hover:bg-red-300 transition">
               {t('remove-participant.remove')}
             </button>
             <button
