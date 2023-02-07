@@ -4,10 +4,17 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import GroupMessage from './GroupMessage'
 
 vi.mock('@/contexts/AuthContext')
+vi.mock('@/hooks/useHashIdToColor')
 
 describe('GroupMessage', async () => {
   const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
   useAuth.mockReturnValue({ currentUser: { id: '1' } })
+
+  const { useHashIdToColor }: { useHashIdToColor: any } = await import(
+    '@/hooks/useHashIdToColor'
+  )
+
+  useHashIdToColor.mockReturnValue('#000')
 
   test('Renders messages with different styles depending on sender', () => {
     render(
@@ -44,7 +51,7 @@ describe('GroupMessage', async () => {
             id: '2',
             email: 'mail@test.com',
             avatar_url: '',
-            full_name: ''
+            full_name: 'Other User'
           },
           media_link: null,
           audio_link: null
@@ -175,5 +182,22 @@ describe('GroupMessage', async () => {
 
     const audio = screen.getAllByTitle('Audio message')
     expect(audio).toHaveLength(2)
+  })
+
+  test("Renders other user's messages with generated colors", () => {
+    expect(useHashIdToColor).toHaveBeenCalledWith({
+      id: '1',
+      userId: '2'
+    })
+
+    expect(
+      screen.getByText('Other user message').parentElement?.parentElement
+        ?.className
+    ).toContain('#000')
+  })
+
+  test('Renders first other user message with its name', () => {
+    expect(screen.getByText('Other user message')).toBeTruthy()
+    expect(screen.getByText('~ Other User')).toBeTruthy()
   })
 })

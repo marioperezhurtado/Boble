@@ -7,6 +7,7 @@ export default function ActionsIcon() {
       fill="none"
       viewBox="0 0 24 24"
       className="w-8 h-8">
+      <title>Actions</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

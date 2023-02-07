@@ -1,5 +1,5 @@
 import { describe, test, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import ChatList from './ChatList'
@@ -122,5 +122,77 @@ describe('ChatList', async () => {
     )
 
     expect(getChats).toHaveBeenCalledWith({ userId: '' })
+  })
+
+  test('Searchs for chats and renders the matches', async () => {
+    getChats.mockReturnValueOnce([
+      {
+        id: '999',
+        created_at: '2023-01-06T13:07:48.16155+00:00',
+        user1: {
+          id: '1',
+          full_name: 'Full name match',
+          avatar_url: '',
+          email: 'email@test.com'
+        },
+        user2: {
+          id: '2',
+          full_name: null,
+          avatar_url: '',
+          email: 'mail@match.com'
+        }
+      },
+      {
+        id: '999',
+        created_at: '2023-01-06T13:07:48.16155+00:00',
+        user1: {
+          id: '1',
+          full_name: null,
+          avatar_url: '',
+          email: 'mail@match.com'
+        },
+        user2: {
+          id: '2',
+          full_name: 'Test user 2',
+          avatar_url: '',
+          email: ''
+        }
+      },
+      {
+        id: '999',
+        created_at: '2023-01-06T13:07:48.16155+00:00',
+        user1: {
+          id: '1',
+          full_name: 'No match',
+          avatar_url: '',
+          email: ''
+        },
+        user2: {
+          id: '2',
+          full_name: 'No match',
+          avatar_url: '',
+          email: ''
+        }
+      }
+    ])
+    render(
+      <QueryClientProvider client={queryClient}>
+        <ChatList chatId="999" />
+      </QueryClientProvider>
+    )
+
+    const input = await screen.findByPlaceholderText('chats.search.placeholder')
+    fireEvent.change(input, { target: { value: 'Full name match' } })
+
+    expect(screen.getAllByText('Full name match')).toHaveLength(2)
+    expect(screen.getAllByText('No match')).toHaveLength(1)
+
+    fireEvent.change(input, { target: { value: 'mail@match.com' } })
+
+    expect(screen.getAllByText('mail@match.com')).toBeTruthy()
+    expect(screen.getAllByText('No match')).toHaveLength(1)
+
+    fireEvent.change(input, { target: { value: 'safkdfkasjjkasd' } })
+    expect(screen.getByText('chats.search.no-results')).toBeTruthy()
   })
 })

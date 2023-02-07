@@ -3,7 +3,7 @@ interface HashIdToColor {
   userId: string
 }
 
-export default function useHashIdToColor({ id, userId }: HashIdToColor) {
+export function useHashIdToColor({ id, userId }: HashIdToColor) {
   const colors = [
     'bg-orange-300 text-orange-900',
     'bg-blue-300 text-blue-900',

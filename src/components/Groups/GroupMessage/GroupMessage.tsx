@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import useTimestamp from '@/hooks/useTimestamp'
 import { useTranslation } from 'react-i18next'
-import useHashIdToColor from '@/hooks/useHashIdToColor'
+import { useHashIdToColor } from '@/hooks/useHashIdToColor'
 
 import Avatar from '@/layout/Avatar/Avatar'
 import Media from '@/layout/Media/Media'
@@ -38,6 +38,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
     userId: senderId.id
   })
 
+  const name = senderId.full_name ?? senderId.email
   const isOwnMessage = currentUser?.id === senderId.id
   const isFirstMessageByUser =
     !isOwnMessage && prevMessage?.sender_id.id !== senderId.id
@@ -47,7 +48,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
       <div className="flex justify-end gap-2 mt-4">
         {isFirstMessageByUser && (
           <Avatar
-            avatarUrl={senderId.avatar_url ?? ''}
+            avatarUrl={senderId.avatar_url}
             name={senderId.email}
             size={'small'}
             id={senderId.id}
@@ -79,9 +80,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
           <p>{text}</p>
           <div className="flex justify-between">
             {isFirstMessageByUser && (
-              <p className="text-sm font-semibold">
-                ~ {senderId.full_name ?? senderId.email}
-              </p>
+              <p className="text-sm font-semibold">~ {name}</p>
             )}
             <p className="self-end flex-grow text-xs text-right">{time}</p>
           </div>
@@ -95,8 +94,8 @@ export default function GroupMessage({ message, prevMessage }: Props) {
       <div className="flex justify-end gap-2 mt-4">
         {isFirstMessageByUser && (
           <Avatar
-            avatarUrl={senderId.avatar_url ?? ''}
-            name={senderId.email}
+            avatarUrl={senderId.avatar_url}
+            name={name}
             size={'small'}
             id={senderId.id}
           />
@@ -114,9 +113,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
           <p>{text}</p>
           <div className="flex justify-between">
             {isFirstMessageByUser && (
-              <p className="text-sm font-semibold">
-                ~ {senderId.full_name ?? senderId.email}
-              </p>
+              <p className="text-sm font-semibold">~ {name}</p>
             )}
             <p className="self-end flex-grow text-xs text-right">{time}</p>
           </div>
@@ -129,8 +126,8 @@ export default function GroupMessage({ message, prevMessage }: Props) {
     <div className="flex justify-end gap-2 mt-4">
       {isFirstMessageByUser && (
         <Avatar
-          avatarUrl={senderId.avatar_url ?? ''}
-          name={senderId.email}
+          avatarUrl={senderId.avatar_url}
+          name={name}
           size={'small'}
           id={senderId.id}
         />
@@ -143,9 +140,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
         } 
           ${isFirstMessageByUser ? '' : 'ml-12'}`}>
         {isFirstMessageByUser && (
-          <p className="text-sm font-semibold">
-            ~ {senderId.full_name ?? senderId.email}
-          </p>
+          <p className="text-sm font-semibold">~ {name}</p>
         )}
         <div className="flex gap-2 ">
           <p className="my-1.5 break-all">{text}</p>

@@ -8,7 +8,8 @@ import { useTranslation } from 'react-i18next'
 import Header from '@/layout/Header/Header'
 import LoadSpinner from '@/layout/LoadSpinner/LoadSpinner'
 import ChangeUserAvatar from '@/components/Avatars/ChangeUserAvatar/ChangeUserAvatar'
-import ConnectFriends from '@/components/ConnectFriends/ConnectFriends'
+import CopyInviteCode from '@/layout/CopyInviteCode/CopyInviteCode'
+import QRCode from 'react-qr-code'
 
 export default function Account() {
   const { t } = useTranslation('global')
@@ -62,6 +63,9 @@ export default function Account() {
     })
   }, [currentUser?.id])
 
+  const id = currentUser?.id ?? ''
+  const inviteLink = `${import.meta.env.VITE_APP_URL}/invite/${id}`
+
   return (
     <>
       <Header />
@@ -82,7 +86,12 @@ export default function Account() {
           {isProfileLoading && <LoadSpinner />}
           {profile && (
             <>
-              <ChangeUserAvatar profile={profile} />
+              <div className="flex flex-wrap items-center gap-4 mt-5">
+                <ChangeUserAvatar profile={profile} />
+                <span className="font-semibold break-all">
+                  {profile?.email}
+                </span>
+              </div>
               <form
                 onSubmit={handleSubmit}
                 name="accountForm"
@@ -115,7 +124,29 @@ export default function Account() {
             </>
           )}
         </div>
-        <ConnectFriends />
+        <div className="max-w-xl p-6 mx-auto mt-5 bg-white border rounded-md shadow-md md:mt-10 dark:border-zinc-600 dark:bg-zinc-700">
+          <h1 className="mb-5 text-xl font-semibold">
+            {t('account.connect.title')}
+          </h1>
+          <h2 className="mb-2">{t('account.connect.description')}</h2>
+          <p className="pt-5">{t('account.connect.code')}</p>
+          <div className="flex items-center gap-4 p-1 border rounded-md dark:border-zinc-500 dark:bg-zinc-600 bg-zinc-50">
+            <p className="flex-grow pl-2 break-all">{id}</p>
+            <CopyInviteCode id={id} />
+          </div>
+          <p className="pt-5">{t('account.connect.link')}</p>
+          <div className="flex items-center gap-4 p-1 border rounded-md dark:border-zinc-500 dark:bg-zinc-600 bg-zinc-50">
+            <p className="flex-grow pl-2 break-all">{inviteLink}</p>
+            <CopyInviteCode id={inviteLink} />
+          </div>
+          <QRCode
+            value={inviteLink}
+            size={100}
+            bgColor={'none'}
+            fgColor={'#e4e4e7'}
+            className="mt-10 filter invert dark:filter-none"
+          />
+        </div>
       </main>
     </>
   )

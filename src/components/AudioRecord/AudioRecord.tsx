@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useAudioRecorder } from 'react-audio-voice-recorder'
+import { useAudioRecorder } from '@/hooks/useAudioRecorder'
 import useOnClickOutside from '@/hooks/useOnClickOutside'
 
 import StartRecordIcon from '@/assets/StartRecordingIcon'

@@ -2,7 +2,7 @@ import { describe, test, expect, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import ChangeUserAvatar from './ChangeUserAvatar'
+import ChangeGroupAvatar from './ChangeGroupAvatar'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,40 +17,56 @@ vi.mock('@/contexts/AuthContext')
 
 describe('ChangeUserAvatar', async () => {
   const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
-  const { uploadUserAvatar }: { uploadUserAvatar: any } = await import(
+  const { uploadGroupAvatar }: { uploadGroupAvatar: any } = await import(
     '@/services/avatar'
   )
-
   useAuth.mockReturnValue({
     currentUser: {
       id: '1'
     }
   })
 
-  vi.setSystemTime(123)
-
-  test('Shows profile img with date', async () => {
+  test('Shows group img', async () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ChangeUserAvatar
-          profile={{
+        <ChangeGroupAvatar
+          group={{
             id: '1',
-            email: 'mail@test.com',
             avatar_url: 'https://test.com',
-            full_name: 'Test User'
+            name: 'Test Group',
+            creator_id: '1',
+            created_at: null
           }}
         />
       </QueryClientProvider>
     )
 
     const avatar = await screen.findByAltText<HTMLImageElement>(
-      'Test User avatar'
+      'Test Group avatar'
     )
     expect(avatar).toBeTruthy()
-    expect(avatar.src).toBe('https://test.com?123')
+    expect(avatar.src).toBe('https://test.com')
   })
 
-  test('does not change avatar if there is no file', async () => {
+  test('Renders normal avatar if user is not creator', () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <ChangeGroupAvatar
+          group={{
+            id: '1',
+            avatar_url: 'https://test.com',
+            name: 'Not creator',
+            creator_id: '2',
+            created_at: null
+          }}
+        />
+      </QueryClientProvider>
+    )
+
+    expect(screen.queryByLabelText('Not creator avatar')).toBeNull()
+  })
+
+  test('Does not change avatar if there is no file', async () => {
     const input = await screen.findByLabelText('Upload avatar')
 
     fireEvent.change(input, {
@@ -59,10 +75,10 @@ describe('ChangeUserAvatar', async () => {
       }
     })
 
-    await waitFor(() => expect(uploadUserAvatar).not.toHaveBeenCalled())
+    await waitFor(() => expect(uploadGroupAvatar).not.toHaveBeenCalled())
   })
 
-  test('Changes avatar with current user id and input file', async () => {
+  test('Changes avatar with group id and input file', async () => {
     const input = await screen.findByLabelText('Upload avatar')
 
     fireEvent.change(input, {
@@ -72,8 +88,8 @@ describe('ChangeUserAvatar', async () => {
     })
 
     await waitFor(() =>
-      expect(uploadUserAvatar).toHaveBeenCalledWith({
-        id: '1',
+      expect(uploadGroupAvatar).toHaveBeenCalledWith({
+        groupId: '1',
         avatar: 'Test Image'
       })
     )

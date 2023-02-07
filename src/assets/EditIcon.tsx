@@ -7,6 +7,7 @@ export default function EditIcon() {
       fill="none"
       viewBox="0 0 24 24"
       className="w-5 h-5">
+      <title>Edit</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

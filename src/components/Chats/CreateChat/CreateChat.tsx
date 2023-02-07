@@ -50,7 +50,7 @@ export default function CreateChat() {
             className="px-2 py-1 border rounded-md dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder:text-zinc-300"
             autoComplete="off"
           />
-          <CopyInviteCode id={currentUser?.id ?? ''} />
+          <CopyInviteCode id={currentUser?.id} />
           <button
             disabled={isLoading}
             className="px-2 py-1 transition rounded-md sm:text-sm bg-cyan-700 text-cyan-50 hover:bg-cyan-600">

@@ -36,6 +36,7 @@ export default function CreateGroup() {
     <div className="flex flex-col gap-2 sm:gap-4">
       <form
         onSubmit={handleSubmit}
+        name="createGroup"
         className="flex flex-wrap justify-center gap-2">
         <input
           value={groupName}

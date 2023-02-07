@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import CopyIcon from '@/assets/CopyIcon'
 
 interface Props {
-  id: string
+  id?: string
 }
 
 export default function CopyInviteCode({ id }: Props) {

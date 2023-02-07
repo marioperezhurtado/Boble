@@ -86,7 +86,7 @@ export default function ChatPreview({ chat }: { chat: Chat }) {
           </h2>
           <div className="flex flex-col items-center justify-center mt-5 pointer-events-none">
             <Avatar
-              avatarUrl={user.avatar_url ?? ''}
+              avatarUrl={user.avatar_url}
               name={name}
               size="large"
               id={id}

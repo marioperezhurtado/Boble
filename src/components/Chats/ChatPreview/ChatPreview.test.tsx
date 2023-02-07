@@ -1,10 +1,11 @@
 import { describe, test, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 
 import ChatPreview from './ChatPreview'
 
 vi.mock('react-i18next')
 vi.mock('@/contexts/AuthContext')
+vi.mock('@/services/chats')
 
 describe('ChatPreview', async () => {
   const { useTranslation }: { useTranslation: any } = await import(
@@ -12,6 +13,7 @@ describe('ChatPreview', async () => {
   )
 
   const { useAuth }: { useAuth: any } = await import('@/contexts/AuthContext')
+  const { deleteChat }: { deleteChat: any } = await import('@/services/chats')
 
   useTranslation.mockReturnValue({
     t: (key: string) => key
@@ -166,5 +168,29 @@ describe('ChatPreview', async () => {
     )
 
     expect(screen.getAllByText('M')).toBeTruthy()
+  })
+
+  test('Opens chat actions', () => {
+    const actionsButton = screen.getAllByTitle('Actions')[0]
+
+    expect(screen.queryByText('chat-actions.delete.button')).toBeNull()
+
+    fireEvent.click(actionsButton)
+
+    expect(screen.getByText('chat-actions.delete.button')).toBeTruthy()
+  })
+
+  test('Opens delete modal and deletes', () => {
+    const deleteButton = screen.getByText('chat-actions.delete.button')
+    expect(screen.queryByText('chat-actions.delete.title')).toBeNull()
+
+    fireEvent.click(deleteButton)
+
+    expect(screen.getByText('chat-actions.delete.title')).toBeTruthy()
+
+    const confirmDeleteButton = screen.getByText('chat-actions.delete.delete')
+    fireEvent.click(confirmDeleteButton)
+
+    expect(deleteChat).toHaveBeenCalledWith({ chatId: '1' })
   })
 })

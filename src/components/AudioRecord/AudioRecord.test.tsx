@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 
 import AudioRecord from './AudioRecord'
 
-vi.mock('react-audio-voice-recorder')
+vi.mock('@/hooks/useAudioRecorder')
 
 describe('AudioRecord', async () => {
   const onClose = vi.fn()
@@ -13,7 +13,7 @@ describe('AudioRecord', async () => {
   const togglePauseResume = vi.fn()
 
   const { useAudioRecorder }: { useAudioRecorder: any } = await import(
-    'react-audio-voice-recorder'
+    '@/hooks/useAudioRecorder'
   )
 
   useAudioRecorder.mockReturnValue({
@@ -107,6 +107,26 @@ describe('AudioRecord', async () => {
 
     fireEvent.click(resumeButton)
 
-    expect(togglePauseResume).toHaveBeenCalled()
+    expect(togglePauseResume).toHaveBeenCalledTimes(2)
+  })
+
+  test('Does not toggles pause / resume if the recording if not started', () => {
+    useAudioRecorder.mockReturnValueOnce({
+      startRecording,
+      stopRecording,
+      togglePauseResume,
+      isRecording: false,
+      isPaused: false,
+      recordingTime: 95,
+      recordingBlob: new Blob()
+    })
+
+    render(<AudioRecord onClose={onClose} onSend={onSend} />)
+
+    const pauseButton = screen.getAllByTitle('Pause')[0]
+
+    fireEvent.click(pauseButton)
+
+    expect(togglePauseResume).toHaveBeenCalledTimes(2)
   })
 })

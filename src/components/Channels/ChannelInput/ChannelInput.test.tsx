@@ -89,9 +89,12 @@ describe('ChatInput', async () => {
     fireEvent.click(gifButton)
 
     expect(screen.getByPlaceholderText('gifs.placeholder')).toBeTruthy()
+  })
 
-    fireEvent.click(gifButton)
+  test('Toggles audio record on audio button click', () => {
+    const audioButton = screen.getAllByAltText('start recording')[1]
+    fireEvent.click(audioButton)
 
-    expect(screen.queryByPlaceholderText('gifs.placeholder')).toBeNull()
+    expect(screen.getByTitle('Start / stop recording')).toBeTruthy()
   })
 })

@@ -3,9 +3,11 @@ import { Link } from 'wouter'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '@/contexts/AuthContext'
 import { getGroup, groupListener } from '@/services/groups'
+import useTimestamp from '@/hooks/useTimestamp'
 import { useTranslation } from 'react-i18next'
 
-import GroupDetails from '@/components/Groups/GroupDetails/GroupDetails'
+import ChangeGroupAvatar from '@/components/Avatars/ChangeGroupAvatar/ChangeGroupAvatar'
+import ChangeGroupName from '@/components/Groups/ChangeGroupName/ChangeGroupName'
 import ParticipantsList from '@/components/Participants/ParticipantsList/ParticipantsList'
 import AddParticipant from '@/components/Participants/AddParticipant/AddParticipant'
 import GroupDangerActions from '@/components/Groups/GroupDangerActions/GroupDangerActions'
@@ -32,6 +34,10 @@ export default function GroupInfo({ groupId }: Props) {
   })
 
   const isAdmin = currentUser?.id === group?.creator_id
+  const groupDate = useTimestamp({
+    timestamp: group?.created_at ?? '',
+    type: 'date'
+  })
 
   useEffect(() => {
     // Subscribe to realtime group updates
@@ -67,11 +73,16 @@ export default function GroupInfo({ groupId }: Props) {
     <div className="flex flex-col h-full bg-zinc-50 dark:bg-zinc-800">
       <Back to="/groups" />
       <div className="flex-grow">
-        <GroupDetails group={group} />
-        <ParticipantsList
-          groupId={groupId}
-          creatorId={group.creator_id ?? ''}
-        />
+        <div className="flex flex-wrap items-center justify-between gap-4 px-2 py-2 mx-auto md:py-4 sm:px-4 md:px-8 border-y dark:border-zinc-700">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 pt-1">
+            <ChangeGroupAvatar group={group} />
+            <ChangeGroupName group={group} />
+          </div>
+          <p className="text-sm">
+            {t('group-info.created')} <strong>{groupDate}</strong>
+          </p>
+        </div>
+        <ParticipantsList groupId={groupId} creatorId={group.creator_id} />
         {isAdmin && <AddParticipant groupId={groupId} />}
       </div>
       <div className="self-end p-4 pb-6">
