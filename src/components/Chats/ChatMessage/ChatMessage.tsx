@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import Media from '@/layout/Media/Media'
 
-import { Message } from '@/types/chat'
+import type { Message } from '@/types/chat'
 
 interface Props {
   message: Message
@@ -17,8 +17,12 @@ export default function ChatMessage({ message }: Props) {
   const [imgLoaded, setImgLoaded] = useState(false)
   const [imgError, setImgError] = useState(false)
 
-  const handleLoadImg = () => setImgLoaded(true)
-  const handleImgError = () => setImgError(true)
+  const handleLoadImg = () => {
+    setImgLoaded(true)
+  }
+  const handleImgError = () => {
+    setImgError(true)
+  }
 
   const {
     sender_id: senderId,
@@ -35,7 +39,7 @@ export default function ChatMessage({ message }: Props) {
   if (mediaLink) {
     return (
       <div
-        className={`w-3/4 sm:max-w-xs max-h-52 md:max-w-sm p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 mt-4 max-h-${
+        className={`w-3/4 sm:max-w-xs md:max-w-sm p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 mt-4 max-h-${
           isOwnMessage
             ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
             : 'bg-white dark:bg-zinc-700 mr-auto rounded-tl-none'
