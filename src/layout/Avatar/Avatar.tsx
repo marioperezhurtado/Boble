@@ -13,7 +13,7 @@ interface Props {
 const SIZES = {
   small: 'w-10 h-10',
   medium: 'w-14 h-14',
-  large: 'w-18 h-18'
+  large: 'w-20 h-20'
 }
 
 export default function Avatar({ size, avatarUrl, name, id }: Props) {
