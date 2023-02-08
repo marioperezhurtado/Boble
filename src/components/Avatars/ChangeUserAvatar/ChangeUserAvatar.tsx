@@ -11,7 +11,9 @@ export default function ChangeUserAvatar({ profile }: { profile: User }) {
   const { currentUser } = useAuth()
   const [date, setDate] = useState<number>(Date.now())
 
-  const refreshAvatar = () => setDate(Date.now())
+  const refreshAvatar = () => {
+    setDate(Date.now())
+  }
 
   const { mutate } = useMutation({
     mutationFn: async ({ avatar }: { avatar: File }) => {
@@ -37,7 +39,7 @@ export default function ChangeUserAvatar({ profile }: { profile: User }) {
           <Avatar
             avatarUrl={`${profile.avatar_url ?? ''}?${date}`}
             size={'medium'}
-            name={profile.full_name ?? ''}
+            name={profile.full_name ?? profile.email}
           />
         </div>
         <div className="absolute font-bold text-white transition -translate-x-1/2 -translate-y-1/2 opacity-0 cursor-pointer group-hover:opacity-100 top-1/2 left-1/2">

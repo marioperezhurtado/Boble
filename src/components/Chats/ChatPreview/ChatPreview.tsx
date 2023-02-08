@@ -23,12 +23,16 @@ export default function ChatPreview({ chat }: { chat: Chat }) {
     e.preventDefault()
     setIsActionsOpen(true)
   }
-  const handleCloseActions = () => setIsActionsOpen(false)
+  const handleCloseActions = () => {
+    setIsActionsOpen(false)
+  }
   const handleStartDelete = (e: React.MouseEvent) => {
     e.preventDefault()
     setIsDeleting(true)
   }
-  const handleCancel = () => setIsDeleting(false)
+  const handleCancel = () => {
+    setIsDeleting(false)
+  }
   const handleDelete = async () => {
     await deleteChat({ chatId: id })
     setIsDeleting(false)

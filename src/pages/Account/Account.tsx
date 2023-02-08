@@ -43,7 +43,9 @@ export default function Account() {
   } = useMutation({
     mutationKey: ['updateProfile'],
     mutationFn: async () => await updateProfile(newProfile),
-    onSuccess: () => setName(newProfile.full_name)
+    onSuccess: () => {
+      setName(newProfile.full_name)
+    }
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -66,7 +66,7 @@ export default function GroupList({ groupId }: Props) {
 
   if (!groups?.length) {
     return (
-      <ul className="flex flex-col p-4 text-center sm:p-8 bg-zinc-50 dark:bg-zinc-800">
+      <ul className="flex flex-col px-4 py-8 text-center sm:px-8 bg-zinc-50 dark:bg-zinc-800">
         <h2 className="mb-5 text-xl font-bold">{t('groups.empty.title')}</h2>
         <p>{t('groups.empty.description')}</p>
       </ul>
