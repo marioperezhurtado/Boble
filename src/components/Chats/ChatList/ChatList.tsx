@@ -46,8 +46,9 @@ export default function ChatList({ chatId }: Props) {
       c.user2?.email.toLowerCase().includes(search.toLowerCase())
   )
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(capitalize(e.target.value))
+  }
 
   if (isLoading) {
     return (
@@ -83,7 +84,7 @@ export default function ChatList({ chatId }: Props) {
         onChange={handleChange}
         type="text"
         placeholder={t('chats.search.placeholder')}
-        className="border rounded-md px-2 py-1 max-w-full mx-4 mt-2.5 mb-2 "
+        className="border rounded-md px-2 py-1 max-w-full mx-4 mt-2.5 mb-2 dark:bg-zinc-700 dark:border-zinc-600"
         autoComplete="off"
       />
       <ul className="flex flex-col overflow-y-auto bg-zinc-50 dark:bg-zinc-800">

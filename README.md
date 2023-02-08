@@ -70,8 +70,6 @@ If you have any suggestions or encounter any problems, feel free to **report** t
 
 **QR Code:** [React-qr-code](https://www.npmjs.com/package/react-qr-code)
 
-**Audio Recorder:** [React-audio-voice-recorder](https://github.com/samhirtarif/react-audio-recorder/)
-
 **Resize Observer:** [Use-resize-observer](https://github.com/ZeeCoder/use-resize-observer)
 
 ## 📡 External API's
