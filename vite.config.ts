@@ -13,5 +13,8 @@ export default defineConfig({
   },
   test: {
     environment: 'happy-dom'
+  },
+  build: {
+    target: 'esnext'
   }
 })
