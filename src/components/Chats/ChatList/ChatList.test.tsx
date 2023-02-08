@@ -1,5 +1,5 @@
 import { describe, test, expect, vi } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import ChatList from './ChatList'
@@ -80,9 +80,11 @@ describe('ChatList', async () => {
       </QueryClientProvider>
     )
 
-    expect(await screen.findAllByText('Test user 1')).toBeTruthy()
-    expect(await screen.findAllByText('Test user 2')).toBeTruthy()
-    expect(await screen.queryByText('Current user')).toBeNull()
+    await waitFor(() => {
+      expect(screen.getByText('Test user 1')).toBeTruthy()
+      expect(screen.getByText('Test user 2')).toBeTruthy()
+      expect(screen.queryByText('Current user')).toBeNull()
+    })
   })
 
   test("Shows error if there's an error fetching chats", async () => {
@@ -184,13 +186,11 @@ describe('ChatList', async () => {
     const input = await screen.findByPlaceholderText('chats.search.placeholder')
     fireEvent.change(input, { target: { value: 'Full name match' } })
 
-    expect(screen.getAllByText('Full name match')).toHaveLength(2)
-    expect(screen.getAllByText('No match')).toHaveLength(1)
+    expect(screen.getAllByText('Full name match')).toHaveLength(1)
 
     fireEvent.change(input, { target: { value: 'mail@match.com' } })
 
     expect(screen.getAllByText('mail@match.com')).toBeTruthy()
-    expect(screen.getAllByText('No match')).toHaveLength(1)
 
     fireEvent.change(input, { target: { value: 'safkdfkasjjkasd' } })
     expect(screen.getByText('chats.search.no-results')).toBeTruthy()

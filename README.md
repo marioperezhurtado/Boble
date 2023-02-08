@@ -8,7 +8,7 @@ Online Free Web Chat. Live at [chat.marioph.com](https://www.chat.marioph.com/)
 
 - **Private chats** 👥
 - **Groups** with unlimited participants 📢
-- Share text messages, images, GIFs, stickers and audio recordings in **real-time** 📡
+- Share text messages, images, GIFs, and audio recordings in **real-time** 📡
 - All your data is stored in the **cloud** and **protected** through your account 🔒
 - **Create** and **delete** chats and messages, and **manage** your groups ✏️
 - Access from **all your devices**, since you only need a browser 💫

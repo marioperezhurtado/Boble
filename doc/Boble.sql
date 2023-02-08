@@ -23,7 +23,7 @@ create table chat_messages (
 create table groups(
   id uuid default uuid_generate_v4() primary key,
   created_at timestampz default now(),
-  creator_id uuid references profiles (id)  not null on delete cascade,
+  creator_id uuid references profiles (id) on delete cascade not null,
   name text not null,
   image_url text
 );
@@ -31,8 +31,8 @@ create table groups(
 --group participants 
 create table group_participants (
   joined_at timestampz default now(),
-  user_id uuid references profiles (id) not null on delete cascade,
-  group_id uuid references groups (id) not null on delete cascade,
+  user_id uuid references profiles (id) on delete cascade not null,
+  group_id uuid references groups (id) on delete cascade not null,
   primary key (user_id, group_id)
 );
 
@@ -40,8 +40,8 @@ create table group_participants (
 create table group_messages (
   id uuid default uuid_generate_v4() primary key,
   created_at timestampz default now(),
-  sender_id uuid references profiles (id) not null on delete cascade,
-  group_id uuid references groups (id) not null on delete cascade,
+  sender_id uuid references profiles (id)  on delete cascade not null,
+  group_id uuid references groups (id)  on delete cascade not null,
   text text,
   media_link text,
   audio_link text
@@ -50,7 +50,7 @@ create table group_messages (
 -- RLS Table Policies
 
 --PROFILES table policies
---Public profiles are viewable by anyone
+--Public profiles are viewable by anyone (select authenticated)
 true
 --Users can insert their own profile
 --Users can update their own profile

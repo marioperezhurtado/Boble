@@ -39,16 +39,16 @@ describe('AddParticipant', async () => {
     const form = screen.getByRole('form')
     fireEvent.submit(form)
 
-    await waitFor(() =>
+    await waitFor(() => {
       expect(addParticipant).toBeCalledWith({
         groupId: '1',
         userId: '123'
       })
-    )
+    })
 
-    await waitFor(() =>
+    await waitFor(() => {
       expect(screen.getByText('add-participant.success')).toBeTruthy()
-    )
+    })
   })
 
   test('Renders error message if adding participant fails', async () => {
@@ -68,9 +68,9 @@ describe('AddParticipant', async () => {
     const form = screen.getAllByRole('form')[1]
     fireEvent.submit(form)
 
-    await waitFor(() =>
+    await waitFor(() => {
       expect(screen.getByText('add-participant.error')).toBeTruthy()
-    )
+    })
   })
 
   test('Does not add participant if input is empty', async () => {
@@ -84,6 +84,8 @@ describe('AddParticipant', async () => {
     const form = screen.getAllByRole('form')[1]
     fireEvent.submit(form)
 
-    await waitFor(() => expect(addParticipant).toHaveBeenCalledTimes(2))
+    await waitFor(() => {
+      expect(addParticipant).toHaveBeenCalledTimes(2)
+    })
   })
 })

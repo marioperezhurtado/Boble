@@ -34,7 +34,7 @@ describe('GroupInfo', async () => {
     expect(screen.getByText('Loading...')).toBeTruthy()
   })
 
-  test("Shows error if group doesn't exist", () => {
+  test("Shows error if group doesn't exist", async () => {
     getGroup.mockRejectedValueOnce(new Error())
 
     render(
@@ -42,7 +42,9 @@ describe('GroupInfo', async () => {
         <GroupInfo groupId="1" />
       </QueryClientProvider>
     )
-    expect(screen.getByText('group-info.error')).toBeTruthy()
+    await waitFor(() => {
+      expect(screen.getByText('group-info.error')).toBeTruthy()
+    })
   })
 
   test('Shows group info', async () => {
@@ -60,7 +62,9 @@ describe('GroupInfo', async () => {
       </QueryClientProvider>
     )
 
-    await waitFor(() => expect(screen.getByAltText('back')).toBeTruthy())
+    await waitFor(() => {
+      expect(screen.getByAltText('back')).toBeTruthy()
+    })
   })
 
   test("Shows 'Add participant' button only if user is admin", async () => {
@@ -80,8 +84,8 @@ describe('GroupInfo', async () => {
       </QueryClientProvider>
     )
 
-    await waitFor(() =>
+    await waitFor(() => {
       expect(screen.getByText('add-participant.title')).toBeTruthy()
-    )
+    })
   })
 })

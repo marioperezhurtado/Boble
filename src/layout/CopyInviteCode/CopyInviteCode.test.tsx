@@ -29,9 +29,9 @@ describe('CopyInviteCode', () => {
 
     fireEvent.click(button)
 
-    const successMessage = screen.getByText('create-chat.clipboard-success')
-
-    expect(successMessage).toBeTruthy()
+    await waitFor(() => {
+      expect(screen.getByText('create-chat.clipboard-success')).toBeTruthy()
+    })
 
     await waitFor(
       () => {
