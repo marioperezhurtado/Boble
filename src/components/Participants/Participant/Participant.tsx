@@ -55,7 +55,7 @@ export default function Participant({ participant, creatorId }: Props) {
           <img src="/crown.svg" alt="creator" className="w-5 h-5" />
         </span>
         <Avatar
-          avatarUrl={avatarUrl ?? ''}
+          avatarUrl={avatarUrl}
           name={fullName ?? email}
           size="medium"
           id={id}
@@ -86,7 +86,7 @@ export default function Participant({ participant, creatorId }: Props) {
           </>
         )}
         <Avatar
-          avatarUrl={avatarUrl ?? ''}
+          avatarUrl={avatarUrl}
           name={fullName ?? email}
           size="medium"
           id={id}
@@ -100,7 +100,7 @@ export default function Participant({ participant, creatorId }: Props) {
           <h2 className="mt-5 text-center">{t('remove-participant.info')}</h2>
           <div className="flex flex-col items-center justify-center mt-5 pointer-events-none">
             <Avatar
-              avatarUrl={avatarUrl ?? ''}
+              avatarUrl={avatarUrl}
               name={fullName ?? email}
               size="large"
               id={id}
