@@ -7,7 +7,7 @@ import { useHashIdToColor } from '@/hooks/useHashIdToColor'
 import Avatar from '@/layout/Avatar/Avatar'
 import Media from '@/layout/Media/Media'
 
-import { Message } from '@/types/chat'
+import { type Message } from '@/types/chat'
 
 interface Props {
   message: Message
@@ -20,8 +20,12 @@ export default function GroupMessage({ message, prevMessage }: Props) {
   const [imgLoaded, setImgLoaded] = useState(false)
   const [imgError, setImgError] = useState(false)
 
-  const handleLoadImg = () => setImgLoaded(true)
-  const handleImgError = () => setImgError(true)
+  const handleLoadImg = () => {
+    setImgLoaded(true)
+  }
+  const handleImgError = () => {
+    setImgError(true)
+  }
 
   const {
     sender_id: senderId,
@@ -55,7 +59,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
           />
         )}
         <div
-          className={`w-3/4 sm:max-w-xs md:max-w-sm p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 ${
+          className={`w-fit p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 ${
             isOwnMessage
               ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
               : `${generatedColor} mr-auto rounded-tl-none`
@@ -66,7 +70,7 @@ export default function GroupMessage({ message, prevMessage }: Props) {
               <img
                 src={mediaLink}
                 alt="media"
-                className="rounded-md w-full"
+                className="max-w-xs rounded-md max-h-60 sm:max-h-80 md:max-h-96 md:max-w-md"
                 onLoad={handleLoadImg}
                 onError={handleImgError}
               />
