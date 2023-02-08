@@ -74,7 +74,11 @@ export default function ChatMessage({ message }: Props) {
             ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
             : 'bg-white dark:bg-zinc-700 mr-auto rounded-tl-none'
         }`}>
-        <audio controls className="max-w-full" title="Audio message">
+        <audio
+          controls
+          className="max-w-full"
+          title="Audio message"
+          preload="none">
           <source src={audioLink} type="audio/webm" />
         </audio>
         <p>{text}</p>

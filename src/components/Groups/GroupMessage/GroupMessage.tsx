@@ -111,7 +111,11 @@ export default function GroupMessage({ message, prevMessage }: Props) {
               : `${generatedColor} mr-auto rounded-tl-none`
           } 
           ${isFirstMessageByUser ? '' : 'ml-12'}`}>
-          <audio controls className="max-w-full" title="Audio message">
+          <audio
+            controls
+            className="max-w-full"
+            title="Audio message"
+            preload="none">
             <source src={audioLink} type="audio/webm" />
           </audio>
           <p>{text}</p>
