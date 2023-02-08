@@ -19,6 +19,11 @@ export default function App() {
         <Route path="/">
           <Home />
         </Route>
+        <Route path="/chat">
+          <ProtectedRoute>
+            <Chat channelId="" type="chat" />
+          </ProtectedRoute>
+        </Route>
         <Route path="/chats">
           <ProtectedRoute>
             <Chat channelId="" type="chat" />

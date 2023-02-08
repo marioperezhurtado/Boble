@@ -12,13 +12,17 @@ export default function SocialLogin() {
     mutate: handleSignInGoogle,
     isLoading: googleLoading,
     error: googleError
-  } = useMutation(async () => await signInGoogle(location))
+  } = useMutation(async () => {
+    await signInGoogle(location)
+  })
 
   const {
     mutate: handleSignInGithub,
     isLoading: githubLoading,
     error: githubError
-  } = useMutation(async () => await signInGithub(location))
+  } = useMutation(async () => {
+    await signInGithub(location)
+  })
 
   const isLoading = googleLoading || githubLoading
   const error = (googleError as Error) || (githubError as Error)
@@ -27,7 +31,9 @@ export default function SocialLogin() {
     <div className="flex flex-col gap-2 mt-5">
       <>
         <button
-          onClick={() => handleSignInGoogle()}
+          onClick={() => {
+            handleSignInGoogle()
+          }}
           disabled={isLoading}
           type="button"
           className="flex items-center gap-3 px-3 py-2 bg-white border rounded-md shadow-md text-zinc-900">
@@ -35,7 +41,9 @@ export default function SocialLogin() {
           {t('social-login.google')}
         </button>
         <button
-          onClick={() => handleSignInGithub()}
+          onClick={() => {
+            handleSignInGithub()
+          }}
           disabled={isLoading}
           type="button"
           className="flex items-center gap-3 px-3 py-2 text-white border rounded-md shadow-md bg-zinc-900 border-zinc-900">

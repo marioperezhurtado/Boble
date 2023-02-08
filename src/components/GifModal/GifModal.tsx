@@ -39,7 +39,9 @@ export default function GifModal({ onClose, onSend }: Props) {
   } = useMutation({
     mutationKey: ['searchGifs'],
     mutationFn: getSearchGifs,
-    onSuccess: () => setSearch('')
+    onSuccess: () => {
+      setSearch('')
+    }
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +78,7 @@ export default function GifModal({ onClose, onSend }: Props) {
           type="text"
           name="search"
           placeholder={t('gifs.placeholder') ?? ''}
-          className="rounded-md border px-2 py-1.5 w-full dark:bg-zinc-600 dark:border-zinc-500 dark:placeholder:text-zinc-300"
+          className="rounded-md border px-2 py-1.5 mx-2 w-full dark:bg-zinc-600 dark:border-zinc-500 dark:placeholder:text-zinc-300"
           autoComplete="off"
         />
         <button className="bg-cyan-700 text-cyan-50 rounded-md px-3 py-1.5 text-sm hover:bg-cyan-600 transition">
@@ -103,7 +105,9 @@ export default function GifModal({ onClose, onSend }: Props) {
           gifs.map((gif) => (
             <li key={gif.id}>
               <img
-                onClick={() => handleSend(gif.images.downsized.url)}
+                onClick={() => {
+                  handleSend(gif.images.downsized.url)
+                }}
                 src={gif.images.downsized.url}
                 alt={gif.alt_text}
                 className="overflow-hidden border rounded-md shadow-md max-w-screen w-fit max-h-56 dark:border-zinc-600"
