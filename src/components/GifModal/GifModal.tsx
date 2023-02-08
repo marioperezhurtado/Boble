@@ -70,7 +70,7 @@ export default function GifModal({ onClose, onSend }: Props) {
       <form
         onSubmit={handleSearch}
         name="searchForm"
-        className="flex max-w-md gap-2 mx-auto mb-2">
+        className="flex max-w-md gap-2 px-2 mx-auto mb-2">
         <input
           value={search}
           ref={searchRef}
