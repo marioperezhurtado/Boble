@@ -12,8 +12,8 @@ interface Props {
 
 const SIZES = {
   small: 'w-10 h-10',
-  medium: 'w-16 h-16',
-  large: 'w-20 h-20'
+  medium: 'w-14 h-14',
+  large: 'w-18 h-18'
 }
 
 export default function Avatar({ size, avatarUrl, name, id }: Props) {
@@ -54,14 +54,14 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
     <>
       <div
         onClick={handleExpand}
-        className={`overflow-hidden rounded-full min-w-fit cursor-pointer p-1.5 hover:bg-zinc-200 dark:hover:bg-zinc-700 ${SIZES[size]}`}>
+        className="overflow-hidden rounded-full min-w-fit cursor-pointer p-1.5 hover:bg-zinc-200 dark:hover:bg-zinc-700">
         <img
           onLoad={handleLoad}
           onError={handleError}
           src={avatarUrl}
           alt={`${name} avatar`}
-          className={`object-cover w-full h-full aspect-square rounded-full bg-zinc-100 dark:bg-zinc-800 
-        ${loaded ? '' : 'hidden'}`}
+          className={`object-cover aspect-square rounded-full bg-zinc-100 dark:bg-zinc-800 
+        ${loaded ? '' : 'hidden'}  SIZES[size]}`}
         />
       </div>
       {expanded &&
