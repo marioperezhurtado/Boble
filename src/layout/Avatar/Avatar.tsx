@@ -23,8 +23,12 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
 
   const defaultLetter = name[0]?.toUpperCase()
 
-  const handleLoad = () => setLoaded(true)
-  const handleError = () => setError(true)
+  const handleLoad = () => {
+    setLoaded(true)
+  }
+  const handleError = () => {
+    setError(true)
+  }
 
   const handleExpand = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -37,9 +41,9 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
 
   if (!avatarUrl || error) {
     return (
-      <div
-        className={`overflow-hidden rounded-full min-w-fit    p-1.5 hover:bg-zinc-200 dark:hover:bg-zinc-700 ${SIZES[size]}`}>
-        <div className="flex items-center justify-center w-full h-full rounded-full bg-cyan-700 text-cyan-50">
+      <div className="overflow-hidden rounded-full min-w-fit p-1.5 hover:bg-zinc-200 dark:hover:bg-zinc-700">
+        <div
+          className={`flex items-center justify-center rounded-full bg-cyan-700 text-cyan-50 ${SIZES[size]}`}>
           <p className="text-2xl font-bold">{defaultLetter}</p>
         </div>
       </div>
