@@ -30,7 +30,7 @@ export default function AddParticipant({ groupId }: Props) {
       <form
         onSubmit={handleSubmit}
         name="addParticipant"
-        className="flex gap-2 flex-wrap">
+        className="flex flex-wrap gap-2">
         <input
           value={userId}
           onChange={handleChange}
@@ -39,6 +39,7 @@ export default function AddParticipant({ groupId }: Props) {
           id="groupName"
           placeholder={t('add-participant.placeholder')}
           className="border rounded-md px-2 py-1.5 dark:bg-zinc-700 dark:border-zinc-600"
+          autoComplete="off"
         />
         <button
           disabled={isLoading}

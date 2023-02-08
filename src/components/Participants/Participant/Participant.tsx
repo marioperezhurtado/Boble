@@ -74,7 +74,7 @@ export default function Participant({ participant, creatorId }: Props) {
                 ref={ref}
                 onClick={handleOpenRemove}
                 disabled={isLoading}
-                className="absolute bottom-0 -right-1 z-10 bg-red-100 text-red-700 text text-sm rounded-md px-2 py-1.5 hover:bg-red-200 transition">
+                className="absolute bottom-0 -right-0 z-10 bg-red-100 text-red-700 text text-sm rounded-md px-2 py-1.5 hover:bg-red-200 transition">
                 {t('group-participants.remove')}
               </button>
             )}

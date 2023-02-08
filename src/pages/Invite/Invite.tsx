@@ -37,7 +37,7 @@ export default function Invite({ userId }: Props) {
         userId: currentUser?.id ?? '',
         friendId: profile?.id ?? ''
       }),
-    onSuccess: () => setLocation('/chat')
+    onSuccess: () => setLocation('/chats')
   })
 
   return (

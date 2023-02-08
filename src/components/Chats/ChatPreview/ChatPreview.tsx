@@ -63,7 +63,7 @@ export default function ChatPreview({ chat }: { chat: Chat }) {
             <button
               ref={ref}
               onClick={handleStartDelete}
-              className="absolute top-0 right-2 bg-red-100 text-red-700 text text-sm rounded-md px-2 py-1.5 hover:bg-red-200 transition">
+              className="absolute top-0 right-0 bg-red-100 text-red-700 text text-sm rounded-md px-2 py-1.5 hover:bg-red-200 transition">
               {t('chat-actions.delete.button')}
             </button>
           )}
