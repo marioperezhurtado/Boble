@@ -4,8 +4,12 @@ import { createPortal } from 'react-dom'
 export default function Media({ children }: { children: React.ReactNode }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const handleExpand = () => setIsExpanded(true)
-  const handleClose = () => setIsExpanded(false)
+  const handleExpand = () => {
+    setIsExpanded(true)
+  }
+  const handleClose = () => {
+    setIsExpanded(false)
+  }
 
   return (
     <div className="relative">
@@ -23,7 +27,7 @@ export default function Media({ children }: { children: React.ReactNode }) {
               role="presentation"
               className="fixed top-0 left-0 z-10 w-full h-screen bg-black opacity-75 dark:opacity-50"
             />
-            <div className="fixed z-20 w-full max-w-screen-md -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 max-h-screen-xs">
+            <div className="fixed z-20 -translate-x-1/2 -translate-y-1/2 w-fit top-1/2 left-1/2">
               <div className="mx-4 border rounded-md shadow-md bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200">
                 {children}
               </div>
