@@ -39,7 +39,7 @@ export default function ChatMessage({ message }: Props) {
   if (mediaLink) {
     return (
       <div
-        className={`w-3/4 sm:max-w-xs md:max-w-sm p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 mt-4 max-h-${
+        className={`w-3/4 sm:max-w-xs md:max-w-sm p-1 pb-1 rounded-md shadow-md flex flex-col gap-1 mt-4 max-h-52 md:max-h-96 ${
           isOwnMessage
             ? 'bg-cyan-700 text-cyan-50 ml-auto rounded-br-none'
             : 'bg-white dark:bg-zinc-700 mr-auto rounded-tl-none'
