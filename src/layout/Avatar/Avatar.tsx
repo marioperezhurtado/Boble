@@ -61,7 +61,7 @@ export default function Avatar({ size, avatarUrl, name, id }: Props) {
           src={avatarUrl}
           alt={`${name} avatar`}
           className={`object-cover aspect-square rounded-full bg-zinc-100 dark:bg-zinc-800 
-        ${loaded ? '' : 'hidden'}  SIZES[size]}`}
+        ${loaded ? '' : 'hidden'} ${SIZES[size]}`}
         />
       </div>
       {expanded &&
