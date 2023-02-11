@@ -3,26 +3,27 @@
 --chats
 create table chats(
   id uuid default uuid_generate_v4() primary key,
-  created_at timestampz default now(),
+  created_at timestamp default now(),
   user1 uuid references profiles (id) on delete cascade not null,
   user2 uuid references profiles (id) on delete cascade not null,
+  unique (user1, user2)
 );
 
 --chat messages
 create table chat_messages (
   id uuid default uuid_generate_v4() primary key,
-  created_at timestampz default now(),
+  created_at timestamp default now(),
   sender_id uuid references profiles (id) on delete cascade not null,
   chat_id uuid references chats (id) on delete cascade not null,
   text text,
   media_link text,
-  audio_link text
+  audio_link text,
 );
 
 --groups
 create table groups(
   id uuid default uuid_generate_v4() primary key,
-  created_at timestampz default now(),
+  created_at timestamp default now(),
   creator_id uuid references profiles (id) on delete cascade not null,
   name text not null,
   image_url text
@@ -30,7 +31,7 @@ create table groups(
 
 --group participants 
 create table group_participants (
-  joined_at timestampz default now(),
+  joined_at timestamp default now(),
   user_id uuid references profiles (id) on delete cascade not null,
   group_id uuid references groups (id) on delete cascade not null,
   primary key (user_id, group_id)
@@ -39,7 +40,7 @@ create table group_participants (
 --group messages
 create table group_messages (
   id uuid default uuid_generate_v4() primary key,
-  created_at timestampz default now(),
+  created_at timestamp default now(),
   sender_id uuid references profiles (id)  on delete cascade not null,
   group_id uuid references groups (id)  on delete cascade not null,
   text text,
