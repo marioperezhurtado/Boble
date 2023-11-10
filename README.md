@@ -94,7 +94,7 @@ You can find the SQL queries and policies of this project [here](./doc/Boble.sql
 
 Resulting database schema: (Generated w/ [supabase-schema](https://github.com/zernonia/supabase-schema) )
 
-![Database Schema](./doc/db-schema.png)
+![Database Schema](./doc/screenshots/db-schema.png)
 
 - Create an account on Supabase.
 
